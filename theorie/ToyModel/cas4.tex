@@ -1,0 +1,84 @@
+Plaçons nous dans le cas $\alpha=4$ :
+\begin{align}
+	\rho(r) &= \begin{cases}
+			\rho_0	&	\text{si $r<r_0$}\\
+			\rho_0 \(\dfrac{r_0}{rx}\)^4	&	\text{si $r > r_0$}
+	\end{cases}
+\end{align}
+Nous utiliserons les résultats donnés dans la section précédente, en décrivant uniquement les cas où l'objet est
+isotherme.
+\subsection{Normalisation}
+	En utilisant :
+	\begin{align}
+		\int_0^R \rho(r) &= M
+	\end{align}
+	La densité centrale $\rho_0$ va valoir :
+	\begin{align}
+		\rho_0 &= \dfrac{3}{4}\dfrac{M x^4}{R^3 \(4x - 3\) \pi}
+	\end{align}
+	Ainsi, la densité volumique de masse s'écrit :
+	\begin{align}
+			\rho(r) &= \begin{cases}
+				\dfrac{3}{4}\dfrac{M x^4}{R^3 \(4x - 3\) \pi}  &       \text{si $r<r_0$}\\
+				\dfrac{3}{4}\dfrac{M x^4}{R^3 \(4x - 3\) \pi}\(\dfrac{R}{rx}\)^4    &       \text{si $r >
+				r_0$}
+			\end{cases}
+	\end{align}
+	Il est alors possible d'en déduire la masse contenue dans un rayon $r$ :
+	\begin{align}
+		\mu\(r\) = \begin{cases}
+			\dfrac{Mr^3x^4}{R^3\(4x-3\)}	&	\text{si $r < r_0$}\\
+			\dfrac{\(3R-4rx\)M}{\(3-4x\)r}	&	\text{si $r>r_0$}
+		\end{cases}
+	\end{align}
+\subsection{L'énergie potentielle}
+	Sachant que:
+	\begin{align}
+		E_p(r) &= -4\pi G\int_0^r r\rho(r)\mu(r)\mathrm{dr}
+		\intertext{Nous en déduisons l'énergie potentielle totale du système:}
+		E_p^\mathrm{tot} &= -4\pi G\int_0^R r\rho(r)\mu(r)\mathrm{dr} \\
+				 &= -\frac{3 G M^2 \left(5-10 x+6 x^3\right)}{5R (3-4 x)^2} \\
+	\end{align}
+\subsection{Énergie cinétique}
+	Nous nous plaçons dans le cas où l'objet est isotherme (c'est le cas pour le modèle de \King, en première
+	approximation). L'énergie cinétique s'écrit alors:
+	\begin{align}
+		E_c &= \dfrac{3M}{2m\beta}
+	\end{align}
+\subsection{Pression}
+	Dans le cadre isotherme que nous utilisons, la pression s'exerçant sur la sphère est :
+	\begin{align}
+		P\(R\) = \frac{3 M}{4 m \pi  R^3 (-3+4 x) \beta }
+	\end{align}
+\subsection{Spirale de stabilité}
+	En rappelant que le théorème du Viriel s'écrit :
+	\begin{align}
+		4\pi R^3 P(R) &= 2 E_c + E_p
+	\intertext{pour une sphère isotherme, nous en déduisons la dépendance en $x$ de $\beta$ :}
+		\beta(x) &= \frac{20R \left(3 -7  x+4  x^2\right)}{G m M \left(5-10 x+6 x^3\right)}
+	\intertext{Nous en déduisons la dépendance de l'énergie avec $x$ :}
+		E &= E_c + E_p^\mathrm{tot}
+	\intertext{En utilisant les mêmes adimensionnements et notations que la SIS, nous arrivons à :}
+		\mu(x) &= \frac{20 (-1+x) (-3+4 x)}{5-10 x+6 x^3}\\
+		\lambda(x) &= -\frac{3 (-5+4 x) \left(5-10 x+6 x^3\right)}{40 (3-4 x)^2 (-1+x)}
+	\end{align}
+
+	Nous pouvons alors tracer le graphique~\ref{fig::DET}.
+
+	\begin{figure}
+		\centering \includegraphics[width=1\linewidth]{theorie/graphe/ToyModel-alpha4_spirale.pdf}
+		\caption{Diagramme Énergie Température pour le Toy-Model, avec $\alpha=4$\label{fig::DET}}
+	\end{figure}
+
+\subsection{Recherche des instabilité}
+	En appliquant la méthode décrite dans le cas général, nous trouvons que 4 valeurs de $x$ annule la dérivée
+	première de $\mu(x)$ :
+	\begin{align*}
+		x =  \frac{1}{6} \left(3-\sqrt{3}\right), \frac{1}{6}
+		\left(3+\sqrt{3}\right), \frac{1}{4} \left(5-\sqrt{5}\right),
+		\frac{1}{4} \left(5+\sqrt{5}\right)
+	\end{align*}
+
+	La valeur de $x$ maximisant $\mu$ est : $x = \frac{1}{4} \left(5-\sqrt{5}\right)$.
+
+\FloatBarrier

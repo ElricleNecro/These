@@ -1,0 +1,270 @@
+	Nous nous intéressons maintenant à l'existence d'un lien entre le rayon du cœur et la pente
+du halo. Il n'y a apparemment aucun moyen de faire ça analytiquement (~en tout cas, je n'ai pas encore trouvé~).
+Par contre, lorsque je traçais des graphes, obtenu avec le code abordé ci-dessus,
+j'ai remarqué une forte dépendance\footnote{logique~!?!} entre la pente, en $\log-\log$, et $W_0$
+(~voir graphe de droite de la figure~\ref{King_Modele-test}~). De même pour le rayon à $10\%$
+de l'objet étudié. L'idée que j'ai utilisé pour faire le lien entre les deux quantités a été de
+regarder leur comportement en fonction des conditions initiales puis de combiner ensuite les 2
+comportements pour obtenir une relation empirique entre ces deux paramètres. %courbe les reliant.
+
+\subsection{Calcul des pentes pour différentes conditions initiales\label{pente-critére}}
+
+	Pour obtenir les pentes, nous traçons dans un diagramme $\log-\log$ la densité, puis, à l'aide
+du logiciel \textsc{GNUPlot}\footnote{\url{http://www.gnuplot.info/}} nous ajustons une équation du type $a x+b$ à la partie linéaire de la
+courbe, le coefficient $a$ représentant la pente.
+
+	Le problème avec cette méthode, c'est que, pour certaines conditions initiales, il n'y a
+presque pas de halo : la densité d'étoile chute brutalement (~voir figure~\ref{ci-pente_1}
+page~\pageref{ci-pente_1} en annexe~). Les valeurs des pentes pour des systèmes ayant une énergie de
+libération et une énergie minimale très proche, ou une grande dispersion d'énergie, sont donc assez
+peu fiables. Cette brusque pente vient de la faible quantité d'énergie à fournir pour faire
+s'échapper une ou plusieurs particules du système.
+
+	Le traitement a ensuite été automatisé en considérant que le halo correspond à la zone :
+	\begin{align}
+		10^{-4} < \dfrac{\rho(r)}{\rho(0)} < 0.1 \label{pente::critere}
+	\end{align}
+
+	Pour obtenir les points rouge de la figure~\ref{coeff_evo}, nous avons fait varier $\gamma(0) = W_0 = 1$ à $W_0 = 21$.
+	La courbe verte est obtenu en ajustant aux points rouge, et en respectant le critère~\ref{pente::critere}, une équation du type $a e^{b x} + c$. %$a x^2 + b x + c$.
+	Les coefficients obtenus sont donnés sur la courbe~\ref{coeff_evo}.
+%	\begin{table}[hbt!]
+%		\begin{center}
+%			\begin{tabular}{|c|c|c|}
+%				\hline
+%				Coefficient & Valeur & Erreur \\
+%				\hline
+%				\hline
+%				$a$       &         -10.0698      &  $\pm 0.2423$       (~$2.406\%$~) \\
+%				\hline
+%				$b$       &         0.220152      &  $\pm 0.01075$      (~$4.883\%$~) \\
+%				\hline
+%				$c$       &         -1.63409      &  $\pm 0.09393$      (~$5.748\%$~) \\
+%				$a$       &        $-0.0157022$   &   $\pm 0.002226$ (~$14.18\%$~) \\
+%				$b$       &        $0.443128$     &   $\pm 0.03663$  (~$8.266\%$~) \\
+%				$c$       &        $-5.33431$     &   $\pm 0.1274$   (~$2.388\%$~) \\
+%				\hline
+%			\end{tabular}
+%		\end{center}
+%		\caption{Valeur des coefficients donnée par l'ajustement pour les pentes}
+%		\label{pente-fit}
+%	\end{table}
+	\begin{figure}[hbt!]
+%		\centering \includegraphics[scale=1.00]{../Resol_King/img-king/pente-w0.pdf} %{graphe/evo-coeff_ci.pdf}
+		\centering \includegraphics[scale=1.00]{graphe/pente-w0.pdf}%{img-king/pente-w0.pdf} %{graphe/evo-coeff_ci.pdf}
+		\caption{Évolution des pentes pour différentes conditions initiales}
+		\label{coeff_evo}
+	\end{figure}
+
+	Il est réconfortant de remarquer sur cette courbe la présence d'une asymptote horizontale autour de $-2$ correspondant à la pente d'une sphère isotherme singulière.
+	En effet, pour $W_0 \to \infty$ le modèle de \textsc{King} se rapproche d'une sphère isotherme de rayon infini dont le halo est très proche de celui d'une SIS.
+%	\FloatBarrier
+
+\subsection{Calcul du rayon à $10\%$ pour différentes conditions initiales\label{r_10}}
+
+	L'un des paramètres libres les plus utilisés du modèle de \textsc{King} est le rayon du cœur (formule~\ref{r_c}, page~\pageref{r_c}~).
+%	Il serait ainsi intéressant de prendre cette valeur et de la tracer en fonction de la condition initiale $W_0$,
+%	ce qui nous permettrait ainsi de la relier à la pente.
+	Il est donc intéressant de relier les paramètres $r_c$ et $W_0$. Ainsi, en utilisant la relation que nous avons déterminé entre $W_0$ et la pente $\alpha$ du halo, nous obtiendrons une relation entre $r_c$ et $\alpha$
+
+	Mais deux problèmes se posent :
+	\begin{enumerate}
+		\item de la même manière que dans le paragraphe précédent, la détermination de $r_c$ a un problème : quand
+	$W_0$ devient trop grand, le système se \og~dilue~\fg, c'est-à-dire que la différence entre
+	cœur et halo est de moins en moins évidente, comme sur la figure~\ref{w_0-5_10}
+	page~\pageref{w_0-5_10} (~nous sommes dans le cas d'un amas effondré~),
+		\item le programme de résolution qui nous permet d'avoir ces courbes est adimensionné par rapport à ce rayon, rendant ainsi très difficile
+			le redimensionnement des résultats et leur comparaison avec les données observationnelles.
+	\end{enumerate}
+
+	Pour palier à ce dernier problème, il est possible de prendre, plutôt que le rayon du cœur, le rayon à $10\%$.
+%	Le rayon à $10\%$ est le rayon à partir duquel $10\%$ de la masse totale de l'amas se trouve à l'intérieur.
+	Il est défini comme :
+	\begin{quote}
+		Le rayon à $10\%$ du système est atteint lorsque, du centre vers le bord du
+		système, la densité a diminué de $10\%$ :
+		\begin{align}
+			\frac{\rho(x_{10})}{\rho(0)} = 0.1
+		\end{align}
+	\end{quote}
+
+%	Le rayon à $10\%$ est plus délicat à obtenir.
+%	Pour obtenir la figure~\ref{coeur_evo}, nous avons considéré que le rayon à $10\%$ correspondait à la distance pour laquelle la densité
+%	ne pouvait plus être considérée comme constante : nous avons placé, à la main, la valeur du
+%	rayon au moment où la pente devenait nette\footnote{cette contrainte dépend des gens et n'est donc
+%	pas très adapté à ce que nous faisons}.
+
+	Une fois ces valeurs de rayon mesurées, nous avons tracé la courbe rouge de la
+	figure~\ref{coeur_evo2} que nous avons ajustée avec la fonction $a e^{b x} + c$ et avons
+	obtenu les coefficients indiqués sur la courbe.
+
+%	\begin{table}[hbt!]
+%		\begin{center}
+%			\begin{tabular}{|c|c|c|}
+%				\hline
+%				Coefficient & Valeur & Erreur \\
+%				\hline
+%				\hline
+%				$d$       &       $1.86332$      &   $\pm 0.04078$ 	(~$2.189\%$~)\\
+%				\hline
+%				$e$       &       $-0.635746$    &   $\pm 0.01585$    	(~$2.494\%$~)\\
+%				\hline
+%				$f$       &       $0.0049355$    &   $\pm 0.003953$     (~$80.1\%$~)\\
+%				\hline
+%			\end{tabular}
+%		\end{center}
+%		\caption{Valeur des coefficients donnée par l'ajustement pour les rayons à $10\%$}
+%		\label{coeur-fit}
+%	\end{table}
+%	\begin{figure}[hbt!]
+%		\centering \includegraphics[scale=1.00]{graphe/evo-coeur_ci.pdf}
+%		\caption{Évolution du rayon à $10\%$ calculé à la main pour différents $W_0$}
+%		\label{coeur_evo}
+%	\end{figure}
+
+%	\textcolor{red}{\underline{Attention :}} il peut être intéressant de refaire ces courbes en
+%	incluant le calcul du rayon à $10\%$ directement dans le code (~selon la définition choisi~).
+
+%	Le calcul a été refait en sortant le rayon à $10\%$ directement du code résolvant les
+%	équations. De cette manière, la courbe reste sensiblement la même, et les coefficients ont par contre
+%	bien changé, comme nous pouvons le voir sur la courbe~\ref{coeur_evo2}.
+	\begin{figure}[hbt!]
+		\centering \includegraphics[scale=1.00]{graphe/evo-coeur_ci2.pdf}
+		\caption{Évolution du rayon à $10\%$ calculé lors de la résolution numérique pour différents $W_0$}
+		\label{coeur_evo2}
+	\end{figure}
+%	\begin{table}[hbt!]
+%		\begin{center}
+%			\begin{tabular}{|c|c|c|}
+%				\hline
+%				Coefficient & Valeur & Erreur \\
+%				\hline
+%				\hline
+%				$d$        &       $7.36877$      &   $\pm 0.2352$       (~$3.191\%$~)\\
+%				\hline
+%				$e$        &       $-0.633846$    &   $\pm 0.02309$      (~$3.642\%$~)\\
+%				\hline
+%				$f$        &       $0.0419222$    &   $\pm 0.02291$      (~$54.66\%$~)\\
+%				\hline
+%			\end{tabular}
+%		\end{center}
+%		\caption{Valeur des coefficients donnée par l'ajustement pour les rayons à $10\%$
+%		(~v2.0~)}
+%		\label{coeur-fit2}
+%	\end{table}
+	\FloatBarrier
+
+\subsection{Lien entre les deux\label{ssec::LinkBetween}}
+
+	Maintenant que nous avons la dépendance des rayons à $10\%$ et des pentes en fonction de la
+	condition initiale $W_0$, nous pouvons regarder comment varie la pente en fonction de la
+	taille de l'amas. Sur la figure~\ref{coeff-coeur2}, nous avons tracé en vert les données, et
+	en rouge la courbe formée par nos deux expressions obtenues par ajustement (~les coefficients
+	utilisés sont les mêmes que ceux donnés sur les figures~\ref{coeff_evo} et~\ref{coeur_evo2}~).
+%	\begin{figure}[hbt!]
+%		\centering \includegraphics[scale=1.00]{graphe/evo-coeff_coeur.pdf}
+%		\caption{Évolution de la pente calculé à la main en fonction du rayon à $10\%$}
+%		\label{coeff-coeur}
+%	\end{figure}
+
+	En supposant que nos ajustements sont valables pour toutes les valeurs possibles de $W_0$,
+	nous pouvons tenter d'obtenir une expression analytique reliant nos deux quantités. En
+	partant de :
+	\begin{align}
+		\left\{\begin{array}{l}
+			f(W_0) = \alpha = a e^{b W_0} + c \\ %a W_0^2 + b W_0 + c \\
+			g(W_0) = x_{10\%} = d e^{e W_0} + f
+		\end{array}\right.
+	\end{align}
+	Et en les combinant :
+	\begin{align}
+		\Rightarrow e^{e W_0} &= \frac{x_{10\%} - f}{d} \notag\\
+				W_0   &= \frac{1}{e}\ln\(\frac{x_{10\%} - f}{d}\) \\
+		\Rightarrow \alpha &= a \exp\(\frac{1}{e}\ln\(\frac{x_{10\%} - f}{d}\)\) + c %\frac{a}{e^2}\ln^2\(\frac{x_{10\%} - f}{d}\) +
+					%\frac{b}{e}\ln\(\frac{x_{10\%} - f}{d}\) + c \notag \\
+%		\intertext{Nous obtenons :}
+%		\beta &= a e^{1/e} %\frac{1}{e}\ln\(\frac{x_{10\%} - f}{d}\)\(\frac{a}{e}\ln\(\frac{x_{10\%} - f}{d}\) + b\) + c
+	\end{align}
+
+	Cette expression s'ajuste \og~bien~\fg~à la courbe, mais \textsc{GNUPlot} donne des erreurs
+	assez élevées.
+%	\begin{table}[hbt!]
+%		\begin{center}
+%			\begin{tabular}{|c|c|c|}
+%				\hline
+%				Coefficient & Valeur & Erreur \\
+%				\hline
+%				\hline
+%				$q=a/e^2$       &      $-0.0394991$   &   $\pm 0.02115$ (~$53.55\%$~)\\
+%				\hline
+%				$s=1/d$         &      $0.524033$     &   $\pm 4.538$   (~$865.9\%$~)\\
+%				\hline
+%				$j=f/d$         &      $0.00254127$   &   $\pm 0.02122$ (~$835.2\%$~)\\
+%				\hline
+%				$k=b/e$         &      $-0.688944$    &   $\pm 0.8111$  (~$117.7\%$~)\\
+%				\hline
+%				$l=c$           &      $-5.3267$      &   $\pm 6.127$   (~$115\%$~)\\
+%				\hline
+%			\end{tabular}
+%		\end{center}
+%		\caption{Valeur des coefficients donnée par l'ajustement pour les pentes en
+%		fonctions des rayons à $10\%$}
+%		\label{param-fit}
+%	\end{table}
+%	Les corrections dans la détermination du rayon à $10\%$ ont amélioré l'ajustement de cette courbe, en plus d'avoir changé l'échelle des $x$. Les changements sont
+%	donnés sur la figure~\ref{coeff-coeur2}.
+%	\begin{table}[hbt!]
+%		\begin{center}
+%			\begin{tabular}{|c|c|c|}
+%				\hline
+%				Coefficient & Valeur & Erreur \\
+%				\hline
+%				\hline
+%				$q$       &       $-0.0526849$    &  $\pm 0.02245$      (~$42.6\%$~)\\
+%				\hline
+%				$s$       &       $0.211927$      &  $\pm 0.4648$       (~$219.3\%$~)\\
+%				\hline
+%				$j$       &       $0.0081136$     &  $\pm 0.02144$      (~$264.2\%$~)\\
+%				\hline
+%				$k$       &       $-0.716362$     &  $\pm 0.1606$       (~$22.42\%$~)\\
+%				\hline
+%				$l$       &       $-5.01452$      &  $\pm 1.478$        (~$29.47\%$~)\\
+%				\hline
+%			\end{tabular}
+%		\end{center}
+%		\caption{Valeur des coefficients donnée par l'ajustement pour les pentes en
+%		fonctions des rayons à $10\%$ (~v2.0~)}
+%		\label{param-fit2}
+%	\end{table}
+	\begin{figure}[hbt!]
+		\centering \includegraphics[scale=1.00]{graphe/evo-coeff_coeur3.pdf}
+		\caption{Évolution de la pente en fonction du rayon à $10\%$}
+		\label{coeff-coeur2}
+	\end{figure}
+
+%	Ensuite, il est intéressant de comparer les données observationnelle à notre travail. Le problème auquel auquel nous avons fait face est
+%	que nous avons adimensionné le problème par rapport au rayon de cœur, qu'il n'est donc pas possible d'obtenir par la résolution numérique.
+%	Ce travail n'est donc pas utilisable directement pour une comparaison avec les observations. Par contre, le rayon de cœur est mesurable, comme indiqué dans~\cite{Djo-rc}.
+	\FloatBarrier
+
+\subsection{Paramètre de concentration : $c$}
+	Le dernier paramètre d'un modèle de \textsc{King} sur lequel nous pouvons jouer est le paramètre de concentration $c$.
+	Dans le modèle de King, la concentration s'écrit :
+	\begin{align}
+		c = \log_{10}\(\frac{R}{r_c}\)
+	\end{align}
+	avec $R$ la taille du système (~tel que $\rho(R) = 0$~) et $r_c$ le rayon de cœur. Ce paramètre est infini pour la sphère isotherme singulière, comme $W_0$.
+	Notons que dans le cas de la SIS $W_0$, $R$ et $c$ sont infini.
+
+	Ce paramètre permet aussi de fixer l'état du système. Trouver une fonction ou une équation permettant de faire le lien entre la concentration et la condition
+	initiale $W_0$ nous permettrait de trouver le modèle de King correspondant à un amas (~les paramètres $c$, $r_c$ et $\sigma^2$ le représentant~). Nous avons donc inclus
+	dans la résolution des équations un calcul de ce paramètre de concentration. Nous avons ainsi pu obtenir la courbe~\ref{concentre}
+	\begin{figure}[hbt!]
+		\centering \includegraphics[scale=1.00]{graphe/concentration-king.pdf}
+		\caption{Évolution de la concentration avec la condition initiale $W_0$}
+		\label{concentre}
+	\end{figure}
+
+	Le paramètre de concentration est mesurable pour chaque amas (~en tout cas, c'est un des paramètres du catalogue de \textsc{Harris}~\cite{Harris}~).
+	Mais le fait que la courbe ne soit pas bijective nous impose plusieurs modèles pour un seul paramètre de concentration.
+	\FloatBarrier

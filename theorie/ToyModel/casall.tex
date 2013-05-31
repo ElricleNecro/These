@@ -1,0 +1,136 @@
+Il est utile de préciser avant de commencer que tous ces calculs généraux sont valides pour $\alpha\geq 4$.
+Les valeurs $\alpha = 3,\, 4$ faisant intervenir des logarithmes, il est nécessaire des les étudier à part.
+\subsection{Normalisation}
+	À partir de ces hypothèses, nous pouvons commencer par calculer $\rho_0$ en utilisant:
+	\begin{align*}
+		\int_0^R \rho(r) = M
+	\end{align*}
+	Un calcul rapide nous permet d'obtenir:
+	\begin{align}
+		\rho_0 = \frac{3 M x^{3+\alpha } (-3+\alpha )}{4 \pi  R^3 \left(-3 x^3+x^{\alpha } \alpha
+\right)}
+	\end{align}
+
+\subsection{L'énergie potentielle}
+	Elle se calcul bien, en utilisant:
+	\begin{align}
+		E_p &= -4\pi G \int_0^R r\rho(r)\mu(r) \dr \notag
+		\intertext{Avec:}
+		\mu(r) &= 4\pi\int_0^r r^2\rho(r)\dr \notag
+	\end{align}
+	Un calcul rapide nous donne alors:
+	\begin{align}
+%			E_p(x) = \begin{cases}
+%					\dfrac{ r_0^2 M^2 }{60\pi \( \dfrac{1}{\alpha-3}\( 1-x^{3-\alpha} \) + \dfrac{1}{3} \)^2} & \text{si $r < r_0$} \\
+%					\\
+%					\dfrac	{M^2 \left( \frac		{\left(2 \alpha^2-8 \alpha+6 \right) x^{\alpha}}
+%										{\left(2 \alpha^3-9 \alpha^2+10 \alpha\right) x^{\alpha}+\left(-6 \alpha^2+27 \alpha-30\right) x^3}
+%								-    \frac	{\left(\left(2 \alpha^2-5 \alpha\right) x^{\alpha+2}+\left(6-3 \alpha\right) x^5\right)}
+%										{\left(-6 \alpha^2+27 \alpha-30\right) x^{\alpha+3}+ \left(2 \alpha^3-9 \alpha^2+10 \alpha\right) x^{2 \alpha}}
+%							      \right)}
+%						{4 \pi r_0\left(\frac{1}{\alpha-3} \left(1 - x^{3-\alpha}\right)+\frac{1}{3}  \right)} & \text{si $r_0<r$}
+%			\end{cases}
+		E_p(x) &= \frac{3 G M^2 x (-3+\alpha ) \left(-15 x^5 (-2+\alpha )+5 x^{2+\alpha } \alpha  (-5+2 \alpha
+)-x^{2 \alpha } (-3+\alpha ) \alpha  (1+2 \alpha )\right)}{5 R (-2+\alpha ) (-5+2 \alpha ) \left(-3
+x^3+x^{\alpha } \alpha \right)^2}
+	\end{align}
+
+
+\subsection{Pression}
+	Nous allons avoir besoin de la pression pour étudier le problème d'Antonov. Selon les conditions que nous souhaitons mettre sur le bord de la sphère, nous
+	avons deux manière de calculer. Nous allons présenter les deux méthodes, mais les calculs ne
+	seront donné que pour une méthode en particulier.
+	%: celle qui s'applique à notre problème: un bain thermique, et donc un extérieur isotherme.
+
+	\paragraph{Cas \og général\fg:} Dans le cas \og général\fg, nous appliquons
+		l'équation de l'hydrostatique:
+		\begin{align}
+			\deriv{P}{r} = -\rho(r) \deriv{\psi}{r}
+		\end{align}
+		Le potentiel étant obtenu par résolution de l'équation de Poisson:
+		\begin{align}
+			\Delta\psi(r) = 4\pi G \rho(r)
+		\end{align}
+		En appliquant ces équations à notre problème simplifié, nous obtenons:
+		\begin{align}
+			P(R) &= \frac{3 G M^2 R^{-4-\alpha } x^3 (-3+\alpha ) \left(2 (R x)^{\alpha }
+(-1+\alpha ) \alpha +R^{\alpha } x \left(-3 x^2 (1+\alpha )-x^{2 \alpha } (-3+\alpha ) \alpha  (2+\alpha
+)\right)\right)}{8 \pi  \left(-3 x^3+x^{\alpha } \alpha \right)^2 \left(-1+\alpha ^2\right)}
+		\end{align}
+	\paragraph{Cas isotherme:} dans ce cas ci, l'équation de l'hydrostatique se
+		ramène à l'équation d'un polytrope:
+		\begin{align}
+			P(r) &= \dfrac{\rho(r)}{m\beta}\\
+			P(R) &= \frac{3 M \left(\frac{1}{x}\right)^{\alpha } x^{3+\alpha } (-3+\alpha )}{4 m \pi
+R^3 \left(-3 x^3+x^{\alpha } \alpha \right) \beta }
+		\end{align}
+
+	\paragraph{Problème de définition:}
+		Il nous faut maintenant définir de quelle pression nous parlons. En effet, dans un cas
+		d'équilibre où les deux objets sont à la même température, le problème ne se pose pas: la
+		continuité en pression impose qu'elle soit les mêmes au bord de la sphère. D'après la
+		démonstration du théorème du Viriel pour une sphère (voir l'annexe~\ref{Demo::Viriel}, page~\pageref{Demo::Viriel}).
+
+\subsection{Énergie cinétique}
+	Ici encore, il y a deux méthodes de calculs, et ici encore, une seule
+	sera décrite.
+	\paragraph{Cas non-isotherme:} Dans ce cas, les calculs peuvent être très compliqué. En
+		effet, ils nécessitent de connaître la fonction de distribution. Si elle n'est pas
+		connue, il est possible de l'avoir en utilisant la formule d'Abel:
+		\begin{align*}
+			f(E) =
+			\dfrac{1}{2\sqrt{2}\pi^2m^{7/2}}\(\int_0^E\deriv{\rho}{\phi}\dfrac{\mathrm{d\phi}}{\sqrt{E -
+			m\phi}} + \dfrac{1}{\sqrt{E}} \left.\deriv{\rho}{\phi}\right\vert_{\phi=0}\)
+		\end{align*}
+		avec $\phi$ le potentiel et $\rho$ la densité.
+		Ensuite, l'énergie cinétique se calcul alors simplement, pour peu que toutes les
+		fonctions présentes soient analytique:
+		\begin{align}
+			E_c = \int_0^R\(\dfrac{1}{\rho(r)}\int \dfrac{p^2}{2m}f(E)\vdp\)\vdr
+		\end{align}
+	\paragraph{Cas isotherme:} Avec cette hypothèse, le calcul est \og on ne peut plus simple\fg:
+		\begin{align}
+			E_c = \dfrac{3M}{2m\beta}
+		\end{align}
+
+\subsection{Spirale de stabilité}
+	Nous avons maintenant tous les ingrédients nécessaire, il va être nécessaire de les adimensionner. Nous allons utiliser
+	les mêmes changements que pour la SIB:
+	\begin{align}
+		\mu     &= \dfrac{GMm\beta}{r_0x} \\
+		\lambda &= \dfrac{HR}{GM^2}
+	\end{align}
+	où $H = E_c + E_p$ est l'énergie totale du système.
+
+	Notre but étant d'obtenir ces deux quantités en fonction de $x$. L'énergie totale s'obtient facilement, en
+	adimensionnant, mais nous auront besoin de la température. Pour la température, les calculs sont plus lourd: nous devons
+	utiliser le théorème du Viriel adapté aux sphères. Ce qui nous donne l'équation suivante à résoudre:
+	\begin{align}
+		2E_c + E_p = \dfrac{4}{3}\pi R^3P_e
+	\end{align}
+	avec $P_e = P(R)$.
+
+	Une fois ces deux quantités obtenues, il ne reste plus qu'à les tracer dans le plan $\(\lambda, \mu\)$.
+
+	Ce qui nous amène à des courbes comme~\ref{ToyModel::AllAlpha}.
+	\begin{figure}
+		\centering \includegraphics[width=1\linewidth]{theorie/graphe/ToyModel-alpha_spirale.pdf}
+		\caption{Diagramme Énergie-Température pour $\alpha=4, 5, 6, 7, 8$\label{ToyModel::AllAlpha}}
+	\end{figure}
+
+\subsection{Recherche des instabilité} % (fold)
+	\label{sub:Recherche des instabilité}
+	La recherche des instabilité se fait en recherchant les tangentes verticale et horizontal (si elles existent).
+	Nous recherchons alors les points où :
+	\begin{align}
+		\deriv{\mu}{\lambda} &= 0
+		\intertext{Soit :}
+		\dfrac{\deriv{\mu(x)}{x}}{\deriv{\lambda(x)}{x}} &= 0
+		\intertext{Donc :}
+		\deriv{\mu(x)}{x} &= 0
+	\end{align}
+	Si il y a plusieurs solutions, il faut un moyen de les discriminer.
+	En observant bien les courbes~\ref{ToyModel::AllAlpha}, nous nous rendons compte facilement que la tangente
+	horizontale correspond toujours au maximum de la fonction $\mu(x)$. Nous devons donc chercher la valeur de $x$
+	qui annule $\deriv{\mu(x)}{x}$ mais qui maximise $\mu(x)$.
+% subsection Recherche des instabilité (end)

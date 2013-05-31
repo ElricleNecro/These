@@ -1,0 +1,45 @@
+La fonction de distribution d'une sphère isotherme en boîte, s'écrit :
+\begin{eqnarray}
+f^+(E) = \left(\frac{2\pi\alpha^2m}{\beta}\right)^{-3/2}e^{-\beta E}\times\mathbb{I}_{B_R}
+\end{eqnarray}
+où $\alpha$, en mètre, et $\beta$, en Joule, sont des multiplicateurs de \textsc{Lagrange}, \mbox{$\beta = \frac{1}{k_B T}$}.
+Ils servent à normaliser la fonction sur son intervalle de définition.
+La quantité \mbox{$E = \frac{p^2}{2m} - m\psi(r)$} est l'énergie d'une particule test de masse $m$ se déplacant dans
+le potentiel $\psi$ créé par la sphère isotherme.
+Le calcul de la densité de masse donne alors \mbox{$\rho(r) = \frac{m}{\alpha^3}e^{-\beta m \psi(r)}\times\mathbb{I}_{B_R}$}. % \psi'(r)}$}, dans la suite nous utiliserons :
+%\mbox{$\psi'(r) = \psi(r) - \psi(0)$}~\footnote{pour faciliter les calculs dans les variables \textsc{Milne} définies ci-dessous}.
+Nous injectons ensuite la densité dans l'équation de \textsc{Poisson} :
+\begin{align}
+	\frac{1}{r^2}\frac{d}{dx}\left(r^2\frac{d \psi}{dx}\right) &= \frac{4\pi m G}{\alpha^3} e^{-m\beta \psi(r)} \times\mathbb{I}_{B_R} \Rightarrow \frac{1}{x^2}\frac{d}{dx}\left(x^2\frac{d h}{dx}\right) = e^{-h} \times\mathbb{I}_{B_R} \notag
+	\intertext{où nous avons utilisé l'adimensionnement suivant :}
+	x &= \frac{r}{r_0}\mathrm{,}\ r_0 = \sqrt{\frac{\alpha^3}{4\pi G m^2\beta}}e^{-\frac{m\beta\psi(0)}{2}} \notag \\
+	h &= m\beta\psi(x) - m\beta\psi(0) \notag
+	\intertext{il est important de noter que $h$ est différente du $y$ utilisé dans le chapitre précédent : ici $h(0) = 0$ alors que $y(0) = m\beta\psi(0)$. La transformation suivante a été introduite par \textsc{Milne}, avec $\dfrac{d h}{dx} = \x{h}$ :} %(~nous utiliserons la notation indicielle pour les dérivées selon $x$ : $\frac{d h}{dx} = \x{h}$~) :
+%	\left\{\begin{array}{l}
+	&\begin{cases}
+		v = x \dfrac{d h}{dx} = x \x{h} \\
+		\\
+		u = \dfrac{e^{-h} x}{h'} = \dfrac{e^{-h} x^2}{v}
+	\end{cases} \label{syst_uv}
+%	\end{array}\right.\label{syst_uv}
+	\intertext{Un calcul simple donne alors :}
+	\dfrac{d(xv)}{dx} &= uv \notag \\
+	\Rightarrow \x{v} &= \frac{v \left( u - 1\right)}{x} \notag
+	\intertext{Pour obtenir l'équation sur $u$, nous dérivons l'expression de la transformation, laquelle nous donne finalement :}
+%	\left\{\begin{array}{l}
+	&\begin{cases}
+		\x{v} = \dfrac{v \left( u - 1\right)}{x} \\
+		\x{u} = \dfrac{u}{x}\left(3 - v - u\right)
+	\end{cases} \label{systdudv} \\
+%	\end{array}\right. \\
+\end{align}
+\begin{equation}
+	\Rightarrow \fbox{$
+	\dfrac{d v}{d u} = \dfrac{v \left( u - 1\right)}{u \left(3 - u - v\right)}
+	$} \label{eqdudv}
+\end{equation}
+La courbe résultant de cette équation, tracée dans le plan $\left(u, v\right)$, forme le diagramme
+de \textsc{Milne}. Ce diagramme contient donc toutes les caractéristiques physiques d'une sphère isotherme
+en boîte. Ces équations sont résolues numériquement, à l'aide d'un \textsc{Runge-Kutta} d'ordre 4 et des développements donnés dans la section suivante.
+%C'est à partir de cette équation que nous allons pouvoir obtenir le diagramme de Milne.
+

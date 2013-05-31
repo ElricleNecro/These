@@ -1,0 +1,91 @@
+Pour obtenir nos conditions initiales, qui devront suivre un profil de \textsc{King}, nous allons utiliser la méthode de
+réjection, l'une des plus facile à mettre en place. Nous allons tirer
+aléatoirement la position et la vitesse des particules dans une boîte,
+puis nous n'en garderons qu'une partie en utilisant la fonction de distribution
+comme densité de probabilité.
+Pour commencer, nous utilisons les limites de notre modèle pour restreindre
+nos tirages à une boîte de taille \mbox{$\left[ - r_{\mathrm{max}}; r_{\mathrm{max}} \right]$} pour
+les distances et \mbox{$\left[ -v_{\mathrm{max}}; v_{\mathrm{max}}\right]$} pour les vitesses :
+\begin{itemize}
+	\item vitesse maximum : l'énergie totale du système est bornée supérieurement par l'énergie de libération :
+		\begin{align}
+			E = \dfrac{1}{2} m v_i^2 + m\psi(r) &< E_l \notag \\
+			E_l - m\psi(r) &> \dfrac{1}{2} m v_i^2 \notag \\
+			v_\mathrm{max}^2 = 2\(\dfrac{E_l}{m} - \psi(r)\) &> v_i^2 \notag \\
+			v_{\mathrm{max}} = \sqrt{2\(\dfrac{E_l}{m} - \psi(0)\)} > v_i &> - \sqrt{2\(\dfrac{E_l}{m} - \psi(0)\)} = - v_{\mathrm{max}}
+		\end{align}
+	\item distance maximum : cette distance est obtenue pour
+		$m\psi(r_{\mathrm{max}}) = E_l$. Il nous faut donc connaître le potentiel.
+\end{itemize}
+
+Le potentiel n'ayant pas d'expression analytique, nous allons devoir réutiliser
+notre algorithme de résolution numérique utilisé dans les chapitres précédents pour
+modèliser un King.
+
+Il nous faut aussi pouvoir redimensionner les quantités obtenues. Pour cela, le
+programme récupère dans un fichier de configuration les dispersions de vitesse
+$\sigma_v^2$, rayon de c\oe ur $r_c$, temps de relaxation $T_c$ et distance au
+soleil $R_\odot$ dans les unités du catalogue de \textsc{Harris}. Toutes sont
+ensuite transformées en unités SI (~mètre, kilogramme, seconde~). Comme nous
+avons pu le voir dans le chapitre~\ref{King::Chapitre} traitant du modèle de
+King, la masse $m$ d'une particule n'influence pas le profil de densité final :
+\begin{align}
+	r_c^2 &= \dfrac{\sigma^2}{4\pi G m \rho_0} \notag \\
+	      &= \dfrac{(\sigma_v^2)^2 m}{8\pi G m \rho_0} \notag \\
+	      &= \dfrac{(\sigma_v^2)^2}{8\pi G \rho_0} \notag \\
+	\Rightarrow \rho_0 &= \dfrac{(\sigma_v^2)^2}{8\pi G r_c^2}
+\end{align}
+Pour redimensionner la densité, nous n'avons donc pas besoin de connaître la
+masse d'une particule. Ce constat nous permet de laisser ce paramètre libre et
+de jouer sur le nombre de particules dans le système. En effet, une fois la
+densité obtenue, nous pouvons l'intégrer sur le volume de l'amas pour trouver la
+masse totale de ce dernier, puis, connaissant le nombre de particules, en déduire
+la masse d'une étoile par la relation :
+\begin{align}
+	m = \dfrac{M_{tot}}{\text{Nombre de particules}}
+\end{align}
+Déduire le reste des paramètres utiles pour le redimensionnement est ensuite
+assez simple.
+La distance maximum $r_{\mathrm{max}}$ est déduite de la résolution
+numérique des équations.
+
+Pour pourvoir tout redimensionner, nous avons aussi besoin de connaître l'énergie
+de libération de l'amas. Pour cela, nous utilisons le théorème de \textsc{Gauss}
+et un petit raisonnement simple. Par définition, nous avons :
+\begin{align}
+	E_\mathrm{min} < E < E_l < 0 \ &\text{ et } \ E_l = \frac{p^2}{2 m} + m \psi(r)
+	\intertext{soit :}
+	\psi(r) = \frac{1}{m}\(E_l - \frac{p^2}{2 m}\)
+	\intertext{La valeur maximale du potentiel est donc atteinte pour $p = 0$ :}
+	\psi_\mathrm{max} = \psi(R) = \frac{E_l}{m}
+	\intertext{Hors du système, le théorème de \textsc{Gauss} nous dit qu'il peut être vu comme une particule ponctuelle de masse $M$. Le potentiel hors de l'amas s'écrit donc :}
+	\psi(r) = -\frac{G M}{r}
+	\intertext{Par continuité, nous avons :}
+	\psi(R) = \frac{E_l}{m} = -\frac{G M}{R}
+\end{align}
+
+Pour générer des nombres aléatoires dans l'intervalle voulu, nous utilisons la
+fonction \verb|double ran2(long seed)| tiré de~\cite{NumericalRecipesC}, dont
+nous nous servont ainsi :
+\lstset{language=C, label=algo::tirage, frame=shadowbox}
+\begin{lstlisting}
+	double  x  = rmax - 2.0 * rmax * ran2(seed),
+		y  = rmax - 2.0 * rmax * ran2(seed),
+		z  = rmax - 2.0 * rmax * ran2(seed),
+		vx = vmax - 2.0 * vmax * ran2(seed),
+		vy = vmax - 2.0 * vmax * ran2(seed),
+		vz = vmax - 2.0 * vmax * ran2(seed);
+\end{lstlisting}
+Notre système étant sphérique, nous ne devons pas avoir de vitesse et de module
+de distance supérieurs, respectivement, à $v_{\mathrm{max}}$ et
+$r_{\mathrm{max}}$, de plus nous avons une probabilité
+\mbox{$f(E)/f(E_\mathrm{min})$}
+d'avoir une particule d'énergie $E$. Cette énergie minimale est l'énergie
+potentielle d'une particule au centre de l'amas, et de vitesse nulle.
+Une fois qu'une particule respecte ces conditions et que \og les probabilités sont
+avec elle \fg, nous l'enregistrons.
+
+Le programme écrit au fur et à mesure les coordonnées cartésiennes et vitesses
+des particules selectionnées dans un fichier dans les unités standards : mètre
+pour les distances et mètre par seconde pour les vitesses.
+

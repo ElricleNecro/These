@@ -1,0 +1,89 @@
+Pour obtenir les conditions initiales permettant la résolution de l'équation~\ref{eqdudv}, nous devons obtenir les conditions aux limites pour la sphère isotherme en boîte.
+\subsubsection{En $x = 0$}
+	Pour ce faire, nous nous plaçons dans le voisinage de $x=0$, et faisons donc des développements limités de la variable $h$ représentant le potentiel.
+	Cela nous permettra d'obtenir le comportement approché de $u(x)$ et de $v(x)$ au centre.
+	Nous avons donc :
+	\begin{eqnarray*}
+		h(x) = h(0) + \x{h}(0)x + \frac{d^2 h}{dx^2}(0)\frac{x^2}{2!} + \frac{d^3 h}{dx^3}(0)\frac{x^3}{3!} + o(x^3) = ax^2 + bx^3 + o(x^3)
+	\end{eqnarray*}
+	En effet, \mbox{$h(0) = m\beta\left(\psi(0) - \psi(0)\right) = 0$} et \mbox{$\x{h}(0) = m\beta\x{\psi}(0) = 0$} car \mbox{$\x{\psi} = r_0\frac{d \psi}{dr}\propto F$},
+	$F$ étant la force s'appliquant sur la particule test.
+	Au centre de la sphère, les forces qui s'appliquent à une particule test s'opposent les unes aux autres, d'où $\x{h}(0) = 0$.
+
+	Les variables $u$ et $v$ vont alors se développer comme :
+	\begin{eqnarray}
+		v &=& x\x{h} = 2ax^2 + 3bx^3 + o(x^3)\label{vDL} \\
+		u &=& \frac{x^2e^{-ax^2 - bx^3 + o(x^3)}}{2ax^2 + 3bx^3 + o(x^3)} \\
+		  &=& \frac{1 - ax^2 - bx^3 + o(x^3)}{2a + 3bx +o(x)} \\
+		  &=& \frac{1}{2a} - \frac{3b}{4a^2}x + o(x)\label{uDL}
+	\end{eqnarray}
+	Nous utilisons ensuite l'équation de Poisson pour déterminer, par identification, les valeurs de $a$ et de $b$ :
+	\begin{eqnarray}
+		\x{\left(xv\right)} = 6ax^2 + 12bx^3 + o(x^3) = uv = x^2 + o(x^3)\label{PoisDL}
+	\end{eqnarray}
+	D'où :
+	\begin{eqnarray}
+		\left\{\begin{array}{l}
+			a = \frac{1}{6} \\
+			b = 0
+		\end{array}\right.
+	\end{eqnarray}
+	Maintenant que nous avons nos développements, nous en déduisons les conditions initiales :
+	$$(u,v) \substack{\longrightarrow \\ r\to 0} (3,0)$$
+
+\subsubsection{Sur le bords de la sphère : $r = R$}
+	Soit $X = \frac{R}{r_0}$. Nous allons tenter d'exprimer nos variables $u$ et $v$ au point $X$ en fonction des quantités connues du problème,
+	telles que l'énergie totale $H$, la masse totale $M$, le rayon de la sphère $R$.
+	Et, selon la description canonique ou micro canonique choisie, en fonction de la température cinétique du système.
+
+	On introduit les constantes adimensionnées suivantes :
+	\begin{eqnarray*}
+		\left\{\begin{array}{l}
+			\lambda = - \frac{H R}{G M^2} \\
+			\\
+			\mu     = \frac{m\beta GM}{R}
+		\end{array}\right.
+	\end{eqnarray*}
+	où $\lambda$ représente l'énergie adimensionnée et $\mu$ l'inverse de la température adimensionnée.
+
+	Au bord du système, nous pouvons écrire que $\frac{d \psi}{dr} \equiv \frac{GM}{R^2}$~\footnote{Théorème de Gauss}. De plus :
+	\begin{eqnarray*}
+		\x{h}(X) = m\beta r_0 \frac{d \psi}{dr} = m\beta r_0 \frac{GM}{R^2} = \frac{\mu}{X} \Rightarrow \mu = X\x{h}(X)
+	\end{eqnarray*}
+	Or $v(X) = X\x{h}(X)$, d'où :
+	\begin{eqnarray}
+		v\left(X\right) := v_m = \mu\label{vmmu}
+	\end{eqnarray}
+
+	Il nous reste l'énergie à exprimer.
+	Pour cela, nous allons commencer par calculer l'énergie totale $H$ à l'aide du théorème du Viriel adapté à une sphère isotherme en boîte~\footnote{Pour un système tronqué, le calcul permettant d'arriver au théorème du Viriel fait apparaître des termes dû aux intégrations par partie qui vont rester.} :
+	\begin{eqnarray}
+		2T + W = \frac{4}{3}\pi R^3 P_e
+	\end{eqnarray}
+	avec $P_e$ la pression qui s'exerce sur le bord de la sphère.
+	L'énergie cinétique s'écrit \mbox{$K = \frac{1}{2}mv^2 = \frac{3}{2} N k_B T = \frac{3}{2} \frac{M}{m} k_B T$}.
+	Donc :
+	\begin{eqnarray*}
+		H &=& K + W = \frac{3}{2} \frac{M}{m\beta} + \frac{4}{3}\pi R^3 P_e - 2K \\
+		  &=& -\frac{3}{2} \frac{M}{m\beta} + \frac{4}{3}\pi R^3 P_e \\
+		\Rightarrow \lambda &=& \frac{3}{2}\frac{MR}{m\beta GM^2} - \frac{4}{3}\pi R^3 P_e \frac{R}{GM^2}
+	\end{eqnarray*}
+	Une sphère isotherme est un système barotropique. Elle a donc une équation d'état polytropique d'indice 1 : $P = \frac{\rho(r)}{m\beta} \Rightarrow P_e = \frac{\rho(R)}{m\beta}$ que nous remplaçons :
+	\begin{eqnarray}
+		\lambda &=& \frac{3}{2}\frac{1}{X\x{h}(R)} - \frac{4}{3}\pi R^3 \frac{\rho(R)}{m\beta} \frac{R}{GM^2} \notag \\
+			&=& \frac{3}{2}\frac{1}{X\x{h}(R)} - \frac{4}{3}\pi R^3 \frac{e^{-h(R) + m\beta\psi(0)}}{\alpha^3\beta} \frac{R}{GM^2} \notag \\
+			&=& \frac{3}{2}\frac{1}{X\x{h}(R)} - \frac{4}{3}\pi R^3 \frac{4\pi G \beta m^2 e^{\beta m \psi(0)}}{\alpha^3} r_0^2\frac{e^{-h(R)}}{(\x{h}(R))^2} \notag \\
+			&=& \frac{3}{2}\frac{1}{X\x{h}(R)} - \frac{e^{-h(R)}}{(\x{h}(R))^2}\label{lamum}
+	\end{eqnarray}
+
+	Nous avons ensuite, par substitution, les valeurs maximales $u_m$ et $v_m$ de $u$ et $v$ en fonction des paramètres du problème :
+	\begin{eqnarray}
+		\label{uv_max}
+		\fbox{$
+		\left\{\begin{array}{l}
+			v_m = \mu \\
+			u_m = \frac{3}{2} - \lambda \mu
+		\end{array}\right.
+		$}
+	\end{eqnarray}
+

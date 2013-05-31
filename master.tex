@@ -1,0 +1,215 @@
+\documentclass[a4paper,11pt,twoside,openright]{report}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+%[francais]{babel}
+\usepackage[francais]{layout}
+
+%\usepackage{mathabx}							%Pour les symboles astro
+
+\usepackage{amssymb, amsmath,amsfonts}					%Pour la mise en page des maths
+\usepackage{graphicx}							%Pour les opérations sur les images
+\usepackage{moreverb}							% ???????
+\usepackage{gnuplottex}							%Pour appeler GNUPlot dans Latex (compiler avec l'option -shell-escape)
+%\usepackage{listings}							%Pour afficher des fichiers sources
+
+\usepackage{tikz}							%Pour faire des schémas et choses du genre de bonne qualité en Latex directement
+\usetikzlibrary{calc}
+
+\usepackage{placeins}							%Pour forcer la position des images dans une section/sous-section
+%\usepackage{lscape}							%Pour changer l'orientation de ce que l'on écrit
+\usepackage{longtable}							%Pour les tableaux sur plusieurs pages
+\usepackage{multirow}							%Pour du multi-ligne dans un tableau
+
+\usepackage{picins}							%Placer les images dans le texte
+\usepackage{wrapfig}							%Placer les images dans le texte
+
+\usepackage{textcomp}							% ??????
+\usepackage{color}							%Pour mettre de la couleur
+\usepackage{array}							% ??????
+
+\usepackage{lmodern}							%Pour certaine fonte française
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=3cm]{geometry}		%Pour changer la géométrie des pages
+\usepackage{listings}
+
+\usepackage{fancyhdr}							%Pour les entêtes
+\usepackage[francais]{minitoc}						%Pour les sommaires en début de chapitre/section
+\usepackage[toc,lof,lot]{multitoc}					%Pour la table des matières, listes, tables sur plusieurs colonne
+%\usepackage[babel=true,kerning=true]{microtype}
+
+%\usepackage{fancybox}							%Pour encadrer les équations
+
+\usepackage{xspace}							%Pour gérer correctement les espaces dans les commandes contenant du texte.
+
+\usepackage{ucs}							% ??????
+
+%\usepackage{inputx}							%Pour pouvoir modifier le path dans lequel \input et \include recherche les fichiers.
+%\usepackage{subfiles}
+
+\usepackage[pdftex]{hyperref}					%Pour les liens hypertexte des glossaires, sommaires, formules, ....
+
+\hypersetup{
+      backref       = true,
+      pagebackref   = true,
+      hyperindex    = true,
+      colorlinks    = true,
+      breaklinks    = true,
+      urlcolor      = blue,
+      linkcolor     = black,
+      bookmarks     = true,
+      bookmarksopen = true,
+      pdfpagemode   = ,
+      pdfstartview  = FitH,
+      pdfauthor     = {Plum Guillaume},
+      pdftitle      = {Systeme auto gravitant},
+      pdfsubject    = {Sphère isotherme},
+      pdfkeywords   = {sphere, isotherme, diagramme, milne, stabilite, king, model, modèle},
+      pdfcreator    = {PDFLaTeX},
+      pdfproducer   = {PDFLaTeX}
+}
+
+% Title Page
+\title{Les systèmes auto-gravitant}
+\author{Plum Guillaume}
+\date{\today}
+
+%Commande pour tracer avec gnuplot dans latex :
+%\makeatletter
+%\newcommand{\ExecGnuPlot}[1]{
+%	\immediate\write18{/usr/bin/gnuplot #1}}
+%\makeatother
+
+%Définition de nouvelle commande afin de faciliter l'écriture :
+%\newcommand{\x}[1]{\ensuremath{#1'}}  %\dfrac{d #1}{d x}}}
+%\newcommand{\R}{\ensuremath{\mathcal{R}}}
+%\renewcommand{\(}{\ensuremath{\left(}}
+%\renewcommand{\)}{\ensuremath{\right)}}
+\newcommand{\x}[1]{\ensuremath{#1'}}  %\dfrac{d #1}{d x}}}
+\newcommand{\R}{\ensuremath{\mathcal{R}}}
+\newcommand{\dr}{\ensuremath{\mathrm{dr}}}
+\newcommand{\dx}[1]{\ensuremath{\mathrm{d#1}}}
+%\newcommand{\ddp}{\ensuremath{\mathrm{dp}}}
+\newcommand{\vdr}{\ensuremath{\mathrm{d}\vec{r}}}
+\newcommand{\vdp}{\ensuremath{\mathrm{d}\vec{p}}}
+\newcommand{\erf}{\ensuremath{\mathrm{erf}}}
+\newcommand{\pint}{\displaystyle{\int}}
+\newcommand{\deriv}[2]{\ensuremath{\dfrac{\mathrm{d}#1}{\mathrm{d#2}}}}
+\newcommand{\pderiv}[2]{\ensuremath{\dfrac{\partial#1}{\partial\mathrm{#2}}}}
+\newcommand{\King}{\textsc{King}\xspace}
+
+\newcommand{\CH}[1]{\textsc{CH}$#1$\xspace}
+\newcommand{\CHa}{\textsc{CH}$\alpha$\xspace}
+
+\newcommand{\ddp}{\ensuremath{\mathrm{dp}}}
+\renewcommand{\(}{\ensuremath{\left(}}
+\renewcommand{\)}{\ensuremath{\right)}}
+
+\newcommand{\mnras}{Mon. Not. R. Astr. Soc.}
+\newcommand{\apj}{ApJ}
+\newcommand{\apjl}{ApJL}
+\newcommand{\apjs}{Astrophysical Journal Supplement}
+\newcommand{\pasp}{Publication of the Astronomical Society of the Pacific}
+\newcommand{\aap}{Astronomy \& Astrophysics}
+\newcommand{\aj}{Astronomical Journal}
+\newcommand{\nat}{Nature}
+
+%Quelque compteur pour les tables des matiéres et minitoc
+\setcounter{tocdepth}{2}
+\setcounter{minitocdepth}{2}
+\setcounter{secnumdepth}{3}
+%Nombre minimum de ligne à afficher avant de couper le tableau :
+\setcounter{LTchunksize}{30}
+
+%\inputpaths{annexe,simulation,theorie,introduction}
+\graphicspath{{annexe/}{simulation/}{theorie/}{introduction/}}
+
+\begin{document}
+	\dominitoc
+	\input{titlepage.tex}
+
+	\cleardoublepage
+
+	\pagenumbering{roman}
+	\small \tableofcontents
+	\addstarredchapter{Table des matières}
+	\listoffigures
+	\addstarredchapter{Liste des Figures}
+	\listoftables
+	\addstarredchapter{Liste des Tables}
+
+	\paragraph*{\underline{Notation} :}
+	Dans ce document, nous noterons :
+	\begin{itemize}
+		\item $T \equiv <v^2>$ (~quand nous parlerons de température, il sera question de la dispersion de vitesse du système~),
+		\item $\vec{a}$ les vecteurs,
+		\item $a$ le module de $\vec{a}$,
+		\item $d^3 a$ l'élément de volume associé à $\vec{a}$.
+	\end{itemize}
+
+	\pagenumbering{arabic}
+
+	%Pour le header et les pieds de pages :
+	\pagestyle{fancy}
+	%\lhead{}
+	%\chead{}
+	%\rhead{}
+	%\lfoot{}
+	%\cfoot{\thepage}
+	%\rfoot{}
+	\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\chaptername}\ \thechapter.\ #1}{}}
+	%\renewcommand{\sectionmark}[1]{\markboth{\MakeUppercase{\sectionname}\ \small \textsc{\thesection}.\ #1}{}}
+
+
+	\part{Introduction}
+%		\addstarredpart{Introduction}
+		\input{introduction/introduction.tex}
+
+	\part{Théorie}
+%		\minitoc
+		\input{theorie/theorie.tex}
+
+
+	\part{Simulation}
+		\input{simulation/simulation.tex}
+
+	\part*{Conclusion}
+		\addstarredpart{Conclusion}
+		\chapter*{Conclusion}
+			\addstarredchapter{Conclusion}
+			\section*{Travail effectué}
+				\addcontentsline{toc}{section}{Travail effectué}
+				Nous voilà arrivé au terme de ce qui a pu être fait durant les 3 mois du stage.
+
+				Dans un premier temps, nous avons compris et décris les différents modèles thermodynamiques associés aux systèmes auto-gravitant, tel les amas globulaires.
+				Nous avons alors étudié et mis en évidence une relation entre les temps de croisements et dynamique des amas et le paramètre principal d'un modèle de \textsc{King} : $W_0$. Nous savons maintenant,
+				grâce au modèle de la sphère isotherme en boîte, que la stabilité d'un amas dépend de son contraste de densité, et qu'il y a deux instabilitépouvant intervenir selon la description canonique ou
+				micro canonique choisie.
+
+				Puis nous avons commencé à construire les bases pour faire des simulations échappants au mieux aux effets de relaxation. Nous avons donc commencé par construire et stabiliser un générateur de
+				conditions initiales.
+				Nous avons alors fait évoluer ces conditions initiales sur plusieurs temps dynamique à l'aide du code \textsc{GADGET-2}, dans le but de modifier les paramètres du code influant sur la dynamique ; permettant ainsi de stabiliser notre amas.
+
+			\section*{Reste du travail}
+				\addcontentsline{toc}{section}{Reste du travail}
+				Maintenant que nous avons obtenu des paramètres corrects pour que nous nous retrouvions dans la limite fluide, il nous faut simuler ce qui a motivé la partie numérique : quelle est l'influence, sur la
+				dynamique, des interactions gravitationnelles entre l'amas et la galaxie au sein de laquelle il orbite ?
+
+				Pour effectuer ces simulations, l'idée évoquée est de modifier \textsc{GADGET-2} pour lui ajouter une force dont l'intensité dépendra du temps, et ceci afin de simuler la rotation de l'amas autour de la galaxie.
+				Ce travail sera effectué sur le dernier mois de stage et le début de la thèse.
+
+	\bibliographystyle{plain}
+	\bibliography{biblio}
+	\addstarredchapter{Bibliographie}
+
+	\appendix
+	\part{Annexe}
+		\chapter{Diverses Démonstrations}
+			\minitoc
+			\input{annexe/demo.tex}
+
+		\chapter{Graphiques}
+			\minitoc
+			\input{annexe/graphique.tex}
+
+\end{document}

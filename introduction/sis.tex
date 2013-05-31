@@ -1,0 +1,162 @@
+\subsection{Équations de \textsc{Vlasov}-\textsc{Poisson}}
+	Nous allons étudier ici des systèmes de $N$ particules en interaction gravitationnelle dans la limite $N$ tend vers l'infini.
+	Écrire les équations de \textsc{Newton} et travailler avec des sommes peut
+	s'avérer lourd en calcul et compliqué, nous allons donc utiliser le formalisme
+	de la physique statistique : nous décrivons le système par une fonction de distribution.
+	Cette dernière permet de calculer la probabilité pour une particule $\alpha$ d'être dans un voisinage de la
+	position ${}^T\,\left[\vec{r_\alpha},\vec{p_\alpha}\right]$ dans l'espace des phases ; elle
+	s'exprime en nombre par unité de volume par impulsion au cube : $\left[ f\right] = m^{-3}p^{-3}$.
+
+	En partant de la conservation des particules et en la combinant avec les équations d'\textsc{Hamilton},
+	nous obtenons l'équation de \textsc{Boltzmann} :
+	\begin{align}
+		\frac{\partial f}{\partial t} +\frac{\vec{p}}{m}\frac{\partial f}{\partial \vec{r}} - m\frac{\partial f}{\partial \vec{p}} \frac{\partial \psi}{\partial \vec{r}} = N^2 G C(\vec{\omega}, t)
+		\label{Fok-Plan}
+	\end{align}
+	(~le détail des calculs peut être trouvé dans le cours de gravitation statistique sur~\cite{CoursJP}~).
+	Tant que nous pouvons considérer que les \og collisions \fg~n'affectent pas la dynamique du système, hypothèse qui pourra être discutée plus tard, le
+	terme de collision $ C(\vec{\omega}, t) $ est nul. Nous obtenons alors l'équation de
+	\textsc{Vlasov-Poisson} :
+	\begin{align}
+		\frac{\partial f}{\partial t} +\frac{\vec{p}}{m}\frac{\partial f}{\partial \vec{r}} - m\frac{\partial f}{\partial \vec{p}} \frac{\partial \psi}{\partial \vec{r}} = 0
+		\label{Vla-Pois}
+	\end{align}
+
+	Tout les états stationnaires des systèmes que nous étudierons par la suite seront solution de cette équation.
+	La quantité principale qui nous intéressera le long de ce document est la densité, qui s'écrit alors comme une loi marginale de $f$ :
+	\begin{align}
+		\rho(\vec{r}) = m\int f d\vec{p}
+	\end{align}
+
+\subsection{Sphère isotherme}
+	Ce modèle est un modèle purement thermodynamique qui a été construit de telle sorte
+	qu'il corresponde à un maximum de l'entropie statistique $S(f) = -k_B \int f\ln(f) d\Gamma$, avec $d\Gamma = d\vec{p} d\vec{r}$
+	un élément de volume de l'espace des phases ; $k_B$ étant la constante de \textsc{Boltzmann}.
+	Nous imposons au modèle d'avoir une masse et une énergie totale finies, et ce quelque soit la taille du système.
+%	Une hypothèse en plus est à rajouter : la masse totale du système doit être finit, et ce malgré
+%	l'extension infini de ce dernier.
+	La fonction de distribution ainsi obtenue est :
+	\begin{align}
+		f^{eq}(E) = \(\frac{2\pi \alpha^2 m}{\beta}\)^{-3/2} e^{-\beta E}
+	\end{align}
+	Les constantes $\beta = \frac{1}{k_B T}$ et $\alpha$ sont des multiplicateurs de \textsc{Lagrange} associés aux contraintes imposées lors de la recherche d'un extremum local de l'entropie :
+	$\beta \Leftrightarrow E = \mathrm{cte}$ et $\alpha \Leftrightarrow M = \mathrm{cte}$.
+
+	La densité va alors s'écrire :
+	\begin{align}
+		\rho(r) &= m \int \(\frac{2\pi \alpha^2 m}{\beta}\)^{-3/2} e^{-\beta \(\frac{p^2}{2m} + m\psi\)} d^3 p \notag \\
+			&= 4\pi m \(\frac{2\pi \alpha^2 m}{\beta}\)^{-3/2} \int_0^\infty e^{-\beta \(\frac{p^2}{2m} + m\psi\)} p^2 dp \notag \\
+			&= \frac{m}{\alpha^3} e^{-m\beta\psi}
+	\end{align}
+	Nous avons donc $\rho(\vec{r}) = \rho(\psi(\vec{r}))$, le système est donc à symétrie sphérique : $\rho(\vec{r}) = \rho(r)$ (~voir~\cite{CoursJP}~).
+	Nous introduisons alors cette expression dans l'équation de \textsc{Poisson} :
+	\begin{align}
+		\frac{1}{r^2}\frac{d}{dr}\(r^2\frac{d\psi(r)}{dr}\) &= 4\pi G \rho(r) = 4\pi G \frac{m}{\alpha^3} e^{-m\beta\psi(r)} \notag \\
+		\intertext{En introduisant les variables $y = m\beta\psi$ et $x = r/r_0$, nous obtenons :}
+		\frac{1}{r_0^3 x^2 m \beta}\frac{d}{dx}\(r_0^2 x^2 \frac{d y}{r_0 dx}\) &= \frac{4\pi G m}{\alpha^3} e^{-y} \notag \\
+		\frac{1}{x^2}\frac{d}{dx}\(x^2\frac{d y}{dx}\) &=  \frac{4\pi G m r_0^2}{\alpha^3} e^{-y} \notag \\
+		\intertext{en posant alors : $r_0^2 = \frac{\alpha^3}{4\pi G m r_0^2}$, l'équation adimensionnée est :}
+		\Rightarrow \frac{1}{x^2}\frac{d}{dx}\(x^2\frac{d y}{dx}\) &= e^{-y} \label{Pois:sis}
+	\end{align}
+	Nous cherchons en premier lieu les solutions autosimilaires :
+	\begin{align}
+		\Tilde{\rho}(r) &= \frac{A}{r^2} = e^{-\Tilde{y}} \\
+		\Rightarrow \Tilde{y} &= - \ln\(\frac{2}{x^2}\)
+	\end{align}
+	En prenant $A = 2$ pour être solution de~\ref{Pois:sis}.
+	Nous avons donc maintenant :
+	\begin{align}
+		\Tilde{\rho}(r) &= \frac{m}{\alpha^3} e^{\ln\(\frac{2}{x^2}\)} = \frac{2 m r_0^2}{\alpha^3 r^2}
+		\intertext{Et :}
+		\Tilde{M}(r)    &= \int_0^{\infty} \Tilde{\rho}(r) d^3 r = \frac{4\pi m r_0^2}{\alpha^3} \int_0^{r} r^2\frac{1}{r^2} dr = \frac{4\pi m r_0^2}{\alpha^3} r
+	\end{align}
+
+	Cette solution autosimilaire a des propriétés physiques très embêtante :
+	\begin{itemize}
+		\item la densité diverge en zéro :
+		\begin{align*}
+			\lim\limits_{r \to 0} \Tilde{\rho}(r) &= \infty
+		\end{align*}
+		\item la masse est infinie :
+		\begin{align*}
+			\lim\limits_{r \to \infty} \Tilde{M}(r) &= \infty
+		\end{align*}
+	\end{itemize}
+	et ceci pose problème : si la masse devient infinie, l'une des contraintes est violée.
+	Cette solution forme ce que l'on appelle une sphère isotherme singulière (~SIS~) et ne correspond pas à un équilibre.
+
+	Regardons maintenant s'il existe des solutions plus générales pouvant avoir une densité et une masse qui ne diverge pas. Pour cela, nous allons regarder l'évolution de
+	la différence entre une solution générale $y$ du problème et notre solution autosimilaire. Posons $\zeta = y - \Tilde{y}$ :
+	\begin{align}
+		\frac{1}{x^2}\frac{d}{dx}\(x^2\frac{d\zeta}{dx}\) &= e^{-\zeta - \Tilde{y}} - \frac{1}{x^2}\frac{d}{dx}\(x^2\frac{d\Tilde{y}}{dx}\) \notag \\
+								  &= e^{-\zeta - \Tilde{y}} - e^{-\Tilde{y}} \notag \\
+								  &= \(e^{-\zeta} - 1\)\frac{2}{x^2}
+		\intertext{Nous posons alors $t = \ln(x) \rightarrow dt = dx/x$}
+		2 x \frac{d \zeta}{dx} + x^2 \frac{d^2 \zeta}{dx^2} &= 2 \(e^{-\zeta} - 1\) \Rightarrow 2 \frac{d \zeta}{dt} + \frac{d^2 \zeta}{dt^2} = 2 \(e^{-\zeta} - 1\) \notag
+		\intertext{Pour faciliter la résolution du système, nous allons augmenter sa dimension en posant $v = \frac{d \zeta}{dt}$ :}
+		\frac{d}{dt}\left\{\begin{array}{c}
+			\zeta \\
+			v
+		\end{array}\right\} &= \left\{\begin{array}{c}
+			v \\
+			-2 v + 2 \(e^{-\zeta} - 1\)
+		\end{array}\right\}
+	\end{align}
+
+	Le seul point fixe de ce système est le point $\(\zeta, v\) = \(0, 0\)$.
+	Pour pouvoir étudier la stabilité du système autour de ce point, nous linéarisons nos équations autour
+	de ce point en prenant $\(\zeta, v\) \to \(\delta\zeta, \delta v\)$ avec $\delta\zeta, \delta v \ll 1$,
+	ce qui nous donne :
+	\begin{align}
+		\frac{d}{dt}\left\{\begin{array}{c}
+			\delta\zeta \\
+			\delta v
+		\end{array}\right\} &= \left\{\begin{array}{c}
+			\delta v \\
+			-2 \delta v + 2 \(e^{-\delta\zeta} - 1\)
+		\end{array}\right\} \simeq \left\{\begin{array}{c}
+			\delta v \\
+			-2 \delta v + 2 \delta\zeta
+		\end{array}\right\} = D \left\{\begin{array}{c}
+			\zeta \\
+			v
+		\end{array}\right\}
+		\intertext{en utilisant $e^{-\delta\zeta} \simeq 1 - \delta\zeta$}
+		&= \(\begin{array}{cc}
+			0  & 1 \\
+			-2 & -2
+		\end{array}\) \(\begin{array}{c}
+			\delta \zeta \\
+			\delta v
+		\end{array}\) = A \(\begin{array}{c}
+			\delta \zeta \\
+			\delta v
+		\end{array}\)
+		\intertext{Les valeurs propres de $A$ sont alors :}
+		&\begin{cases}
+			\lambda_1 = -1 - i \\
+			\lambda_2 = -1 + i
+		\end{cases} \\
+		\intertext{ce qui nous amène à la solution :}
+		&\begin{cases}
+			\delta \zeta = e^{\lambda_1\delta\zeta} = e^{-\delta\zeta} e^{-i\delta\zeta} \\
+			\delta  v = e^{\lambda_1\delta v} = e^{-\delta v} e^{-i\delta v}
+		\end{cases}
+	\end{align}
+	Il existe donc des solutions de module réel décroissant (~$e^{- x}$~).
+	De plus, le système respecte \mbox{$\mathrm{div}\( D\) < 0$} et n'a donc pas de cycle limite.
+	Ainsi, toutes les solutions dans un voisinage proche de la solution $\Tilde{y}$ tendent vers cette dernière.
+	Il peut-être démontré, en utilisant les sections de Poincaré, que toutes les solutions de cette équation
+	tendent vers $\Tilde{y}$. Ainsi, toutes les solutions ont un problème : leur masse est infini pour $t\to\infty \Rightarrow r\to\infty$.
+	Toutes les sphères isothermes sont donc proches de SIS quand $r\to +\infty$ : elles ont toutes des masses infinies.
+	Il n'existe donc pas de distribution d'équilibre solution de \textsc{Vlasov-Poisson} maximisant l'entropie et possédant un support illimité.
+
+	Pour palier à ce problème, plusieurs approches ont été développées au fil des ans :
+	\begin{enumerate}
+		\item Une solution \og rigoureuse \fg~: nous reprenons le problème du début en rajoutant une contrainte : nous cherchons un maximum de l'entropie dans un ensemble de fonctions de distribution compactes :
+			l'extension de l'objet est finie. C'est le problème de la sphère isotherme en boîte.
+			%nous reprenons les hypothèses de la sphère isotherme et nous supposons en plus qu'elle a une extension fini : c'est la sphère isotherme en boîte.
+		\item Une solution \og pragmatique \fg~: développée par \textsc{King}, elle consiste à tronquer à la main et après coup la sphère isotherme : au-dessus d'une certaine énergie, la fonction de distribution est nulle.
+			Cette solution est aujourd'hui la solution la plus utilisée par les observateurs. Elle possède d'ailleurs plusieurs paramètres libres pouvant rendre son utilisation pour la modélisation des amas globulaires adaptée
+			aux ajustements.
+	\end{enumerate}

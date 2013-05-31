@@ -1,0 +1,35 @@
+	Il est utile de décrire quelques temps caractéristiques de l'évolution de ces systèmes.
+	\subsection{Temps dynamique}
+		Le temps dynamique est le temps nécessaire à une particule pour traverser le système et donc se \og mettre au courant \fg~des changements ayant lieu.
+		Il s'agit donc de la plus petite échelle de temps que nous puissions considérer pour l'évolution d'un système auto-gravitant.
+		Pour l'obtenir, considérons un système de $N$ particules de même masse $m$, et de dispersion de vitesse $\sigma$. Les énergies potentielles et cinétiques du système
+		peuvent être évaluées par :
+		\begin{align}
+			E_c = \frac{N}{2}m\sigma^2\qquad\mathrm{et}\qquad E_p = -\frac{G(Nm)^2}{R}
+		\end{align}
+		puis en supposant que le système à l'équilibre et en appliquant le théorème du \textsc{Viriel}~\footnote{Rappel : $2 E_c + U = 0$ avec $E_c$
+		l'énergie cinétique et $U$ l'énergie potentielle}, nous obtenons :
+		\begin{align}
+			\sigma = \(\frac{GNm}{R}\)^{1/2}
+		\end{align}
+		Le temps dynamique est proportionnel au temps de croisement des particules du système. Ce dernier dépend du rayon de l'objet
+		considéré et de la vitesse caractéristique des étoiles dans le système, ou encore, de la dispersion de vitesse du système :
+		\begin{align}
+			T_{cr} \propto T_d = \frac{R}{\sigma} \label{Td:sig}
+		\end{align}
+		En injectant notre expression pour la dispersion de vitesse, nous avons le temps dynamique :
+		\begin{align}
+			T_d = R\(\frac{R}{GNm}\)^{1/2} = \sqrt{\frac{R^3}{GM}} \propto \frac{1}{\sqrt{G\rho}}
+			\label{Td:rho}
+		\end{align}
+		avec $M = Nm$ la masse totale du système.
+	\subsection[Temps de relaxation]{Temps de collision ou temps de relaxation à 2 corps}
+		Le temps de collision est par définition le temps mis par les interactions à 2 corps pour modifier d'un ordre de grandeur la vitesse des particules du système.
+		Le détail pour le calcul de ce temps peut-être trouvé dans~\cite{ThNico} et~\cite{CoursJP}. Il s'écrit, en fonction du temps de croisement :
+		\begin{align}
+			T_{c} = \frac{3N}{8\ln\(\frac{3N}{4\pi}\)}T_{cr}
+		\end{align}
+
+		Ce temps est donc proportionnel au temps dynamique $T_d$ par l'intermédiaire du temps de croisement.
+
+

@@ -1,0 +1,75 @@
+%\subsection{Calcul v2.0}
+Suite aux problèmes apparus avec la SIS, King proposa un nouveau modèle
+qui consiste, en gros, à couper la sphère.
+%Il introduit une vitesse maximum $p_l$ telle que si une
+%particule la dépasse, elle quitte le système. Nous pouvons lier à cette vitesse une énergie
+%maximale (~de libération~) $E_l$, et donc à un rayon maximum de l'objet, là où la SIS étant infini.
+Il introduit une énergie maximum, au-delà de laquelle une particule n'est plus liée au système.
+Cette énergie, qui est donc une énergie de libération, implique une vitesse maximale ainsi qu'un rayon au-delà desquelles les particules quitteraient le système.
+
+La fonction de distribution associée à ce modèle de King s'écrit (~voir~\cite{King-1966AJ}~) :
+\begin{equation}
+	f_K(E) = \begin{cases}
+		\rho_0 \(2\pi m\sigma^2\)^{-3/2}\( e^{\frac{E_l-E}{\sigma^2}} - 1\) & \text{si $E < E_l$} \\
+		0 & \text{si $E > E_l$}
+	\end{cases}
+\end{equation}
+%\begin{equation}
+%	f_K(E) = \left\{\begin{array}{l} \rho_0 \(2\pi m\sigma^2\)^{-3/2}\( e^{\frac{E_l-E}{\sigma^2}} - 1\)\ \mathrm{si}\ E < E_l \\
+%		\\
+%		0\ \mathrm{si}\ E > E_l
+%	\end{array}\right.
+%\end{equation}
+où la dimension de $\sigma^2$ est celle d'une énergie. Ce paramètre représente la dispersion d'énergie du système.
+Le paramètre $\rho_0$ est la densité de masse au centre du système.
+
+La densité de masse s'écrit toujours à partir de la fonction de distribution :
+\begin{eqnarray*}
+	\rho(r) &=& \int^{p_l}_0\,f_K(E)4\pi p^2dp \\
+		&=& \frac{\rho_0}{\(2\pi m\sigma^2\)^{3/2}}\int_0^{p_l}\,\left\{e^{\frac{E_l-E}{\sigma^2}} -1\right\} 4\pi p^2 dp\\
+\end{eqnarray*}
+or $E = \frac{p^2}{2m} + m\psi$ avec $\psi$ le potentiel. En remplaçant :
+\begin{eqnarray*}
+	\rho(r) &=& \frac{\rho_0}{\(2\pi m\sigma^2\)^{3/2}} \int_0^{p_l}\,\left\{e^{\frac{E_l - p^2/(2m) - m\psi}{\sigma^2}} -1\right\} 4\pi p^2 dp\\
+		&=& \frac{4\pi \rho_0}{\(2\pi m\sigma^2\)^{3/2}} \(e^{\frac{E_l - m\psi}{\sigma^2}} \int_0^{p_l}\,e^{-\frac{p^2}{2m\sigma^2}} p^2 dp - \int_0^{p_l}\,p^2 dp\)\\
+\end{eqnarray*}
+En faisant une intégration par partie (~$u'=pe^{-\frac{p^2}{2m\sigma^2}}\Rightarrow
+u=-m\sigma^2e^{-\frac{p^2}{2m\sigma^2}}$ et $v=p \Rightarrow v'=1$~) , nous avons :
+\begin{eqnarray*}
+	\rho(r) &=& \frac{4\pi\rho_0}{\(2\pi m\sigma^2\)^{3/2}} \(e^{\frac{E_l - m\psi}{\sigma^2}} \left[\left(-m\sigma^2pe^{-p^2/(2m\sigma^2)}\right|_0^{p_l} + m\sigma^2\int_0^{p_l}\,e^{-\frac{p^2}{2m\sigma^2}} dp\right] - \left(p^3/3\right|_0^{p_l}\)\\
+		&=& \frac{4\pi\rho_0}{\(2\pi m\sigma^2\)^{3/2}} \(e^{\frac{E_l - m\psi}{\sigma^2}} \left[-m\sigma^2p_le^{-p_l^2/(2m\sigma^2)} + m\sigma^2\int_0^{p_l}\,e^{-\frac{p^2}{2m\sigma^2}} dp\right] - \frac{p_l^3}{3}\)\\
+\end{eqnarray*}
+L'énergie $E_l$ étant l'énergie de libération d'une particule, elle s'écrit : $E_l = \frac{p_l^2}{2m} + m\psi(r)$.
+Nous introduisons une nouvelle variable $\phi(r)$ telle que :
+\begin{equation}
+	p_l^2 = 2m\(E_l - m\psi(r)\) = 2m\phi(r)
+\end{equation}
+En remplaçant :
+\begin{eqnarray*}
+	\rho(r) &=& \frac{4\pi\rho_0}{\(2\pi m\sigma^2\)^{3/2}} \(e^{\frac{\phi}{\sigma^2}} \left[-m\sigma^2\sqrt{2m\phi}e^{-\phi/\sigma^2} + m\sigma^2\int_0^{p_l}\,e^{-\frac{p^2}{2m\sigma^2}} dp\right] - \frac{\( 2m\phi \)^{3/2}}{3}\)\\
+		&=& \frac{4\pi\rho_0}{\(2\pi m\sigma^2\)^{3/2}} \(-m\sigma^2\sqrt{2m\phi} + e^{\frac{\phi}{\sigma^2}} m\sigma^2\int_0^{p_l}\,e^{-\frac{p^2}{2m\sigma^2}} dp - \frac{\( 2m\phi \)^{3/2}}{3}\)\\
+		&=& \frac{4\pi\rho_0}{\(2\pi m\sigma^2\)^{3/2}} \(-m\sigma^2\sqrt{2m\phi}\(1 + \frac{ 2\phi }{3\sigma^2}\) + e^{\frac{\phi}{\sigma^2}} m\sigma^2\int_0^{p_l}\,e^{-\frac{p^2}{2m\sigma^2}} dp\)\\
+		&=& \rho_0 \(-\sqrt{\frac{4\phi}{\pi\sigma^2}}\(1 + \frac{ 2\phi }{3\sigma^2}\) + \frac{2}{\sqrt{2m\pi\sigma^2}} e^{\frac{\phi}{\sigma^2}}\int_0^{p_l}\,e^{-\frac{p^2}{2m\sigma^2}} dp\)\\
+\end{eqnarray*}
+Pour pouvoir calculer la dernière intégrale, nous allons faire un petit changement de variable :
+$$
+	t^2 = \frac{p^2}{2m\sigma^2} \Rightarrow dp = \sqrt{2m\sigma^2}dt
+$$
+Ce qui nous permet d'obtenir :
+\begin{eqnarray*}
+	\rho(r) &=& \rho_0 \(-\sqrt{\frac{4\phi}{\pi\sigma^2}}\(1 + \frac{ 2\phi }{3\sigma^2}\) + \frac{2\sqrt{2m\sigma^2}}{\sqrt{2m\pi\sigma^2}} e^{\frac{\phi}{\sigma^2}}\int_0^{\sqrt{\phi}/\sigma}\,e^{-t^2} dt\)\\
+\end{eqnarray*}
+Nous voyons alors apparaitre la fonction d'erreur :
+$$\mathrm{erf}(t) = \displaystyle{\frac{2}{\sqrt{\pi}}\int_0^t e^{-u^2}du}$$
+et finalement :
+\begin{eqnarray}
+	\rho(r) = \rho_0 \(-\sqrt{\frac{4\phi}{\pi\sigma^2}}\(1 + \frac{ 2\phi }{3\sigma^2}\) + e^{\frac{\phi}{\sigma^2}}\mathrm{erf}\(\sqrt{\phi}/\sigma\)\)
+	\label{rho_r}
+\end{eqnarray}
+
+Nous pouvons alors injecter la densité dans l'équation de \textsc{Poisson}, en utilisant aussi \mbox{$\phi = E_l - m\psi$} :
+\begin{eqnarray}
+	\frac{d}{dr}\(r^2\frac{d\phi}{dr}\) = -4m\pi G r^2\rho_0 \left\{-\sqrt{\frac{4\phi}{\pi\sigma^2}}\(1 + \frac{ 2\phi }{3\sigma^2}\) + e^{\frac{\phi}{\sigma^2}}\mathrm{erf}\(\sqrt{\phi}/\sigma\)\right\} \label{King-Pois}
+\end{eqnarray}
+(~$-m$ car $\phi\varpropto - m\psi$~).
+

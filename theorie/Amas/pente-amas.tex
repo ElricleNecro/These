@@ -1,0 +1,33 @@
+Nous avons maintenant une équation liant la valeur de la pente au temps de relaxation : $ \mathrm{pente} = \alpha = d * \log_{10}(T_c) + e $ (~coefficients table~\ref{pente-lin-coeff_dim}~)
+et une autre liant la pente à $W_0$ : $ \alpha = a e^{ b W_0 } + c $.
+En combinant ces deux équations, nous pouvons obtenir une relation entre le temps de
+relaxation et $W_0$ :
+\begin{align}
+	\mathrm{pente} &= d \log_{10}(T_c) + e = a e^{b W_0} + c \notag \\
+	\Rightarrow W_0 &= \frac{1}{b} \ln\( \frac{d \log_{10}(T_c) + e - c}{a} \) \label{Tc:W0->fct}
+\end{align}
+avec :
+\begin{table}[h!]
+	\begin{center}
+		\begin{tabular}{|c|r|}
+			\hline
+			Coefficient	&	Valeur \\
+			\hline
+			\hline
+			$a$		&	$ -10.0698 $ \\
+				\hline
+			$b$		&	$ 0.220152 $ \\
+			\hline
+			$c$		&	$ -1.53409 $ \\
+			\hline
+			$d$		&	$ -2.3341 $ \\
+			\hline
+			$e$		&	$ 16.913 $ \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+Le comportement que nous avions observé en étudiant le modèle de \textsc{King}, à savoir une évolution de la pente avec $W_0$, se retrouve avec l'âge de notre amas. Ce qui nous a permis de relier
+l'âge et $W_0$.
+Il nous reste à interpreter ces résultats, ce que nous allons faire dans la section suivante.

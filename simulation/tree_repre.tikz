@@ -1,0 +1,28 @@
+\newcommand{\TCarre}[2]{\coordinate (Xside) at (#1, 0);
+	\coordinate (Yside) at (0 , #1);
+
+	\coordinate (A) at ($ #2 -1/2*(Xside) - 1/2*(Yside) $);
+	\coordinate (B) at ($ (A) + (Xside) $);
+	\coordinate (C) at ($ (B) + (Yside) $);
+	\coordinate (D) at ($ (C) - (Xside) $);
+
+	\draw (A) -- (B) -- (C) -- (D) -- (A) -- cycle;
+}
+\begin{tikzpicture}
+%	\coordinate (Xside) at (10, 0);
+%	\coordinate (Yside) at (0 , 10);
+%
+%	\coordinate (A) at ($ (0,0) -1/2*(Xside) - 1/2*(Yside) $);
+%	\coordinate (B) at ($ (A) + (Xside) $);
+%	\coordinate (C) at ($ (B) + (Yside) $);
+%	\coordinate (D) at ($ (C) - (Xside) $);
+%
+%	\draw (A) -- (B) -- (C) -- (D) -- (A) -- cycle;
+
+	\coordinate (P1) at (1.5,2);
+	\coordinate (P2) at ($ 5*(rand, rand) - 5*(1,1) $);
+	\coordinate (P3) at ($ 5*(rand,rand) - 5*(1,1) $);
+
+	\TCarre{10}{(0,0)}
+
+\end{tikzpicture}

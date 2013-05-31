@@ -1,0 +1,82 @@
+\chapter{Sphère isotherme en boîte\label{SIB::Chapitre}} %{Les diagrammes d'énergie et de \textsc{Milne} pour une sphère isotherme en boîte}
+%		\markboth{\MakeUppercase{\chaptername}\ \thechapter.\ Diagramme}{}
+	\minitoc
+
+	\section{Diagramme de \textsc{Milne}}
+		\input{theorie/SIB/milne.tex}
+
+	\section{Diagramme d'énergie}
+		\input{theorie/SIB/energie.tex}
+
+%		\section{Numérique}
+%			\input{resolution_milne.tex}
+
+\chapter{Le modèle de \textsc{King}\label{King::Chapitre}}
+	\minitoc
+
+	\section{Équation de \textsc{Poisson}}
+		\input{theorie/SIK/densite.tex}
+
+	\section{Étude numérique}
+		\input{theorie/SIK/numerique.tex}
+
+%		\newpage
+	\section[Relation entre les paramètres]{Relation entre les différents paramètres d'un modèle de \textsc{King}\label{pente-coeff_sec}}
+		\input{theorie/SIK/pente.tex}
+
+	\section{Température d'un modèle de \King \label{sec::temp}}
+		\input{theorie/SIK/temperature.tex}
+
+	\section{Synthèse}
+		\input{theorie/SIK/synt_modele.tex}
+
+\chapter{Étude de quelques amas}
+	\minitoc
+	\section{Introduction}
+		\input{theorie/Amas/pente-intro.tex}
+
+	\section[Lien]{Lien entre données et paramètres\label{amas}}
+%			Comme nous l'avons déjà dit dans la section~\ref{r_10}, les travaux que nous avons effectué
+%			sur le rayon de cœur ne sont pas exploitable en l'état à cause de l'adimensionnement du
+%			problème. Par contre, l'utilisation de l'équation d'ajustement du graphe~\ref{coeff_evo}
+%			pour une valeur de la pente en fonction de $W_0$ nous permet déjà d'obtenir
+%			une solution pour chaque amas où le calcul de cette pente est possible.
+%			Pour les autres paramètres comme le rayon de cœur, le problème reste entier.
+		\input{theorie/Amas/pente-lien.tex}
+
+	\section{Interprétation}
+		\input{theorie/Amas/pente-amas.tex}
+
+	\section{Petit Scénario\label{petit_scenar}}
+%			Le petit scénario évoqué dans la section~\ref{petit_scenar} donne déjà un élément de réponse quant à leurs
+%			évolutions.
+%			C'est ce petit scénario que nous allons comparer aux données.
+%			Mais d'abord analysons-le pour trouver quels observables utiliser.
+%			Nous avons vu dans ce scénario que le rayon du coeur diminuait quand sa température augmentait : pour faire
+%			augmenter cette température, il faut augmenter le potentiel $\psi < 0$ et donc retirer de la matiére.
+%			Quand cette perte de matiére (~du cœur ou du halo~) devient trop importante, il y a un effondrement.
+%			Le processus d'effondrement pourrait donc être lié à un processus \og~d'effeuillage~\fg (~perte d'étoiles
+%			par l'amas dû, par exemple, à sa présence dans le potentiel galactique~).
+%			Ainsi, si il y a effondrement, le rayon de cœur de l'amas va diminuer, et le halo va lui aussi voir son
+%			rayon diminuer, mais, la densité du cœur augmentant, la pente (~pour une densité tracé en $\log-\log$~)
+%			avec laquelle il diminue va elle aussi changer.
+		\input{theorie/Amas/scenario.tex}
+
+\chapter{Toy Model : Un modèle simplifié}
+	\minitoc
+
+	\section{Hypothèse et simplification}
+		\input{theorie/ToyModel/hyp.tex}
+
+	\section{Cas Général}
+		\input{theorie/ToyModel/casall.tex}
+
+	\section{Cas $\alpha  = 4$}
+		\input{theorie/ToyModel/cas4.tex}
+
+%	\section{Spirale de stabilité}
+%		\input{theorie/ToyModel/stabilite.tex}
+%
+%	\section{Recherche des instabilité}
+%		\input{theorie/ToyModel/search.tex}
+

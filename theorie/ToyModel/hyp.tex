@@ -1,0 +1,58 @@
+	Nous avons dans le chapitre~\ref{King::Chapitre}, section~\ref{sec::temp}, le modèle de \King était un modèle
+	quasi-isotherme ; il est de plus sphérique. Nous pouvons alors considérer ce modèle comme une sphère isotherme, en première
+	approximation du moins. Par conséquent, il est possible de lui appliquer le problème d'Antonov. La première chose à
+	faire est un rappel de ce qu'est l'instabilité d'Antonov.
+
+\subsection{Problème/Instabilité d'Antonov}
+	Le problème d'Antonov se pose lorsque l'on étudie la stabilité d'une sphère isotherme en boîte (voir
+chapitre~\ref{SIB::Chapitre}) plongée dans un bain thermique.
+%Ceci décale les tangentes de la spirale de stabilité.
+
+
+	Cette explication de l'instabilité d'Antonov est grandement basée sur celle donnée
+	dans~\cite{2008gady.book.....B}.
+
+	Le problème que Antonov a posé est simple: supposons que le bord de la sphère isotherme en boîte soit un mur
+conducteur et plaçons autour un bain thermique avec une température égale à celle de la sphère, pour commencer.
+Si nous diminuons la température, nous déplaçons la sphère sur son diagramme Énergie--Température.
+Par conséquent, nous changeons aussi le contraste de densité, qui est le paramètre de contrôle de la stabilité du
+système.
+Quand la température devient trop \og faible\fg, le contraste de densité devient trop important, et la sphère devient
+instable.
+
+	CHERCHER DES ARTICLES QUI PARLENT DE CATASTROPHE GRAVOTHERMALE (LYNDELL, BELL \& WOOD) ET D'INSTABILITE
+	D'ANTONOV.
+
+\subsection{Hypothèses simplificatrices}
+	Nous avons étudié dans le chapitre~\ref{SIB::Chapitre} un modèle de sphère isotherme tronquée qui nous
+	permettait une analyse de la stabilité de l'objet. Le problème est que ce modèle n'a rien d'analytique.
+	Nous avons, à la fin de ce même chapitre, vu que l'objet avait un profil de densité $\rho(r)$ évoluant comme un
+	cœur--halo, avec un halo ayant une pente $\alpha = 2$. L'idée de ce \og Toy-Model\fg est d'approximer le profil
+	de densité comme :
+	\begin{align}
+		\rho(r) = \begin{cases}
+			\rho_0	&	\text{si $<r_0$}\\
+			\rho_0 \(\dfrac{R}{rx}\)^2	&	\text{si $r_0 < r \leq R$}\\
+			0	&	\text{si $R < r$}
+		\end{cases}
+	\end{align}
+	où $x = \frac{R}{r_0}$ est le contraste de densité, $\rho$ est la densité centrale de l'objet, $r_0$ le rayon de cœur, et $R$ le rayon de
+	l'objet.
+
+	Cette approximation permet de rendre compte des 2 tangentes discutées dans le chapitre~\ref{SIB::Chapitre}.
+
+	Nous souhaitons appliquer ce problème à des fonctions de distributions pouvant être considérer comme des sphères
+	isothermes (par exemple: la sphère de \King, en première approximation, section~\ref{sec::temp} et figure~\ref{King_Modele-test}).
+	Nous allons donc approximer leur densité par:
+	\begin{align}
+		\rho(r) = \begin{cases} \rho_0 & \text{si $r < r_0$} \\
+					\rho_0 \(\dfrac{R}{r}\)^\alpha \dfrac{1}{x^\alpha} & \text{si $R \geq r > r_0$, et
+					$x=\frac{R}{r_0}$} \\
+					0	&	\text{si $r > R$}
+			  \end{cases}
+	\end{align}
+	où $\alpha$ est un entier donnant la pente du halo. Cette expression analytique nous permet de mener à bien la
+	plupart des calculs, selon la valeur de $\alpha$.
+
+	Les différentes valeurs de $\alpha$ vont permettre d'imiter la forme du profile de \King, et peuvent donc être
+	rapprochées du paramètre $W_0$, de la même façon que dans~\ref{ssec::LinkBetween}.

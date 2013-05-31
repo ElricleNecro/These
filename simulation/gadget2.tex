@@ -1,0 +1,65 @@
+Le code que nous utilisons pour faire évoluer notre système est \textsc{Gadget-2}~\footnote{récupérable sur \url{http://www.mpa-garching.mpg.de/gadget/}}~\cite{gadget2}, écrit par Volker \textsc{Springel}.
+Seule une petite partie de ce qu'il fait nous intéresse : nous n'allons utiliser que les options concernant le \og~tree code~\fg.
+Toutes les autres options ne concernent que les simulations cosmologiques ou pourraient
+induire un comportement du code qui nous ferait perdre de la précision sur les calculs.
+
+Pour fonctionner, \textsc{Gadget-2} a besoin d'un fichier de configuration, dans lequel nous devrons jouer sur certains paramètres, et d'un fichier de conditions initiales respectant un format précis.
+
+\subsection{Fichier de conditions initiales}
+
+	Le fichier de conditions initiales doit avoir le format suivant :
+	\begin{enumerate}
+		\item un en-tête contenant le nombre de particule de chaque type (~Gaz, Halo, Disque, Bulbe, Étoiles, Bndry~), la masse pour chaque type, divers autres informations utiles essentiellement aux simulations cosmologiques,
+		\item les positions de chaque particules,
+		\item leurs vitesses,
+		\item un identifiant permettant de repérer chaque particule.
+	\end{enumerate}
+	Chaque bloc devant être encadré par sa taille en mémoire.
+
+\subsection{Fichier de configuration}
+
+	Dans ce fichier, nous n'allons jouer que sur certains paramètres :
+	\begin{itemize}
+		\item \verb|OmegaLambda| : paramètre cosmologique représentant la densité d'énergie du vide, en le mettant à 0, nous faisons savoir à \textsc{Gadget-2} que nous ne faisons pas de simulation cosmologique.
+		\item \verb|UnitLength_in_cm|, \verb|UnitMass_in_g| et \verb|UnitVelocity_in_cm_per_s| sont les unités dans lesquelles sont données, respectivement, les positions, masses et vitesses des particules en
+			centimètre, gramme en centimètre par seconde. Ce sont ces facteurs de conversion qui donne l'unité de temps interne à \textsc{Gadget-2}. Nous utilisons les parsecs (~$ 1 pc = 3.086 \times 10^{18} cm$~)
+			pour les positions, les kilogrammes (~$1 kg = 1000 g$~) pour la masse, et les mètres par seconde (~$ 1 m.s^{-1} = 10^2 cm.s^{-1}$~) pour les vitesses. Ces unités nous donnent comme unité de temps
+			interne :
+			\begin{align}
+				v &= \frac{d}{t} \notag \\
+				t &= \frac{d}{v} \notag \\
+				t &= \frac{3.086 \times 10^{18}}{10^2} = 3.086 \times 10^{16} s \notag \\
+				t &= 9.77894 \times 10^8 ans
+			\end{align}
+		\item \verb|SofteningStarsMaxPhys| : paramètre de lissage de la force, permettant d'éviter qu'elle \og~n'explose~\fg~à cause d'une collision entre 2 particules trop proches.
+			C'est sur ce paramètre qu'il faut jouer pour assurer la stabilité du système sur un grand nombre de temps dynamiques.
+		\item \verb|ErrTolTheta| : représente l'angle d'ouverture, ou résolution angulaire, minimum. Celui-ci est fixé à $0.5$ et n'est plus modifié ensuite.
+	\end{itemize}
+
+\subsection{Lissage de la force}
+	Nous souhaitons nous placer dans la limite fluide afin de minimiser les effets de relaxations dû aux collisions à deux corps. Pour cela, nous pouvons jouer sur deux paramètres : le nombre de particules que nous mettons dans
+	le système, et le paramètre de lissage. Étant limité en temps, nous ne pouvons pas lancer de simulations avec un très grand nombre de corps : les plus grosses simulations que nous lançons ont 100 000 particules, et
+	occasionnellement 500 000. Pour une évolution pendant 100 temps dynamiques, elles prennent environ 709 minutes en les faisant tourner sur 8 cœurs, et cela peut aller jusqu'à 1020 minutes.
+
+	Le lissage est une borne, en distance, en deçà de laquelle nous considérons un potentiel minimum valant :
+	\begin{align}
+		\psi(r_{i} \sim 0) = - G \dfrac{m_i}{r_{i} + \epsilon}
+	\end{align}
+	où $r_i$ est le module de distance d'une particule numérotée $i$. $\epsilon$ est le paramètre de lissage de la force. Afin de nous placer dans la limite fluide, $\epsilon$ doit être tel qu'il contienne un
+	nombre $N_\epsilon$ de particule grand devant 1 mais petit devant le nombre total de particule du système. Habituellement, c'est $N_\epsilon$ qui est choisi, imposant ainsi $\epsilon$, mais nous avons choisi $\epsilon$
+	imposant ainsi $N_\epsilon$.
+
+%	Dans un amas, la densité est plus forte au centre que sur le bord. Les effets de relaxation sont donc plus important au centre, le $\epsilon$ doit y minimiser ces effets, même s'il n'a aucun effet sur les bords de l'amas.
+	À cause d'instabilité, il est important de décrire la dynamique au centre de l'amas avec la meilleur précision possible. Il est donc nécessaire d'être dans la limite fluide au centre.
+	Il est alors intéressant de le relier à la densité centrale, plutôt que d'utiliser une distance inter-particulaire moyenne. Nous définissons donc $\alpha$ tel que :
+	\begin{align}
+		\alpha = \dfrac{\rho(0)}{\rho_\mathrm{moy}} = \dfrac{\rho(0)}{M} \frac{4}{3} \pi R^3
+	\end{align}
+	avec $M$ la masse totale de l'amas, $R$ le rayon de l'amas, et $\rho(0)$ la densité centrale de l'amas. La densité d'un volume de taille $\epsilon$ et la densité de l'amas nous donne donc :
+	\begin{align}
+		\rho_\epsilon &= \alpha \rho_\mathrm{moy}					\notag \\
+		N_\epsilon    &= \alpha \frac{4}{3} \pi \epsilon^3 \dfrac{3N}{4\pi R^3}	\notag \\
+			      &= \alpha N \( \dfrac{\epsilon}{R} \)^{3}
+	\end{align}
+	$N$ étant le nombre total de particules de l'amas. $N$, $R$ et $\alpha$ étant fixés, nous sommes ainsi libres de choisir $N_\epsilon$ ou $\epsilon$ pour répondre à nos besoins.
+

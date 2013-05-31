@@ -1,0 +1,52 @@
+\section[Théorème du Viriel]{Théorème du Viriel dans une sphère\label{Demo::Viriel}}
+	Dans cette partie, la notation $i=\left\{1, 2, 3\right\}$ équivaut, respectivement, à $x, y, z$. Le tenseur de pression
+	est noté $\mathbb{P}$, la pression scalaire $P$ et l'impulsion (scalaire) $p$
+	\subsection{Tenseur de pression}
+		\newcommand{\fd}{\ensuremath{f\left(\vec{x}, \vec{p}\right)}}
+		\newcommand{\Pres}{\ensuremath{\mathbb{P}}}
+		Le tenseur de pression est défini comme:
+		\begin{align}
+			\Pres_{ij} &= \dfrac{1}{m^2}\left[\int p_i p_j f\left(\vec{x}, \vec{p}\right)\vdp - \int p_i \fd
+			\vdp\int p_j \fd\vdp\right] \\
+			\intertext{Dans le cas général, nous pouvons écrire:}
+			p^2 &= p_1^2 + p_2^2 + p_3^2 \notag \\
+			\intertext{En, moyenne, et pour un objet isotrope:}
+			\langle p_1^2 \rangle &= \langle p_2^2 \rangle = \langle p_3^2 \rangle = \dfrac{1}{3}\langle p^2 \rangle \notag \\
+			\intertext{Ainsi, nous pouvons écrire:}
+			\Pres\(\vec{r}\) &= \dfrac{1}{3} \mathrm{Tr}\(\Pres_{ij}\)
+		\end{align}
+	\subsection{Tenseur énergie cinétique}
+		\newcommand{\Cine}{\ensuremath{\mathbb{K}}}
+		Le tenseur énergie cinétique est défini comme:
+		\begin{align}
+			\Cine_{ij} &= \dfrac{1}{2m}\int p_i p_j \fd \vdp \vdr = \mathrm{Tr}\(K_{ij}\) \\
+			\intertext{En utilisant le tenseur de Pression, nous pouvons le réécrire sous la forme:}
+			\Cine &= \dfrac{3}{2}\int \Pres\(\vec{r}\)\vdr \\
+			\intertext{Les problèmes auxquelles nous nous intéressons ont une symétrie sphérique. Ainsi:}
+			K &= \dfrac{3}{2}\int \Pres\(r\) 4 \pi r^2 \dr \notag \\
+			  &= 6\pi\int\Pres\(r\)r^2\dr \\
+			\intertext{En combinant alors l'équation d'Euler~\footnote{$\vec{\nabla}P = \rho \vec{g}$} et le
+			théorème de Gauss~\footnote{$\int\int\vec{g}\mathrm{d}\vec{S} = -4\pi G M_{\mathrm{int}\(r\)}$,
+			avec $M_{\mathrm{int}\(r\)}$ la masse à l'intérieur du rayon $r$.}:}
+			\deriv{P}{r} &= -\dfrac{GM(r)\rho(r)}{r^2} \notag \\
+			\intertext{Que nous substituons dans le tenseur énergie cinétique, puis en effectuant une
+			intégration par partie:}
+			K &= 2\pi\(P\(r\)r^3\right]_{r=0}^{r=R} - 2\pi\int\deriv{P}{r}r^3\dr \notag \\
+			  &= 2\pi R^3 P\(R\) + 2\pi\int GM\(r\)\rho\(r\)r\dr \label{annexe::eq::Kine}
+		\end{align}
+	\subsubsection{Tenseur énergie potentielle\label{ssub:Tenseur énergie potentielle}}
+		\newcommand{\Pot}{\ensuremath{\mathbb{U}}}
+		Le tenseur d'énergie potentielle est défini comme:
+		\begin{align}
+			\Pot_{ij} &= -\int r_j\pderiv{\psi}{r_j}\rho\(\vec{r}\)\vdr \\
+			\intertext{Soit, en géométrie sphérique:}
+			\Pot &= -4\pi\int r\pderiv{\psi}{r}\rho\(r\)r^2\dr \\
+			\intertext{qui, combiné une fois encore avec l'équation d'Euler, fait apparaître la pression:}
+			\pderiv{\psi}{r} &= \dfrac{GM\(r\)}{r^2} \Rightarrow U = -4\pi G\int rM\(r\)\rho\(r\)\dr \label{annexe::eq::Pot}
+		\end{align}
+	\subsubsection{Théorème du Viriel}
+		En combinant les équations~\ref{annexe::eq::Kine} et~\ref{annexe::eq::Pot}, nous obtenons le théorème du
+		Viriel dans une sphère:
+		\begin{align}
+			2K + U = 4\pi R^3 P\(R\)
+		\end{align}

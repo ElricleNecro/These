@@ -1,0 +1,83 @@
+\subsection{Présentation du problème}
+	Les problèmes à N corps sont des problèmes physiques extrêmement complexes, mathématiquement: ils font partie d'une
+	famille d'équation du second ordre qui n'ont pas de solution pouvant s'exprimer avec les fonctions mathématiques
+	usuelles. Le seul cas connu pouvant s'écrire \og simplement\fg est le problème à 2 corps.
+
+	Numériquement, ces problèmes sont très simple à implémenter. De façon basique, bête et méchante:
+	\lstset{language=C, label=algo::NBodySimple, frame=shadowbox}
+	\begin{lstlisting}
+typedef struct {
+    double x, y, z, vx, vy, vz, ax, ay, az, m;
+} Point;
+
+...
+
+int main(void)
+{
+    int NbPart = 1e6;
+    Point part[NbPart];
+    ...
+    //Some initialisation
+    ...
+    while(t < tmax && nbite < itemax)
+    {
+        for(int i=0; i<NbPart; i++)
+        {
+            part[i].ax  = part[i].ay  = part[i].az = 0;
+
+            for(int j=0; j<NbPart; j++)
+            {
+                if( i != j )
+                {
+                    part[i].ax += -G * part[i].m * part[j].m
+			* part[i].x / ( pow(sqrt( (part[i].x
+			- part[j].x)*(part[i].x - part[j].x)
+			+ (part[i].y - part[j].y)*(part[i].y
+			- part[j].y) + (part[i].z - part[j].z)
+			*(part[i].z - part[j].z)), 3.0) );
+                    part[i].ay += -G * part[i].m * part[j].m
+			* part[i].y / ( pow(sqrt( (part[i].x
+			- part[j].x)*(part[i].x - part[j].x)
+			+ (part[i].y - part[j].y)*(part[i].y
+			- part[j].y) + (part[i].z - part[j].z)
+			*(part[i].z - part[j].z)), 3.0) );
+                    part[i].az += -G * part[i].m * part[j].m
+			* part[i].z / ( pow(sqrt( (part[i].x
+			- part[j].x)*(part[i].x - part[j].x)
+			+ (part[i].y - part[j].y)*(part[i].y
+			- part[j].y) + (part[i].z - part[j].z)
+			*(part[i].z - part[j].z)), 3.0) );
+                }
+            }
+
+            part[i].vx += part[i].ax * dt;
+            part[i].vy += part[i].ay * dt;
+            part[i].vz += part[i].az * dt;
+
+            part[i].x += part[i].vx * dt;
+            part[i].y += part[i].vy * dt;
+            part[i].z += part[i].vz * dt;
+        }
+    }
+}
+	\end{lstlisting}
+	Comme vous pouvez le voir, cette algorithme parcours 2 fois le tableau de particule. Par conséquent, le
+programme effectue $\mathsf{NbPart}^2$ opérations. Quand le nombre de particules commence à augmenter, le temps de
+calcul augmente: pour les ordinateurs actuels, calculer l'évolution d'un système tel un amas globulaire
+($\mathsf{NbPart} \thickapprox 1e5 \to 1e6$) sur un temps dynamique (environ $10^6 \mathrm{ans}$) avec un pas de temps
+$\mathsf{dt}$ d'environ $1e4 \mathrm{ans}$ prendrait plusieurs mois, voir années. Même en parallélisant le code  et en
+le faisant tourner sur un super calculateur le temps de calcul resterait important. Nous avons donc besoin de trouver un
+algorithme qui permette de faire ces calculs plus rapidement, mais sans perdre trop de précision sur les calculs. Cet
+algorithme, c'est le Tree-Code développé par Barnes \& Hut dans~\cite{1986Natur.324..446B}.
+
+\subsection{Présentation de l'algorithme}
+	L'algorithme de Barnes et Hut est relativement simple: au lieu de travailler sur l'espace complet, nous le
+séparons en $8$ cube, puis nous séparons à nouveau chacun de ces cubes en $8$ sous cubes, et ainsi de suite jusqu'à ce
+que les cubes aient un certain nombre de particules à l'intérieur ou que l'arbre de cubes ainsi créé ait atteint un
+certain niveau de raffinement.
+
+	\begin{figure}[h]
+		\begin{center}
+			\input{simulation/tree_repre.tikz}
+		\end{center}
+	\end{figure}
