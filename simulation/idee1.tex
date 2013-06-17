@@ -1,0 +1,13 @@
+La première idée qu'il nous est venu pour tester le scénario décrit dans le
+chapitre~\ref{chp::toymodel}, était de prendre un objet suivant la fonction de
+distribution de la SIK puis de le placer dans un cube homogène faisant office de
+bain thermique.
+
+Le premier souci apparent est que le bain va influer sur la SIK en lui donnant
+des particules, et cette dernière va déstabiliser le bain, le poussant à
+s'effondrer. Pour palier à ce problème, nous avons utilisé une option de
+\textsc{GADGET} qui permet de désactiver, pour un ou plusieurs types de
+particules, les interactions gravitationnelles qu'elles subissent.
+Ainsi, en activant cette option pour les particules de type 4, par exemple,
+elles influencerons les autres particules, mais elles-mêmes se déplacerons en
+ligne droite.
