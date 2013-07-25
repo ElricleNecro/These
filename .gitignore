@@ -9,3 +9,8 @@
 *.out
 *.toc
 *.old
+*.gnuplot
+*.pdf
+*.bak
+numerique_erreur.tex
+cr.tex
