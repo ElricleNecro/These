@@ -49,8 +49,8 @@ La première chose à faire est de stabiliser le cube. Mais présentons d'abord 
 	notre critère devient:
 	\begin{align}
 		GM_h\dfrac{N_c}{N_h}\tilde{R_c}^2 &< \sigma_c^2 \notag \\
-		\dfrac{N_c}{N_h}\tilde{R_c}^2 &< \sigma_c^2 \\
-		\dfrac{N_c}{N_h} &< \dfrac{\sigma_c^2}{\tilde{R_c}^2}
+		\dfrac{N_c}{N_h}\tilde{R_c}^2 &< \sigma_c^2 \notag \\
+		\dfrac{N_c}{N_h} &< \dfrac{\sigma_c^2}{\tilde{R_c}^2} \label{simu::eq::idee4_jeans}
 	\end{align}
 	en oubliant pas que: $G=1$ et $M_h=1$.
 
@@ -59,6 +59,25 @@ La première chose à faire est de stabiliser le cube. Mais présentons d'abord 
 	inférieur à celle que la sphère de Hénon atteint une fois à l'équilibre. Soit $\sigma_h^f$ la
 	dispersion de vitesse de la sphère après effondrement, on doit avoir:
 	\begin{align}
-		\sigma_c &< \sigma_h^f \notag
+		\sigma_c &< \sigma_h^f \label{simu::eq::idee4_sig}
 	\end{align}
 
+	En parallèle, il serait bon d'éviter que le bain détruise la sphère de Hénon. Il faudrait
+	donc imposer:
+	\begin{align}
+		\rho_\mathrm{bord}^f \geq \rho_c \label{simu::eq::idee4_dens}
+	\end{align}
+	où $\rho_\mathrm{bord}^f$ représente la densité au bord de la sphère, une fois l'équilibre
+	atteint.
+
+\subsection{critères de sélections des paramètres}
+	En combinant les équations \ref{simu::eq::idee4_dens}, \ref{simu::eq::idee4_sig} et
+	\ref{simu::eq::idee4_jeans}, nous obtenons l'ensemble d'équations suivant:
+	\begin{align}
+		\begin{cases}
+			\(\frac{4}{3}\pi R_h^3\frac{N_c}{N_h}\)^{1/3} < R_c \\
+			\\
+			\(\frac{N_c}{N_h}\)^{5/3} R_h^2 \(\frac{4}{3}\pi\)^{2/3} < \sigma_c^2 < \(\sigma_h^f\)^2
+		\end{cases}
+	\end{align}
+	avec $R_h$ le rayon de la sphère une fois l'équilibre atteint, sans le bain.
