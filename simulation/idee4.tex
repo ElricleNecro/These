@@ -85,3 +85,35 @@ La première chose à faire est de stabiliser le cube. Mais présentons d'abord 
 		\end{cases}
 	\end{align}
 	%avec $R_h$ le rayon de la sphère une fois l'équilibre atteint, sans le bain.
+
+\subsection{Jeux des paramètres}
+	Pour vérifier l'influence du bain, nous devrons jouer sur sa température (sa dispersion de vitesse).
+	Mais, nous souhaitons conserver les autres paramètres les moins inchangées possible. Par exemple,
+	tel que la simulation est construite, un certains nombres de particules $n_c$ sont directement
+	incluse dans le Hénon qui se retrouve alors avec $N_h + n_c$ particules et donc une masse de $M_h + n_c m$.
+	De ce fait, pour avoir les simulations les plus similaires possible, nous devons conserver la densité moyenne
+	du cube $\rho_c$ constante afin de conserver au mieux $n_c$.
+
+	Voyons comment se comporte notre système:
+	\begin{align}
+		\rho_c = \dfrac{M_c}{R_c^3} = \dfrac{mN_c}{R_c^3}
+	\end{align}
+	Nous faisons évoluer notre dispersion de vitesse tel que:
+	\begin{align*}
+		\sigma_c' = k \sigma_c
+	\end{align*}
+	en conservant:
+	\begin{align}
+		\rho_c' = \rho_c \label{simu::eq::idee4_cubedens}
+	\end{align}
+	Le nouveau rayon s'écrit:
+	\begin{align}
+		R_c' &= \dfrac{1}{\sigma_c'^2}\dfrac{N_c'}{N_h} = \dfrac{1}{k^2\sigma_c^2}\dfrac{N_c'}{N_h} \notag \\
+		\intertext{En utilisant \ref{simu::eq::idee4_cubedens}:}
+		\rho_c' &= \rho_c \notag \\
+		\dfrac{m N_c}{\(\dfrac{1}{k²\sigma_c²}\dfrac{N_c'}{N_h}\)^3} &= \dfrac{m N_c}{\(\dfrac{1}{\sigma_c²}\dfrac{N_c}{N_h}\)^3} \notag \\
+		\dfrac{1}{\dfrac{1}{k^6}N_c'^2} &= \dfrac{1}{N_c^2} \notag \\
+		N_c' &= k^3 N_c
+	\end{align}
+	Ainsi, en augmentant d'un facteur $k$ la dispersion de vitesse, il faut augmenter d'un facteur $k^3$ le nombre de particules dans le cube.
+
