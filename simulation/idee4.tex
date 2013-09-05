@@ -37,22 +37,26 @@ La première chose à faire est de stabiliser le cube. Mais présentons d'abord 
 	Vouloir faire une simulation avec un cube interagissant, c'est bien beau, mais un tel objet risque de s'effondrer plutôt vite. Il va nous falloir une condition pour pouvoir le stabiliser.
 	Une sphère homogène est stable si sa taille est inférieur à sa longueur de Jeans. Notre critère est donc le suivant:
 	\begin{align}
-		\tilde{R_c} &< L_\mathrm{Jeans}^c = \frac{\sigma_c}{\sqrt{GM_c}} \notag \\
-		\tilde{R_c}^2 &< \frac{\sigma_c^2}{GM_c} \notag \\
-		GM_c\tilde{R_c}^2 &< \sigma_c^2
+		R_c &\le L_\mathrm{Jeans}^c = \dfrac{\sigma_c^2}{\sqrt{G\rho_c}} \\
+		R_c^2 &\leq \dfrac{\sigma_c^2}{G\rho_c} \notag \\
+		R_c^2 &\leq \dfrac{\sigma_c^2 R_c^3}{GM_c} \notag \\
+		\intertext{Soit $N_c$ le nombre de particules du cube:} \\
+		1 &\leq \dfrac{\sigma_c^2R_c}{GN_c m_c} \notag
 	\end{align}
 	Nous imposons aux particules du cube d'avoir la même masse que celle du Hénon, soit:
 	\begin{align*}
-		m_c = m_h = \dfrac{M_h}{N_h}
+		m_c = m_h = m = \dfrac{M_h}{N_h}
 	\end{align*}
-	où $N_h$ est le nombre de particules du Hénon. Soit $N_c$ le nombre de particules du cube,
-	notre critère devient:
+	où $N_h$ est le nombre de particules du Hénon. Notre critère devient:
 	\begin{align}
-		GM_h\dfrac{N_c}{N_h}\tilde{R_c}^2 &< \sigma_c^2 \notag \\
-		\dfrac{N_c}{N_h}\tilde{R_c}^2 &< \sigma_c^2 \notag \\
-		\dfrac{N_c}{N_h} &< \dfrac{\sigma_c^2}{\tilde{R_c}^2} \label{simu::eq::idee4_jeans}
+		1 &\leq \dfrac{\sigma_c^2R_cN_h}{GN_c M_h} \notag \\
+		GM_h\dfrac{1}{\sigma_c^2}\dfrac{N_c}{N_h} &\leq R_c \notag
 	\end{align}
 	en oubliant pas que: $G=1$ et $M_h=1$.
+	\begin{align}
+		\dfrac{1}{\sigma_c^2} \dfrac{N_c}{N_h} &\leq R_c \label{simu::eq::idee4_jeans}
+	\end{align}
+	
 
 \subsection{Conditions de la simulation}
 	Comme nous cherchons à vérifier notre modèle, nous devons placer le bain à une température
@@ -63,21 +67,21 @@ La première chose à faire est de stabiliser le cube. Mais présentons d'abord 
 	\end{align}
 
 	En parallèle, il serait bon d'éviter que le bain détruise la sphère de Hénon. Il faudrait
-	donc imposer:
+	donc avoir:
 	\begin{align}
-		\rho_\mathrm{bord}^f \geq \rho_c \label{simu::eq::idee4_dens}
+		\rho^f\(R\) \geq \rho_c \label{simu::eq::idee4_dens}
 	\end{align}
-	où $\rho_\mathrm{bord}^f$ représente la densité au bord de la sphère, une fois l'équilibre
+	où $\rho^f\(R\)$ représente la densité au bord de la sphère, une fois l'équilibre
 	atteint.
 
-\subsection{critères de sélections des paramètres}
+\subsection{Critères de sélections des paramètres}
 	En combinant les équations \ref{simu::eq::idee4_dens}, \ref{simu::eq::idee4_sig} et
 	\ref{simu::eq::idee4_jeans}, nous obtenons l'ensemble d'équations suivant:
 	\begin{align}
 		\begin{cases}
-			\(\frac{4}{3}\pi R_h^3\frac{N_c}{N_h}\)^{1/3} < R_c \\
+			\dfrac{1}{\sigma_c^2} \dfrac{N_c}{N_h} \leq R_c \\
 			\\
-			\(\frac{N_c}{N_h}\)^{5/3} R_h^2 \(\frac{4}{3}\pi\)^{2/3} < \sigma_c^2 < \(\sigma_h^f\)^2
+			\sigma_c < \sigma_h^f
 		\end{cases}
 	\end{align}
-	avec $R_h$ le rayon de la sphère une fois l'équilibre atteint, sans le bain.
+	%avec $R_h$ le rayon de la sphère une fois l'équilibre atteint, sans le bain.
