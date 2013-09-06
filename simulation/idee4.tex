@@ -2,6 +2,7 @@ Pour cette gamme de simulation, nous avons choisi de revenir sur un jeu de condi
 La première chose à faire est de stabiliser le cube. Mais présentons d'abord le système d'unité utilisé ici.
 
 \subsection{Système d'unité}
+	\label{simu::sec::unit}
 	Nous nous plaçons dans le système décrit dans \cite{fuji1983}. C'est à dire:
 	\begin{itemize}
 		\item $\tilde{M_h} = 1$
@@ -116,4 +117,59 @@ La première chose à faire est de stabiliser le cube. Mais présentons d'abord 
 		N_c' &= k^3 N_c
 	\end{align}
 	Ainsi, en augmentant d'un facteur $k$ la dispersion de vitesse, il faut augmenter d'un facteur $k^3$ le nombre de particules dans le cube.
+
+\subsection{Test de stabilité du cube dans ces conditions}
+	\begin{figure}
+		\begin{center}
+			\includegraphics[width=\textwidth]{graphe/dc.png}
+			\caption{Carte de l'objet à $t=0$}
+			\label{simu::graphe::dccarte0}
+		\end{center}
+	\end{figure}
+	\begin{figure}
+		\begin{center}
+			\includegraphics[width=\textwidth]{graphe/dc500.png}
+			\caption{Carte de l'objet à $t=50$}
+			\label{simu::graphe::dccarte50}
+		\end{center}
+	\end{figure}
+	\begin{figure}
+			\begin{minipage}[b]{0.40\linewidth}
+				\centering \includegraphics[width=\textwidth]{graphe/test_simu_temp.pdf}
+				\caption{Température moyenne de l'objet}
+				\label{simu::graphe::temp}
+			\end{minipage}\hfill
+			\begin{minipage}[b]{0.48\linewidth}
+				\centering \includegraphics[width=\textwidth]{graphe/test_simu.pdf}
+				\caption{Viriel de l'objet}
+				\label{simu::graphe::viriel}
+			\end{minipage}
+	\end{figure}
+
+\subsection{Évolution d'une sphère de Hénon isolée}
+	\subsubsection{Évolution dans le vide}
+		Des simulations sur l'évolution d'une sphère de Hénon dans le vide on été faîte avec le même
+		jeux de paramètres. Ces simulations serviront de référence pour celle avec bain. Toutes ont
+		été faîtes jusqu'au temps $t = 50$ dans les unités indiqués section~\ref{simu::sec::unit}.
+
+		\begin{figure}
+			\begin{center}
+				\includegraphics[width=\textwidth]{graphe/All_parameters.pdf}
+				\caption{Évolution dans le temps des paramètres}
+				\label{simu::graphe::Parameter}
+			\end{center}
+		\end{figure}
+
+	\subsection{Effet du nombre de particule}
+		Les simulations mentionnées dans le paragraphe précèdent ont été faîtes avec 300 000 et 1 000 000
+		de particules. Le graphique~\ref{simu::graphe::densitecomp} compare les profiles de densité volumiques de masse
+		à la fin de chacune des simulations.
+
+		\begin{figure}
+			\begin{center}
+				\includegraphics[width=\textwidth]{graphe/comparison_between_310part.pdf}
+				\caption{Comparaison de l'état final entre une simulation de 300 000 particules et une de 1 000 000 de particules.}
+				\label{simu::graphe::densitecomp}
+			\end{center}
+		\end{figure}
 
