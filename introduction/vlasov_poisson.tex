@@ -1,0 +1,35 @@
+\section{Syst\`{e}me de \textsc{Vlasov}-\textsc{Poisson}}
+
+	Nous allons \'{e}tudier ici des syst\`{e}mes de $N$ particules en interaction gravitationnelle dans la limite $N$ tend vers l'infini.
+	Dans une approche formelle, \'{e}crire les \'{e}quations de \textsc{Newton} parait illusoire dans ce contexte, il convient d'utiliser le formalisme de la physique statistique et de d\'{e}crire le syst\`{e}me par une fonction de distribution not\'{e}e $f$.
+	Cette derni\`{e}re permet de calculer la probabilit\'{e} pour une particule test de masse $m$ d'\^{e}tre dans un voisinage de la
+	position $\left[\vec{r},\vec{p}\right]^\top$ dans l'espace des phases ; elle
+	s'exprime en nombre par unit\'{e} de volume par impulsion au cube : $\left[ f\right] = m^{-3}p^{-3}$.
+
+	La conservation du nombre de particules, les \'{e}quations d'\textsc{Hamilton}, et les hypoth\`{e}ses classiques d'ind\'{e}pendance et d'indiscernabilit\'{e} (voir ~\cite{CoursJP}~)) permettent d'obtenir l'\'{e}quation de \textsc{Boltzmann} :
+	\begin{align}
+		\frac{\partial f}{\partial t} +\frac{\vec{p}}{m}\frac{\partial f}{\partial \vec{r}} - m\frac{\partial f}{\partial \vec{p}} \frac{\partial \psi}{\partial \vec{r}} = N^2 G C(\vec{r},\vec{p} t)
+		\label{Fok-Plan}
+	\end{align}
+	o\`{u} la fonction
+	\begin{align}
+		\psi(\vec{r},t)=-Gm\int\frac{f(\vec{r}\,^{\prime},\vec{p}\,^{\prime}, t)}
+		{\left|\vec{r}-\vec{r}\,^{\prime}\right|}
+		d^3\vec{r}\,^{\prime}d^3\vec{p}\,^{\prime}
+		\label{pot-grav}
+	\end{align}
+	est appel\'{e}e potentiel de champ moyen du syst\`{e}me.
+	
+	Nous reviendrons plus loin sur les hypoth\`{e}ses statistiques permettant d'obtenir cette \'{e}quation car il s'av\`{e}re que certaines sont discutables dans le contexte gravitationnel et vraisemblablement \`{a} l'origine ce certains probl\`{e}mes. Tant que nous pouvons consid\'{e}rer que les  interaction \`{a} deux corps (collisions) n'affectent pas la dynamique du syst\`{e}me, hypoth\`{e}se qui sera discut\'{e}e plus tard, le
+	terme  $ C(\vec{r},\vec{p}, t) $ est n\'{e}gligeable. Nous obtenons alors l'\'{e}quation de
+	\textsc{Vlasov-Poisson} ou \textsc{Boltzmann} sans collision :
+	\begin{align}
+		\frac{\partial f}{\partial t} +\frac{\vec{p}}{m}\frac{\partial f}{\partial \vec{r}} - m\frac{\partial f}{\partial \vec{p}} \frac{\partial \psi}{\partial \vec{r}} = 0
+		\label{Vla-Pois}
+	\end{align}
+
+	Tout les \'{e}tats stationnaires des syst\`{e}mes que nous \'{e}tudierons par la suite seront solution de cette \'{e}quation.
+	L'une des grandeurs physique fondamentale qui motivera notre int\'{e}r\^{e}t tout le long de notre travail est la densit\'{e} volumique de masse $-$ que nous appellerons souvent densit\'{e} $-$ s'\'{e}crit simplement comme une loi marginale de $f$ :
+	\begin{align}
+		\rho(\vec{r},t) = m\int f(\vec{r},\vec{p},t) d\vec{p} \label{def-dens}
+	\end{align}
