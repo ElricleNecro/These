@@ -1,87 +1,63 @@
-\subsection{Adimensionnement de l'équation~\ref{King-Pois}}
+\subsection{Adimensionnement de l'équation de Poisson}
 %	Pour adimensionner l'énergie, nous allons nous servir de la quantité $\sigma^2$. % qui à la dimension d'une énergie.
 %	Nous introduisons la quantité $r_c$, pour adimensionner les distances, puis
 %	nous faisons donc le changement de variable suivant :
-	L'adimensionnement s'effectue avec $\sigma^2$ pour l'énergie et la longueur $r_c$ pour les distances. Ainsi :
-	\begin{eqnarray*}
-		\left\{\begin{array}{l}
-			\gamma = \frac{\phi}{\sigma^2}\\
-			x = \frac{r}{r_c}
-		\end{array}\right.
-	\end{eqnarray*}
+	L'adimensionnement des énergies se fait au moyen de $\sigma^2$ et celui des longueurs via $r_c$, en posant :
+	\[
+			\gamma = \dfrac{\phi}{\sigma^2}
+			\quad \mathrm{et}\quad 
+			x = \dfrac{r}{r_c}
+	\]
 
 	Il vient alors :
 	\begin{equation}
 		\frac{d}{dx}\(x^2\frac{d\gamma}{dx}\) = -\frac{4m\pi G r_c^2 \rho_0}{\sigma^2}x^2 \left\{-\sqrt{\frac{4\gamma}{\pi}}\(1 + \frac{ 2\gamma }{3}\) + e^{\gamma}\mathrm{erf}\(\sqrt{\gamma}\)\right\}
 	\end{equation}
 
-	Afin de compléter l'adimensionnement, nous prenons :
+	L'adimensionnement est complet en prenant comme chaque fois dans ce contexte 
 	\begin{equation}
 		r_c^2 = \frac{\sigma^2}{4m\pi G\rho_0}
 		\label{r_c}
 	\end{equation}
-	L'équation adimensionnée s'écrit alors :
+	L'équation de \textsc{Poisson} a résoudre numériquement s'écrit finalement :
 	\begin{equation}
 		\frac{d}{dx}\(x^2\frac{d\gamma}{dx}\) = x^2\frac{d^2\gamma}{dx^2} +
 		2x\frac{d\gamma}{dx} = -x^2 \left\{-\sqrt{\frac{4\gamma}{\pi}}\(1 + \frac{ 2\gamma }{3}\) + e^{\gamma}\mathrm{erf}\(\sqrt{\gamma}\)\right\}
 		\label{Pois-no_dim}
 	\end{equation}
 
-\subsection{Conditions aux limites}
-	\subsubsection{Conditions au centre : $r=0$}
-		\paragraph{Condition sur la dérivée :}
-			Au centre de l'objet, toutes les forces ont des directions opposées --~le système étant isolé, son centre d'inertie est au repos~-- la
-			somme des forces $\vec{F}=\sum_i\vec{f_i}$ est donc nulle. Ceci implique :
-			\begin{equation}
-				\sum_i\vec{f_i}(0)\cdot\vec{e_r} = m\frac{d\psi}{dr}(0) = 0
-			\end{equation}
-			Donc :
+\subsection{Conditions aux limites et paramètres du modèle}
+	
+			Le système étant isolé et à l'équilibre, son centre d'inertie est au repos. Sa symétrie sphérique implique que la résultante des force qui s'applique à une particule test située en $r=0$ s'annule. Cette force est proportionnelle au gradient du potentiel, on a donc
+			
 			\begin{equation}
 				\left.\frac{d\gamma}{dr}\right|_{r=0} = \left.\frac{d}{dr}\(\frac{E_l - m\psi}{\sigma^2}\)\right|_{r=0} = -\frac{m}{\sigma^2}\left.\frac{d\psi}{dr}\right|_{r=0} = 0
 			\end{equation}
-		\paragraph{Condition sur la valeur du potentiel :}
-%			L'énergie potentielle $m\psi(0)$ est l'énergie d'une particule du système n'ayant
-%			pas de vitesse, il s'agit donc de l'énergie minimale d'une particule.
-			En l'absence de vitesse, l'énergie minimale est atteinte pour la plus petit valeur de $m\psi(r)$, soit $m\psi(0)$.
+			En l'absence de vitesse, l'énergie minimale est atteinte pour la plus petite valeur de $m\psi(r)$, soit $m\psi(0)$.
 
-			La quantité $\phi=E_l-m\psi$, où $E_l$ est l'énergie de libération,
-			représente la quantité d'énergie à fournir à une particule à la distance $r$
-			du centre du système pour qu'elle sorte du système. De plus, $\psi <0$, donc
-			$\phi$ est positive ou nulle. Au centre, cette quantité vaudra :
+			La quantité $\phi(r)=E_l-m\psi(r)$ représente la quantité d'énergie qu'il faut fournir à une particule située à la distance $r$
+			du centre du système afin qu'elle sorte du système. 
+			Il est clair que le potentiel $\psi(r)$ est une fonction partout négative ou nulle, ainsi
+			$\phi(r)$ est à l'inverse positive ou nulle. Au centre, cette quantité vaudra :
 			$$\phi(0)=E_l-m\psi(0)$$
 
-			Nous prendrons donc la quantité initiale adimensionnée :
+			Il est donc commode d'introduire la quantité initiale adimensionnée :
 			\begin{equation}
 				W_0 = \gamma(0)=\frac{E_l - m\psi(0)}{\sigma^2} > 0
 				\label{W_0}
 			\end{equation}
 
 			Nous éviterons de la prendre nulle, car, dans ce cas, le système contient au
-			plus une étoile.
+			plus une étoile !
 
-	\subsubsection{Condition au bord : $r=R$}
-		Au bord du système, les étoiles sont proches ou ont atteint la vitesse de
-		libération, par conséquent nous avons :
+	Le choix de $\gamma(0)=W_0$ et le fait que la dérivée de $\gamma$ en $r=0$ soit nulle permettent la résolution numérique de l'équation (\ref{Pois-no_dim}). Cette résolution permet d'obtenir le rayon $R$ de la sphère de King, premier zéro de la fonction $\phi(r)$. La vitesse d'une particule test située en $r=R$ est la vitesse de libération du système, en introduisant $X=\frac{R}{r_c}$ on a bien
 		\begin{equation}
-			\phi(X=R/r_c) = E_l - m\psi(X) \Rightarrow \gamma(X) = 0
+			 E_l = m\psi(X) \;\Leftrightarrow\; \gamma(X) = 0
 		\end{equation}
 
-		Le rayon $R$ de l'objet est donc fixé par le potentiel initial choisi.
+	Le paramètre $W_0$ fixe donc toutes les caractéristiques nécessaires à la résolution numérique du modèle de King. Le rayon de la sphère de King est une fonction croissante de $W_0$. Comme on peut le voir sur la définition (\ref{W_0}), une même valeur de $W_0$ peut correspondre à des systèmes possédant des caractéristiques physiques différentes caractérisées par une profondeur du puits de potentiel $\psi(0)$, une dispersion de vitesse $\sigma^2$ ou une énergie de libération différente. Ces différences ne concernent que le système une fois redimensionné. 
 
-\subsection{Paramètre du modèle}
-	À ce point de l'étude, il devient évident que la physique du système va être dictée par le paramètre $W_0$ qui représente la quantité d'énergie qu'une particule va
-	pouvoir gagner avant de ne plus être lié au système. Par conséquent, les paramètres $E_l$ et $\sigma^2$ vont être très importants : plus $\sigma^2$ (~la dispersion
-	d'énergie~) est important, plus il va être facile de faire quitter le système à une partie des particules liées. Le raisonnement est similaire avec l'énergie de
-	libération $E_l$ : plus cette énergie est proche de la valeur centrale du potentiel, plus le système va être petit, car l'énergie à récupérer pour sortir du système
-	sera faible.
-
-	Il n'existe que deux façons pour faire gagner de l'énergie à un particule en utilisant la gravitation : les collisions et le harcèlement de l'amas par un potentiel extérieur.
-	Or le modèle de \textsc{King} doit être solution de l'équation de \textsc{Vlasov-Poisson}, il n'y a donc pas de collision. Un profil de \textsc{King} isolé ne doit donc pas évoluer.
-
-	Dans la suite, nous considérerons donc le paramètre $W_0$ comme paramètre du système. Les quantités $E_l$ et $\sigma^2$ ne prendront toute leur importance que lorsque
-	nous redimensionneront le problème.
-
-\subsection{Adaptation à l'algorithme de résolution}
+\subsection{Résolution numérique}
 	L'algorithme que nous utiliserons pour résoudre cette équation est un \textsc{Runge-Kutta}
 	d'ordre $4$ (~RK4~). Nous devons écrire l'équation différentielle comme un système d'ordre 1, ce que nous faisons en posant $u = \frac{d\gamma}{dx}$ :
 	\begin{equation}
@@ -89,7 +65,7 @@
 			u = \x{\gamma}\\
 			\\
 			\x{u} = -\left\{-\sqrt{\frac{4\gamma}{\pi}}\(1 + \frac{ 2\gamma }{3}\) + e^{\gamma}\mathrm{erf}\(\sqrt{\gamma}\)\right\} - 2\frac{u}{x}
-		\end{array}\right.
+		\end{array}\right.\label{sys2dking}
 	\end{equation}
 
 %	Euh .... Outre un problème évident de division par zéro en $x=0$, qui peut-être résolu à
@@ -99,39 +75,12 @@
 %	positif !!!}
 	Un terme en $1/x$ est apparu, l'équation semble donc singulière en $0$. Un rapide
 	développement limité de la fonction $\gamma$ autour de $0$ nous apprend qu'il n'en est rien, il n'y a
-	pas de divergence. Pour éviter tout problème numérique, nous allons faire un développement limité d'ordre 6 autour de $0$.
-	Les coefficients obtenu par ce développement sont :
-%	Mais ce point va poser un problème numériquement. Nous allons donc
-%	utiliser un  développement limité quand nous sommes autour de $0$. La calcul a été poussé à
-%	l'ordre 6 sans preuve que les termes suivants soit négligeable. Le calcul des termes du
-%	développement limité étant assez lourd à cause de la fonction $\mathrm{erf}$, il a été mené
-%	avec l'aide de \textsc{Maple}. Voici les termes du développement ainsi obtenu :
-	\begin{eqnarray}
-		\left\{\begin{array}{l}
-			\gamma(0) = W_0 \\
-			\gamma'(0) = 0 \\
-			\gamma''(0) = -\frac{\rho(W_0)}{3\rho_0} \\
-			%\gamma''(0) = \frac{1}{3}\(-e^{W_0}erf(\sqrt{W_0})+2\sqrt{\frac{W_0}{\pi}}+\frac{4}{3}\sqrt{\frac{W_0}{\pi}}W_0\) = -\frac{\rho(0)}{3\rho_0} \\
-			\gamma'''(0) = 0 \\
-			%\gamma^{(4)}(0) = -\frac{6\gamma''(0)}{5}\left\{-\sqrt{\frac{W_0}{\pi}} -
-			%\frac{\sqrt{W_0}}{2 W_0\sqrt{\pi}} + \frac{e^{W_0}\mathrm{erf}\(\sqrt{W_0}\)}{2}
-			%+ \frac{1}{2\sqrt{\pi W_0}}\right\} = \frac{2\rho(0)}{5\rho_0}\left\{\sqrt{\frac{W_0}{\pi}} -
-			%\frac{e^{W_0}\mathrm{erf}(\sqrt{W_0})}{2}\right\} \\
-			\gamma^{(4)}(0) = \frac{2\rho(W_0)}{5\rho_0}\left\{\sqrt{\frac{W_0}{\pi}} -
-			\frac{e^{W_0}\mathrm{erf}(\sqrt{W_0})}{2}\right\} \\
-			\gamma^{(5)}(0) = 0
-		\end{array}\right.
-	\end{eqnarray}
-	Nous avons alors les développements suivant autour de $0$ :
-	\begin{align}
-		\Rightarrow \gamma(x) &=& W_0 - \frac{\rho(W_0)}{3\rho_0}\frac{x^2}{2!} + \frac{2\rho(0)}{5\rho_0}\left\{\sqrt{\frac{W_0}{\pi}} -
-		\frac{e^{W_0}\mathrm{erf}(\sqrt{W_0})}{2}\right\}\frac{x^4}{4!} + o(x^6) \notag \\
-		\Rightarrow \frac{d\gamma(x)}{dx} &=& u = - \frac{\rho(W_0)}{3\rho_0}x + \frac{2\rho(0)}{5\rho_0}\left\{\sqrt{\frac{W_0}{\pi}} -
-		\frac{e^{W_0}\mathrm{erf}(\sqrt{W_0})}{2}\right\}\frac{x^3}{3!} + o(x^5) \notag \\
-		\Rightarrow \frac{d^2\gamma(x)}{dx^2} &=& \x{u} = \frac{\rho(W_0)}{3\rho_0} + \frac{2\rho(0)}{5\rho_0}\left\{\sqrt{\frac{W_0}{\pi}} -
-		\frac{e^{W_0}\mathrm{erf}(\sqrt{W_0})}{2}\right\}\frac{x^2}{2!} + o(x^4) \notag
-	\end{align}
-
+	pas de divergence. Un rapide calcul montre que toutes les dérivées d'ordre impair de $\gamma(x)$ s'annulent en $x=0$, et que 
+	$$
+	\gamma(0) = W_0\, ,\;\; \gamma''(0) = -\frac{\rho(W_0)}{3\rho_0}\; \mathrm{et}\; \gamma^{(4)}(0) = \frac{2\rho(W_0)}{5\rho_0}\left\{\sqrt{\frac{W_0}{\pi}} -
+			\frac{e^{W_0}\mathrm{erf}(\sqrt{W_0})}{2}\right\} 
+	$$
+On peut donc écrire directement un développement de Taylor de $\gamma(x)$ à l'ordre 5 en $x=0$. 
 	La résolution des équations nous permet alors d'avoir les graphiques de la
 	figure~\ref{King_Modele-test} (~les graphes sont adimensionnés~).% mais pas normalisé~).
 %	\paragraph{Problème : Résolu :}
@@ -177,14 +126,30 @@
 			\begin{minipage}[b]{0.48\linewidth}
 				\centering \includegraphics[scale=0.60]{graphe/densite_pluri_limite-king.pdf}
 			\end{minipage}
-			\caption{Densité d'un modèle de \textsc{King} pour les conditions initiales
+			\caption{CETTE LEGENDE N4EST PAS SUFFISANTE ! IL FAUT INDIQUER CE QU4EST CETTE FONCTION $\rho(x)$ PARCE CE QUE L4ON CALCULE C4EST $\gamma(x)$.
+			Densité d'un modèle de \textsc{King} pour les conditions initiales
 			(~au centre~) : $\gamma(0) = 1$ (~courbe rouge~), $5$ (~courbe verte~), $9$ (~courbe bleu~), $14$ (~courbe violette~), $\x{\gamma}(0) = 0$}
 			\label{King_Modele-test}
 	\end{figure}
 
-	La figure~\ref{King_Modele-test} montre l'aspect de la densité d'un modèle de \textsc{King} en fonction de $W_0$ et nous indique aussi que ce modèle posséde une structure cœur-halo
-	(~une partie quasiment constante suivi d'une décroissance auto-similaire de pente $\alpha$~).
-	Plus $\phi$ est grand, plus le cœur est dense (~le graphe de droite trace $\rho(x)/\rho(0)$~). Nous pouvons aussi observer que la pente n'est pas la même :
-	elle diminue (~la courbe tend plus vite vers $0$~). Ce constat nous amène à nous poser une question : existe-t-il un
-	lien entre la pente et le rayon du cœur ?
+	%La figure~\ref{King_Modele-test} montre l'aspect de la densité d'un modèle de \textsc{King} en fonction de $W_0$ et nous indique aussi que ce modèle posséde une structure cœur-halo
+	%(~une partie quasiment constante suivi d'une décroissance auto-similaire de pente $\alpha$~).
+	%Plus $\phi$ est grand, plus le cœur est dense (~le graphe de droite trace $\rho(x)/\rho(0)$~). Nous pouvons aussi observer que la pente n'est pas la même :
+	%elle diminue (~la courbe tend plus vite vers $0$~). Ce constat nous amène à nous poser une question : existe-t-il un
+	%lien entre la pente et le rayon du cœur ?
+	
+	La résolution numérique du système (\ref{sys2dking}) permet d'obtenir la fonction $\gamma(x)$ pour chaque donnée initiale $W_0$. De cette fonction on déduit la densité volumique de masse du système $\rho(x)$ par la relation XXXXXXXXXX. Une sphère de King adimensionnée est donc entièrement définie par le paramètre $W_0$. En échelle logarithmique, sa densité normalisée est très bien approchée sur plus de 5 décades par deux segments de droites : l'un horizontal décrit le c\oe ur de la sphère de densité quasiment constante, l'autre de pente $-\alpha$ décrit un halo autosimilaire entourant le c\oe ur. L'intersection des droites portant ces deux segments est une bonne approximation de ce que l'on pourrait appeler le rayon du c\oe ur de la sphère de King considérée.
+		
+	Pour les petites valeurs de $W_0$, typiquement $W_0\leq 5$, la sphère de King est essentiellement constituée d'un très large c\oe ur de densité quasiment constante. Par contre dès que  $W_0\geq 15$, le c\oe ur ne renferme plus qu'une faible proportion de la masse du système et la sphère de King est essentiellement constituée d'un halo autosimilaire dont la densité est comparable à celle d'une sphère isotherme. Cette comparaison n'est valide que jusqu’à un certain rayon où la densité de la sphère de King chute violemment  à cause de la troncature introduite par l'énergie de libération.
+	Une étude plus fine menée pendant notre stage de M2 montre que les halos des sphères de King sont associés à des profils autosimilaires de pente étagées entre $-5$  et $-2$ lorsque $W_0$ varie de $5$ à $15$.
+	
+	\begin{figure}[hbt!]
+%		\centering \includegraphics[scale=1.00]{../Resol_King/img-king/pente-w0.pdf} %{graphe/evo-coeff_ci.pdf}
+		\centering \includegraphics[scale=1.00]{graphe/pente-w0.pdf}%{img-king/pente-w0.pdf} %{graphe/evo-coeff_ci.pdf}
+		\caption{Évolution de la pente du halo de la sphère de King en fonction de $W_0$}
+		\label{coeff_evo}
+	\end{figure}
+	
+	Une sphère de King définie par une grande valeur de $W_0$ est donc très proche d'une sphère isotherme, sa température est donc vraisemblablement indépendante de la distance au centre. Il est intéressant de préciser cette idée de façon plus quantitative. C'est l'objet de la prochaine section.
+	
 	\FloatBarrier

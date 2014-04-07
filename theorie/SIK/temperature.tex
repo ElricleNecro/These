@@ -1,256 +1,80 @@
-L'une des premières questions que l'on peut se poser, par rapport au modèle précèdent~: le modèle de \King est il isotherme~?
 
-%Dans un premier temps, nous rappelons les expressions des fonctions de distribution et densité pour ce modèle~:
-%\begin{align}
-%	f_K(E) &= \begin{cases}
-%		\rho_0 \(2\pi m\sigma^2\)^{-3/2}\( e^{\frac{E_l-E}{\sigma^2}} - 1\) & \text{si $E < E_l$} \\
-%		0 & \text{si $E > E_l$}
-%	\end{cases} \\
-%	\rho(r) &= \rho_0 \(-\sqrt{\frac{4\phi}{\pi\sigma^2}}\(1 + \frac{ 2\phi }{3\sigma^2}\) + e^{\frac{\phi}{\sigma^2}}\mathrm{erf}\(\sqrt{\phi}/\sigma\)\)
-%\end{align}
+La température cinétique d'un système autogravitant est la valeur moyenne dans l'espace des positions du carré de la vitesse d'une particule test. Comme $\vec p = m\vec v $, si $f(\vec r, \vec p, t)$ est la fonction de distribution de ce système et $\rho(\vec r , t)=m \int f(\vec r, \vec p, t) d\vec p$ sa densité, alors sa température cinétique $T(\vec r , t)$ est définie par la relation
+\begin{equation}
+	T(\vec r , t)=\dfrac{\int v^2 f(\vec r, \vec p, t) d\vec p}{\int f(\vec r, \vec p, t) d\vec p}=\dfrac{1}{m\rho(\vec r, t)} \int p^2 f(\vec r, \vec p, t) d\vec p
+\end{equation}
+Un rapide calcul montre que dans la cas de la sphère isotherme (\ref{sph-iso}), la température $T(\vec r , t)=(k_B\beta)^{-1}$ est constante en chaque point, d'où le nom de ce système. Nous avons vu que la sphère de King est une sphère isotherme tronquée en énergie, étudions l'influence de cette troncature sur la température.
+ 
+\subsection{Calcul de la température en chaque point}
 
-La température est définit comme étant proportionnelle à la dispersion de vitesse tel que~:
-\begin{align}
-	T(r) &\propto \dfrac{\int p^2 f_K(E) \vdp}{m^2 \int f_K(E) \vdp} & v^2 = \frac{p^2}{m^2}
-\end{align}
-
-\subsection{Évolution de la température avec le rayon}
-
-Le numérateur s'écrit~:
-\begin{align}
-	\int_0^{p_l} \dfrac{p^2}{m^2} f_K\(E\) \mathrm{d}\vec{p} &= \int_0^{p_l} \dfrac{p^2}{m^2} \rho_0 \(2\pi m\sigma^2\)^{-3/2}\( e^{\frac{E_l-E}{\sigma^2}} - 1\) 4\pi p^2 \ddp \notag \\
-	    &= \dfrac{4\pi\rho_0}{\(2\pi m\sigma^2\)^{3/2}}\(\int_0^{p_l} \frac{p^4}{m^2} e^{\frac{E_l-E}{\sigma^2}}\ddp -
-	    \int_0^{p_l} \frac{p^4}{m^2}\ddp \) \notag
-\intertext{En utilisant $E = \dfrac{p^2}{2m} + m\psi$, et à l'aide d'intégration par partie, il est possible de simplifier plusieurs étapes de l'intégration~:}
-	    &= \frac{4\pi\rho_0}{m^2\(2\pi m\sigma^2\)^{3/2}}
-	    	\(
-			e^{\frac{E_l - m\psi}{\sigma^2}}
-			\left[
-				3m\sigma^2\int_0^{p_l} p^2 e^{-\frac{p^2}{2m\sigma^2}}\ddp
-				- m\sigma^2 p_l^3 e^{-\frac{p_l^2}{2m\sigma^2}}
-			\right]
-			- \dfrac{p_l^5}{5}
-	    	\) \notag \\
-	    &= \frac{4\pi\rho_0}{m^2\(2\pi m\sigma^2\)^{3/2}}
-		\(
-			e^{\frac{E_l - m\psi}{\sigma^2}}
-	    		\left[
-				  3\(m\sigma^2\)^2 \int_0^{p_l} e^{-\frac{p^2}{2m\sigma^2}} \ddp
-				- 3\(m\sigma^2\)^2p_le^{-\frac{p_l^2}{2m\sigma^2}}
-			\right. \right. \notag \\
-				&\qquad \left.\vphantom{ e^{-\frac{p_l^2}{2m\sigma^2}}}\left.\vphantom{e^{-\frac{p_l^2}{2m\sigma^2}}}
-				- m\sigma^2 p_l^3 e^{-\frac{p_l^2}{2m\sigma^2}}
-			\right]
-	    		- \dfrac{p_l^5}{5}
-		\) \notag \\
-	    &= \frac{4\pi\rho_0}{m^2\(2\pi m\sigma^2\)^{3/2}}
-		\(
-			e^{\frac{E_l - m\psi}{\sigma^2}}\(m\sigma^2\)^2
-	    		\left[
-				  3 \int_0^{p_l} e^{-\frac{p^2}{2m\sigma^2}} \ddp
-				- 3p_le^{-\frac{p_l^2}{2m\sigma^2}}
-				\(1 + \dfrac{p_l^2}{3m\sigma^2}\)
-			\right] \right. \notag \\
-	    &\qquad \left.\vphantom{ e^{-\frac{p_l^2}{2m\sigma^2}}}
-	    		- \dfrac{p_l^5}{5}
-		\) \notag \\
-	    &= \frac{4\pi\rho_0}{m^2\(2\pi m\sigma^2\)^{3/2}}
-		\(
-			e^{\frac{E_l - m\psi}{\sigma^2}}\(m\sigma^2\)^2
-	    		\left[
-				3 \dfrac{\sqrt{\pi}}{2}\sqrt{2m\sigma^2}\erf\(\dfrac{p_l}{\sqrt{2m\sigma^2}}\)
-				- 3p_le^{-\frac{p_l^2}{2m\sigma^2}}
-				\(1 + \dfrac{p_l^2}{3m\sigma^2}\)
-			\right] \right. \notag \\
-	    &\qquad \left.\vphantom{ e^{-\frac{p_l^2}{2m\sigma^2}}}
-	    		- \dfrac{p_l^5}{5}
-		\) \notag \\
-%	    &= \frac{12\pi\rho_0 \sigma^4}{\(2\pi m\sigma^2\)^{3/2}} e^{\frac{E_l - m\psi\(r\)}{\sigma^2}} h\(p_l\)\dr
-\intertext{avec $p_l = \sqrt{2m\(E_l - m\psi(r)\)} = \sqrt{2m\phi(r)}$~:}
-	    &= \frac{4\pi\rho_0}{m^2\(2\pi m\sigma^2\)^{3/2}}
-		\(
-			e^{\frac{\phi}{\sigma^2}}\(m\sigma^2\)^2
-	    		\left[
-				3\dfrac{\sqrt{\pi}}{2} \sqrt{2m\sigma^2}\erf\(\dfrac{\sqrt{2m\phi(r)}}{\sqrt{2m\sigma^2}}\)
-			\right. \right. \notag \\
-	    &\qquad \left.\vphantom{ e^{-\frac{2m\phi(r)}{2m\sigma^2}}}\left.\vphantom{ e^{-\frac{2m\phi(r)}{2m\sigma^2}}}
-			        - 3\sqrt{2m\phi(r)}e^{-\frac{2m\phi(r)}{2m\sigma^2}}
-				\(1 + \dfrac{2m\phi(r)}{3m\sigma^2}\)
-			\right]
-			- \dfrac{\(2m\phi(r)\)^{5/2}}{5}
-		\) \notag \\
-	    &= \frac{4\pi\rho_0}{m^2\(2\pi m\sigma^2\)^{3/2}}
+Dans le cas de la fonction de distribution de King, nous avons
+\begin{equation}
+	\int_0^{p_l} p^2 f_K\(E\) d\vec{p} 
+	=
+	4\pi \dfrac{\rho_0}{\(2\pi m\sigma^2\)^{3/2}} \int_0^{p_l}\( e^{\frac{E_l-E}{\sigma^2}} - 1\)  p^4 \ddp 
+\end{equation}
+Puisque l'é
+nergie moyenne par particule $E = \dfrac{p^2}{2m} + m\psi$ ne dépend que des modules $r$ de $\vec r$ et $p$ de $\vec p$, la température ne dépend spatialement que de $r$. Nous avions vu que $p_l = \sqrt{2m\(E_l - m\psi(r)\)} = \sqrt{2m\phi(r)}$, une intégration par parties et quelques lignes de calcul donnent alors directement
+\begin{equation}
+\int_0^{p_l} p^2 f_K\(E\) d\vec{p} =
+\frac{4\pi\rho_0}{m^2\(2\pi m\sigma^2\)^{3/2}}
 		\(
 			\dfrac{3}{2} \(m\sigma^2\)^2\sqrt{2m\pi\sigma^2}
 	    		\left[
 				e^{\frac{\phi}{\sigma^2}}\erf\(\sqrt{\dfrac{\phi(r)}{\sigma^2}}\)
 			\right. \right. \notag \\
-	    &\qquad \left.\vphantom{\(\sqrt{\dfrac{\phi(r)}{\sigma^2}}\) }\left.\vphantom{\(\sqrt{\dfrac{\phi(r)}{\sigma^2}}\)}
+	    \left.\vphantom{\(\sqrt{\dfrac{\phi(r)}{\sigma^2}}\) }\left.\vphantom{\(\sqrt{\dfrac{\phi(r)}{\sigma^2}}\)}
 				- \sqrt{\dfrac{4\phi(r)}{ \pi\sigma^2}}
 				\(1 + \dfrac{2\phi(r)}{3\sigma^2}\)
 			\right]
 			- \dfrac{\(2m\phi(r)\)^{5/2}}{5}
-		\) \notag
-\end{align}
+		\) 
+\end{equation}
 
-La température va alors s'écrire~:
-\begin{align}
-	T(r) &\propto \frac{4\pi\rho_0}{m^2\(2\pi m\sigma^2\)^{3/2}}
+Nous en déduisons la température cinétique de la sphère de King en divisant par le produit $m\rho$; après quelques simplifications et en utilisant la fonction $\gamma(r)=\phi/\sigma^2$,  il vient
+\begin{equation}
+	T_K (r) 
+	= \dfrac{3\sigma^2}{m}	
 		\(
-		\dfrac{
-			\dfrac{3}{2} \(m\sigma^2\)^2\sqrt{2m\pi\sigma^2}
-	    		\left[
-				e^{\frac{\phi}{\sigma^2}}\erf\(\sqrt{\dfrac{\phi(r)}{\sigma^2}}\)
-				- \sqrt{\dfrac{4\phi(r)}{ \pi\sigma^2}}
-				\(1 + \dfrac{2\phi(r)}{3\sigma^2}\)
-			\right]
-		}
-		{
-			\rho_0 \(-\sqrt{\frac{4\phi}{\pi\sigma^2}}\(1 + \frac{ 2\phi }{3\sigma^2}\) + e^{\frac{\phi}{\sigma^2}}\mathrm{erf}\(\sqrt{\phi}/\sigma\)\)
-		}
-			\right. \notag \\
-	    &\qquad \left.
-		- \dfrac{
-			\(2m\phi(r)\)^{5/2}
-		}
-		{
-			5 \rho_0 \(-\sqrt{\frac{4\phi(r)}{\pi\sigma^2}}\(1 + \frac{ 2\phi(r) }{3\sigma^2}\) + e^{\frac{\phi(r)}{\sigma^2}}\mathrm{erf}\(\sqrt{\phi(r)}/\sigma\)\)
-		}
-		\) \notag \\
-	&\propto \frac{4\pi}{m^2\(2\pi m\sigma^2\)^{3/2}} \(m\sigma^2\)^2
-		\(
-			\dfrac{3}{2}\sqrt{2m\pi\sigma^2}
-		- \dfrac{
-			\(2m\phi(r)\)^{5/2} \(m\sigma^2\)^{-2}
-		}
-		{
-			5 \(-\sqrt{\frac{4\phi(r)}{\pi\sigma^2}}\(1 + \frac{ 2\phi(r) }{3\sigma^2}\) + e^{\frac{\phi(r)}{\sigma^2}}\mathrm{erf}\(\sqrt{\phi(r)}/\sigma\)\)
-		}
-		\) \notag \\
-	&\propto \sqrt{\dfrac{2\sigma^2}{m^3\pi}}							%\frac{4\pi}{m^2\(2\pi m\sigma^2\)^{3/2}} \(m\sigma^2\)^2
-		\(
-			\dfrac{3}{2}\sqrt{2m\pi\sigma^2}
-		- \dfrac{
-			\(2m\phi(r)\)^{5/2} \(m\sigma^2\)^{-2}
-		}
-		{
-			5 \(-\sqrt{\frac{4\phi(r)}{\pi\sigma^2}}\(1 + \frac{ 2\phi(r) }{3\sigma^2}\) + e^{\frac{\phi(r)}{\sigma^2}}\mathrm{erf}\(\sqrt{\phi(r)}/\sigma\)\)
-		}
+			1
+		- 
+		\dfrac{8}{15 \sqrt{\pi}}
+		\(\dfrac{\rho(r)}{\rho_0}\)^{-1}\(\gamma(r)\)^{5/2}
 		\)
-\end{align}
-Nous obtenons alors une expression de la température qui n'est pas analytique. Pour obtenir la température, nous reprenons le noyau développé autour
-du modèle de \King pendant le stage, puis nous appliquons la formule obtenue.
-Les courbes obtenues sont données tracé sur les graphes~\ref{courbe::Temp}.
+\end{equation}
+Cette expression n'est pas très explicite mais son calcul numérique ne présente pas de difficulté dès lors que l'on a déterminé, numériquement aussi, la fonction $\phi(r)$. Il s'avère intéressant de tracer la fonction $$\zeta(r)=\(\dfrac{\rho(r)}{\rho_0}\)^{-1}\(\gamma(r)\)^{5/2}$$ et de la comparer avec la valeur $1$. C'est l'objet de la figure \ref{kingisotherme}. Outre le facteur $\dfrac{8}{15 \sqrt{\pi}}\approx 0.3$, on remarque que pour des valeurs de $W_0\leq15$, la température $T(r)$ est quasiment constante sur dans les régions ou la densité est importante ($\frac{\rho(r)}{\rho_0}>10^{-5}$ pour $W_0=15$ et bien mieux pour les valeurs de $W_0$ plus faibles).
+
 \begin{figure}[H]
 	\begin{minipage}[b]{0.40\linewidth}
-		\centering \includegraphics[scale=0.60]{theorie/graphe/temperature_0-997636.pdf}
+		\centering \includegraphics[scale=0.40]{theorie/graphe/Courbes_temperature_KING.pdf}
 	\end{minipage}\hfill
 	\begin{minipage}[b]{0.48\linewidth}
-		\centering \includegraphics[scale=0.60]{theorie/graphe/temperature_3-98531.pdf}
+		\centering \includegraphics[scale=0.40]{theorie/graphe/Courbes_densite_KING.pdf}
 	\end{minipage}
-	\centering \includegraphics[scale=0.60]{theorie/graphe/temperature_11-1096.pdf}
-	\caption{Courbes de température pour différents $W_0$\label{courbe::Temp}}
+	\caption{Température d'un modèle de King : les fonctions $\zeta(r)$ et $\rho(r)$.}
+	\label{kingisotherme}
 \end{figure}
-%\FloatBarrier
 
-Toutes ces courbes sont normalisées par rapport à la température centrale donnée par~:
-\begin{align}
-	T(0) &\propto \sqrt{\dfrac{2\sigma^2}{m^3\pi}}								%\frac{4\pi\rho_0}{m^2\(2\pi m\sigma^2\)^{3/2}} \(m\sigma^2\)^2
-		\(
-			\dfrac{3}{2}\sqrt{2m\pi\sigma^2}
-		- \dfrac{
-			\(2m\phi(0)\)^{5/2} \(m\sigma^2\)^{-2}
-		}
-		{
-			5 \(-\sqrt{\frac{4\phi(0)}{\pi\sigma^2}}\(1 + \frac{ 2\phi(0) }{3\sigma^2}\) +
-			e^{\frac{\phi(0)}{\sigma^2}}\mathrm{erf}\(\sqrt{\phi(0)}/\sigma\)\)
-		}
-		\) \notag \\
-	   &\propto \sqrt{\dfrac{2\sigma^2}{m^3\pi}}								%\frac{4\pi\rho_0}{m^2\(2\pi m\sigma^2\)^{3/2}} \(m\sigma^2\)^2
-		\(
-			\dfrac{3}{2}\sqrt{2m\pi\sigma^2}
-		- \dfrac{
-			\(2m\sigma^2W_0\)^{5/2} \(m\sigma^2\)^{-2}
-		}
-		{
-			5 \(-\sqrt{\frac{4W_0}{\pi}}\(1 + \frac{ 2W_0 }{3}\) +
-			e^{W_0}\mathrm{erf}\(\sqrt{W_0}\)\)
-		}
-		\)
-\end{align}
-%\FloatBarrier
 
 \subsection{Température moyenne d'un modèle de \King}
 \label{Calc::Temp}
 
-Au vu de ces courbes, nous pouvons considérer que la sphère de \King est bien isotherme. Il est alors possible de déterminer une température moyenne~:
-\begin{align}
-%	T_{\mathrm{moy}} &= \dfrac{\displaystyle{\int}_0^R 4\pi r^2 T(r) f_K(E) \dr}{\displaystyle{\int}_0^R 4\pi r^2 \dr} \\
-%			 &= \dfrac{\displaystyle{\int}_0^R r^2 T(r) \rho_0 \(2\pi m\sigma^2\)^{-3/2}\( e^{\frac{E_l-E}{\sigma^2}} - 1\)}
-%			 	  {\displaystyle{\int}_0^R r^2      \rho_0 \(2\pi m\sigma^2\)^{-3/2}\( e^{\frac{E_l-E}{\sigma^2}} - 1\)}
-T_{\mathrm{moy}} &= \dfrac{\displaystyle{\int}\displaystyle{\int}\frac{p^2}{m^2}f_K(E)\vdp\vdr}{\displaystyle{\int}\displaystyle{\int}f_K(E)\vdp\vdr} \notag \\ %\int_0^R 4\pi r^2 T(r) \dr \\
-	    &= \frac{4\pi\rho_0}{Mm^2\(2\pi m\sigma^2\)^{3/2}}
-		    \displaystyle{\int}_0^R 4\pi r^2\(
-			\dfrac{3}{2} \(m\sigma^2\)^2\sqrt{2m\pi\sigma^2}
-	    		\left[
-				e^{\frac{\phi}{\sigma^2}}\erf\(\sqrt{\dfrac{\phi(r)}{\sigma^2}}\)
-			\right. \right. \notag \\
-	    &\qquad \left.\vphantom{\(\sqrt{\dfrac{\phi(r)}{\sigma^2}}\) }\left.\vphantom{\(\sqrt{\dfrac{\phi(r)}{\sigma^2}}\)}
-				- \sqrt{\dfrac{4\phi(r)}{ \pi\sigma^2}}
-				\(1 + \dfrac{2\phi(r)}{3\sigma^2}\)
-			\right]
-			- \dfrac{\(2m\phi(r)\)^{5/2}}{5}
-		\) \dr \notag \\
-	    &= \frac{4\pi}{Mm^2\(2\pi m\sigma^2\)^{3/2}}
-		    \(
-			\dfrac{3}{2} \(m\sigma^2\)^2\sqrt{2m\pi\sigma^2}
-	    		\displaystyle{\int}_0^R 4\pi r^2 \rho_0\left[
-				e^{\frac{\phi}{\sigma^2}}\erf\(\sqrt{\dfrac{\phi(r)}{\sigma^2}}\)
-			\right. \right. \notag \\
-	    &\qquad \left.\vphantom{\(\sqrt{\dfrac{\phi(r)}{\sigma^2}}\) }\left.\vphantom{\(\sqrt{\dfrac{\phi(r)}{\sigma^2}}\)}
-				- \sqrt{\dfrac{4\phi(r)}{ \pi\sigma^2}}
-				\(1 + \dfrac{2\phi(r)}{3\sigma^2}\)
-			\right] \dr
-			-\displaystyle{\int}_0^R 4\pi r^2 \rho_0 \dfrac{\(2m\phi(r)\)^{5/2}}{5} \dr
-		\) \notag \\
-	    &= \frac{4\pi}{Mm^2\(2\pi m\sigma^2\)^{3/2}}
-		    \(
-			\dfrac{3}{2} \(m\sigma^2\)^2\sqrt{2m\pi\sigma^2}
-	    		\displaystyle{\int}_0^R 4\pi r^2 \rho(r) \dr
-			-\displaystyle{\int}_0^R 4\pi r^2 \rho_0 \dfrac{\(2m\phi(r)\)^{5/2}}{5} \dr
-		\) \notag \\
-	    &= \frac{4\pi}{Mm^2\(2\pi m\sigma^2\)^{3/2}}
-		    \(
-			\dfrac{3}{2} \(m\sigma^2\)^2\sqrt{2m\pi\sigma^2}
-	    		M
-			-\displaystyle{\int}_0^R 4\pi r^2 \rho_0 \dfrac{\(2m\phi(r)\)^{5/2}}{5} \dr
-		\) \notag \\
-	    &= \frac{4\pi}{Mm^2\(2\pi m\sigma^2\)^{3/2}}
-			\dfrac{3}{2} \(m\sigma^2\)^2\sqrt{2m\pi\sigma^2}
-	    		M
-			-\frac{4\pi}{Mm^2\(2\pi m\sigma^2\)^{3/2}}\displaystyle{\int}_0^R 4\pi r^2 \rho_0 \dfrac{\(2m\phi(r)\)^{5/2}}{5}\dr \notag \\
-	    &= \frac{3\sigma^2}{m} - \frac{4\pi}{Mm^2\(2\pi m\sigma^2\)^{3/2}}\displaystyle{\int}_0^R 4\pi r^2 \rho_0
-	    \dfrac{\(2m\phi(r)\)^{5/2}}{5}\dr \notag \\
-	    &= \frac{3\sigma^2}{m} - \frac{32\pi^2\rho_0}{5 M m\(\pi \sigma^2\)^{3/2}}\displaystyle{\int}_0^R r^2 \(\phi(r)\)^{5/2}\dr
-\end{align}
+Hormis le cas particulier  de la sphère isotherme, la température cinétique est une fonction de la position\footnote{Il s'agit même d'une fonction du temps si le système est hors de l'équilibre. Dans ce cas la notion de température perd un peu de son sens...}. On peut tout de même définir une température moyenne en intégrant la température cinétique dans l'espace des positions. On prendra par exemple et par définition
+\begin{equation}
+T_{\mathrm{moy}} = \dfrac{\displaystyle{\int}\frac{p^2}{m^2}f(\vec r, \vec p, t) d\vec p d\vec r}
+                                        {\displaystyle{\int} f(\vec r, \vec p, t) d\vec p d\vec r}
+\end{equation}
+IL est clair que pour la sphère isotherme $T_{\mathrm{moy}}=T(r)=T$; pour la sphère de King un calcul final montre que 
+\begin{equation}
+	    T_{K,\mathrm{moy}}
+	    = \frac{3\sigma^2}{m} - \frac{32\pi^2\rho_0}{5 M m\(\pi \sigma^2\)^{3/2}}\displaystyle{\int}_0^R r^2 \(\phi(r)\)^{5/2}
+			dr
+\end{equation}
 \begin{figure}[h!]
 	\centering \includegraphics[width=1.00\textwidth]{theorie/graphe/Temperature_centre-moyenne.pdf}
 	\caption{Températures maximums et moyennes en fonction de $W_0$\label{courbe::Moy}}
 \end{figure}
-La courbe~\ref{courbe::Moy} représente la variation des températures moyennes et centrales pour notre amas. Sur la courbe verte représentant la
-température moyenne, un régime assez étrange commence à apparaître vers les $W_0$. Ce nouveau régime peut avoir 2 source possible~:
-\begin{enumerate}
-	\item une instabilité numérique apparaissant à cause de valeurs trop importante ou trop faible (~présence de \textsc{Not A Number} dans le
-		fichier de donnée~),
-	\item le $W_0$ à une valeur maximum au-delà de laquelle les équations ne sont plus valable.
-\end{enumerate}
-La première chose à faire dans ce cas est de tracer le maximum de profil de densité pour ces valeurs, de même il va falloir étudier la variation de
-$\rho(r=0)$ en fonction de $W_0$.
+La courbe~\ref{courbe::Moy} représente la variation des températures moyennes et centrales pour notre amas. 
 
-Il est utile de rappeler que le but de ces travaux est de trouver les quantités à utiliser pour tracer un diagramme d'énergie similaire à celui de la
-sphère isotherme en boîte, et ceci afin d'en étudier la stabilité.
-
-Pour ceci nous avons d'avoir chercher à vérifier que le modèle est isotherme, ce qui est vérifié par les courbes~\ref{courbe::Temp}. Puis nous devions
-savoir si la quantités à utiliser comme température est la température moyenne ou la température centrale. Ce dernier point est assez délicat
-\FloatBarrier
-
+DANS LA CAPTION DE LA FIGURE \ref{courbe::Moy} ON PARLE DE TMAX ???
+CONCLUSION !!!!!

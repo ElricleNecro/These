@@ -1,6 +1,8 @@
 \documentclass[a4paper,11pt,twoside,openright]{report}
 
+\usepackage{ucs}
 \usepackage[utf8x]{inputenc}
+
 \usepackage[T1]{fontenc}
 \usepackage[frenchb]{babel}
 %[francais]{babel}
@@ -42,7 +44,8 @@
 
 \usepackage{xspace}							%Pour gérer correctement les espaces dans les commandes contenant du texte.
 
-\usepackage{ucs}							% ??????
+%JP
+%\usepackage{ucs}							% ??????
 
 %\usepackage{inputx}							%Pour pouvoir modifier le path dans lequel \input et \include recherche les fichiers.
 %\usepackage{subfiles}
@@ -113,6 +116,8 @@
 \newcommand{\aap}{Astronomy \& Astrophysics}
 \newcommand{\aj}{Astronomical Journal}
 \newcommand{\nat}{Nature}
+\newcommand{\physrep}{Physics Reports}
+
 
 %Quelque compteur pour les tables des matiéres et minitoc
 \setcounter{tocdepth}{2}
@@ -144,7 +149,7 @@
 		\item $T \equiv <v^2>$ (~quand nous parlerons de température, il sera question de la dispersion de vitesse du système~),
 		\item $\vec{a}$ les vecteurs,
 		\item $a$ le module de $\vec{a}$,
-		\item $d^3 a$ l'élément de volume associé à $\vec{a}$.
+		\item $d^3 a$ ou $d^3 \vec{a}$l'élément de volume associé à $\vec{a}$.
 	\end{itemize}
 
 	\pagenumbering{arabic}
