@@ -1,0 +1,170 @@
+\subsection{Préliminaire}
+%	Ce qui va nous intéresser ici, c'est de pouvoir lier à chaque étape d'évolution d'un amas, et donc à son âge,
+%	une pente.
+	Notre objectif est de trouver une relation entre l'âge d'un amas et la pente de son halo.
+	%Nous avons donc besoin d'une relation entre cette quantité et l'âge de l'amas, si une telle relation existe.
+	Nous avons alors utilisé le temps de relaxation donné dans le catalogue de \textsc{Harris}~\cite{Harris}.
+	Pour obtenir les pentes des amas, nous avons utilisé les relevés observationnels~\cite{Trager-graphe}. % (~les données ainsi obtenues et utilisées sont dans la table~\ref{pente-Tc:BSP}~).
+	Nous avons commencé par calculer les pentes directement sur les courbes avec un double décimètre, n'ayant alors pas pu obtenir les données correspondant aux graphiques.
+	Après avoir tracé la pente mesurée en fonction du temps de relaxation à 2 corps, nous avons ajusté la
+	courbe ainsi obtenue par une droite d'équation $ \alpha = \mathrm{pente} = a \log_{10}(T_c) + b$ (~graphe~\ref{Pente-lin}~).
+	\begin{figure}[hbt!]
+		\centering \includegraphics[scale=0.9]{graphe/Pente-Tc.pdf}
+		\caption{Évolution des pentes pour différents âges}
+		\label{Pente-lin}
+	\end{figure}
+%	\begin{table}[hbt!]
+%		\begin{center}
+%			\begin{tabular}{|c|c|c|}
+%				\hline
+%				Coefficient & Valeur & Erreur \\
+%				\hline
+%				\hline
+%				$a$       &        $-1.19506$   &   $\pm 0.1576$ (~$13.19\%$~) \\
+%				\hline
+%				$b$       &        $2.52082$     &   $\pm 1.213$   (~$48.11\%$~) \\
+%				\hline
+%			\end{tabular}
+%		\end{center}
+%		\caption{Valeur des coefficients donnée par l'ajustement pour les pentes}
+%		\label{pente-lin-coeff}
+%	\end{table}
+
+	Cette approche indiquant clairement une relation linéaire entre ces deux paramètres, nous avons décidé d'entreprendre une démarche plus globale et automatique.
+	Pour commencer, nous avons donc récupéré les données auprès des auteurs de l'article sur~\cite{TragerTable}. Nous nous sommes alors confronté au problème des unités.
+
+\subsection{Retraitement}
+	Le graphique~\ref{Pente-lin} a été obtenu en utilisant~\cite{Trager-graphe} avec ses unités. % (~les données permettant de retracer, nous les avons finalement trouvé,
+%	les graphiques de cet article sont données dans~\cite{TragerTable}~).
+	La pente donnée ici n'est donc pas la pente de la densité, mais de la brillance de surface de l'objet en fonction d'un rayon en seconde d'arc.
+	Le premier traitement à effectuer consiste donc à transformer cette brillance de surface par arc seconde carrée en une densité (~kilogramme par kilomètre au cube~).
+
+	Une définition de cette brillance de surface, telle qu'elle semble avoir été utilisée, peut-être trouvé dans~\cite{SBP}.
+	Comme indiqué dans ce texte, la brillance de surface va s'écrire :
+	\begin{align}
+		\mu_V = \mu_{\mathrm{ref}} - 2.5 \log_{10}\(\frac{f/\Omega}{f_{\mathrm{ref}}/\Omega_{\mathrm{ref}}}\)
+		\label{mu_V}
+	\end{align}
+	avec $\Omega$ l'angle solide, exprimé en seconde d'arc au carrée, sous lequel nous voyons l'objet.
+%	\begin{align}
+%		\mu_V = m_V - 2.5 \log_{10}\(\frac{(1\mathrm{"})^2}{\Omega}\)
+%		\label{mu-astuce}
+%	\end{align}
+%	avec $m_V$ la magnitude apparente de l'objet sur une seconde d'arc au carrée.
+
+	Cette définition rappelle celle de~\cite{Trager-graphe}, section~3.2.3 :
+	\begin{align}
+		\mu = -2.5 \log\(\frac{10^{-0.4 m_2} - 10^{-0.4 m_1}}{\pi \(r_2^2 - r_1^2\)}\)
+		\label{Trager-eq}
+	\end{align}
+%	où ils prendraient comme référence les points autour de celui considéré (~ou quelque chose comme ça~),
+	$m_i$ étant la magnitude en un point de l'objet et $r_i$ le rayon en seconde d'arc pour ce point.
+	Par conséquent, les unités de $\mu$ sont un flux par arc seconde carrée en échelle logarithmique :
+	\begin{enumerate}
+		\item $10^{-0.4 m_i}$ est proportionnel à un flux, % (~ou au rapport d'un flux par rapport à un flux de référence !?!~),
+		\item $r_i$ est le rayon de l'objet au point $i$ en seconde d'arc,
+		\item[$\Rightarrow$] nous avons donc bien notre flux par seconde d'arc au carrée.
+	\end{enumerate}
+	Pour pouvoir revenir aux quantités que nous cherchons, il va falloir calculer un peu :
+	\begin{align}
+		\mu = -2.5 \log\(\frac{10^{-0.4 m_2} - 10^{-0.4 m_1}}{\pi \(r_2^2 - r_1^2\)}\) &\equiv -2.5 \log\(\frac{F}{\pi \(r_2^2 - r_1^2\)}\) \text{avec $F$ le flux}\notag \\
+		\intertext{par rapport à toute la documentation que j'ai trouvé, le $\log$ correspond ici à $\log_{10}$ et non à $\ln$.}
+		\Rightarrow \frac{F}{\pi \(r_2^2 - r_1^2\)} &= 10^{-\mu/2.5} \label{F--mu} \\
+		\intertext{Grâce à~\cite{McL}, nous avons les rapports masse luminosité :}
+		\Upsilon &= \frac{M}{L} \label{M/L}\\
+		\intertext{or}
+		F &= \frac{L}{4\pi D^2} \label{def-F}\\
+		\intertext{avec $D$ la distance soleil--amas. D'où}
+		\frac{L}{4 \pi^2 \(r_2^2 - r_1^2\) D^2} &= \frac{M}{4 \pi^2 \Upsilon \(r_2^2 - r_1^2\) D^2} = 10^{-\mu/2.5} \notag \\
+		\intertext{en combinant~\ref{F--mu}, \ref{M/L} et~\ref{def-F}.}
+		\Rightarrow \frac{M}{4\pi \(r_2^2 - r_1^2\)} &= \pi\Upsilon D^2 10^{-\mu/2.5} \notag \\
+		\intertext{Mais $r_2^2 - r_1^2 \propto r_i^2$ doit être converti en mètre :}
+		%r_2^2 - r_1^2 &\propto r_i^2 \Rightarrow \(D \tan(r_i)\)^2 \varpropto \(D r_i\)^2 \notag \\
+		\Rightarrow \frac{M}{4\pi \(D \tan(r_i/3600)\)^2} &= \pi\Upsilon D^2 10^{-\mu/2.5} \label{M-don}
+	\end{align}
+	Normalement, nous avons maintenant une masse surfacique donnée par~\ref{M-don}.
+%	mais, étonnamment, la conversion de seconde d'arc à mètre n'a fait paraître
+%	aucun facteur numérique !!! J'ai peut-être un peu trop truandé.
+
+	Les rapports masse-luminosité peuvent être trouvés dans~\cite{McL}, mais cette article ne contient que 40 des 140 amas de notre galaxie.
+%	mais il n'y a qu'une quarantaine de rapport comparé à notre échantillon d'environ 140 amas.
+	Par contre, il est aisé de remarquer que ces rapports sont
+	en moyenne très peu différents de la valeur $\Upsilon = 2$ avec une valeur minimum de $1.87$ pour NGC 4147 et une valeur maximum de
+	$2.66$ pour NGC 6441. Dans la suite, nous prendrons donc $\Upsilon = 2$.
+%	Nous avons alors utilisé les données du catalogue pour redimensionner le tout, mais pour passer à la densité, nous avons besoin du rapport masse
+%	sur luminosité de l'amas qui peut-être trouvé dans~\cite{McL}.
+%	Cet article ne donne qu'une quarantaine d'amas sur les 150 de notre galaxie, mais les valeurs de ces rapports étant compris entre $1.87$ pour NGC 4147
+%	(~et quelques autres~) et $2.66$ pour NGC 6441, et tournant surtout autour de $2$, nous pouvons supposer que ces rapports sont les mêmes pour chaque amas et
+%	valent $\Upsilon = \frac{M}{L} = 2$.
+%	Selon~\cite{Trager-graphe}, nous avons donc :
+%	\begin{align}
+%		\mu_V &\propto \text{Flux par $m^{-2}$} = \frac{L}{4\pi D^2} \\
+%		\intertext{or}
+%		L &= \frac{M}{\Upsilon} \notag \\
+%		\intertext{donc}
+%		\mu_V &= \frac{M}{4\pi D^2 \Upsilon} \notag \\
+%		M &= \Upsilon \mu_V 4\pi D^2
+%	\end{align}
+%	avec $D$ la distance entre nous et l'amas. Nous pouvons supposer que cette distance est la même quelque soit l'étoile considéré dans l'amas
+%	(~$D_{min} = 3000\mathrm{pc} \gg R_{amas} \approx 10\mathrm{pc}$~).
+
+%	Du fait des rapports masse-luminosité manquant, notre échantillon d'une quarantaine d'amas est passé à seulement 12 amas.
+
+\subsection{Résultat}
+	Le calcul de pente a été refait en utilisant : les données de l'article~\cite{TragerTable}, le traitement décrit ci-dessus, et le critère donné dans la section~\ref{pente-critére}.
+	Nous obtenons alors le graphique~\ref{Pente-lin_dim}, l'ajustement utilisant la fonction
+	$f(T_c) = a \log(T_c) + b$ (~les coefficients ont été donnés dans la table~\ref{pente-lin-coeff_dim}~).
+	Nous avons donc maintenant une relation linéaire entre l'âge de l'amas et la pente du halo.
+
+	\begin{figure}[hbt!]
+%		\centering \includegraphics[scale=0.9]{../Amas/Graphe_Rapport/pente-Tc.pdf}
+		\centering \includegraphics[scale=0.9]{graphe/pente-Tc.pdf}
+		\caption{Évolution des pentes pour différents âges}
+		\label{Pente-lin_dim}
+	\end{figure}
+	\begin{table}[hbt!]
+		\begin{center}
+			\begin{tabular}{|c|c|}%c|}
+				\hline
+				Coefficient & Valeur \\ %& Erreur \\
+				\hline
+				\hline
+				$a$       &         $-2.3341$   \\ %&    $\pm 0.2075$      (~$32.34\%$~) \\
+				\hline
+				$b$       &         $16.913$   \\  %&    $\pm 1.638$       (~$199.5\%$~) \\
+				\hline
+			\end{tabular}
+		\end{center}
+		\caption{Valeurs des coefficients donnée par l'ajustement pour les pentes pour le temps de croisement}
+		\label{pente-lin-coeff_dim}
+	\end{table}
+
+	Nous avons également utilisé le catalogue de \textsc{Harris} pour obtenir le lien entre la pente du halo et le temps dynamique
+	grâce à l'équation~\ref{Td:sig}. Nous obtenons alors le graphique~\ref{Pente-Td-lin}.
+	\begin{figure}[hbt!]
+%		\centering \includegraphics[scale=0.9]{../Amas/Graphe_Rapport/pente-Td.pdf}
+		\centering \includegraphics[scale=0.9]{graphe/pente-Td.pdf}
+		\caption{Évolution des pentes pour différents âges dynamiques}
+		\label{Pente-Td-lin}
+	\end{figure}
+	\begin{table}[hbt!]
+		\begin{center}
+			\begin{tabular}{|c|c|}%c|}
+				\hline
+				Coefficient & Valeur \\ %& Erreur \\
+				\hline
+				\hline
+				$a$       &        $-1.6567$   \\ %&   $\pm 0.6523$      (~$278.9\%$~) \\
+				\hline
+				$b$       &        $1.8927$     \\ %&   $\pm 2.825$       (~$88.57\%$~) \\
+				\hline
+			\end{tabular}
+		\end{center}
+		\caption{Valeurs des coefficients donnée par l'ajustement pour les pentes pour le temps dynamique}
+		\label{pente-Td-lin-coeff}
+	\end{table}
+
+	Sur la figure~\ref{Pente-lin_dim}, nous pouvons noter la présence de 2 points avec des pentes inférieures à $-10$. Ces points correspondent aux amas NGC 5024 et NGC 5139
+	(~leurs densités sont donnée en annexe, page~\pageref{Graphe-bofbof}~) pour lesquelles la détermination des pentes n'a pas été très concluante.
+	\FloatBarrier
+

@@ -1,0 +1,195 @@
+\section{L'instabilit\'{e} de Jeans}
+
+\subsection{Généralités}
+L'instabilité de Jeans est sans aucun doute le véritable moteur de la formation des structures autogravitantes.
+C'est elle qui fait s'effondrer les nuages du gaz interstellaire pour former les étoiles mais c'est elle aussi qui déclenche et alimente la formation des grandes structures de l'Univers; elle occupe donc quasiment tout le spectre de taille des objets de l'astrophysique. 
+D'un point de vue théorique, elle apparait au tout début du \textsc{xx}$^e$ siècle avec Sir James Jeans dans l'article fondateur \cite{jeans02} publié en 1902; elle fut mise en action dès que l'on compris le rôle de la gravitation dans la formation et l'évolution  des objets astrophysique dans les années 20 à 30 de ce siècle. L'avènement de la physique des plasmas lui donnera un cadre théorique solide dans les années 40 ou elle devient le cas particulier gravitationnel de la théorie de l'amortissement de Landau. Ce modèle linéaire 
+sera vite controversé  : anarque de Jeans (voir la section 5.2.2 de \cite{2008gady.book.....B}  ou l'article de M. Kiessling \cite{kiessling}), comportement non linéaire complexe, ... L'histoire semble désormais terminée sur le plan théorique avec la démonstration de sa version non linéaire par Cédric Villani et Clément Mouhot en 2008. En physique on pratique généralement trois approches gigognes pour se convaincre de cette instabilité : 
+\begin{itemize}
+\item L'approche de plus haut niveau (dite cinétique) consiste à partir du système de Vlasov-Poisson et de le linéariser au voisinage d'une distribution d'équilibre; c'est à ce moment qu'apparait l'arnaque de Jeans car dans cette approche on évacue \og à la main \fg et sans autre forme de procès, un terme génant... On fait alors l'hypothèse d'une distribution d'équilibre isotherme dans l'espace des vitesses et uniforme dans l'espace des positions. Au prix de calculs sérieux on obtient une relation de dispersion faisant apparaître une longueur caractéristique pour l'instabilité.
+
+\item L'approche fluide consiste à partir des équations de la mécanique des fluides  -- conservation de la masse et de la quantité de mouvement (Euler) -- fermées par l'équation de Poisson. Ces deux équations fluides sont directement issues de l'équation de Vlasov par intégration sur les impulsions. On linéarise alors au voisinage d'un équilibre  homogène et stationnaire, on fait apparaitre une vitesse du son constante dans le fluide et l'on obtient une relation de dispersion similaire à celle obtenue dans le cas cinétique. Nous détaillerons cette méthode dans la section suivante.
+
+\item L'approche basique consiste simplement à écrire le théorème du viriel scalaire. Une longueur caractéristique apparait alors; elle correspond  à une figure d'équilibre, un raisonnement physique permet de l'identifier à une longueur caractéristique de stabilité.
+Cette approche est contenue dans les deux précédentes car le théorème du viriel est d'origine cinétique; la version scalaire utilisée dans ce contexte est simplement la trace de la version complète obtenue en calculant le moment du viriel $\vartheta=\vec p \cdot \vec r$ dans le cadre de la théorie cinétique.
+\end{itemize}
+
+Les trois approches fournissent le même résultat et répondent chacun à un niveau d'exigence mathématique de plus en plus élaboré, elles sont équivalentes. On pourra trouver l'ensemble des calculs avec tous les détails dans le cours de J. Perez \cite{CoursJP}. Nous proposons simplement ici de reprendre rapidement les grandes étapes de l'approche fluide.
+
+\subsection{L'instabilité fluide}
+
+Outre le champ de densité $\rho(\vec r, t)$ et le potentiel gravitationnel $\psi(\vec r, t)$ dont nous avons déjà parlé, la description fluide d'un syst\`{e}me autogravitant est assurée par les grandeurs moyennes suivantes :
+\begin{itemize}
+\item un champ de vitesse moyenne au point $\vec{r}
+$ et \`{a} l'instant $t$
+\[
+\overline{{\vec{v}}\left(  {\vec{r}},t\right)  }
+=
+\frac{m}{\rho}\int \frac{\vec{p}}{m} f\left(  \vec{r},\vec{p},t\right)  d\vec{p}
+\]
+\item un \og tenseur\fg\,de pression au point $\vec{r}$ et \`{a} l'instant $t$ dont les composantes cartésiennes s'écrivent
+\[
+\mathbb{P}_{ij}
+=
+\frac{1}{m^{2}}\left(  \int p_{i}p_{j}\,f\,d\vec{p} - \int p_{i}\,f\,d\vec{p}\int p_{j}\,f\,d\vec{p}\right)
+\]
+\end{itemize}
+Pour simplifier les notations et s'il n'y a pas d'ambigüité, nous omettrons la barre de moyenne sur le champ de vitesse dans le fluide. La conservation de la masse et de l'impulsion conduisent alors aux deux équations fondamentales suivantes
+\begin{subequations}\label{eq:sys-fluide}
+  \begin{eqnarray}
+  \rho\left[  \dfrac{\partial\vec{v}}{\partial t}+\left(  \vec{v}\cdot\vec{\nabla}\right)  \vec{v}\right]  &=&-\overrightarrow{\nabla\cdot\mathbb{P}}-\rho
+\vec{\nabla}\psi
+\label{eulerjeans} \\
+\dfrac{\partial\rho}{\partial t}+\vec{v}\cdot\vec{\nabla}\rho&=&-\ \rho
+\ \vec{\nabla}\cdot\vec{v}
+ \label{continuitejeans} 
+\end{eqnarray}
+\end{subequations} 
+
+Si l'on fait appara\^{\i}tre une vitesse du son $c_{s}$ supposée constante partout dans le
+fluide, les champs de pression et de densit\'{e} sont alors reli\'{e}s par
+l'\'{e}quation
+\[
+\overrightarrow{\nabla\cdot\mathbb{P}}=c_{s}^{2}\, \vec{\nabla}\rho
+\]
+On peut alors \'{e}tudier la stabilit\'{e} d'un \'{e}quilibre d\'{e}crit par
+des champs constants et stationnaires $\vec{v}_{eq}=$
+$\vec{v}_{o}$, $\rho_{eq}=\rho_{o}$ et $\psi_{eq}=\psi_{o}$. Pour cela, on
+d\'{e}veloppe les divers champs du fluide au voisinage de l'\'{e}quilibre%
+\[
+\left\{
+\begin{array}
+[c]{c}%
+\vec{v}\left(  \vec{r},t\right)  =\vec{v}_{o}+\varepsilon
+\vec{v}_{1}\left(  \vec{r},t\right)  \\
+\rho\left(  \vec{r},t\right)  =\rho_{o}+\varepsilon\rho_{1}\left(
+\vec{r},t\right)  \\
+\psi\left(  \vec{r},t\right)  =\psi_{o}+\varepsilon\psi_{1}\left(
+\vec{r},t\right)
+\end{array}
+\right.  \ \ \ \text{avec }\left\vert \varepsilon\right\vert \ll1
+\]
+On injecte ces relations dans les deux \'{e}quations fondamentales et l'on ne
+conserve que les termes d'ordre $\varepsilon$, en n\'{e}gligeant les suivants,
+il vient%
+\[
+\left\{
+\begin{array}
+[c]{l}%
+\rho_{o}\left[  \dfrac{\partial\vec{v}_{1}}{\partial t}+\left(
+\vec{v}_{o}\cdot\vec{\nabla}\right)  \vec{v}_{1}\right]  =-c_{s}%
+^{2}\ \vec{\nabla}\rho_{1}-\rho_{o}\vec{\nabla}\psi_{1}\\
+\\
+\dfrac{\partial\rho_{1}}{\partial t}+\vec{v}_{o}\cdot\vec{\nabla}\rho
+_{1}=-\ \rho_{o}\ \vec{\nabla}\cdot\vec{v}_{1}%
+\end{array}
+\right.
+\]
+Nous n'avons toujours pas pr\'{e}cis\'{e} le r\'{e}f\'{e}rentiel galil\'{e}en
+d'usage, on le choisit donc tel que $\vec{v}_{o}=0$, ainsi il ne
+reste plus que%
+\[
+\left\{
+\begin{array}
+[c]{l}%
+\dfrac{\partial\vec{v}_{1}}{\partial t}=-\dfrac{c_{s}^{2}}{\rho_{o}%
+}\ \vec{\nabla}\rho_{1}-\vec{\nabla}\psi_{1}\\
+\\
+\dfrac{1}{\rho_{o}}\dfrac{\partial\rho_{1}}{\partial t}=-\ \ \vec{\nabla
+}\cdot\vec{v}_{1}%
+\end{array}
+\right.
+\]
+On d\'{e}rive alors la seconde \'{e}quation par rapport au temps et l'on prend
+la divergence de la premi\`{e}re : le terme $\ \vec{\nabla}\cdot\dfrac
+{\partial\vec{v}_{1}}{\partial t}=\dfrac{\partial}{\partial t}\left(
+\vec{\nabla}\cdot\vec{v}_{1}\right)  $ est alors pr\'{e}sent dans les deux
+\'{e}quations, on peut l'\'{e}liminer.\ Il vient%
+\begin{equation}
+\dfrac{\partial^{2}\rho_{1}}{\partial t^{2}}=c_{s}^{2}\Delta\rho_{1}+\rho
+_{o}\Delta\psi_{1}\label{inter1jeans}%
+\end{equation}
+L'\'{e}quation de Poisson pour le potentiel gravitationnel s'\'{e}crit%
+\[
+\Delta\psi=4\pi G\rho
+\]
+au voisinage de l'\'{e}quilibre uniforme et stationnaire on a donc%
+\[
+\Delta\psi_{1}=4\pi G\rho_{1}%
+\]
+l'\'{e}quation $\left(  \ref{inter1jeans}\right)  $ devient donc%
+\[
+\dfrac{\partial^{2}\rho_{1}}{\partial t^{2}}=c_{s}^{2}\Delta\rho_{1}+4\pi
+G\rho_{o}\rho_{1}%
+\]
+Il ne reste plus qu'\`{a} d\'{e}composer $\rho_{1}$ sur une base de modes
+normaux%
+\[
+\rho_{1}\left(  \vec{r},t\right)  =\sum_{\alpha}\rho_{1,\alpha}\exp\left[
+i\left(  \vec{k}_{\alpha}\cdot\vec{r}+\omega_{\alpha}t\right)  \right]
+\]
+et l'on obtient une relation de dispersion pour chaque mode $\alpha$%
+\[
+\omega_{\alpha}^{2}=c_{s}^{2}\left(  k_{\alpha}^{2}-k_{j}^{2}\right)
+\ \ \ \ \ \text{avec }k_{j}^{2}:=\frac{4\pi G\rho_{o}}{c_{s}^{2}}\ \text{\ et
+\ }k_{\alpha}=\left\vert \vec{k}_{\alpha}\right\vert
+\]
+On remarque imm\'{e}diatement que :
+
+\begin{itemize}
+\item si $k_{\alpha}>k_{j}$ alors $\omega_{\alpha}^{2}>0$, la pulsation du
+mode$\ \alpha$ est r\'{e}elle il s'agit donc d'un mode oscillant.
+
+\item si $k_{\alpha}<k_{j}$ alors $\omega_{\alpha}^{2}<0$, la pulsation du
+mode$\ \alpha$ est imaginaire pure : $\omega_{\alpha}=\pm i\Omega_{\alpha}$
+avec\ $\Omega_{\alpha}\in\mathbb{R}$.\ Le mode $\alpha$ est donc instable (il
+poss\`{e}de une partie exponentiellement croissante).
+\end{itemize}
+
+Si l'on introduit la longueur d'onde $\lambda_{\alpha}\ $associ\'{e}e au
+nombre d'onde $k_{\alpha}$ par la relation%
+\[
+k_{\alpha}=\frac{2\pi}{\lambda_{\alpha}}
+\]
+la condition de stabilit\'{e} du mode $\alpha$ s'\'{e}crit
+\[
+\frac{2\pi}{\lambda_{\alpha}}>k_{j}\ \ \Rightarrow\ \ \lambda_{\alpha}%
+<\lambda_{j}\ \ \ \text{avec\ \ }\lambda_{j}:=\frac{2\pi}{k_{j}}=\sqrt{\pi
+}\frac{\ c_{s}}{\sqrt{G\rho_{o}}}
+\]
+Si un mode est associ\'{e} \`{a} une longueur d'onde plus grande que la
+longueur d'onde de Jeans $\lambda_{j}$ du syst\`{e}me, il le
+d\'{e}stabilisera.
+
+Le critère ci-dessus fait intervenir une longueur caractéristique on peut aussi faire apparaître une masse correspondante. La masse de Jeans $M_j$ correspond à la masse d'une boule homogène de densité $\rho_o$ dont le rayon est la longueur de Jeans
+ \begin{equation}
+ M_j = \frac{4\pi}{3}\rho_{o} \lambda_{j}^3 =  \frac{4\pi^{5/2}}{3} \frac{c_{s}^3}{G^{3/2}\sqrt{\rho_{o}}}
+ \end{equation}
+Une sphère homogène plus lourde que sa masse de Jeans est donc instable.
+
+Pour une sphère isotherme l'équation de température $T$  composée de $N$ particules de masse $m$, l'équation d'état s'écrit $P(r)=\dfrac{k_B T}{m}\rho (r)$, la vitesse du son $c_s$ dans la sphère est donc égale à la vitesse quadratique moyenne de ses particules (écart-type de la gaussienne définissant la distribution des vitesses), elle est constante pour la sphère isotherme et s'écrit
+$$
+c_s^2= \dfrac{ k_B T}{m}
+$$
+En supposant la sphère isotherme homogène (ce qui est tout de même un peu hardi...)  et de rayon égal à sa longueur de Jeans (pour des raisons d'équilibre), on peut définir la température de Jeans 
+\begin{equation}
+T_j= \frac{Gm\rho_{o}\lambda_{j}^2}{\pi k_B}=\frac{3Gm^2N}{4\pi^2 k_B\lambda_{j}}
+\end{equation}
+Une sphère isotherme de rayon égal à sa longueur de Jeans et plus froide que sa température de Jeans est donc instable.
+
+\subsection{Le produit final}
+
+Que se passe-t-il lorsqu'un système autogravitant homogène dépasse sa longueur de Jeans ?
+Comment cela est-il possible ?
+
+Si un système autogravitant homogène ne s'effondre pas sous son autogravitation c'est que l'énergie cinétique qu'il contient, c'est-à-dire la température qui le caractérise lui permet de lutter contre cette autogravitation. Nous décrivons ici un état d'équilibre, cette température lui permet donc exactement de contrebalancer son autogravitation, afin que le système soit \og au viriel \fg, s'il était plus chaud le système s'évaporerait. C'est ce qui arrive aux amas ouvert...
+
+Dans son état homogène il peut devenir plus gros, en absorbant sous l'effet de la gravitation un autre système autogravitant homogène... S'il est composé d'étoiles, l'une d'entre elle peut exploser ce qui peut avoir tendance à augmenter la densité moyenne du système tout entier, il peut alors devenir plus grand que sa longueur de Jeans...
+
+Numériquement la situation est plus simple, pour construire une configuration instable au sens de Jeans, il suffit de fabriquer une boule homogène de $N$ particules massives et de calculer l'énergie potentielle gravitationnelle totale de cette boule, $W=-\frac{3}{5}\frac{GM^2}{R}$ si sa masse est $M$ et son rayon $R$. On attribue alors une vitesse à chaque particule de manière à ce que l'énergie cinétique totale $T=\sum_{i=1}^N\frac{1}{2}m_i v_i^2$, soit telle que le rapport du viriel $\eta=\left|\frac{2T}{W}\right|$ soit plus petit que 1.  Ce jeu de conditions initiales sera ainsi associé à un système plus gros que sa longueur de Jeans : il s'effondrera. De nombreuses expériences numériques (voir par exemple \ref{roy} ou \ref{Joyceetal}) ont été menées pour étudier de telles situations le résultat est assez clair. Dès que le nombre de particules est suffisant pour éviter les problèmes d'interaction a deux corps trop rapides, le système s'effondre pour former une structure c\oe ur halo à l'équilibre isotrope dans l'espace des vitesses. Le système final est sphérique indépendamment de sa forme initiale, de la dispersion de vitesse et même du rapport du viriel initial $\eta\in[0.1, 0.9]$. L'état d'équilibre est atteint en quelques temps dynamiques, le halo homogène contient approximativement la moitié de la masse totale, le halo possède une densité autosimilaire $\rho(r)\propto r^{-4}$. Ce type de système est assez bien ajustable par un modèle de King de paramètre $W_0\simeq 5$.
+
+L'introduction de grumeaux ou d'inhomogénéités au sein du système avant son effondrement peut modifier le résultat. Pour ce type de configurations initiales, le processus d'effondrement conduit à des systèmes ne présentant pratiquement plus de c\oe ur. Lorsque que l'on peut ajuster leur densité  par un profil de King le paramètres $W_0$ est alors beaucoup plus grand, typiquement  $W_0>15$. Ces configuration initialement inhomogènes  possèdent aussi une caractéristique qui les distinguent des effondrements homogènes : les configurations initalement très froides ($\eta<0.15$), c'est-à-dire les effondrements les plus violents, conduisent à des états d'équilibre qui ne sont plus sphériques car ils ont développé l'instabilité d'orbite radiale.  
+
+
+Dans la prochaine section nous allons tenter de proposer, dans un contexte simplifié, une analyse de stabilité permettant de comprendre la diversité des états post-collapse.
+

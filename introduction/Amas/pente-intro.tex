@@ -1,0 +1,64 @@
+	Nous avons dénombré environ 150 amas globulaires dans notre galaxie. Sur ces amas, $20\%$ ont un cœur effondré. %, mais pas les $80\%$ restants.
+	Depuis une centaine d'année, des astrophysiciens --~tel \textsc{Chandrasekhar}, \textsc{King}, ...~--
+	tentent d'expliquer à l'aide de différents modèles les propriétés observées de ces objets.
+	Nous avons étudié dans les chapitres précédents deux \og grands modèles \fg~décrivant ces états d'équilibres,
+	mais le point qui intéresse plus spécialement les physiciens est l'évolution des amas : comment en sont-ils
+	arrivés là et que pourraient-ils devenir ?
+
+	Du fait de nos développements théoriques dans les chapitres précédents, nous avons la possibilité de lier
+	$W_0$ à la pente de la densité d'un modéle de \textsc{King},  modèle le plus utilisé lorsqu'il s'agit d'ajuster des données.
+%	Dans~\cite{King-1966AJ}, Ivan R. \textsc{King} donne quelques explications sur pourquoi le modéle de la sphère isotherme singuliére
+%	n'est pas utilisé et l'intérêt d'utiliser des modéles limité spatialement.
+
+	Sur les graphes~\ref{effondre} et~\ref{pas_effondre} nous pouvons voir la courbe de densité
+	d'un amas, respectivement, au cœur effondré et au cœur ne l'étant.
+%	Le scénario utilisé ici, et qui sera étudié plus en détaille lors des simulations numériques, consiste en un \og~effeuillage~\fg progressif de l'amas : sa présence
+%	dans le potentiel galactique lui fait perdre, petit à petit, des étoiles. Cette perte d'étoile va faire rétrécir le cœur de l'amas selon le processus mentionné dans
+%	la section~\ref{petit_scenar} (~dû à la capacité calorifique négative~).
+%	Une perte d'étoile trop importante entraînant ainsi un effondrement.
+%	Le scénario ainsi évoqué peut-être résumé, de façon schématique, comme sur le schéma~\ref{schema-effondrement}.
+%	Les études développées dans les chapitres précédents nous amènent à considérer que le système se comporte comme ayant un cœur et un halo bien distinct, l'un
+%	caractérisé par sa densité constante, l'autre par la pente avec laquelle décroit la dite densité.
+	Les études précédentes nous permettent de considérer que les objets étudiés possèdent une structure cœur-halo. Le cœur est la région dans laquelle la densité est constante ; le halo est la région dans laquelle la densité
+	décroit selon une loi en $r^{-\alpha}$, la constante $\alpha$ étant appelée la pente du halo.
+
+	\begin{figure}[ht!]
+		\begin{minipage}[b]{0.48\linewidth}
+			\begin{center}
+%				\begin{gnuplot}[terminal=pdf,scale=0.50]
+%					set xlabel "Distance au centre"
+%					set ylabel "Densitee adimensionee et normalisee"
+%					set title "Profil de densite de NGC 1904"
+%					plot 'NGC1904.res' u 1:2 w p title "Densite de NGC 1904", '' u 1:2 smooth bezier not
+%				\end{gnuplot}
+%					plot '../Amas/res/NGC1904.res' u 1:2 w p title "Densite de NGC 1904", '' u 1:2 smooth bezier not
+%				\includegraphics[scale=0.7]{graphe/NGC1904-2.pdf}
+				\includegraphics[width=1.0\linewidth]{graphe/NGC1904-2.pdf}
+				\caption{\footnotesize{Profil non effondré : \mbox{NGC 1904}} \label{pas_effondre}}
+%				\begin{figure}[h]
+%					\includegraphics[scale=0.5]{graphe/NGC1904.pdf}
+%					\caption{Profil non effondré : NGC 1904 \label{effondre}}
+%				\end{figure}
+			\end{center}
+		\end{minipage}\hfill
+		\begin{minipage}[b]{0.48\linewidth}
+			\begin{center}
+%				\begin{gnuplot}[terminal=pdf,scale=0.50]
+%					set xlabel "Distance au centre"
+%					set ylabel "Densitee adimensionee et normalisee"
+%					set title "Profil de densite de Terzan 2"
+%					plot 'Terzan_2.res' u 1:(($2>2)?0:$2) w p title "Densite de Terzan 2", '' u 1:2 smooth bezier not
+%				\end{gnuplot}
+%					plot '../Amas/res/Terzan_2.res' u 1:(($2>2)?0:$2) w p title "Densite de Terzan 2", '' u 1:2 smooth bezier not
+%				\includegraphics[scale=0.7]{graphe/Terzan_2.pdf}
+				\includegraphics[width=1.0\linewidth]{graphe/Terzan_2.pdf}
+				\caption{\footnotesize{Profil effondré : \mbox{Terzan 2}} \label{effondre}}
+%				\begin{figure}[h]
+%					\includegraphics[scale=0.5]{graphe/NGC1904.pdf}
+%					\caption{Profil effondré : NGC 5946 \label{pas_effondre}}
+%				\end{figure}
+			\end{center}
+		\end{minipage}
+%		\caption{Exemple de profil de densité}
+	\end{figure}
+\normalsize
