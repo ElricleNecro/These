@@ -61,7 +61,7 @@ En gros, faire un état des lieux en utilisant la bibliographie.
 				%\item le second formant plutôt un disque.
 			%\end{itemize}
 
-			\begin{figure}
+			\begin{figure}[h]
 				\begin{minipage}{0.32\textwidth}
 					\begin{center}
 						\includegraphics[width=\linewidth]{plan_xOy_GC.pdf}
@@ -87,12 +87,12 @@ En gros, faire un état des lieux en utilisant la bibliographie.
 
 			L'étude des propriétés physiques des amas globulaires s'étale aujourd'hui
 			sur plus d'un siècle d'observation et de modélisation. Une caractéristique
-			commune aux amas est leur forme sphérique. L'ellipticité maximale observée
-			est de l'ordre de 10\% et s'explique par une faible rotation solide. Un
+			commune aux amas est leur forme sphérique, l'ellipticité maximale observée
+			étant de l'ordre de 10\% et s'explique par une faible rotation solide. Un
 			consensus est maintenant établi sur le fait que leur profil de densité
 			volumique de masse (abrégé densité et noté $\rho(r)$) est un excellent
 			traceur de leur évolution. Les amas globulaires se répartissent en deux
-			catégorie: 80\% des amas présentent une densité caractérisé par 2 régions:
+			catégorie: 80\% des amas présentent une densité caractérisée par 2 régions:
 			le cœur pour lequel la densité est quasiment constante ($\rho(r) \approx
 			\mathrm{cte}$) et le halo dans lequel la densité évolue globalement comme
 			une loi de puissance ($\rho(r) \propto r^{-\alpha}$), ils ont un profil de
@@ -106,7 +106,7 @@ En gros, faire un état des lieux en utilisant la bibliographie.
 			partie de leur évolution: le modèle de \textsc{King}
 			(voir~\cite{1966AJ.....71...64K} et le chapitre~\ref{King::Chapitre}).
 
-			\begin{figure}
+			\begin{figure}[h]
 				\begin{center}
 					\includegraphics[width=\linewidth]{gc_photo}
 				\end{center}
@@ -138,17 +138,22 @@ En gros, faire un état des lieux en utilisant la bibliographie.
 			\end{itemize}
 			La figure~\ref{Fig::Intro::HeggieFigure}, récupéré de la présentation de
 			D.~Heggie à Gravasco, montre les amas du catalogue de
-			\textsc{Harris} tracé dans le plan temps de relaxation - magnitude intégré
+			\textsc{Harris} tracés dans le plan temps de relaxation - magnitude intégré
 			en bande V. Il a été ajouté par dessus un ensemble de droite qui indique le
 			temps que durerait une simulation N-Corps ou Monte-Carlo d'un amas
 			globulaire avec ces paramètres. Par exemple, une simulation N-Corps de M4
 			prendrais environ 300 ans tandis que son équivalent Monte-Carlo ne prendrais
 			que une journée.
 
-			\begin{figure}
+			\begin{figure}[h]
 				\centering \includegraphics[width=\linewidth]{Heggie_figure.pdf}
 				\caption{\label{Fig::Intro::HeggieFigure}...}
 			\end{figure}
+
+			Les simulations ont permit de prendre de l'avance sur les observations en
+			permettant de confirmer certains phénomènes prévu par la théorie, notamment
+			les oscillation gravothermal (voir~\cite{1996ApJ...471..796M}). Ce phénomène
+			intervient après l'effondrement du cœur, la taille de ce dernier oscille.
 
 		\subsection[Lien]{Lien entre données et paramètres\label{amas}}
 			\subsubsection{Préliminaire}
@@ -157,18 +162,12 @@ En gros, faire un état des lieux en utilisant la bibliographie.
 				%Notre objectif est de trouver une relation entre l'âge d'un amas et la pente de son halo.
 				Nous avons parlé dans la section précédente du profil de densité
 				comme d'un marqueur de l'évolution des amas globulaires, nous allons
-				voir en quoi. Sur la figure~\ref{Fig::Intro::images}, le profil de
-				M13 montre 2 structures:
-				\begin{itemize}
-						\item le cœur, de densité constante,
-						\item le halo, qui semble décroitre selon une loi de
-							puissance.
-				\end{itemize}
+				voir en quoi.
 				S'il est possible de trouver, à partir de ces profils, plusieurs
 				marqueur d'évolution, celui qui nous intéresse plus particulièrement
 				est la pente du halo. Pour vérifier que cette pente évolue bien avec
-				l'âge dynamique de l'objet, et comment, nous avons utilisé un jeu
-				de donnée: le catalogue de \textsc{Harris}~\cite{Harris} qui nous a
+				l'âge dynamique de l'objet, et comment, nous avons utilisé les
+				données du catalogue de \textsc{Harris}~\cite{Harris} qui nous a
 				permis d'obtenir l'âge et le profil de densité d'une centaine d'amas
 				globulaire.
 				
