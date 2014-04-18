@@ -45,62 +45,66 @@ En gros, faire un état des lieux en utilisant la bibliographie.
 
 		\subsection{Répartition}
 
-			Nous avons dénombré quelques centaines d'amas globulaires dans
-			notre galaxie, et nous continuons d'en découvrir (voir par
+			Nous avons dénombré quelque(s) centaines d'amas globulaires dans
+			notre galaxie, et nous continuons à en découvrir (voir par
 			exemple~\cite{2014ApJ...786L...3L}) dans notre galaxie, mais aussi dans la galaxie d'Andromède.
 
-			Ils se trouvent essentiellement dans les régions proches du
-			bulbe de la Voie Lactée ou dans son Halo. Selon~\cite{MH-AAR1997}, ils semblent
-			se répartir en 2 groupes:
-			\begin{itemize}
-				\item le premier formant un halo autour de la galaxie,
-				\item le second formant plutôt un disque.
-			\end{itemize}
+			Les amas sont essentiellement répartis dans les régions proches du
+			bulbe de la Voie Lactée ou dans son Halo.
+			La figure~\ref{Fig::Intro::repartition} montre la répartition des amas
+			globulaires se trouvant dans le catalogue de référence à leur propos: le
+			catalogue de Harris~\cite{Harris}. Ce catalogue recense tout les paramètres
+			de 150 amas de notre galaxie.
+			%Selon~\cite{MH-AAR1997}, ils semblent se répartir en 2 groupes:
+			%\begin{itemize}
+				%\item le premier formant un halo autour de la galaxie,
+				%\item le second formant plutôt un disque.
+			%\end{itemize}
 
-			La figure~\ref{Fig::Intro::repartition} montre la répartition des amas globulaires du catalogue de Harris~\cite{Harris}.
 			\begin{figure}
-				\begin{minipage}{0.45\textwidth}
+				\begin{minipage}{0.32\textwidth}
 					\begin{center}
 						\includegraphics[width=\linewidth]{plan_xOy_GC.pdf}
 					\end{center}
 				\end{minipage}\hfill
-				\begin{minipage}{0.45\textwidth}
+				\begin{minipage}{0.32\textwidth}
 					\begin{center}
 						\includegraphics[width=\linewidth]{plan_xOz_GC.pdf}
 					\end{center}
-				\end{minipage}
-				\begin{center}
-					\begin{minipage}{0.45\textwidth}
+				\end{minipage}\hfill
+				\begin{minipage}{0.32\textwidth}
+					\begin{center}
 						\includegraphics[width=\linewidth]{plan_yOz_GC.pdf}
-					\end{minipage}
-				\end{center}
+					\end{center}
+				\end{minipage}
 				\caption{\label{Fig::Intro::repartition}Répartition des amas globulaires connus dans notre galaxie. Les graphiques utilisent le système de coordonné galactique (et donc centré sur le soleil).}
-				\todo[inline]{translater le centre du soleil vers le centre galactique pour une meilleurs visualisation.}
+				\todo[inline]{Il y a aussi la figure 4.1 du Meylan \& al, mais on y
+					voit pas de structure tel qu'ils les décrivent...}
 			\end{figure}
 
 
 		\subsection{Profil}
-			Depuis une centaine d'année, des astrophysiciens --~tel \textsc{Chandrasekhar}, \textsc{King}, ...~--
-			tentent d'expliquer à l'aide de différents modèles les propriétés observées de ces objets.
-			Nous nous intéressons plus particulièrement à leur profil de densité en tant que traceur de leur évolution.
-			Du point de vue de ce dernier, les amas globulaires peuvent se décliner en 2 familles représentées sur la
-			figure~\ref{Fig::Intro::images}:
-			\begin{enumerate}
-				\item les amas montrant un cœur central constant (voir le profil de
-					M13),
-				\item les amas ne montrant pas de cœur, et qui sont dit effondré (voir le profil de M15).
-			\end{enumerate}
-			Cette dernière représente environ 20\% des amas globulaires observés.
 
-			De nombreux modèles ont été élaboré autour des sphères isothermes. Nous en
+			L'étude des propriétés physiques des amas globulaires s'étale aujourd'hui
+			sur plus d'un siècle d'observation et de modélisation. Une caractéristique
+			commune aux amas est leur forme sphérique. L'ellipticité maximale observée
+			est de l'ordre de 10\% et s'explique par une faible rotation solide. Un
+			consensus est maintenant établi sur le fait que leur profil de densité
+			volumique de masse (abrégé densité et noté $\rho(r)$) est un excellent
+			traceur de leur évolution. Les amas globulaires se répartissent en deux
+			catégorie: 80\% des amas présentent une densité caractérisé par 2 régions:
+			le cœur pour lequel la densité est quasiment constante ($\rho(r) \approx
+			\mathrm{cte}$) et le halo dans lequel la densité évolue globalement comme
+			une loi de puissance ($\rho(r) \propto r^{-\alpha}$), ils ont un profil de
+			type cœur-halo (core-halo dans la littérature anglo-saxonne). La densité du
+			cœur des 20\% restant est remplacé par une loi de puissance. Ils sont dit
+			cœur effondré (core-collapsed).
+
+			La plupart des modèles d'amas globulaire sont issus de la sphère isotherme. Nous en
 			aborderont certains au cours de ce document. Parmi ces modèles, un en particulier
 			permet d'ajuster le profil de densité des amas globulaires durant une grande
 			partie de leur évolution: le modèle de \textsc{King}
 			(voir~\cite{1966AJ.....71...64K} et le chapitre~\ref{King::Chapitre}).
-
-			%Nous étudierons dans les prochains chapitres deux \og grands modèles \fg~décrivant ces états d'équilibres,
-			%mais le point qui intéresse plus spécialement les physiciens est l'évolution des amas : comment en sont-ils
-			%arrivés là et que pourraient-ils devenir?
 
 			\begin{figure}
 				\begin{center}
@@ -120,18 +124,33 @@ En gros, faire un état des lieux en utilisant la bibliographie.
 			\end{figure}
 
 		\subsection{Simulation}
-			Dés les années 1960, les chercheurs tentent de comprendre comment évolue ces
-			objets en utilisant des simulations numériques en plus de la théorie.
-			Plusieurs approches ont été utilisées:
+			Dès les années 1960, des simulations numériques sont utilisées en plus de la
+			théorie afin de comprendre comment évoluent ces objets.
+			%tente de comprendre comment évolue ces
+			%objets en utilisant des simulations numériques en plus de la théorie.
+			Plusieurs approches ont été utilisées, les principales sont:
 			\begin{itemize}
 					\item les simulations Monte-Carlo, elles permettent de
 						simuler l'évolution d'un amas de plusieurs millions
 						d'étoile sur une grande période de temps en quelques
-						jours,
-					\item les simulations N-corps, elles simulent directement
-						l'évolution en résolvant les équations de la
-						dynamique. Ces simulations sont beaucoup plus lente.
+						jours, en adaptant les propriétés globales des
+						orbites des étoiles;
+					\item les simulations N-corps modifient à chaque pas de
+						temps les positions et vitesses des étoiles. Ces simulations sont beaucoup plus lente.
 			\end{itemize}
+			La figure~\ref{Fig::Intro::HeggieFigure}, récupéré de la présentation de
+			D.~Heggie à Gravasco, montre les amas du catalogue de
+			\textsc{Harris} tracé dans le plan temps de relaxation - magnitude intégré
+			en bande V. Il a été ajouté par dessus un ensemble de droite qui indique le
+			temps que durerait une simulation N-Corps ou Monte-Carlo d'un amas
+			globulaire avec ces paramètres. Par exemple, une simulation N-Corps de M4
+			prendrais environ 300 ans tandis que son équivalent Monte-Carlo ne prendrais
+			que une journée.
+
+			\begin{figure}
+				\centering \includegraphics[width=\linewidth]{Heggie_figure.pdf}
+				\caption{\label{Fig::Intro::HeggieFigure}...}
+			\end{figure}
 
 			%Du fait de nos développements théoriques dans les chapitres précédents, nous avons la possibilité de lier
 			%$W_0$ à la pente de la densité d'un modéle de \textsc{King},  modèle le plus utilisé lorsqu'il s'agit d'ajuster des données.
