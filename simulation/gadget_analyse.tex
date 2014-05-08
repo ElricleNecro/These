@@ -1,254 +1,421 @@
 \chapter{Étude numérique}
 	\minitoc
-	\section{Utilisation du code \textsc{GADGET-2}}
 
-		Le code que nous utilisons pour faire évoluer notre système est
-		\textsc{Gadget-2}~\footnote{récupérable sur
-		\url{http://www.mpa-garching.mpg.de/gadget/}}~\cite{gadget2},
-		écrit par Volker \textsc{Springel}. Seule une petite partie de
-		ce qu'il fait nous intéresse : nous n'allons utiliser que les
-		options concernant le \og~tree code~\fg. Toutes les autres
-		options ne concernent que les simulations cosmologiques ou
-		pourraient induire un comportement du code qui nous ferait
-		perdre de la précision sur les calculs.
+	\todo[inline]{FAIRE LA TRANSITION EN ANNONÇANT POURQUOI ON PASSE D'UNE DESCRIPTION FLUIDE À UNE PARTICULE À NOUVEAU.}
+	Après avoir montré l'importance des collisions à plusieurs corps dans les amas, puis être passé en dans la
+	limite fluide afin de voir si d'autre phénomènes pouvait aussi faire évoluer ces amas. Nous nous retrouvons à
+	nouveau avec un système de particules que nous allons faire évoluer. Attention, il ne s'agit pas d'étoiles mais
+	de macro particules ayant une masse et une taille bien supérieur à celles des étoiles composant normalement ces
+	objets.
 
-		Pour fonctionner, \textsc{Gadget-2} a besoin d'un fichier de
-		configuration, dans lequel nous devrons jouer sur certains
-		paramètres, et d'un fichier de conditions initiales respectant
-		un format précis.
+	% Les problèmes à $N$ corps sont des problèmes physiques extrêmement complexes mathématiquement: ils
+	% font partie d'une famille d'équation du second ordre qui n'ont pas de solution pouvant
+	% s'exprimer avec les fonctions mathématiques usuelles. Le seul cas connu pouvant s'écrire
+	% simplement est le problème à 2 corps.
 
-		\subsection{Fichier de conditions initiales}
+	\section{Le programme de simulation}
 
-			Le fichier de conditions initiales doit avoir le format suivant :
-			\begin{enumerate}
-				\item un en-tête contenant le nombre de particule de chaque type (~Gaz, Halo, Disque, Bulbe, Étoiles, Bndry~),
-				la masse pour chaque type, divers autres informations utiles essentiellement aux simulations cosmologiques,
-				\item les positions de chaque particules,
-				\item leurs vitesses,
-				\item un identifiant permettant de repérer chaque particule.
-			\end{enumerate}
-			Chaque bloc devant être encadré par sa taille en mémoire.
+		Le programme que nous utilisons pour faire évoluer notre système est
+		\textsc{Gadget-2}~\footnote{\url{http://www.mpa-garching.mpg.de/gadget/}}~\cite{gadget2},
+		écrit par Volker \textsc{Springel}.
+		Ce programme, créé en vue de faire des simulations cosmologiques, allie un oct-tree avec un schéma
+		d'intégration d'ordre 2: le schéma saute-mouton.
+		En plus de permettre de faire des simulations cosmologiques, gadget implémente la physique nécessaire
+		pour faire des simulations de galaxie avec du gaz. Ou juste des simulations de systèmes de particules
+		sans effets autre que l'attraction gravitationnelle.
 
-		\subsection{Fichier de configuration}
+		Ainsi, seule une petite partie de ce qu'il fait nous intéresse. En effet, nous n'allons utiliser que les options
+		concernant l'oct-tree. Toutes les autres options ne concernent que les simulations
+		cosmologiques ou pourraient induire un comportement non voulu du système ou du programme.
+		% qui nous ferait perdre de la précision sur
+		% les calculs.
 
-			Dans ce fichier, nous n'allons jouer que sur certains paramètres :
+		\subsection{Kd-Tree}
+			Numériquement, les problèmes à $N$-corps sont très couteux en terme de calculs. En effet, un
+			calcul simple de la force s'appliquant sur une particule peut se faire en sommant la force exercée par
+			par chacune des autres particules dessus. Cette méthode nécessite une première itération sur toutes les
+			particules de la simulation, qui sera ensuite répétée pour toutes les particules. Elles
+			nécessitent donc $N^2$ opérations.
+			Ainsi, dés que nous allons tenter de simuler un grand nombre de particules, sur un grand nombre
+			de temps dynamique, les temps de calculs vont exploser.
+			Nous avons donc besoin d'un algorithme qui va nous permettre de faire évoluer le
+			système avec beaucoup de particule et sur un grand nombre de temps dynamique, dans des temps
+			raisonnables.
+
+			Un tel algorithme a été développé par J. Barnes et P. Hut dans~\cite{1986Natur.324..446B}. Il se
+			base sur un kd-tree de dimension 3, un oct-tree. Le principe est de subdiviser l'espace,
+			représenté par un cube, en 8 sous cubes, eux-mêmes subdivisé en 8 nouveaux sous cubes\ldots
+			Chaque cube est à nouveau divisé s'il contient encore trop de particules.
+			L'article~\cite{1986Natur.324..446B} arrête de subdiviser un cube quand il ne contient plus
+			qu'une particule. La figure~\ref{Fig::KDTree::Repr} montre la structure d'un quad-tree, un
+			kd-tree à 2 dimension se construisant de la même façon.
+
+			Avant de continuer il peut être utile de définir un peu de vocabulaire lié aux arbres:
 			\begin{itemize}
-				\item \verb|OmegaLambda| : paramètre cosmologique représentant la densité d'énergie du
-					vide, en le mettant à 0, nous faisons savoir à \textsc{Gadget-2} que nous ne faisons pas
-					de simulation cosmologique.
-				\item \verb|UnitLength_in_cm|, \verb|UnitMass_in_g| et \verb|UnitVelocity_in_cm_per_s|
-					sont les unités dans lesquelles sont données, respectivement, les positions, masses et vitesses des particules en
-					centimètre, gramme en centimètre par seconde. Ce sont ces facteurs de conversion
-					qui donne l'unité de temps interne à \textsc{Gadget-2}. Nous utilisons
-					les parsecs ($ 1 pc = 3.086 \times 10^{18} cm$) pour les positions, les kilogrammes
-					($1 kg = 1000 g$) pour la masse, et les mètres par seconde ($ 1 m.s^{-1} = 10^2 cm.s^{-1}$)
-					pour les vitesses. Ces unités nous donnent comme unité de temps
-					interne :
-					\begin{align}
-						v &= \frac{d}{t} \notag \\
-						t &= \frac{d}{v} \notag \\
-						t &= \frac{3.086 \times 10^{18}}{10^2} = 3.086 \times 10^{16} s \notag \\
-						t &= 9.77894 \times 10^8 ans
-					\end{align}
-				\item \verb|SofteningStarsMaxPhys| : paramètre de lissage de la force, permettant d'éviter
-					qu'elle \og~n'explose~\fg~à cause d'une collision entre 2 particules trop proches.
-					C'est sur ce paramètre qu'il faut jouer pour assurer la stabilité du système sur
-					un grand nombre de temps dynamiques.
-				\item \verb|ErrTolTheta| : représente l'angle d'ouverture, ou résolution angulaire, minimum.
-					Celui-ci est fixé à $0.5$ et n'est plus modifié ensuite.
+				\item la racine constitue la base de l'arbre;
+				\item un nœud est un cube ayant un père et des fils, il s'agit d'un embranchement;
+				\item une feuille est un cube n'ayant plus de fils, et donc terminant une branche de
+					l'arbre;
+				\item une branche est le chemin à suivre pour aller de la racine vers une feuille.
 			\end{itemize}
+
+			\begin{figure}
+				\begin{center}
+					\includegraphics[scale=0.4]{repre_tree}
+					\caption{\label{Fig::KDTree::Repr}Représentation de la structure d'un quad-tree
+						(kd-tree en 2 dimension) sur 15 particules.}
+				\end{center}
+			\end{figure}
+
+			Le calcul de la force ou du potentiel se fait maintenant en descendant dans les nœuds (les cubes
+			qui ont été subdivisés) selon un critère: l'angle d'ouverture du cube par rapport à une
+			particule est-il supérieur à une valeur $\theta$ choisie.
+			L'angle d'ouverture correspond à la taille angulaire du nœud vu par la particule sélectionnée.
+			Si cette taille est trop petite, nous n'entrons pas à l'intérieur, sinon nous testons chacune des
+			subdivisions. Par exemple, sur la figure~\ref{Fig::KDTree::Parcours}, le cône rouge indique un
+			cube que nous ne voulons pas parcourir, tandis que le vert nous en indique un valide.
+
+			\begin{figure}
+				\begin{center}
+					\includegraphics[scale=0.3]{accept_tree}
+					\caption{\label{Fig::KDTree::Parcours}Représentation du critère sur l'angle
+					d'ouverture pour sélectionner ou non un cube. Le cône vert indique un cube ce
+					critère, le cône rouge indique un cube refusé.}
+				\end{center}
+			\end{figure}
 
 		\subsection{Lissage de la force}
 
-			Nous souhaitons nous placer dans la limite fluide afin
-			de minimiser les effets de relaxations dû aux
-			collisions à deux corps. Pour cela, nous pouvons jouer
-			sur deux paramètres : le nombre de particules que nous
-			mettons dans le système, et le paramètre de lissage.
-			Étant limité en temps, nous ne pouvons pas lancer de
-			simulations avec un très grand nombre de corps : les
-			plus grosses simulations que nous lançons ont 100 000
-			particules, et occasionnellement 500 000. Pour une
-			évolution pendant 100 temps dynamiques, elles prennent
-			environ 709 minutes en les faisant tourner sur 8 cœurs,
-			et cela peut aller jusqu'à 1020 minutes.
+			%Nous souhaitons nous placer dans la limite fluide afin
+			%de minimiser les effets de relaxations dû aux
+			%collisions à deux corps. Pour cela, nous pouvons jouer
+			%sur deux paramètres : le nombre de particules que nous
+			%mettons dans le système, et le paramètre de lissage.
+			%Étant limité en temps, nous ne pouvons pas lancer de
+			%simulations avec un très grand nombre de corps : les
+			%plus grosses simulations que nous lançons ont 100 000
+			%particules, et occasionnellement 500 000. Pour une
+			%évolution pendant 100 temps dynamiques, elles prennent
+			%environ 709 minutes en les faisant tourner sur 8 cœurs,
+			%et cela peut aller jusqu'à 1020 minutes.
 
-			Le lissage est une borne, en distance, en deçà de laquelle nous considérons un potentiel minimum valant :
+			%Toute la théorie a été faîte dans le cadre de l'équation de vlasov, et donc en supposant que nos
+			%objet se comporte comme des fluides. Nous devons donc être sûr que les collisions interne de nos
+			%objet n'aient que peu d'influence.
+			%Pour éviter les soucis de divergence de la force lorsque deux
+			%particules deviennent très proches, un paramètre de lissage (softening) a été introduite de façon à ce
+			%que la force ne dépasse pas une valeur minimale. C'est aussi
+
+			Toute la théorie ayant été faite dans le cadre de l'équation de Vlasov, nous souhaitons nous placer
+			dans la limite fluide afin de nous approcher du mieux possible des conditions théoriques, mais
+			aussi pour minimiser les effets de relaxations à deux corps qui ne manqueront pas d'intervenir
+			dans cette description de nos système. Pour cela, nous allons sur jouer un paramètre de
+			\textsc{Gadget-2}: le paramètre de lissage de la force. Classiquement, ce paramètre de lissage
+			est une borne, en distance, en deçà de laquelle nous considérons un potentiel minimum pouvant
+			s'écrire sous la forme:
 			\begin{align}
 				\psi(r_{i} \sim 0) = - G \dfrac{m_i}{r_{i} + \epsilon}
 			\end{align}
-			où $r_i$ est le module de distance d'une particule
-			numérotée $i$. $\epsilon$ est le paramètre de lissage
-			de la force. Afin de nous placer dans la limite fluide,
-			$\epsilon$ doit être tel qu'il contienne un nombre
-			$N_\epsilon$ de particule grand devant 1 mais petit
-			devant le nombre total de particule du système.
-			Habituellement, c'est $N_\epsilon$ qui est choisi,
-			imposant ainsi $\epsilon$, mais nous avons choisi
-			$\epsilon$ imposant ainsi $N_\epsilon$.
+			où $r_i$ est le module de distance d'une particule numérotée $i$ et $\epsilon$ est le paramètre
+			de lissage de la force. Afin de nous placer dans la limite fluide, nous devons choisir ce
+			paramètre tel qu'une sphère de rayon $\epsilon$ contienne un nombre $N_\epsilon$ de particules
+			grand devant 1 mais petit devant le nombre total de particule du système.
 
 		%	Dans un amas, la densité est plus forte au centre que
 		%	sur le bord. Les effets de relaxation sont donc plus
 		%	important au centre, le $\epsilon$ doit y minimiser ces
 		%	effets, même s'il n'a aucun effet sur les bords de
 		%	l'amas.
-			À cause d'instabilité, il est important de décrire la
-			dynamique au centre de l'amas avec la meilleur
-			précision possible. Il est donc nécessaire d'être dans
-			la limite fluide au centre. Il est alors intéressant de
-			le relier à la densité centrale, plutôt que d'utiliser
-			une distance inter-particulaire moyenne. Nous
-			définissons donc $\alpha$ tel que :
+
+			Comme nous nous intéressons à des effondrements, il est important pour nous de décrire la
+			dynamique au centre de l'amas avec la meilleur précision possible. Il est alors intéressant de
+			le relier à la densité centrale. Nous définissons une quantité $\alpha$ tel que:
 			\begin{align}
 				\alpha = \dfrac{\rho(0)}{\rho_\mathrm{moy}} = \dfrac{\rho(0)}{M} \frac{4}{3} \pi R^3
 			\end{align}
-			avec $M$ la masse totale de l'amas, $R$ le rayon de
-			l'amas, et $\rho(0)$ la densité centrale de l'amas. La
-			densité d'un volume de taille $\epsilon$ et la densité
-			de l'amas nous donne donc :
+			avec $M$ la masse totale de l'amas, $R$ le rayon de l'amas, et $\rho(0)$ la densité centrale de
+			l'amas. La densité d'un volume de taille $\epsilon$ en fonction de la densité moyenne de l'amas
+			s'écrit alors:
 			\begin{align}
-				\rho_\epsilon &= \alpha \rho_\mathrm{moy}					\notag \\
+				\rho_\epsilon &= \alpha \rho_\mathrm{moy}	\notag \\
 				N_\epsilon    &= \alpha \frac{4}{3} \pi \epsilon^3 \dfrac{3N}{4\pi R^3}	\notag \\
 					      &= \alpha N \( \dfrac{\epsilon}{R} \)^{3}
 			\end{align}
-			$N$ étant le nombre total de particules de l'amas. $N$,
-			$R$ et $\alpha$ étant fixés, nous sommes ainsi libres
-			de choisir $N_\epsilon$ ou $\epsilon$ pour répondre à
-			nos besoins.
+			$N$ étant le nombre total de particules de l'amas. $N$, $R$ et $\alpha$ étant fixés, nous sommes
+			ainsi libres de choisir $N_\epsilon$ ou $\epsilon$ pour répondre à nos besoins.
+
+		\subsection{Saute-mouton et pas de temps}
+			\todo[inline]{Ce serait intéressant de mentionner tout ceci, sans démonstration ou détail, juste
+			quelques lignes là-dessus.}
+
+		%\subsection{Unités}
+
+			%Dans ce fichier, nous n'allons jouer que sur certains paramètres :
+			%\begin{itemize}
+				%\item \verb|OmegaLambda| : paramètre cosmologique représentant la densité d'énergie du
+					%vide, en le mettant à 0, nous faisons savoir à \textsc{Gadget-2} que nous ne faisons pas
+					%de simulation cosmologique.
+				%\item \verb|UnitLength_in_cm|, \verb|UnitMass_in_g| et \verb|UnitVelocity_in_cm_per_s|
+					%sont les unités dans lesquelles sont données, respectivement, les positions, masses et vitesses des particules en
+					%centimètre, gramme en centimètre par seconde. Ce sont ces facteurs de conversion
+					%qui donne l'unité de temps interne à \textsc{Gadget-2}. Nous utilisons
+					%les parsecs ($ 1 pc = 3.086 \times 10^{18} cm$) pour les positions, les kilogrammes
+					%($1 kg = 1000 g$) pour la masse, et les mètres par seconde ($ 1 m.s^{-1} = 10^2 cm.s^{-1}$)
+					%pour les vitesses. Ces unités nous donnent comme unité de temps
+					%interne :
+					%\begin{align}
+						%v &= \frac{d}{t} \notag \\
+						%t &= \frac{d}{v} \notag \\
+						%t &= \frac{3.086 \times 10^{18}}{10^2} = 3.086 \times 10^{16} s \notag \\
+						%t &= 9.77894 \times 10^8 ans
+					%\end{align}
+				%\item \verb|SofteningStarsMaxPhys| : paramètre de lissage de la force, permettant d'éviter
+					%qu'elle \og~n'explose~\fg~à cause d'une collision entre 2 particules trop proches.
+					%C'est sur ce paramètre qu'il faut jouer pour assurer la stabilité du système sur
+					%un grand nombre de temps dynamiques.
+				%\item \verb|ErrTolTheta| : représente l'angle d'ouverture, ou résolution angulaire, minimum.
+					%Celui-ci est fixé à $0.5$ et n'est plus modifié ensuite.
+			%\end{itemize}
+
+
+
+
+
+
+		%Pour fonctionner, \textsc{Gadget-2} a besoin d'un fichier de
+		%configuration, dans lequel nous devrons jouer sur certains
+		%paramètres, et d'un fichier de conditions initiales respectant
+		%un format précis.
+
+		%\subsection{Pas de temps}
+		%\subsection{Paramètre de l'arbre}
+		%\subsection{Format de sortie}
+
+		%\subsection{Fichier de conditions initiales}
+
+			%Le fichier de conditions initiales doit avoir le format suivant :
+			%\begin{enumerate}
+				%\item un en-tête contenant le nombre de particule de chaque type (~Gaz, Halo, Disque, Bulbe, Étoiles, Bndry~),
+				%la masse pour chaque type, divers autres informations utiles essentiellement aux simulations cosmologiques,
+				%\item les positions de chaque particules,
+				%\item leurs vitesses,
+				%\item un identifiant permettant de repérer chaque particule.
+			%\end{enumerate}
+			%Chaque bloc devant être encadré par sa taille en mémoire.
+
+		%\subsection{Fichier de configuration}
+
+
 
 	\section{Générateur de conditions initiales}
 
-		Pour obtenir nos conditions initiales, qui devront suivre un
-		profil de \textsc{King}, nous allons utiliser la méthode de
-		réjection, l'une des plus facile à mettre en place. Nous allons
-		tirer aléatoirement la position et la vitesse des particules
-		dans une boîte, puis nous n'en garderons qu'une partie en
-		utilisant la fonction de distribution comme densité de
-		probabilité. Pour commencer, nous utilisons les limites de
-		notre modèle pour restreindre nos tirages à une boîte de taille
-		\mbox{$\left[ - r_{\mathrm{max}}; r_{\mathrm{max}} \right]$}
-		pour les distances et \mbox{$\left[ -v_{\mathrm{max}};
-		v_{\mathrm{max}}\right]$} pour les vitesses :
+		% Pour générer des nombres aléatoires dans l'intervalle voulu, nous utiliserons une
+		% implémentation de la fonction \verb|ran2| tiré de~\cite{NumericalRecipesC}.
 
-		\begin{itemize}
-			\item vitesse maximum : l'énergie totale du système est bornée supérieurement par l'énergie de libération :
-				\begin{align}
-					E = \dfrac{1}{2} m v_i^2 + m\psi(r) &< E_l \notag \\
-					E_l - m\psi(r) &> \dfrac{1}{2} m v_i^2 \notag \\
-					v_\mathrm{max}^2 = 2\(\dfrac{E_l}{m} - \psi(r)\) &> v_i^2 \notag \\
-					v_{\mathrm{max}} = \sqrt{2\(\dfrac{E_l}{m} - \psi(0)\)} > v_i &> - \sqrt{2\(\dfrac{E_l}{m} - \psi(0)\)} = - v_{\mathrm{max}}
-				\end{align}
-			\item distance maximum : cette distance est obtenue pour
-				$m\psi(r_{\mathrm{max}}) = E_l$. Il nous faut donc connaître le potentiel.
-		\end{itemize}
+		\subsection{Modèle de \textsc{King}}
 
-		Le potentiel n'ayant pas d'expression analytique, nous allons devoir réutiliser
-		notre algorithme de résolution numérique utilisé dans les chapitres précédents pour
-		modèliser un King.
+			Pour obtenir nos conditions initiales, qui devront suivre un profil de \textsc{King}, nous
+			allons utiliser la méthode de réjection. Nous allons
+			tirer aléatoirement la position et la vitesse des particules dans une boîte, puis nous n'en
+			garderons qu'une partie en utilisant la fonction de distribution. Pour commencer, nous utilisons
+			les limites du modèle pour restreindre nos tirages à une boîte de taille \mbox{$\left[ -
+			r_{\mathrm{max}}; r_{\mathrm{max}} \right]$} pour les distances et \mbox{$\left[
+			-v_{\mathrm{max}}; v_{\mathrm{max}}\right]$} pour les vitesses, avec:
 
-		Il nous faut aussi pouvoir redimensionner les quantités obtenues. Pour cela, le
-		programme récupère dans un fichier de configuration les dispersions de vitesse
-		$\sigma_v^2$, rayon de c\oe ur $r_c$, temps de relaxation $T_c$ et distance au
-		soleil $R_\odot$ dans les unités du catalogue de \textsc{Harris}. Toutes sont
-		ensuite transformées en unités SI (~mètre, kilogramme, seconde~). Comme nous
-		avons pu le voir dans le chapitre~\ref{King::Chapitre} traitant du modèle de
-		King, la masse $m$ d'une particule n'influence pas le profil de densité final :
-		\begin{align}
-			r_c^2 &= \dfrac{\sigma^2}{4\pi G m \rho_0} \notag \\
-			      &= \dfrac{(\sigma_v^2)^2 m}{8\pi G m \rho_0} \notag \\
-			      &= \dfrac{(\sigma_v^2)^2}{8\pi G \rho_0} \notag \\
-			\Rightarrow \rho_0 &= \dfrac{(\sigma_v^2)^2}{8\pi G r_c^2}
-		\end{align}
-		Pour redimensionner la densité, nous n'avons donc pas besoin de connaître la
-		masse d'une particule. Ce constat nous permet de laisser ce paramètre libre et
-		de jouer sur le nombre de particules dans le système. En effet, une fois la
-		densité obtenue, nous pouvons l'intégrer sur le volume de l'amas pour trouver la
-		masse totale de ce dernier, puis, connaissant le nombre de particules, en déduire
-		la masse d'une étoile par la relation :
-		\begin{align}
-			m = \dfrac{M_{tot}}{\text{Nombre de particules}}
-		\end{align}
-		Déduire le reste des paramètres utiles pour le redimensionnement est ensuite
-		assez simple.
-		La distance maximum $r_{\mathrm{max}}$ est déduite de la résolution
-		numérique des équations.
+			\begin{itemize}
+				\item $v_{\mathrm{max}}$ la vitesse maximum : l'énergie totale du système est bornée supérieurement par l'énergie de libération :
+					\begin{align}
+						% E = \dfrac{1}{2} m v_i^2 + m\psi(r) &< E_l \notag \\
+						% E_l - m\psi(r) &> \dfrac{1}{2} m v_i^2 \notag \\
+						% v_\mathrm{max}^2 = 2\(\dfrac{E_l}{m} - \psi(r)\) &> v_i^2 \notag \\
+						v_{\mathrm{max}} = \sqrt{2\(\dfrac{E_l}{m} - \psi(0)\)} > v_i &> - \sqrt{2\(\dfrac{E_l}{m} - \psi(0)\)} = - v_{\mathrm{max}}
+					\end{align}
+				\item $r_{\mathrm{max}}$ la distance maximum : cette distance est obtenue pour
+					$m\psi(r_{\mathrm{max}}) = E_l$.
+			\end{itemize}
+			Il nous faut donc connaître le potentiel, qui est obtenu numériquement.
 
-		Pour pourvoir tout redimensionner, nous avons aussi besoin de connaître l'énergie
-		de libération de l'amas. Pour cela, nous utilisons le théorème de \textsc{Gauss}
-		et un petit raisonnement simple. Par définition, nous avons :
-		\begin{align}
-			E_\mathrm{min} < E < E_l < 0 \ &\text{ et } \ E_l = \frac{p^2}{2 m} + m \psi(r)
-			\intertext{soit :}
-			\psi(r) = \frac{1}{m}\(E_l - \frac{p^2}{2 m}\)
-			\intertext{La valeur maximale du potentiel est donc atteinte pour $p = 0$ :}
-			\psi_\mathrm{max} = \psi(R) = \frac{E_l}{m}
-			\intertext{Hors du système, le théorème de \textsc{Gauss} nous dit qu'il peut être vu comme une particule ponctuelle de masse $M$. Le potentiel hors de l'amas s'écrit donc :}
-			\psi(r) = -\frac{G M}{r}
-			\intertext{Par continuité, nous avons :}
-			\psi(R) = \frac{E_l}{m} = -\frac{G M}{R}
-		\end{align}
+			%Le potentiel n'ayant pas d'expression analytique, nous
+			%allons devoir réutiliser notre algorithme de résolution numérique utilisé dans les chapitres
+			%précédents pour modèliser un King.
 
-		Pour générer des nombres aléatoires dans l'intervalle voulu, nous utilisons la
-		fonction \verb|double ran2(long seed)| tiré de~\cite{NumericalRecipesC}, dont
-		nous nous servont ainsi :
-		\lstset{language=C, label=algo::tirage, frame=shadowbox}
-		\begin{lstlisting}
-			double  x  = rmax - 2.0 * rmax * ran2(seed),
-				y  = rmax - 2.0 * rmax * ran2(seed),
-				z  = rmax - 2.0 * rmax * ran2(seed),
-				vx = vmax - 2.0 * vmax * ran2(seed),
-				vy = vmax - 2.0 * vmax * ran2(seed),
-				vz = vmax - 2.0 * vmax * ran2(seed);
-		\end{lstlisting}
-		Notre système étant sphérique, nous ne devons pas avoir de vitesse et de module
-		de distance supérieurs, respectivement, à $v_{\mathrm{max}}$ et
-		$r_{\mathrm{max}}$, de plus nous avons une probabilité
-		\mbox{$f(E)/f(E_\mathrm{min})$}
-		d'avoir une particule d'énergie $E$. Cette énergie minimale est l'énergie
-		potentielle d'une particule au centre de l'amas, et de vitesse nulle.
-		Une fois qu'une particule respecte ces conditions et que \og les probabilités sont
-		avec elle \fg, nous l'enregistrons.
+			%Il nous faut aussi pouvoir redimensionner les quantités obtenues. Pour cela, le
+			%programme récupère dans un fichier de configuration les dispersions de vitesse
+			%$\sigma_v^2$, rayon de c\oe ur $r_c$, temps de relaxation $T_c$ et distance au
+			%soleil $R_\odot$ dans les unités du catalogue de \textsc{Harris}. Toutes sont
+			%ensuite transformées en unités SI (~mètre, kilogramme, seconde~). Comme nous
+			%avons pu le voir dans le chapitre~\ref{King::Chapitre} traitant du modèle de
+			%King, la masse $m$ d'une particule n'influence pas le profil de densité final :
 
-		Le programme écrit au fur et à mesure les coordonnées cartésiennes et vitesses
-		des particules selectionnées dans un fichier dans les unités standards : mètre
-		pour les distances et mètre par seconde pour les vitesses.
+			% Les simulations utilisant le modèle de \textsc{King} s'effectueront en unités physique,
+			En connaissant le rayon de cœur $r_c$ et la dispersion de vitesse $\sigma_v$, il est possible de
+			déduire la dernière quantité nécessaire au dimensionnement: $\rho_0$. Reste ensuite une degré de
+			liberté qui nous permet de choisir entre fixer la masse d'une particule ou le nombre de
+			particules du système.
+			% \begin{align}
+				% r_c^2 &= \dfrac{\sigma^2}{4\pi G m \rho_0} \notag \\
+				      % &= \dfrac{(\sigma_v^2)^2 m}{8\pi G m \rho_0} \notag \\
+				      % % &= \dfrac{(\sigma_v^2)^2}{8\pi G \rho_0} \notag \\
+				% \Rightarrow \rho_0 &= \dfrac{(\sigma_v^2)^2}{8\pi G r_c^2}
+			% \end{align}
+			% Pour redimensionner la densité, nous n'avons donc pas besoin de connaître la
+			% masse d'une particule. Ce constat nous permet de laisser ce paramètre libre et
+			% de jouer sur le nombre de particules dans le système. En effet, une fois la
+			% densité obtenue, nous pouvons l'intégrer sur le volume de l'amas pour trouver la
+			% masse totale de ce dernier, puis, connaissant le nombre de particules, en déduire
+			% la masse d'une étoile par la relation :
+			% \begin{align}
+				% m = \dfrac{M_{tot}}{\text{Nombre de particules}}
+			% \end{align}
+			% Déduire le reste des paramètres utiles pour le redimensionnement est ensuite
+			% assez simple.
+			% La distance maximum $r_{\mathrm{max}}$ est déduite de la résolution
+			% numérique des équations.
 
-	\section{Vérification des résultats\label{Verif_gene}} %du générateur}
+			Pour pouvoir tout redimensionner, nous avons aussi besoin de connaître l'énergie
+			de libération de l'amas $E_l$. Pour cela, nous utilisons le théorème de \textsc{Gauss}.
+			%et un petit raisonnement simple.
+			Par définition, nous avons :
+			\begin{align}
+				E_\mathrm{min} < E < E_l < 0 \ &\text{ et } \ E_l = \frac{p^2}{2 m} + m \psi(r)
+				% \intertext{soit:}
+				\intertext{le maximum du potentiel est atteinte lorsque $p=0$, en appliquant le théorème
+				de Gauss au bord du système:}
+				% \psi(r) = \frac{1}{m}\(E_l - \frac{p^2}{2 m}\)
+				% \intertext{La valeur maximale du potentiel est donc atteinte pour $p = 0$ :}
+				\psi_\mathrm{max} = \psi(R) = \frac{E_l}{m} \stackrel{\mathrm{Gauss}}{=} -\frac{G M}{R}
+				% \intertext{Hors du système, le théorème de \textsc{Gauss} nous dit qu'il peut être vu comme une particule ponctuelle de masse $M$. Le potentiel hors de l'amas s'écrit donc :}
+				% \psi(r) = -\frac{G M}{r}
+				% \intertext{Par continuité, nous avons :}
+				% \psi(R) = \frac{E_l}{m} = -\frac{G M}{R}
+			\end{align}
 
-		Maintenant que nous avons un générateur de conditions initiales, il convient de
-		le vérifier. C'est-à-dire d'utiliser les coordonnées, vitesses et masses des
-		particules pour remonter à des quantités comme la densité ou l'énergie de
-		l'objet créé, puis de comparer ces quantités aux prédictions théoriques.
-		Notamment, nous avons généré un profil de King, qui se doit donc d'être au
-		Viriel, mais aussi d'avoir une certaine pente sur la densité, comme vu dans les
-		précédents chapitres.
+			% Pour générer des nombres aléatoires dans l'intervalle voulu, nous utilisons la
+			% fonction \verb|double ran2(long seed)| tiré de~\cite{NumericalRecipesC}, dont
+			% nous nous servont ainsi :
+			% \lstset{language=C, label=algo::tirage, frame=shadowbox}
+			% \begin{lstlisting}
+				% double  x  = rmax - 2.0 * rmax * ran2(seed),
+					% y  = rmax - 2.0 * rmax * ran2(seed),
+					% z  = rmax - 2.0 * rmax * ran2(seed),
+					% vx = vmax - 2.0 * vmax * ran2(seed),
+					% vy = vmax - 2.0 * vmax * ran2(seed),
+					% vz = vmax - 2.0 * vmax * ran2(seed);
+			% \end{lstlisting}
 
-		Pour faire les vérifications, nous avons choisi d'utiliser des histogrammes.
+			Jusqu'ici, nous avons généré nos particules dans un cube. L'étape suivante consiste à les
+			filtrer selon leur distance au centre. À la fin, nous regardons la probabilité d'avoir une
+			particules avec ces valeurs de positions et vitesses et nous tirons un nombre aléatoire nous
+			disant si la particule est conservée ou non.
+
+
+			% Notre système étant sphérique, nous ne devons pas avoir
+			% de vitesse et de module de distance supérieurs,
+			% respectivement, à $v_{\mathrm{max}}$ et
+			% $r_{\mathrm{max}}$, de plus nous avons une probabilité
+			% \mbox{$f(E)/f(E_\mathrm{min})$} d'avoir une particule
+			% d'énergie $E$. Cette énergie minimale est l'énergie
+			% potentielle d'une particule au centre de l'amas, et de
+			% vitesse nulle. Une fois qu'une particule respecte ces
+			% conditions et que \og les probabilités sont avec
+			% elle\fg, nous l'enregistrons.
+
+			% Le programme écrit au fur et à mesure les coordonnées cartésiennes et vitesses
+			% des particules sélectionnées dans un fichier dans les unités standards : mètre
+			% pour les distances et mètre par seconde pour les vitesses.
+
+		\subsection{La sphère de Hénon}
+
+			Une sphère de Hénon est un objet sphérique, de densité
+			constante et avec une distribution de vitesse suivant
+			une loi de Gauss. Elle suit ainsi la fonction de
+			distribution suivante:
+			\begin{align}
+				f_H(r, v) = \rho_0 e^{-v^2/\sigma^2}
+				% \intertext{qui peut alors s'écrire sous la forme:}
+				% f_H(r, v) = h(r) u(v)
+				% \intertext{avec:}
+				% h(r) = \rho_0 \text{ et } u(v) = e^{-v^2/\sigma^2}
+			\end{align}
+			Nous générons alors indépendamment les positions, selon
+			une loi uniforme, et les vitesses, selon une
+			gaussienne.
+			La dernière étape consiste à modifier les vitesses pour mettre le système au Viriel $\gamma =
+			-\dfrac{2E_c}{E_p}$ voulu.
+
+	\section{Vérification des résultats\label{Verif_gene}}
+
+		Maintenant que nous avons un générateur de conditions
+		initiales, il convient de le vérifier. C'est-à-dire d'utiliser
+		les coordonnées, vitesses et masses des particules pour
+		remonter à des quantités comme la densité ou l'énergie de
+		l'objet créé, puis de comparer ces quantités aux prédictions
+		théoriques. À des fins de Comparaison, nous avons généré un
+		profil de King avec \mbox{100 000} particules, qui se doit donc d'être
+		au Viriel, mais aussi d'avoir un profil de densité de type cœur-halo.
+		% Nous en profiterons pour présenter toutes les quantités diagnostiqué.
+		% densité, comme vu dans les précédents chapitres.
+
+		% Pour faire les vérifications, nous avons choisi d'utiliser des histogrammes.
+
+		\subsection{Recentrage}
+
+			Lors des simulations, nos systèmes peuvent se déplacer. Par exemple, un système isolé va voir sa
+			vitesse moyenne augmentée en perdant des particules. Ou encore parce que la vitesse moyenne du
+			système à $t=0$ n'est pas exactement nulle.
+
+			Pour recentrer le système, nous avons plusieurs méthodes possibles. La première est de calculer
+			le centre de gravité. Le problème de ce point, c'est que les particules sur le bord du halo ou
+			loin à l'extérieur du système ont le même poids que les particules au centre du système. Ainsi,
+			si certaine particule s'éloigne trop du système, elle vont déplacer le centre gravité vers le
+			bord du système. Par conséquent, nous devons calculer un centre donnant plus de poids aux
+			particules se trouvant dans des zones denses du système. Il s'agit du centre de densité, tel que
+			décrit dans~\cite{1985ApJ...298...80C}. Le principe est de rechercher les $j$ plus proche voisins
+			d'une particule et de regarder dans quel volume elles se répartissent; ceci nous donne la
+			densité local de la particule, et donc son poids selon la formule suivante:
+			\begin{align}
+				\rho_j^i = \dfrac{j-1}{V(r_j)}m
+			\end{align}
+			avec $j$ le nombre de voisin, $\rho_j^i$ la densité locale à la particule $i$, $V(r_j)$ le volume
+			dans lequel se situe les $j$ voisins, et $m$ la masse d'une particule.
+
+			Pour accélérer les calculs, nous allons utiliser l'oct-tree afin de chercher les $j$ plus
+			proches voisins. Pour ce faire, nous allons utiliser un parcours un peu différent de celui
+			décrit précédemment. En effet, plutôt que d'utiliser l'angle d'ouverture, nous allons comparer
+			la distance entre la particule $i$ et le coin le plus proche de chaque cubes à la distance entre
+			la particule $i$ et le voisins trouvé le plus lointain. Si le cube est plus proche, il est alors
+			sélectionné et nous testons ces fils ou les particules si nous sommes sur une feuille.
 
 		\subsection{Masse et densité}
 
-			\begin{wrapfigure}{l}{0.28\textwidth}
-				\begin{tikzpicture}[scale=0.8]
-					\draw (2.5,2.5) circle(1);
-					\draw (2.5,2.5) circle(1.5);
-					\draw (2.5,2.5) circle(2);
-					\draw (2.5,2.5) circle(2.5);
-					\draw[red] (2.5,2.5) -- (3.5,2.5) node[midway, above] {$\mathrm{dr}$};
-					\draw[red] (2.5,2.5) -- ++(50:1.5) node[sloped, above, midway] {$2 \mathrm{dr}$};
-					\draw[red] (2.5,2.5) -- ++(-50:2) node[sloped, above, midway] {$3 \mathrm{dr}$};
-					\draw (2.5,2.5) node[below]{$M_0$};
-					\draw (2.5,1.15) node[below]{$M_1$};
-					\draw (2.5,1.65) node[below]{$M_2$};
-				\end{tikzpicture}
+			\begin{wrapfigure}{l}{0.40\textwidth}
+				\begin{center}
+					\begin{tikzpicture}[scale=0.8]
+						\draw (2.5,2.5) circle(1);
+						\draw (2.5,2.5) circle(1.5);
+						\draw (2.5,2.5) circle(2);
+						\draw (2.5,2.5) circle(2.5);
+						\draw[red] (2.5,2.5) -- (3.5,2.5) node[midway, above] {$\mathrm{dr}$};
+						\draw[red] (2.5,2.5) -- ++(50:1.5) node[sloped, above, midway] {$2 \mathrm{dr}$};
+						\draw[red] (2.5,2.5) -- ++(-50:2) node[sloped, above, midway] {$3 \mathrm{dr}$};
+						\draw (2.5,2.5) node[below]{$M_0$};
+						\draw (2.5,1.15) node[below]{$M_1$};
+						\draw (2.5,1.65) node[below]{$M_2$};
+					\end{tikzpicture}
+				\end{center}
 				\caption{Découpage de l'amas généré\label{schema::bin}}
 			\end{wrapfigure}
-			Le premier histogramme que nous générerons sera celui représentant
-			la masse en fonction du rayon. Notre objet étant sphérique, nous allons le
-			découper en intervalles de taille $\mathrm{dr}$ comme sur le schéma ci-contre. La fonction
-			de masse représente la masse se trouvant dans l'intervalle \mbox{$\left[0; j \mathrm{dr}\right]$}.
-			Pour la calculer, nous comptons le nombre de particules dans chaque chaque coquille sphérique de largeur $dr$ (~bin~), puis,
-			après avoir multiplié par la masse d'un particule, nous sommons, pour le bin
-			$j$, tous les bins inférieurs.
+			Le premier histogramme que nous générerons sera celui
+			représentant la masse en fonction du rayon. Notre objet
+			étant sphérique, nous allons le découper en intervalles
+			de taille $\mathrm{dr}$ comme sur le schéma ci-contre.
+			La fonction de masse représente la masse se trouvant
+			dans l'intervalle \mbox{$\left[0; j
+			\mathrm{dr}\right]$}. Pour la calculer, nous comptons
+			le nombre de particules dans chaque chaque coquille
+			sphérique de largeur $dr$ (~bin~), puis, après avoir
+			multiplié par la masse d'un particule, nous sommons,
+			pour le bin $j$, tous les bins inférieurs.
 
 			En même temps que nous calculons la fonction de masse, nous pouvons calculer la
 			densité en divisant la masse dans un bin par le volume du bin :
@@ -257,15 +424,20 @@
 				\rho_i = \rho\( (i+1) \mathrm{dr}\) &= \dfrac{M_{\mathrm{bin}\ i}}{V_{\mathrm{bin}\ i}} \\
 					&= \dfrac{M_{\mathrm{bin}\ i}}{\frac{4}{3}\pi ( (i+1)\mathrm{dr})^3 - \frac{4}{3}\pi ( i\mathrm{dr})^3} \notag \\
 					&= \dfrac{3 M_{\mathrm{bin}\ i}}{4 \pi \mathrm{dr}^3 \left[ (i+1)^3 - i^3\right]} \notag \\
-					&= \dfrac{3 M_{\mathrm{bin}\ i}}{4 \pi \mathrm{dr}^3 \left[ 3 i^2 + 3 i + 1\right]} \\
+					&= \dfrac{3 M_{\mathrm{bin}\ i}}{4 \pi \mathrm{dr}^3 \left[ 3 i^2 + 3 i + 1\right]} \notag \\
 					&= \dfrac{3 \(M_i - M_{i-1}\)}{4 \pi \mathrm{dr}^3 \left[ 3 i^2 + 3 i + 1\right]}
 			\end{align}
 			avec $M_{-1} = 0$.
 
 			La densité obtenue et celle prévue par la résolution numérique sont très proche,
 			comme le montre le graphique~\ref{Comp_gene-theo}.
+			% \begin{figure}[h!]
+				% \centering \includegraphics[scale=0.5]{graphe/Comp_dens_gene-theo_5000.pdf}
+				% \caption{Comparaison entre la résolution numérique et la densité donnée par le générateur\label{Comp_gene-theo}}
+			% \end{figure}
 			\begin{figure}[h!]
-				\centering \includegraphics[scale=0.5]{graphe/Comp_dens_gene-theo_5000.pdf}
+				% \centering \includegraphics[scale=0.5]{king_model_verification}
+				\centering \includegraphics[scale=0.5]{verif_densite}
 				\caption{Comparaison entre la résolution numérique et la densité donnée par le générateur\label{Comp_gene-theo}}
 			\end{figure}
 
@@ -321,8 +493,11 @@
 			Le graphique~\ref{potentiel_5000} nous montre le potentiel théorique et le potentiel calculé par cette méthode.
 
 			\begin{figure}[h!]
-				\centering \includegraphics{graphe/Potentiel_ci-100000.pdf}
-				\caption{Comparaison entre la résolution numérique et le potentiel donné par le générateur\label{potentiel_5000}}
+				% \centering \includegraphics{graphe/Potentiel_ci-100000.pdf}
+				\centering \includegraphics[scale=0.4]{verif_potentiel}
+				\caption{Comparaison entre la résolution numérique et le potentiel donné par le
+				générateur\label{potentiel_5000}. La courbe rouge correspond au potentiel théorique, la
+				courbe bleu au potentiel de l'objet généré.}
 			\end{figure}
 
 		\subsection{Forme de l'amas}
@@ -350,7 +525,7 @@
 							-E & -F & C
 						\end{array}\)\notag
 				\intertext{L'équation aux valeurs propres va alors s'écrire :}
-				\left|\mathfrak{I} - \lambda \mathbb{I}\right|  &= \(A - \lambda\)\left[\(B-\lambda\)\( C-\lambda\) - F^2\right] + D \(-D\(C-\lambda\) - F E\) - E \left[ D F + E\(B - \lambda\)\right] \notag %\\
+				\left|\mathfrak{I} - \lambda \mathbb{I}\right|  &= \(A - \lambda\)\left[\(B-\lambda\)\( C-\lambda\) - F^2\right] + D \(-D\(C-\lambda\) - F E\) - E \left[ D F + E\(B - \lambda\)\right] \notag
 			\end{align}
 			polynôme d'ordre 3 que l'on résout avec la méthode de \textsc{Cardan}.
 
@@ -360,7 +535,6 @@
 			valeurs propres étant numérotées dans l'ordre
 			décroissant \mbox{$\lambda_1 > \lambda_2 > \lambda_3$}.
 
-	\section{Résultat des simulations}
-		\input{simulation/res_simu.tex}
-
+	%\section{Résultat des simulations}
+		%\input{simulation/res_simu.tex}
 
