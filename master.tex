@@ -180,6 +180,17 @@
 %\inputpaths{annexe,simulation,theorie,introduction}
 \graphicspath{{graphe/}{annexe/}{simulation/}{theorie/}{introduction/}}
 
+\newcommand{\TCarre}[2]{\coordinate (Xside) at (#1, 0);
+	\coordinate (Yside) at (0 , #1);
+
+	\coordinate (A) at ($ #2 -1/2*(Xside) - 1/2*(Yside) $);
+	\coordinate (B) at ($ (A) + (Xside) $);
+	\coordinate (C) at ($ (B) + (Yside) $);
+	\coordinate (D) at ($ (C) - (Xside) $);
+
+	\draw (A) -- (B) -- (C) -- (D) -- (A) -- cycle;
+}
+
 \begin{document}
 	\dominitoc
 	\input{titlepage.tex}
@@ -250,7 +261,7 @@
 			\section*{Reste du travail}
 				\addcontentsline{toc}{section}{Reste du travail}
 				Maintenant que nous avons obtenu des paramètres corrects pour que nous nous retrouvions dans la limite fluide, il nous faut simuler ce qui a motivé la partie numérique : quelle est l'influence, sur la
-				dynamique, des interactions gravitationnelles entre l'amas et la galaxie au sein de laquelle il orbite ?
+				dynamique, des interactions gravitationnelles entre l'amas et la galaxie au sein de laquelle il orbite?
 
 				Pour effectuer ces simulations, l'idée évoquée est de modifier \textsc{GADGET-2} pour lui ajouter une force dont l'intensité dépendra du temps, et ceci afin de simuler la rotation de l'amas autour de la galaxie.
 				Ce travail sera effectué sur le dernier mois de stage et le début de la thèse.
@@ -261,15 +272,16 @@
 
 	\appendix
 	\part{Annexe}
-		\chapter{Algorithme : Tree Code}
-			\minitoc
-			\section{Principe}
-				\input{simulation/tree.tex}
-			\section{Application : Calcul du potentiel}
-				\input{simulation/potentiel.tex}
-			\section{Application : Calcul du centre de densité}
-				\input{simulation/densitycenter.tex}
-			\FloatBarrier
+	% \chapter{Algorithme : Tree Code}
+			% \label{Chap::Algo::OctTree}
+			% \minitoc
+			% \section{Principe}
+				% \input{simulation/tree.tex}
+			% \section{Application : Calcul du potentiel}
+				% \input{simulation/potentiel.tex}
+			% \section{Application : Calcul du centre de densité}
+				% \input{simulation/densitycenter.tex}
+			% \FloatBarrier
 
 		\chapter{Diverses Démonstrations}
 			\minitoc
