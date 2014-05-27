@@ -42,15 +42,15 @@
 
 		\subsection{Répartition}
 
-			Nous avons dénombré quelque(s) centaines d'amas globulaires dans
+			Nous avons dénombré environ 150 amas globulaires dans
 			notre galaxie, et nous continuons à en découvrir (voir par
 			exemple~\cite{2014ApJ...786L...3L}) dans notre galaxie, mais aussi dans la galaxie d'Andromède.
 
 			Les amas sont essentiellement répartis dans les régions proches du
-			bulbe de la Voie Lactée ou dans son Halo.
+			bulbe de la Voie Lactée ou dans son halo.
 			La figure~\ref{Fig::Intro::repartition} montre la répartition des amas
 			globulaires se trouvant dans le catalogue de référence à leur propos: le
-			catalogue de Harris~\cite{Harris}. Ce catalogue recense de très nombreux paramètres
+			catalogue de \cite{Harris}. Ce catalogue recense de très nombreux paramètres
 			de 150 amas de notre galaxie.
 			Comme on peut le voir sur ces figures, la répartition de ces amas n'a pas de propriétés particulières.
 			%Selon~\cite{MH-AAR1997}, ils semblent se répartir en 2 groupes:
@@ -60,41 +60,43 @@
 			%\end{itemize}
 
 			\begin{figure}[h]
-				\begin{minipage}{0.32\textwidth}
+				\centering
 					\begin{center}
+				\begin{minipage}{0.33\linewidth}
 						\includegraphics[width=\linewidth]{plan_xOy_GC.pdf}
-					\end{center}
 				\end{minipage}\hfill
-				\begin{minipage}{0.32\textwidth}
-					\begin{center}
+				\begin{minipage}{0.33\linewidth}
 						\includegraphics[width=\linewidth]{plan_xOz_GC.pdf}
-					\end{center}
 				\end{minipage}\hfill
-				\begin{minipage}{0.32\textwidth}
-					\begin{center}
+				\begin{minipage}{0.33\linewidth}
 						\includegraphics[width=\linewidth]{plan_yOz_GC.pdf}
-					\end{center}
 				\end{minipage}
-				\caption{\label{Fig::Intro::repartition}Répartition des amas globulaires connus dans notre galaxie. Les graphiques utilisent le système de coordonné galactique (et donc centré sur le soleil).}
+					\end{center}
+				\caption{\label{Fig::Intro::repartition}Répartition des amas globulaires connus dans
+				notre galaxie. Les graphiques utilisent le système de coordonnées galactique (et donc centré sur le soleil).}
 			\end{figure}
 
 
-		\subsection{Profil}
+		\subsection{Profil de densité}
 
 			L'étude des propriétés physiques des amas globulaires s'étale aujourd'hui
-			sur plus d'un siècle d'observation et de modélisation. Une caractéristique
+			sur plus d'un siècle d'observations et de modélisation. Une caractéristique
 			commune aux amas est leur forme sphérique, l'ellipticité maximale observée
 			étant de l'ordre de 10\% et s'explique par une faible rotation solide. Un
 			consensus est maintenant établi sur le fait que leur profil de densité
-			volumique de masse (en abrégé densité et noté $\rho(r)$) est un excellent
+			volumique de masse -- en abrégé densité et noté $\rho(r)$ -- est un excellent
 			traceur de leur évolution. Les amas globulaires se répartissent en deux
-			catégorie: 80\% des amas présentent une densité caractérisée par 2 régions:
+			catégories (voir la figure~\ref{Fig::Intro::images}):
+			\begin{itemize}
+				\item 80\% des amas présentent une densité caractérisée par 2 régions:
 			le cœur pour lequel la densité est quasiment constante ($\rho(r) \approx
 			\mathrm{cte}$) et le halo dans lequel la densité évolue globalement comme
 			une loi de puissance ($\rho(r) \propto r^{-\alpha}$), ils ont un profil de
-			type cœur-halo (core-halo dans la littérature anglo-saxonne). La densité du
-			cœur des 20\% restant est remplacée par une loi de puissance. Ils sont dit
+			type cœur-halo (core-halo dans la littérature anglo-saxonne);
+				\item la densité du cœur des 20\% restant est remplacée par une loi de puissance. Ils
+					sont dits
 			cœur effondré (core-collapsed).
+			\end{itemize}
 
 			La plupart des modèles d'amas globulaire sont issus de la sphère isotherme. Nous en
 			aborderont certains au cours de ce document. Parmi ces modèles, un en particulier
@@ -117,7 +119,7 @@
 					\end{center}
 				\end{minipage}
 				\caption{\label{Fig::Intro::images}Deux amas globulaires
-					caractéristiques et leurs profils de luminosité (tiré de~\cite{2010A&A...522A..71J}).
+					caractéristiques et leurs comptage d'étoiles (tiré de~\cite{2010A&A...522A..71J}).
 					M13 est un amas présentant une structure cœur-halo,
 					M15 est un amas au cœur dit effondré}
 			\end{figure}
@@ -127,36 +129,48 @@
 			théorie afin de modéliser l'évolution de ces objets.
 			Plusieurs méthodes numériques ont été utilisées, les principales sont:
 			\begin{itemize}
-					\item les simulations Monte-Carlo, elles permettent de
+					\item les simulations Fokker-Planck, elles permettent de
 						simuler l'évolution d'un amas de plusieurs millions
 						d'étoiles sur une grande période de temps en quelques
-						jours, en adaptant les propriétés globales des
-						orbites des étoiles au gré de leur évolution
-						numérique;
-					\item les simulations $N$-corps modifient à chaque pas de
+						jours de calcul. Même si ce type de simulation permet d'intégrer une
+						certaine forme de dissipation dans l'évolution du système, une telle
+						efficacité n'est possible qu'en faisant l'hypothèse que le système
+						conserve ses propriétés sphériques et isotropes tout au long de son
+						évolution. L'algorithme utilisé est alors celui de Monte-Carlo;
+					% \item les simulations Monte-Carlo, elles permettent de
+						% simuler l'évolution d'un amas de plusieurs millions
+						% d'étoiles sur une grande période de temps en quelques
+						% jours, en adaptant les propriétés globales des
+						% orbites des étoiles au gré de leur évolution
+						% numérique;
+					\item les simulations $N$-corps, elles modifient à chaque pas de
 						temps les positions et vitesses des étoiles du
 						modèle.
-						Ces simulations sont beaucoup plus lente.
+						Ces simulations sont beaucoup plus lentes mais laissent plus de liberté au
+						système quant à son évolution;
+					\item les tree-codes, méthode intermédiaire que nous utiliserons et qui sera
+						détaillée plus loin (voir le chapitre~\ref{Chap::Simu::Analysis}).
 			\end{itemize}
 			La figure~\ref{Fig::Intro::HeggieFigure}, issue de la présentation de
 			D.~Heggie au trimestre Gravasco, montre les amas du catalogue de
-			\textsc{Harris} tracés dans le plan (temps de relaxation)/(magnitude intégré
-			en bande V). Les droites parallèles indique le
-			temps que durerait une simulation $N$-Corps ou Monte-Carlo d'un amas
-			globulaire avec ces paramètres. Par exemple, une simulation $N$-Corps de M4
-			prendrait environ 300 ans tandis que son équivalent Monte-Carlo ne prendrait
-			que une journée.
+			\textsc{Harris} tracés dans le plan (temps de relaxation)/(magnitude intégrée
+			en bande V). Les droites parallèles indiquent le
+			temps que durerait une simulation $N$-Corps ou Fokker-Planck d'un amas
+			globulaire avec ces paramètres. Par exemple, une simulation $N$-Corps de l'évolution dynamique
+			complète de M4
+			prendrait environ 300 ans tandis que son équivalent Fokker-Planck ne prendrait
+			qu'une journée.
 
 			\begin{figure}[h]
 				\centering \includegraphics[width=\linewidth]{Heggie_figure.pdf}
-				\caption{\label{Fig::Intro::HeggieFigure}Ces figures montrent l'évolution du temps de
-				calcul selon l'amas globulaire.}
+				\caption{\label{Fig::Intro::HeggieFigure}Évolution du temps de
+				calcul selon l'amas globulaire et du type de simulation.}
 			\end{figure}
 
-			Les simulations ont permit de prendre de l'avance sur les observations en
-			permettant de confirmer certains phénomènes prévu par la théorie, notamment
-			les oscillations gravothermalles (voir~\cite{1996ApJ...471..796M}). Ce phénomène
-			intervient après l'effondrement du cœur, une binaire sérée vient alors
+			Les simulations ont permis de prendre de l'avance sur les observations en
+			confirmant certains phénomènes prévu par la théorie, notamment
+			les oscillations gravothermales (voir~\cite{1996ApJ...471..796M}). Ce phénomène
+			intervient après l'effondrement du cœur, une binaire serrée vient alors
 			contrôler la dynamique du centre de l'amas. Sous l'effet d'interactions à 3
 			corps, cette binaire est remplacée par une autre produisant un pic de
 			densité. Ces pics se succèdent à un rythme dépendant des caractéristiques de
@@ -164,7 +178,7 @@
 
 			Contrairement aux galaxies les amas globulaires ne semblent pas contenir
 			en leur centre de trou noir massif. Par cet aspect, mais
-			aussi par le fait qu'il ne semblent pas contenir de grandes quantités de
+			aussi par le fait qu'ils ne semblent pas contenir de grandes quantités de
 			matière noire, ils se distinguent des galaxies.
 
 		\subsection{Une première étude personnelle}
@@ -178,11 +192,6 @@
 			avons donc fabriqué notre propre catalogue à partir des données
 			de~\cite{Trager-graphe} donnant le profil de brillance de surface en fonction de la taille angulaire
 			de chaque amas.
-			Parallèlement, nous avons construit un catalogue des temps de relaxation par
-			collisions et des temps dynamiques de ces amas en utilisant le catalogue de
-			\textsc{Harris}~\cite{Harris} et en intégrant le profil de densité obtenu
-			pour chaque amas.
-
 
 
 			%Parallèlement, nous avons construit un catalogue
@@ -207,16 +216,16 @@
 				%Nous avons donc besoin d'une relation entre cette quantité et l'âge
 				%de l'amas, si une telle relation existe.
 
-				Après avoir déprojeté les profils de brillance de surface
-				pour avoir la densité et donc obtenir la pente du halo, nous
-				l'avons tracé en fonction du temps de relaxation. Nous avons alors
-				ajusté la courbe ainsi obtenue par une droite d'équation $ \alpha =
-				\mathrm{pente} = a \log_{10}(T_c) + b$.
+				% Après avoir déprojeté les profils de brillance de surface
+				% pour avoir la densité et donc obtenir la pente du halo, nous
+				% l'avons tracé en fonction du temps de relaxation. Nous avons alors
+				% ajusté la courbe ainsi obtenue par une droite d'équation $ \alpha =
+				% \mathrm{pente} = a \log_{10}(T_c) + b$.
 
-				La première étape pour transformer les données
-				de~\cite{Trager-graphe} (récupérable ici~\cite{TragerTable}) d'une
-				brillance de surface de l'objet en fonction d'un rayon en seconde
-				d'arc en densité volumique de masse.
+				% La première étape pour transformer les données
+				% de~\cite{Trager-graphe} (récupérable ici~\cite{TragerTable}) d'une
+				% brillance de surface de l'objet en fonction d'un rayon en seconde
+				% d'arc en densité volumique de masse.
 
 				%Le premier traitement à effectuer consiste donc à transformer
 				%cette brillance de surface par arc seconde carrée en une densité
@@ -235,29 +244,30 @@
 			%	\end{align}
 			%	avec $m_V$ la magnitude apparente de l'objet sur une seconde d'arc au carrée.
 
-				La brillance de surface utilisée dans cet article est définie dans
-				la section~3.2.3 de~\cite{Trager-graphe}:
+				La brillance de surface utilisée dans cet article est la suivante:
 				\begin{align}
 					\mu = -2.5 \log\(\frac{10^{-0.4 m_2} - 10^{-0.4 m_1}}{\pi \(r_2^2 - r_1^2\)}\)
 					\label{Trager-eq}
 				\end{align}
 			%	où ils prendraient comme référence les points autour de celui considéré (~ou quelque chose comme ça~),
 				$m_i$ étant la magnitude en un point de l'objet et $r_i$ le rayon en seconde d'arc pour ce point.
-				Par conséquent, les unités de $\mu$ sont un flux par arc seconde
-				carrée en échelle logarithmique.
 
-				Les rapports masse-luminosité dont nous avons besoin pour terminer
-				la conversion peuvent être trouvés dans~\cite{McL},
-				mais cette article ne contient que 40 des 140 amas de notre galaxie.
+				La conversion de cette brillance surfacique en densité surfacique de masse est possible
+				en connaissant le rapport masse-luminosité de ces amas. L'article~\cite{McL} donne cette
+				quantité pour 40 des 150 amas de notre galaxies.
+				% Les rapports masse-luminosité dont nous avons besoin pour terminer
+				% la conversion peuvent être trouvés dans~\cite{McL},
+				% mais cette article ne contient que 40 des 140 amas de notre galaxie.
 				Par contre, il est aisé de remarquer que ces rapports sont en
 				moyenne très peu différents de la valeur $2$ avec une
-				valeur minimum de $1.87$ pour NGC 4147 et une valeur maximum de
-				$2.66$ pour NGC 6441. Dans la suite, nous prendrons donc:
+				valeur minimum de $1.87$ pour NGC4147 et une valeur maximum de
+				$2.66$ pour NGC6441. Nous avons donc utilisé: %Dans la suite, nous prendrons donc:
 				\begin{align}
 					\Upsilon = \dfrac{M}{L} = 2
 				\end{align}
-				Les données de~\cite{Trager-graphe} nous ont donc permis d'obtenir
-				la densité $\rho(r)$ de chaque amas du catalogue de \textsc{Harris}.
+				pour les 110 autres amas.
+				%Les données de~\cite{Trager-graphe} nous ont donc permis d'obtenir
+				Un algorithme de déprojection permet alors d'obtenir la densité $\rho(r)$ de chaque amas du catalogue de \textsc{Harris}.
 
 				%\begin{enumerate}
 					%\item $10^{-0.4 m_i}$ est proportionnel à un flux, % (~ou au rapport d'un flux par rapport à un flux de référence !?!~),
@@ -310,11 +320,15 @@
 			%	Du fait des rapports masse-luminosité manquant, notre échantillon d'une quarantaine d'amas est passé à seulement 12 amas.
 
 				Afin de déterminer la pente du halo, nous
-				normalisons la densité par la densité du cœur, puis mesurons la
-				pente dans la région vérifiant:
+				normalisons cette densité par la densité du cœur, puis mesurons la
+				pente dans l'intervalle: %la région vérifiant:
 				\begin{align*}
-					10^{-4} \leq \dfrac{\rho(r)}{\rho_\mathrm{c\oe ur}} \leq 0.1
+					10^{-4} \leq \dfrac{\rho(r)}{\rho(0)} \leq 0.1
 				\end{align*}
+				Nous avons alors construit un catalogue des temps de relaxation par
+				collisions et des temps dynamiques de ces amas en utilisant d'une part le catalogue de
+				\cite{Harris} et d'autre part en intégrant le profil de densité obtenu
+				pour chaque amas.
 				Nous obtenons alors les graphiques~\ref{Pente-lin_dim} et~\ref{Pente-Td-lin}.
 
 				%Le calcul de pente a été refait en utilisant : les données de
@@ -328,7 +342,7 @@
 
 				\begin{figure}[h!]
 			%		\centering \includegraphics[scale=0.9]{../Amas/Graphe_Rapport/pente-Tc.pdf}
-					\centering \includegraphics[scale=0.9]{graphe/pente-Tc.pdf}
+					\centering \includegraphics[scale=0.4]{graphe/pente_tc.pdf}
 					\caption{Évolution des pentes pour différents âges}
 					\label{Pente-lin_dim}
 				\end{figure}
@@ -353,7 +367,7 @@
 				%grâce à l'équation~\ref{Td:sig}. Nous obtenons alors le graphique~\ref{Pente-Td-lin}.
 				\begin{figure}[h!]
 			%		\centering \includegraphics[scale=0.9]{../Amas/Graphe_Rapport/pente-Td.pdf}
-					\centering \includegraphics[scale=0.9]{graphe/pente-Td.pdf}
+					\centering \includegraphics[scale=0.4]{graphe/pente_td.pdf}
 					\caption{Évolution des pentes pour différents âges dynamiques}
 					\label{Pente-Td-lin}
 				\end{figure}
@@ -446,25 +460,29 @@
 
 
 		Pour comprendre ces résultats, il est utile de savoir que plus un amas est âgé
-		dynamiquement (plus il est évolué), plus ces temps vont être petit. Ainsi, un amas
+		dynamiquement (plus il est évolué), plus ces temps vont être petits. Ainsi, un amas
 		ayant un temps dynamique de $10^{11}$ ans est plus jeune qu'un amas ayant un temps
-		dynamique de $10^{8}$.
+		dynamique de $10^{8}\mathrm{ans}$.
 
 		%: elle passe de très faibles valeurs (entre -10 et -4) pour des amas dynamiquement
 		%jeunes, à la valeur caractéristique -2 pour des amas dynamique évolués et
 		%correspondant à la pente des coeurs effondrés.
 		
-		Ainsi, les graphiques~\ref{Pente-lin_dim} et~\ref{Pente-Td-lin} nous apprennent que
-		plus les amas sont âgé, plus la pente de leur halo est importante: elle passe de
-		faible valeur (entre $-10$ et $-4$) pour des amas dynamiquement jeunes, à la valeur
-		$-2$ pour des amas dynamiquement évolué et correspondant à la pente des cœur
-		effondré.
+		Les graphiques~\ref{Pente-lin_dim} et~\ref{Pente-Td-lin} nous apprennent que
+		plus les amas sont âgés, plus la pente de leur halo est importante: elle passe de
+		valeurs faibles (entre $-10$ et $-4$) pour des amas dynamiquement jeunes, à la valeur
+		$-2$ pour des amas dynamiquement évolués. Notons que cette dernière valeur correspond à la pente des cœurs
+		effondrés.
 		Le schéma~\ref{schema-effondrement} résume schématiquement cette évolution,
 		d'un amas jeune à un amas évolué dont le cœur s'est effondré.
 
-		Cette évolution est généralement acceptée dans la communauté des spécialiste des amas
-		globulaires. Il n'en demeure pas moins vrai que de nombreux points restent à
-		éclaircir, c'est l'un des objectifs de ce travail.
+		% Cette évolution est généralement acceptée dans la communauté des spécialiste des amas
+		% globulaires. Il n'en demeure pas moins vrai que de nombreux points restent à
+		% éclaircir, c'est l'un des objectifs de ce travail.
+
+		Si l'augmentation de la densité centrale au fur et à mesure de l'évolution de l'amas est souvent décrite
+		dans la littérature, il n'en est pas de même pour l'évolution de la pente du halo. Nous tenterons de
+		préciser ce constat observationnel lors de nos études théoriques et numériques.
 
 		%Cette dernière étude nous montre que plus un amas est âgé, plus la pente de son halo
 		%est importante. Dans le chapitre précédent, nous avons relié la pente au paramètre
@@ -539,7 +557,7 @@
 		%\input{introduction/Amas/scenario.tex}
 
 	\section{Les Galaxies}%{Que peut-on dire des autres ...!}
-		En reprenant les informations donné dans l'introduction de~\cite{binntre},
+		En reprenant les informations données dans l'introduction de~\cite{binntre},
 		nous pouvons construire la définition suivante d'une galaxie:
 		\begin{quote}
 			Une galaxie est un objet composé de $10^5$ à plusieurs milliards d'étoiles, liées gravitationnellement, de gaz et dont la masse
@@ -548,26 +566,24 @@
 
 		\subsection{Historique}
 
-			L'observation de ces astres à commencé avec Charles Messier, qui les
+			L'observation de ces astres a commencé avec Charles Messier, qui les
 			catalogua alors qu'il recherchait des comètes pour éviter de passer
 			inutilement du temps sur ces objets \og nébuleux \fg{}.
 
-			Depuis, les techniques d'observation ont évolué, et les astronomes ont
-			commencé à pouvoir distinguer de plus en plus de détails, puis ils ont pu
+			Depuis, les techniques d'observation ont évolué, les astronomes ont
+			commencé à pouvoir distinguer de plus en plus de détails, et ont pu
 			mesurer leurs profils de luminosité! Ces objets nébuleux se classent dans
 			plusieurs catégories:
 			\begin{itemize}
-				\item les nébuleuses, composées de gaz et possiblement d'étoiles en formation,
-				\item les amas globulaires, objets en orbite autour de galaxie et comprenant de
-					$10^5$ à $10^6$ étoiles mais pas de gaz,
+				\item les nébuleuses, composées de gaz et possiblement d'étoiles en formation;
+				\item les amas globulaires;
 				\item les galaxies.
 			\end{itemize}
 			Une autre catégorie est apparue plus tardivement: les groupes de galaxies.
 
-			Au début des années 30, \bsc{Zwicky}, travaillant sur
+			Au début des années 1930, \bsc{Zwicky}, travaillant sur
 			le groupe de galaxies Coma, se rendit compte que la
-			masse gravitationnelle et la masse lumineuse (le ratio
-			masse-luminosité) ne correspondait pas
+			masse gravitationnelle ne correspondait pas à la masse lumineuse 
 			(voir~\cite{1933AcHPh...6..110Z}): si l'on suppose,
 			comme le fait \bsc{Zwicky}, que l'amas de la Coma est
 			dans un état d'équilibre, le théorème du Viriel impose
@@ -579,12 +595,15 @@
 			nécessaire pour être au Viriel. Malgré la précision
 			plus importante des données d'aujourd'hui, et la
 			meilleure prise en compte des différentes composantes
-			(gaz, étoiles\ldots), le problème persiste toujours. Un
-			autre problème observationnel ayant besoin de matière
-			noire: la courbe de rotation des galaxies
-			(voir~\cite{1939LicOB..19...41B}): passé un certain
-			rayon, la vitesse de rotation des étoiles dans la
-			galaxie devient constante~! Là aussi, il a fallu ajouter de la matière invisible.
+			(gaz, étoiles\ldots), le problème persiste toujours.
+			Quelques années plus tard, \cite{1939LicOB..19...41B} pointa que la courbe de rotation des
+			galaxies elle-même nécessitait également l'introduction de matière noire.
+			% Un
+			% autre problème observationnel ayant besoin de matière
+			% noire: la courbe de rotation des galaxies
+			% (voir~\cite{1939LicOB..19...41B}): passé un certain
+			% rayon, la vitesse de rotation des étoiles dans la
+			% galaxie devient constante~! Là aussi, il a fallu ajouter de la matière invisible.
 
 			%Au début des années 30, \bsc{Zwicky}, travaillant sur le groupe de galaxies
 			%\bsc{Coma}, se rendit compte que la masse gravitationnelle et la masse
@@ -599,24 +618,23 @@
 			matière noire et sur les profils de luminosité (et donc de densité de masse)
 			des galaxies.
 
-		\subsection{Les différents types}
+		\subsection{Les différents types de galaxies}
 
-			Les galaxies naines sphéroïdales, ou galaxie à faible brillance de surface
-			(LSB), sont des galaxies très difficile à observer. Elles ne sont observées
-			actuellement que dans notre groupe local. Ce sont des galaxies avec peu de
-			gaz et un grand rapport masse/luminosité, ce dernier point laisse entendre
-			qu'elles sont dominées par la matière noire. Les auteurs
-			de~\cite{2001ApJ...552L..23D} ont étudié le profil d'une cinquantaine de
-			profil de ces LSB et ont trouvé qu'elles avaient toutes un profil cœur-halo.
+			Les galaxies naines sphéroïdales, ou galaxie à faible brillance de surface (LSB), sont des
+			galaxies très difficile à observer. Elles ne le sont actuellement que dans notre groupe local,
+			où elles sont les plus nombreuses (d'après \citet{2013MNRAS.429.3068T}). Ce sont des galaxies
+			avec peu de gaz et un grand rapport masse/luminosité, ce dernier point laisse entendre qu'elles
+			sont dominées par la matière noire. Les auteurs \cite{2001ApJ...552L..23D} ont étudié le profil
+			de densité d'une cinquantaine de ces LSB et remarqué qu'elles avaient toutes un profil cœur-halo.
 
-			Les galaxies spirales ont une structure plus compliquée, détaillée sur la
-			figure~\ref{Fig::Intro::schemaGS} montre la structure d'une galaxie spirale.
+			Les galaxies spirales ont une structure plus compliquée, dont la partie visible est détaillée sur la
+			figure~\ref{Fig::Intro::schemaGS}.
 			La partie visible de ces galaxies se décompose  habituellement de la façon suivante:
 			\begin{itemize}
-				\item le bulbe central, abritant un trou noir super massif;
+				\item le bulbe central, pouvant abriter un trou noir super massif;
 				\item le disque, composé lui-même de deux parties: le disque épais
 					et le disque mince;
-				\item le halo stellaire, où évolue notamment les amas globulaires.
+				\item le halo stellaire, dans lequel évoluent notamment les amas globulaires.
 			\end{itemize}
 			Un halo de matière noire sphéroïdal englobe le tout.
 
@@ -627,15 +645,15 @@
 				\caption{Structure visible d'une galaxie spirale.\label{Fig::Intro::schemaGS}}
 			\end{figure}
 
-			Et enfin les galaxies elliptiques qui sont généralement les
-			plus massives. Ces galaxies sont essentiellement
+			% Et enfin les galaxies elliptiques qui sont généralement les
+			La dernière classe principale est celles des galaxies elliptiques. Ces galaxies sont essentiellement
 			constituées d'étoiles vieilles et ne contiennent que très
 			peu de gaz.
 
 		\subsection{Profils de matière noire}
 
-			Merrit et al
-			(\cite{2006AJ....132.2685M,2006AJ....132.2701G,2006AJ....132.2711G})
+			% Merrit et al
+			\cite{2006AJ....132.2685M,2006AJ....132.2701G,2006AJ....132.2711G}
 			ont menés une étude exhaustive des profils de matière
 			noire dont la distribution a pu être mise en évidence
 			autour des galaxies et dans les simulations numériques.
@@ -646,25 +664,48 @@
 			de galaxie doit être ajusté par un profil différent.
 			Comme nous l'avons vu plus haut, les galaxies naines
 			ont un profil de cœur-halo, ce sont les seules à
-			posséder un cœur. Les galaxies spirales et elliptique
-			possède généralement un profil montrant un cusp à la
+			posséder un cœur. Les galaxies spirales et elliptiques
+			possèdent généralement un profil montrant un cusp à la
 			place du cœur (un profil de type cupside) ajusté
-			correctment par un profil de Dehnen-McLaughin. Ce profil
-			est directement issu d'une généralisation du profil de
-			Vaucouleurs: le profil de Einasto $R^{1/N}$.
+			correctement par un profil de Vaucouleurs.
+			% correctement par un profil dit de Dehnen-McLaughin. Ce profil
+			% est directement issu d'une généralisation du profil de
+			% Vaucouleurs: le profil de Einasto $R^{1/N}$.
 
 			%ont une préférence pour les profil cupsy de Prugniel \&
 			%Simien ou encore Dehnen-McLaughlin.
+
+			Dés 1948, Gérard de Vaucouleurs remarque que de nombreuses galaxies elliptique possédaient un
+			brillance de surface projetée variant comme:
+			\begin{align}
+				I(r) = I_\mathrm{eff} 10^{-3.3307\left[\(\dfrac{R}{R_\mathrm{eff}}\)^{1/4} - 1\right]}
+			\end{align}
+			avec $R$ le rayon projeté.
+			C'est la fameuse loi de de Vaucouleurs. Depuis de nombreux modèles ont étendus celle-ci:
+			\begin{itemize}
+				\item le modèle empirique d'Einasto qui propose une densité volumique de masse de la
+					forme:
+					\begin{align}
+						\rho(r) = \rho_e \exp\left[-d_n\left\{\(\dfrac{r}{r_e}\)^{1/n} - 1\right\}\right] \label{Intro::Eq::Einasto}
+					\end{align}
+					avec $\rho_e = \rho(r_e)$ et $r_e$ le rayon à 50\% de masse;
+				\item le modèle de Prugniel-Simien qui est une déprojection partielle de la loi de de
+					Vaucouleurs, la densité est de la forme:
+					\begin{align}
+						\rho(r) = \rho_0\(\dfrac{r}{R_e}\)^{-p_n}\exp\left[-b_n\left\{\(\dfrac{r}{R_e}\)^{1/n} -1\right\}\right]\label{Intro::Eq::P-S}
+					\end{align}
+			\end{itemize}
 
 			Les profils des structures formées à l'échelle
 			galactique dans les simulations numériques sont quelque
 			peu différents. En première approximation, le modèle
 			NFW, couramment utilisé, convient. Mais les études plus
-			fines menée par Merrit \& al montrent que le profil de
-			Einasto (issu d'une déprojection d'une brillance de
-			surface projetée en $R^{1/N}$) convient mieux. Ce
-			profil est issu de la même famille que les modèle de
-			Prugniel-Simien et Dehnen-McLaughin.
+			fines menées par \cite{2006AJ....132.2685M,2006AJ....132.2701G,2006AJ....132.2711G} montrent que
+			les profil de de Vaucouleurs généralisé~\ref{Intro::Eq::Einasto} et~\ref{Intro::Eq::P-S} conviennent mieux.
+			% Einasto (issu d'une déprojection d'une brillance de
+			% surface projetée en $R^{1/N}$) convient mieux. Ce
+			% profil est issu de la même famille que les modèle de
+			% Prugniel-Simien et Dehnen-McLaughin.
 
 			%Pour les simulations numériques, c'est un peu
 			%différent; de par sa simplicité les gens préfère
@@ -673,10 +714,25 @@
 			%profil pour les halos de matière noire est le Einasto
 			%$R^{1/N}$.
 
-			À ajouter:
-			\begin{itemize}
-				\item scénario hiérarchique
-				\item répartition (si je trouve des références)
-				\item présence de SMBH (à nouveau discuté aujourd'hui selon certaine personne du domaine).
-			\end{itemize}
+		\subsection{Scénario de formation}
+			Le scénario de formation des galaxies le plus généralement admis aujourd'hui est le scénario
+			hiérarchique. Dans ce scénario, les plus petites structures, comme les galaxies naines, ont
+			été les premières à se former. Puis, au fil des interactions, elles fusionnent pour former
+			des structures de plus en plus grosses. Ainsi arrivent les galaxies spirales, puis
+			elliptiques.
 
+			% Cependant, ce modèle apporte son lot de problème. Notamment, il prévoit que les halos de matière
+			% noire soit des cupsides là où les observations trouvent des cœur-halo, ou encore la quantité de
+			% petite structure, tel les amas globulaire et les LSB, qui devrait être beaucoup plus importante autour de
+			% notre galaxie.
+
+			Cependant, ce modèle apporte son lot de problème:
+			\begin{itemize}
+				\item il prévoit que les halos de matière noire soit des cupsides là où les observations
+					trouvent des cœur-halo;
+				\item dans les modèles numériques de formation hiérarchique, le nombre de petites
+					structures (amas globulaire et LSB) est beaucoup plus important que dans les
+					observations (voir \citet{2006CombesBook}).
+				% \item la quantité de petite structure, tel les amas globulaire et les LSB, qui devrait
+					% être beaucoup plus importante autour de notre galaxie.
+			\end{itemize}
