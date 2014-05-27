@@ -1,0 +1,1 @@
+Verif_new -t 16 --hdf5 data.hdf5 data.king --posfact 1.0
