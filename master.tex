@@ -56,6 +56,8 @@
 
 \usepackage[pdftex]{hyperref}					%Pour les liens hypertexte des glossaires, sommaires, formules, ....
 
+\usepackage{natbib}
+
 \definecolor{couleurPostIt}{rgb}{.9,.9,.35}
 \tikzset{fondPostit/.style={color= couleurPostIt}}
 \tikzset{ombrePunaise/.style={color={blue!10!gray}}}
@@ -143,6 +145,7 @@
 \newcommand{\R}{\ensuremath{\mathcal{R}}}
 \newcommand{\dr}{\ensuremath{\mathrm{dr}}}
 \newcommand{\dx}[1]{\ensuremath{\mathrm{d#1}}}
+\newcommand{\vdx}[1]{\ensuremath{\mathrm{d}#1}}
 %\newcommand{\ddp}{\ensuremath{\mathrm{dp}}}
 \newcommand{\vdr}{\ensuremath{\mathrm{d}\vec{r}}}
 \newcommand{\vdp}{\ensuremath{\mathrm{d}\vec{p}}}
@@ -158,6 +161,8 @@
 \newcommand{\ddp}{\ensuremath{\mathrm{dp}}}
 \renewcommand{\(}{\ensuremath{\left(}}
 \renewcommand{\)}{\ensuremath{\right)}}
+% \newcommand{\erf}[1]{\mathrm{erf}\(#1\)}
+% \DeclareMathOperator{\erf}{erf}
 
 \newcommand{\mnras}{Mon. Not. R. Astr. Soc.}
 \newcommand{\apj}{ApJ}
@@ -168,6 +173,8 @@
 \newcommand{\aj}{Astronomical Journal}
 \newcommand{\nat}{Nature}
 \newcommand{\physrep}{Physics Reports}
+\def\pasj{\ref@jnl{PASJ}}
+\def\na{\ref@jnl{New Ast}}             
 
 
 %Quelque compteur pour les tables des matiéres et minitoc
@@ -178,7 +185,7 @@
 \setcounter{LTchunksize}{30}
 
 %\inputpaths{annexe,simulation,theorie,introduction}
-\graphicspath{{graphe/}{annexe/}{simulation/}{theorie/}{introduction/}}
+\graphicspath{{graphe/}{annexe/}{simulation/}{theorie/}{introduction/}{graphe/vlasov_gadget/}}
 
 \newcommand{\TCarre}[2]{\coordinate (Xside) at (#1, 0);
 	\coordinate (Yside) at (0 , #1);
@@ -212,20 +219,25 @@
 		\item $T \equiv <v^2>$ (~quand nous parlerons de température, il sera question de la dispersion de vitesse du système~),
 		\item $\vec{a}$ les vecteurs,
 		\item $a$ le module de $\vec{a}$,
-		\item $d^3 a$ ou $d^3 \vec{a}$l'élément de volume associé à $\vec{a}$.
+		\item $d^3 a$ ou $d^3 \vec{a}$ l'élément de volume associé à $\vec{a}$.
 	\end{itemize}
 
 	\pagenumbering{arabic}
 
 	%Pour le header et les pieds de pages :
-	\pagestyle{fancy}
+	\fancypagestyle{these}{
+		\fancyhf{}
+		\fancyhead[LE]{\rightmark}
+		\fancyhead[RO]{\leftmark}
+	}
+	\pagestyle{these}
 	%\lhead{}
 	%\chead{}
 	%\rhead{}
 	%\lfoot{}
 	%\cfoot{\thepage}
 	%\rfoot{}
-	\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\chaptername}\ \thechapter.\ #1}{}}
+	% \renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\chaptername}\ \thechapter.\ #1}{}}
 	%\renewcommand{\sectionmark}[1]{\markboth{\MakeUppercase{\sectionname}\ \small \textsc{\thesection}.\ #1}{}}
 
 
@@ -266,7 +278,7 @@
 				Pour effectuer ces simulations, l'idée évoquée est de modifier \textsc{GADGET-2} pour lui ajouter une force dont l'intensité dépendra du temps, et ceci afin de simuler la rotation de l'amas autour de la galaxie.
 				Ce travail sera effectué sur le dernier mois de stage et le début de la thèse.
 
-	\bibliographystyle{plain}
+	\bibliographystyle{plainnat}
 	\bibliography{Bibliographie}
 	\addstarredchapter{Bibliographie}
 
@@ -287,8 +299,8 @@
 			\minitoc
 			\input{annexe/demo.tex}
 
-		\chapter{Graphiques}
-			\minitoc
-			\input{annexe/graphique.tex}
+		% \chapter{Graphiques}
+			% \minitoc
+			% \input{annexe/graphique.tex}
 
 \end{document}
