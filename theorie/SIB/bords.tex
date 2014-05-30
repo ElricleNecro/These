@@ -1,73 +1,72 @@
 
 \subsubsection{Au centre de la sphère : $x = 0$}
 	Dans le voisinage de $x=0$, la fonction $h(x)$, représentant le potentiel gravitationnel du système, s'écrit :
-	\begin{eqnarray*}
+	\begin{align*}
 		h(x) = h(0) + \x{h}(0)x + h^{\prime\prime}(0)\frac{x^2}{2!} + h^{\prime\prime\prime}(0)\frac{x^3}{3!} + o(x^3) = ax^2 + bx^3 + o(x^3)
-	\end{eqnarray*}
+	\end{align*}
 	Il est clair en effet que d'une part \mbox{$h(0) = m\beta\left(\psi(0) - \psi(0)\right) = 0$} et d'autre part \mbox{$\x{h}(0) = m\beta\x{\psi}(0) = 0$} car la force s'appliquant sur une particule test située au centre d'un système sphérique est nulle.
 
-	En utilisant (\ref{syst_uv}) on trouve alors :
-	\begin{eqnarray}
-		v &=& x\x{h} = 2ax^2 + 3bx^3 + o(x^3)\label{vDL} \\
-		u &=& \frac{x^2e^{-ax^2 - bx^3 + o(x^3)}}{2ax^2 + 3bx^3 + o(x^3)} \\
-		  &=& \frac{1 - ax^2 - bx^3 + o(x^3)}{2a + 3bx +o(x)} \\
-		  &=& \frac{1}{2a} - \frac{3b}{4a^2}x + o(x)\label{uDL}
-	\end{eqnarray}
+	En utilisant (\ref{syst_uv}) nous trouvons alors :
+	\begin{align}
+		v &= x\x{h} = 2ax^2 + 3bx^3 + o(x^3)\label{vDL} \\
+		u &= \frac{x^2e^{-ax^2 - bx^3 + o(x^3)}}{2ax^2 + 3bx^3 + o(x^3)} \\
+		  &= \frac{1 - ax^2 - bx^3 + o(x^3)}{2a + 3bx +o(x)} \\
+		  &= \frac{1}{2a} - \frac{3b}{4a^2}x + o(x)\label{uDL}
+	\end{align}
 	Nous utilisons ensuite l'équation de Poisson pour déterminer, par identification, les valeurs de $a$ et de $b$ :
-	\begin{eqnarray}
+	\begin{align}
 		\x{\left(xv\right)} = 6ax^2 + 12bx^3 + o(x^3) = uv = x^2 + o(x^3)\label{PoisDL}
-	\end{eqnarray}
-	Soit $a = \frac{1}{6}$ et $b=0$, puis en utilisant (\ref{vDL}) et (\ref{uDL})  on trouve finalement :
+	\end{align}
+	Soit $a = \frac{1}{6}$ et $b=0$, puis en utilisant (\ref{vDL}) et (\ref{uDL}) nous trouvons finalement :
 	$$\lim_{r\to 0}(u,v) = (3,0)$$
 
 \subsubsection{Sur le bord de la sphère : $r = R$}
 	Commençons par introduire quelques constantes sans dimensions dimensionnées fort utiles 
-	\begin{eqnarray}
-	X           = \frac{R}{r_0}&\;&\textrm{, la valeur de }x\textrm{ en }r=R \\
-	\lambda  = - \frac{H R}{G M^2}&\;&\textrm{, l'opposé de l'énergie totale adimensionnée contenue dans la sphère}\\
-	\mu       = \frac{m\beta GM}{R} &\;&\textrm{, l'inverse de la température adimensionnée de la sphère}
-	\end{eqnarray}
+	\begin{align}
+		X &= \frac{R}{r_0}\;   &\textrm{, la valeur de }x\textrm{ en }r=R \\
+		\lambda &= - \frac{H R}{G M^2}\;   &\textrm{, l'opposé de l'énergie totale adimensionnée contenue dans la sphère}\\
+		\mu &= \frac{m\beta GM}{R}\;    &\textrm{, l'inverse de la température adimensionnée de la sphère}
+	\end{align}
 	
-	Une intégration de l'équation de Poisson sur la boule supportant le système donne $\left.\frac{d \psi}{dr} \right|_{r=R}= \frac{GM}{R^2}$, on a donc 
-	\begin{eqnarray*}
+	Une intégration de l'équation de Poisson sur la boule supportant le système donne $\left.\frac{d \psi}{dr}
+	\right|_{r=R}= \frac{GM}{R^2}$, nous avons donc 
+	\begin{align*}
 		\x{h}(X) = m\beta r_0 \frac{d \psi}{dr} = m\beta r_0 \frac{GM}{R^2} = \frac{\mu}{X} \;\textrm{soit}\; \mu = X\x{h}(X)
-	\end{eqnarray*}
-	Pour tout $x$, $v(x)=xh^{\prime}(x)$; sur le bord de la boule on a donc
-	\begin{eqnarray}
+	\end{align*}
+	Pour tout $x$, $v(x)=xh^{\prime}(x)$; sur le bord de la boule nous avons donc
+	\begin{align}
 		 v_m: = v\left(X\right) = \mu\label{vmmu}
-	\end{eqnarray}
+	\end{align}
 
 	Soit 
-	$$K=\int \frac{\vec{p}^2}{2m}f\, d\vec{r}d\vec{p}$$
+	\begin{align*}K=\int \frac{\vec{p}^2}{2m}f\, d\vec{r}d\vec{p}\end{align*}
 	et 
-	$$W=m\int \vec{r}\cdot \frac{\partial \psi}{\partial \vec{r}}f\, d\vec{r}d\vec{p}$$ 
+	\begin{align*}W=m\int \vec{r}\cdot \frac{\partial \psi}{\partial \vec{r}}f\, d\vec{r}d\vec{p}\end{align*}
 	les valeurs respectives de l'énergie cinétique et potentielle totales contenue dans la boule isotherme considérée. Si l'on conserve les valeurs prises par les grandeurs concernées sur le bord du système, le théorème du Viriel  s'écrit :
-	\begin{equation}
+	\begin{align}
 		2K + W = 4\pi R^3 P_e \label{virielinabox}
-	\end{equation}
+	\end{align}
 	 où $P_e$ la pression qui s'exerce sur la sphère constituant le bord du système.
 	Pour une sphère isotherme en boîte  le calcul montre que \mbox{$K = \frac{3}{2} N k_B T = \frac{3}{2} \frac{M}{m} k_B T$}. Le théorème du viriel permet donc d'écrire dans ce cas 
-	\begin{eqnarray*}
-		H &=& K + W =  4\pi R^3 P_e - K \\
-		  &=& -\frac{3}{2} \frac{M}{m\beta} + 4\pi R^3 P_e \\
-		\Rightarrow \lambda &=& \frac{3}{2}\frac{R}{m\beta GM} - 4\pi R^3 P_e \frac{R}{GM^2}
-	\end{eqnarray*}
+	\begin{align*}
+		H &= K + W =  4\pi R^3 P_e - K \\
+		  &= -\frac{3}{2} \frac{M}{m\beta} + 4\pi R^3 P_e \\
+		\Rightarrow \lambda &= \frac{3}{2}\frac{R}{m\beta GM} - 4\pi R^3 P_e \frac{R}{GM^2}
+	\end{align*}
 	Il est remarquable de noter par ailleurs qu'une sphère isotherme est un système barotropique : son équation d'état s'écrit $P=\frac{1}{m\beta}\rho$. Par continuité de la pression nous avons donc $P_e = \frac{\rho(R)}{m\beta}$. Cette relation combinée avec les diverses définitions introduites plus haut permettent d'obtenir successivement  :
-	\begin{eqnarray}
-		\lambda &=& \frac{3}{2}\frac{1}{X\x{h}(X)} - 4\pi R^3 \frac{\rho(R)}{m\beta} \frac{R}{GM^2} \notag \\
-			&=& \frac{3}{2}\frac{1}{X\x{h}(X)} - 4\pi \frac{e^{-h(R) - m\beta\psi(0)}}{\alpha^3\beta} \frac{R^4}{GM^2} \notag \\
-			&=& \frac{3}{2}\frac{1}{X\x{h}(X)} - 4\pi  \frac{4\pi G \beta m^2 e^{-\beta m \psi(0)}}{\alpha^3} r_0^2\frac{e^{-h(X)}}{(\x{h}(X))^2} \notag \\
-			&=& \frac{3}{2}\frac{1}{X\x{h}(X)} - \frac{e^{-h(X)}}{(\x{h}(X))^2}\label{lamum}
-	\end{eqnarray}
+	\begin{align}
+		\lambda &= \frac{3}{2}\frac{1}{X\x{h}(X)} - 4\pi R^3 \frac{\rho(R)}{m\beta} \frac{R}{GM^2} \notag \\
+			&= \frac{3}{2}\frac{1}{X\x{h}(X)} - 4\pi \frac{e^{-h(R) - m\beta\psi(0)}}{\alpha^3\beta} \frac{R^4}{GM^2} \notag \\
+			&= \frac{3}{2}\frac{1}{X\x{h}(X)} - 4\pi  \frac{4\pi G \beta m^2 e^{-\beta m \psi(0)}}{\alpha^3} r_0^2\frac{e^{-h(X)}}{(\x{h}(X))^2} \notag \\
+			&= \frac{3}{2}\frac{1}{X\x{h}(X)} - \frac{e^{-h(X)}}{(\x{h}(X))^2}\label{lamum}
+	\end{align}
 
 	Par substitution, nous obtenons finalement les valeurs au bord $u_m=u(X)$ et $v_m=v(X)$ en fonction de $\lambda$ et $\mu$ :
-	\begin{eqnarray}
+	\begin{align}
 		\label{uv_max}
-		\fbox{$
 		\left\{\begin{array}{l}
 			v_m = \mu \\
 			u_m = \frac{3}{2} - \lambda \mu
 		\end{array}\right.
-		$}
-	\end{eqnarray}
+	\end{align}
 

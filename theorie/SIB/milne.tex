@@ -1,83 +1,105 @@
 \subsection{Présentation du problème}
 	Comme nous l'avons vu dans le chapitre précédent, les sphères isothermes ne sont pas une solution satisfaisante, du fait de leurs masses infinies.
-	Nous allons présenter dans ce chapitre une solution de sphère isotherme intégrée sur un support borné. Cette solution est toujours obtenue en recherchant des maxima  de l'entropie statistique de \textsc{Boltzmann} :
+	Nous allons présenter dans ce chapitre une solution de sphère isotherme intégrée sur un support borné. Cette solution est toujours obtenue en recherchant des maxima  de l'entropie statistique de Boltzmann:
 	\begin{align*}
 		S(f) = - k_B \int f \ln f d\Gamma
 	\end{align*}
-	mais pour une fonction $f$ possédant un support borné. Ce dernier est par exemple une boule (~souvent appelée boîte, d'où le nom du chapitre~) définie comme :
+	mais pour une fonction $f$ possédant un support borné. Ce dernier est par exemple une boule (souvent appelée boîte, d'où le nom du chapitre) définie comme :
 	\begin{align}
 		B = \left\{ \vec{r} \in \mathbb{R}^3\ ;\ \left|\vec{r}\right| < R\right\}
 	\end{align}
 	où $R$ est le rayon de la boule support de $f$. Dans la suite, nous noterons $\mathbb{I}_{B_R}$ la fonction indicatrice sur cette boule.
 
 \subsection{Obtention des équations}
-	La fonction de distribution d'une sphère isotherme en boîte, s'écrit (~voir par exemple \cite{CoursJP}~) :
-	\begin{eqnarray}
+	La fonction de distribution d'une sphère isotherme en boîte, s'écrit (voir par exemple \cite{CoursJP}) :
+	\begin{align}
 		f^+(E) = \left(\frac{2\pi\alpha^2m}{\beta}\right)^{-3/2}e^{-\beta E}\times\mathbb{I}_{B_R}
-	\end{eqnarray}
-	où $\alpha$, en mètre, et $\beta=(k_B T)^{-1}$, en Joule, sont des multiplicateurs de \textsc{Lagrange} imposés par les contraintes respectives de masse $M$ et d'énergie totale $H$ finie que l'on impose au système.
+	\end{align}
+	où $\alpha$, en mètre, et $\beta=(k_B T)^{-1}$, en Joule, sont des multiplicateurs de Lagrange imposés
+	par les contraintes respectives de masse $M$ et d'énergie totale $H$ finie que nous imposons toujours au système.
 	Ils assurent également la normalisation de la fonction de distribution.
 	La quantité \mbox{$E = \frac{p^2}{2m} - m\psi(r)$} est l'énergie d'une particule test de masse $m$ se déplacant dans
 	le potentiel $\psi$ créé par la sphère isotherme.
 	Le calcul de la densité de masse donne alors \mbox{$\rho(r) = \frac{m}{\alpha^3}e^{-\beta m \psi(r)}\times\mathbb{I}_{B_R}$}. % \psi'(r)}$}, dans la suite nous utiliserons :
-	%\mbox{$\psi'(r) = \psi(r) - \psi(0)$}~\footnote{pour faciliter les calculs dans les variables \textsc{Milne} définies ci-dessous}.
-	L'équation de \textsc{Poisson} s'écrit :
-	\begin{equation}
+	%\mbox{$\psi'(r) = \psi(r) - \psi(0)$}~\footnote{pour faciliter les calculs dans les variables Milne définies ci-dessous}.
+	L'équation de Poisson s'écrit :
+	\begin{align}
 		 \frac{1}{x^2}\frac{d}{dx}\left(x^2\frac{d h}{dx}\right) = e^{-h} \times\mathbb{I}_{B_R} \notag
-	\end{equation}
+	\end{align}
 	où nous avons utilisé l'adimensionnement  :
-	\begin{eqnarray}
+	\begin{align}
 		x &= \frac{r}{r_0}\mathrm{ avec }\ r_0 = \sqrt{\frac{\alpha^3}{4\pi G m^2\beta}}e^{-\frac{m\beta\psi(0)}{2}} \label{toto11} \\
 		h &= m\beta\psi(x) - m\beta\psi(0) \label{toto12}
-		\end{eqnarray}
+		\end{align}
 		Il est important de noter que l'inconnue du problème $h(x)$ est différente de $y(x)$ utilisée pour la présentation du problème de la sphère isotherme illimitée. Nous avons ici $h(0) = 0$ alors que $y(0) = m\beta\psi(0)$.
 		
-		En notant par un $^\prime$ toutes les dérivées par rapport à la variable $x$, on introduit les variables dites de \textsc{Milne :}
-		$$\begin{cases}
+		En notant par un $^\prime$ toutes les dérivées par rapport à la variable $x$, nous introduisons les variables dites de \textsc{Milne :}
+		\begin{align}
+			\begin{cases}
 			v = x \dfrac{d h}{dx} = x \x{h} \\
 			\\
 			u = \dfrac{e^{-h} x}{h'} = \dfrac{e^{-h} x^2}{v}
-		\end{cases}$$ \label{syst_uv}
+		\end{cases}\label{syst_uv}
+		\end{align}
 		
 Un calcul simple donne alors :
-\begin{equation}
+\begin{align}
 	\dfrac{d(xv)}{dx} = uv \;\;\Rightarrow\;\; \x{v} = \frac{v \left( u - 1\right)}{x} \notag
-\end{equation}
-La dérivée de $u$ s'obtient directement à partir de sa définition, on trouve :
+\end{align}
+La dérivée de $u$ s'obtient directement à partir de sa définition, nous trouvons :
 	$$\begin{cases}
 		\x{v} = \dfrac{v \left( u - 1\right)}{x} \\
 		\x{u} = \dfrac{u}{x}\left(3 - v - u\right)
 	\end{cases} \label{systdudv}$$
 	
 	que l'on peut écrire de façon compacte
-	\begin{equation}
-		\fbox{$
+	\begin{align}
 		\dfrac{d v}{d u} = \dfrac{v \left( u - 1\right)}{u \left(3 - u - v\right)}
-		$} \label{eqdudv}
-	\end{equation}
+		\label{eqdudv}
+	\end{align}
 	La courbe résultant de cette équation, tracée dans le plan $\left(u, v\right)$, forme le diagramme
-	de \textsc{Milne}. L'étude de ce diagramme permet d'accéder à de nombreuses caractéristiques de la sphère isotherme en boîte. L'équation \ref{eqdudv} ne peut être résolue explicitement mais sa solution peut être obtenue numériquement; il faut pour cela préciser les conditions au bord et au centre du système; c'est l'objet de la section suivante.
+	de Milne. L'étude de ce diagramme permet d'accéder à de nombreuses caractéristiques de la sphère isotherme en
+	boîte. L'équation~(\ref{eqdudv}) ne peut être résolue explicitement mais sa solution peut être obtenue
+	numériquement; il faut pour cela préciser les conditions au bord et au centre du système; c'est l'objet de la
+	section suivante.
 	
 
 \subsection{Conditions au centre et sur le bords de la sphère}
 	\input{theorie/SIB/bords.tex}
 
-\subsection{Droites de \textsc{Padmanabhan} et diagramme de \textsc{Milne}}
-	On peut facilement éliminer $\mu$ dans le système \ref{uv_max} et obtenir
-	\begin{equation}
+\subsection{Droites de Padmanabhan et diagramme de Milne}
+	% On peut facilement éliminer $\mu$ dans le système~(\ref{uv_max}) et obtenir
+	Les $\mu$ dans le système~(\ref{uv_max}) peuvent facilement s'éliminer et nous obtenons
+	\begin{align}
 		v_m = \frac{3}{2\lambda} - \frac{u_m}{\lambda}\label{droitePb}
-	\end{equation}
-	Cette relation montre que si l'on ne fixe que la valeur de $\lambda$,  les couples $(u_m,v_m)$  se répartissent dans le plan $(u,v)$ le long d'une droite de pente $-1/\lambda$, dite de \textsc{Padmanabhan} en référence à sa remarque dans l'article \cite{1989ApJS...71..651P}. On remarque aussi que toutes ces droites passent par le point $(\frac{3}{2},0)$.
+	\end{align}
+	Cette relation montre que si l'on ne fixe que la valeur de $\lambda$,  les couples $(u_m,v_m)$  se répartissent
+	dans le plan $(u,v)$ le long d'une droite de pente $-1/\lambda$, dite de Padmanabhan en référence à sa remarque
+	dans l'article \cite{1989ApJS...71..651P}. Nous remarquons aussi que toutes ces droites passent par le point
+	$(\frac{3}{2},0)$.
 	
-	Le choix de $\lambda$ est indépendant de la valeur de la température, le point $(u_m,v_m)$ associé à la sphère isotherme en boite de rayon $R$, de masse $M$, d'énergie $H$ et de température $\beta$ se trouve donc à l'intersection de la droite de Padmanabhan fixée par $\lambda$ et de la courbe v(u) solution de l'équation \ref{eqdudv}. 
+	Le choix de $\lambda$ est indépendant de la valeur de la température, le point $(u_m,v_m)$ associé à la sphère
+	isotherme en boite de rayon $R$, de masse $M$, d'énergie $H$ et de température $\beta$ se trouve donc à
+	l'intersection de la droite de Padmanabhan fixée par $\lambda$ et de la courbe $v(u)$ solution de
+	l'équation~(\ref{eqdudv}). 
 	
 	
-	Cette courbe est obtenue numériquement à l'aide d'un solveur RK4, en utilisant les variables adimensionnées le seul paramètre physique pour la résolution est la valeur de $X$ caractérisant le rayon et la température de la sphère.  L'ensemble de ces courbes et des droites de Padmanabhan correspondantes sont représentées sur la figure \ref{Milne}. Pour une température fixée, on constate que plus la valeur de $R$ augmente plus la courbe solution est longue et finit par s'enrouler dans une spirale convergeant vers un point. Ce point correspond au cas $R\to\infty$ et donc celui de la SIS.
+	Cette courbe est obtenue numériquement à l'aide d'un solveur RK4, en utilisant les variables adimensionnées, le
+	seul paramètre physique pour la résolution est la valeur de $X$ caractérisant le rayon et la température de la
+	sphère.  L'ensemble de ces courbes et des droites de Padmanabhan correspondantes sont représentées sur la figure
+	\ref{Milne}. Pour une température fixée, nous constatons que plus la valeur de $R$ augmente plus la courbe
+	solution est longue et finit par s'enrouler dans une spirale convergeant vers un point. Ce point correspond au
+	cas $R\to\infty$ et donc celui de la \textsc{sis}.
 	
-	\'{A} la l'inspection de ce diagramme et de ces droites, on comprend aisément que l'on ne peut pas mettre n'importe quelle sphère isotherme dans n'importe qu'elle boîte !
-	En effet, si l'on impose des valeurs de $R$, $M$ et $H$ qui donnent une valeur trop grande $\lambda>\lambda_c$, la droite ne pourra pas avoir d'intersection avec la courbe. Cette intersection qui aurait fixé le dernier paramètre, la température, n'existant pas il en va de même de la sphère isotherme en boîte possédant ces caractéristiques physiques.
+	À l'inspection de ce diagramme et de ces droites, nous comprenons aisément que l'on ne peut pas mettre
+	n'importe quelle sphère isotherme dans n'importe qu'elle boîte!
+
+	En effet, si l'on impose des valeurs de $R$,
+	$M$ et $H$ qui donnent une valeur trop grande $\lambda>\lambda_c$, la droite ne pourra pas avoir d'intersection
+	avec la courbe. Cette intersection qui aurait fixé le dernier paramètre, la température, n'existant pas il en va
+	de même de la sphère isotherme en boîte possédant ces caractéristiques physiques.
 	
-	On remarque même l'existence d'une seconde valeur caractéristique $\lambda_0$ telle que :
+	Nous remarquons même l'existence d'une seconde valeur caractéristique $\lambda_0$ telle que :
 	\begin{itemize}
 		\item si $\lambda < \lambda_0$ : il n'existe qu'une seule et unique sphère isotherme possible;
 		\item si $\lambda \in \left[\lambda_0,\lambda_c\right]$ : il existe plusieurs possibilités;
@@ -88,17 +110,21 @@ Comme nous allons le voir dans la prochaine section, cette multiplicité de poss
 
 	\begin{figure}[h!]
 		\begin{minipage}[b]{0.40\linewidth}
-			\centering \includegraphics[scale=0.60]{graphe/r_max-1.pdf}
+			\centering \includegraphics{graphe/milne_X1.pdf}
 		\end{minipage}\hfill
 		\begin{minipage}[b]{0.48\linewidth}
-			\centering \includegraphics[scale=0.60]{graphe/r_max-5.pdf}
+			% \centering \includegraphics[scale=0.60]{graphe/r_max-5.pdf}
+			\centering \includegraphics{graphe/milne_X5.pdf}
 		\end{minipage}
 		\begin{minipage}[b]{0.40\linewidth}
-			\centering \includegraphics[scale=0.60]{graphe/r_max-10.pdf}
+			% \centering \includegraphics[scale=0.60]{graphe/r_max-10.pdf}
+			\centering \includegraphics{graphe/milne_X10.pdf}
 		\end{minipage}\hfill
 		\begin{minipage}[b]{0.48\linewidth}
-			\centering \includegraphics[scale=0.60]{graphe/r_max-300.pdf}
+			% \centering \includegraphics[scale=0.60]{graphe/r_max-300.pdf}
+			\centering \includegraphics{graphe/milne_X300.pdf}
 		\end{minipage}
-		\caption{Diagramme de \textsc{Milne} pour $X=1$, $X=5$, $X=10$ et pour $X=300$}
+		\caption{Diagramme de Milne pour $X=1$, $X=5$, $X=10$ et pour $X=300$. La sphère isotherme est
+		représenté par la courbe bleu, la courbe de Padmanabhan est en vert et la \textsc{sis} en rouge.}
 		\label{Milne}
 	\end{figure}
