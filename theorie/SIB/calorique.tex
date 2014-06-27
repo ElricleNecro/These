@@ -4,25 +4,26 @@
 	isotherme en boîte considérée. Nous utilisons souvent plutôt un autre moyen de représentation issu de la
 	thermodynamique et appellé courbe calorique. Cette courbe est en fait directement reliée à celle de Milne et
 	consiste à représenter $\mu$ en fonction de $\lambda$ ou de son opposé $-\lambda$ car l'énergie d'un système
-	autogravitant est souvent négative. En pratique nous résolvons le système différentiel $u(v)$ en fixant $X$, on
-	détermine les coordonnées du point extrême $(u_m,v_m)$, puis en utilisant (\ref{uv_max}) nous en déduisons la valeur
+	autogravitant est souvent négative. En pratique nous résolvons le système différentiel $u(v)$ en fixant $X$,
+	nous déterminons les coordonnées du point extrême $(u_m,v_m)$, puis en utilisant (\ref{uv_max}) nous en déduisons la valeur
 	du couple $(\lambda,\mu)$ correspondant au choix de $X$.
 	
 	Contrairement aux variables de Milne qui sont des fonctions de $x$ (et donc de $r$), $\lambda$ et $\mu$ sont des
 	constantes qui sont fixées dès que nous avons choisi $H$, $M$, $R$ et $\beta$. Une sphère isotherme dans une boîte
 	donnée est donc associée à une courbe de Milne dont l'extrémité est fixée par la droite de Padmanabhan ou bien
-	par un point de la courbe calorique. Chaque point de la courbe calorique est donc une sphère isotherme
+	par un point de la courbe calorique. Par contre, chaque point de la courbe calorique correspond à une sphère isotherme
 	particulière et l'ensemble de tous les points de la courbe, qui forme lui aussi une spirale comme nous pouvons le
 	voir sur la figure \ref{Ener}, représente donc une classe de systèmes physiques.
 	
 	\begin{figure}[h!]
-		\centering \includegraphics[scale=1.00]{graphe/Energie_tg.pdf}
-		\caption{Courbe calorique de la sphère isotherme en boîte : $\mu(-\lambda)$}
+		% \centering \includegraphics[scale=1.00]{graphe/Energie_tg.pdf}
+		\centering \includegraphics{calorique.pdf}
+		\caption{Courbe calorique de la sphère isotherme en boîte : $\mu(\lambda)$. La croix verte représente la \textsc{sis}}
 		\label{Ener}
 	\end{figure}
 
 	Dans le diagramme de Milne, la sphère isotherme singulière correspondait au point $\left(1,2\right)$.
-	Dans cette nouvelle représentation elle est associée au point $\left(\lambda = \frac{u_m - 3/2}{v_m} = -1/4, \mu = v_m = 2\right)$.
+	Dans cette nouvelle représentation elle est associée au point $\left(\lambda = \frac{3/2 - u_m}{v_m} = 1/4, \mu = v_m = 2\right)$.
 	De la même manière que sur le diagramme précédent, la courbe tend en spiralant vers la sphère isotherme singulière, mais avant de l'atteindre,
 	elle passe par un minimum de température, puis un maximum d'énergie délimitant ainsi des intervalles possibles d'existence d'une sphère gravitationelle isotherme en boîte.
 
@@ -34,7 +35,7 @@
 		\item l'ensemble micro-canonique: nous imposons la valeur de l'énergie totale de la sphère, et
 			l'équilibre est atteint pour une certaine valeur de la température. C'est par exemple le cas
 			d'une sphère isotherme constituée de particules enfermées dans une boîte aux parois
-			réfléchissantes. La dispersion de vitesse de ces particules, où température cinétique du
+			réfléchissantes. La dispersion de vitesse de ces particules, ou température cinétique du
 			système, s'ajuste pour atteindre l'équilibre du viriel sans dissipation d'énergie.
 		
 		\item l'ensemble canonique: nous imposons la valeur de la température de la sphère, le système rejoint
@@ -45,15 +46,18 @@
 	\end{enumerate}
 
 	Lorsque l'on progresse le long de la courbe calorique vers la partie en spirale, en partant des petites valeurs
-	de $X$ i.e. les grandes valeurs de $-\lambda$, nous passons successivement par les deux points remarquables : le
-	premier est caractérisé par une tangente horizontale et correspond à la valeur minimale que l'on peut imposer à
+	de $X$ i.e. les grandes valeurs de $-\lambda$, nous passons successivement par les deux points remarquables: le
+	premier est caractérisé par une tangente horizontale et correspond à la valeur minimale qu'il est possible d'imposer à
 	la température, le second est caractérisé par une tangente verticale et correspond à la valeur minimale de
 	l'énergie susceptible d'être atteinte par une sphère isotherme de masse donnée et contenue dans une boîte de
 	rayon fixé.
 	
-	Les deux points correspondants et leurs tangentes ont été représentés sur la courbe calorique~(\ref{Ener}).
+	Les deux points correspondants et leurs tangentes ont été représentés sur la courbe calorique figure~\ref{Ener}.
 	
-	De nombreuses analyses dynamiques ont été menées concernant ces limites et ont révélés un lien étroit avec la stabilité du système. Une approche simple de cette problématique est d'étudier le constraste de densité de la sphère et son influence.
+	De nombreuses analyses dynamiques ont été menées concernant ces limites
+	et ont révélées un lien étroit avec la stabilité du système. Une
+	approche simple de cette problématique est d'étudier le constraste de
+	densité de la sphère et son influence.
 	
 \subsection{De l'importance du contraste de densité\label{contraste-dens-SIB}}
 	La densité de la sphère isotherme s'écrit :
@@ -65,7 +69,7 @@
 		\rho^s(x) = e^{-h(x)}=\frac{u(x) v(x)}{x^2}
 	\end{align}
 	Par définition, ou en utilisant les expressions asymptotiques de $u$ et $v$ en $x=0$, nous avons $\rho^s(0)=1$.
-	Au bord du système, nous avons par contre $\rho^s(X) =u_m v_m x^{-2}$, la relation  \ref{uv_max} permet donc d'écrire
+	Au bord du système, nous avons par contre $\rho^s(X) =u_m v_m x^{-2}$, la relation~(\ref{uv_max}) permet donc d'écrire
 	\begin{align*}
 		\rho^s(X) = \mu X^{-2}\left(\frac{3}{2} - \lambda\mu\right) \notag
 	\end{align*}
@@ -76,8 +80,8 @@
 
 	Il est possible de déterminer numériquement les coordonnées des points de tangentes remarquables et donc en déduire les valeurs correspondantes du contraste de densité :
 	\begin{itemize}
-		\item La tangente horizontale est obtenue pour une sphère telle que $X = 9,00$ avec $\(\lambda, \mu\) = \left(-0.199, 2.518\right)$. Son contraste de densité est de $\R^\beta_c \thickapprox 32.1$.
-		\item La tangente verticale est obtenue pour une sphère telle que $X = 34,3$ avec $\(\lambda, \mu\) = \left(-0.335, 2.032\right)$. Son  contraste de densité est de $\R^H_c \thickapprox 709$.
+		\item La tangente horizontale est obtenue pour une sphère telle que $X = 9,00$ avec $\(\lambda, \mu\) = \left(-0,199; 2,518\right)$. Son contraste de densité est de $\R^\beta_c \thickapprox 32,1$.
+		\item La tangente verticale est obtenue pour une sphère telle que $X = 34,3$ avec $\(\lambda, \mu\) = \left(-0,335; 2,032\right)$. Son  contraste de densité est de $\R^H_c \thickapprox 709$.
 	\end{itemize}
 	
 	Il est même possible d'obtenir numériquement les courbes $\lambda(\R)$ et $\mu(\R)$, c'est l'objet de la figure \ref{Cal_stab}. L'analyse de stabilité est alors possible. 
