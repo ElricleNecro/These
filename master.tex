@@ -16,22 +16,26 @@
 \usepackage{gnuplottex}							%Pour appeler GNUPlot dans Latex (compiler avec l'option -shell-escape)
 %\usepackage{listings}							%Pour afficher des fichiers sources
 
+\usepackage[usenames]{xcolor}
 \usepackage{tikz}							%Pour faire des schémas et choses du genre de bonne qualité en Latex directement
+\usetikzlibrary{decorations,decorations.pathreplacing,decorations.pathmorphing,decorations.pathreplacing}
+\usetikzlibrary{shapes}
 \usetikzlibrary{calc}
 \usetikzlibrary{fit,backgrounds}
 \usetikzlibrary{shadows}
 
 \usepackage{placeins}							%Pour forcer la position des images dans une section/sous-section
-%\usepackage{lscape}							%Pour changer l'orientation de ce que l'on écrit
+% \usepackage{lscape}							%Pour changer l'orientation de ce que l'on écrit
+\usepackage{rotating}
 \usepackage{longtable}							%Pour les tableaux sur plusieurs pages
 \usepackage{multirow}							%Pour du multi-ligne dans un tableau
+\usepackage{array}							% ??????
 
 %\usepackage{picins}							%Placer les images dans le texte
 \usepackage{wrapfig}							%Placer les images dans le texte
 
 \usepackage{textcomp}							% ??????
 \usepackage{color}							%Pour mettre de la couleur
-\usepackage{array}							% ??????
 
 \usepackage{lmodern}							%Pour certaine fonte française
 \usepackage[top=2cm, bottom=2cm, left=2cm, right=3cm]{geometry}		%Pour changer la géométrie des pages
@@ -113,6 +117,7 @@
       breaklinks    = true,
       urlcolor      = blue,
       linkcolor     = black,
+      citecolor     = blue,
       bookmarks     = true,
       bookmarksopen = true,
       pdfpagemode   = ,
@@ -173,8 +178,24 @@
 \newcommand{\aj}{Astronomical Journal}
 \newcommand{\nat}{Nature}
 \newcommand{\physrep}{Physics Reports}
-\def\pasj{\ref@jnl{PASJ}}
-\def\na{\ref@jnl{New Ast}}             
+\newcommand{\pasj}{PASJ}
+\newcommand{\na}{New Ast}
+
+\newcommand{\ra}{\ensuremath{r_{10\%}}}
+\newcommand{\rb}{\ensuremath{r_{50\%}}}
+\newcommand{\rc}{\ensuremath{r_{90\%}}}
+\newcommand{\cercle}[2][0.2]{\tikz[scale=#1] \fill[#2] (0, 0) circle (1);}
+\newcommand{\accretionpeu}[1][0.18]{\cercle[#1]{blue}}
+\newcommand{\accretionmoyen}[1][0.18]{\cercle[#1]{color=red!50!blue}}
+\newcommand{\accretionlot}[1][0.18]{\cercle[#1]{red}}
+\newcommand{\contraction}[1][0.18]{\cercle[#1]{color=blue!50!white}}
+\newcommand{\cerclewave}{%
+	\begin{tikzpicture}[scale=0.2]%
+		\draw (0, 0) circle (1);%
+		% \draw[decorate, decoration={coil}] (1, 0) -- (1.5, 0);%
+		\draw[decorate,decoration={expanding waves,angle=7}] (1.5, 0) -- (2.5, 0);%
+	\end{tikzpicture}%
+}
 
 
 %Quelque compteur pour les tables des matiéres et minitoc
