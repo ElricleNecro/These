@@ -91,12 +91,21 @@
 			% particules. La figure~\ref{Fig::KDTree::Repr} montre la structure d'un quad-tree, un
 			% kd-tree à 2 dimension se construisant de la même façon.
 
-			Un tel algorithme a été appliqué en astrophysique pour la première fois par
-			\cite{1986Natur.324..446B}. Il se base sur une représentation en arbre
-			($\mathrm{k}^\mathrm{d}$-Tree) des particules du système de dimension 3, cet arbre est appelé
-			octree ($k=2$, $d=3$). Le principe est de subdiviser un espace cubique en 8 sous cubes, eux-mêmes subdivisés en
-			8 nouveaux sous cubes... Chaque cube est à nouveau divisé s'il contient encore trop de
-			particules.
+			% Un tel algorithme a été appliqué en astrophysique pour la première fois par
+			% \cite{1986Natur.324..446B}. Il se base sur une représentation en arbre
+			% ($\mathrm{k}^\mathrm{d}$-Tree) des particules du système de dimension 3, cet arbre est appelé
+			% octree ($k=2$, $d=3$). Le principe est de subdiviser un espace cubique en 8 sous cubes, eux-mêmes subdivisés en
+			% 8 nouveaux sous cubes... Chaque cube est à nouveau divisé s'il contient encore trop de
+			% particules.
+			Un tel algorithme a été appliqué en astrophysique pour
+			la première fois par \cite{1986Natur.324..446B}. Les
+			particules sont organisées dans un arbre modulable
+			appelé $\mathrm{k}^\mathrm{d}$-Tree. En dimension
+			$d=3$, et avec une division dichotomique ($k=2$), cet
+			arbre est un octree. Le principe est de subdiviser un
+			espace cubique en 8 sous cubes, eux-mêmes subdivisés en
+			8 nouveaux sous cubes... Chaque cube est à nouveau
+			divisé s'il contient encore trop de particules.
 			% Les auteurs arrêtent de diviser un cube
 			% quand il ne contient plus qu'une particule;
 			En pratique nous nous arrêterons lorsqu'un cube contiendra au plus $N_\mathrm{max}=15$ particules.
@@ -175,7 +184,7 @@
 			il est important de l'approcher du mieux possible. %nous souhaitons nous y placer aussi % dans la limite fluide
 			% afin de nous approcher du mieux possible des conditions théoriques, mais
 			Les effets de relaxations à deux corps sont également susceptibles d'intervenir sur le long
-			terme, il nous faut pouvoir les faire intervenir. % dans cette description de nos système.
+			terme, il nous faut pouvoir les prendre en compte. % dans cette description de nos système.
 			Pour cela, nous allons jouer sur
 			le paramètre de lissage de la force $\epsilon$ dans le potentiel
 			effectif suivant:
@@ -190,7 +199,7 @@
 				% \psi(r_{i}) = - G \sum_{j \neq i}^{N}\dfrac{m_i}{|r_{i}-r_j| + \epsilon}
 				\psi(r_{i}) = - G \sum_{j \neq i}^{N}\dfrac{m_i}{r_{ij} + \epsilon}
 			\end{align}
-			où $r_{ij}$ est le module de distance entre les particules $i$ et $j$
+			où $r_{ij}$ est le module de distance entre les particules $i$ et $j$.
 			Afin que la limite fluide soit suffisamment bien décrite, nous devons choisir ce
 			paramètre tel que d'une part la sphère de rayon $\epsilon$ contienne un nombre $N_\epsilon$ suffisant de particules
 			mais que d'autre part $N_\epsilon$ soit suffisamment petit devant le nombre total de particules du système.
@@ -227,7 +236,7 @@
 			ramène à un leap-frog dont nous allons étudier le fonctionnement.
 
 			% Le problème simulé peut s'écrire ainsi:
-			Pour chaque particule de masse $m$ dy système, le problème à résoudre s'écrit:
+			Pour chaque particule de masse $m$ du système, le problème à résoudre s'écrit:
 			\begin{align*}
 				\begin{cases}
 					\dfrac{\vdr}{\dx{t}} = \vec{v} \\
@@ -240,7 +249,7 @@
 				\begin{cases}
 					\dfrac{\vec{r}_\mathrm{new} - \vec{r}_\mathrm{old}}{\Delta t} = \vec{v}_\mathrm{new} \\
 					\\
-					m\dfrac{\vec{v}_\mathrm{new} - \vec{v}_\mathrm{old}}{\Delta t} = \vec{f}(\vec{r}_\mathrm{old}) = \vec{a}m
+					m\dfrac{\vec{v}_\mathrm{new} - \vec{v}_\mathrm{old}}{\Delta t} = \vec{f}(\vec{r}_\mathrm{old}) = m\vec{a}
 				\end{cases}
 			\end{align*}
 			La particularité du schéma est le décalage entre l'évaluation des positions est des vitesses:
@@ -256,13 +265,16 @@
 				\end{cases}
 			\end{align*}
 
-			Le code Gadget-2 opére une gestion fine du pas de temps $\Delta t$ de manière à ce que le calcul
+			Le code Gadget-2 opère une gestion fine du pas de temps $\Delta t$ de manière à ce que le calcul
 			de:
 			\begin{align*}
 				\Delta t = \sqrt{\dfrac{2\eta\epsilon}{|\vec{a}|}}
 			\end{align*}
 			reste dans un intervalle de contrôle.
 			Le paramètre $\eta$ permet de contrôler la précision de l'intégration.
+
+			L'intérêt de ce schéma d'intégration est qu'il assure une excellente gestion de l'énergie du système; ce type d'intégrateur est dit symplectique.
+
 			% Il reste à déterminer comment le pas de temps $\Delta t$ est calculé dans Gadget-2. La première chose à
 			% laquelle faire attention est que chaque particules a son propre pas de temps. Ce pas de temps
 			% va évoluer au cours de la simulation, tout en restant bornée par un pas de temps minimum et un
@@ -344,7 +356,7 @@
 
 			Les particules du modèle de King, de paramètres $W_0$, $\sigma$ et $r_c$ sont générées en
 			utilisant une méthode d'acceptation-rejection que nous allons décrire. À partir de ces 3
-			paramètres, nous pouvons résoudre l'équation de poisson~\ref{King-Pois} donnant le potentiel
+			paramètres, nous pouvons résoudre l'équation de poisson~(\ref{King-Pois}) donnant le potentiel
 			pour le modèle de King. Nous pouvons alors calculer le potentiel central $\psi(0)$ et l'énergie
 			de libération $E_l$.
 			% Ces particules sont telles que $r<R$ et $v<v_\mathrm{max}$, avec $R$ et $v_\mathrm{max}$ défini tels que:
@@ -358,19 +370,21 @@
 			% commencer, nous utilisons les limites du modèle pour restreindre nos tirages à une boîte de
 			% taille \mbox{$\left[ - R; R \right]$} pour les distances et \mbox{$\left[ -v_{\mathrm{max}};
 			% v_{\mathrm{max}}\right]$} pour les vitesses, avec:
-			\begin{itemize}
-				\item $v_{\mathrm{max}}$ la vitesse maximum: %l'énergie totale du système est bornée supérieurement par l'énergie de libération :
+			% \begin{itemize}
+				% \item $v_{\mathrm{max}}$ la vitesse maximum: %l'énergie totale du système est bornée supérieurement par l'énergie de libération :
+			La vitesse maximale $v_{\mathrm{max}}$ est donnée par la relation
 					\begin{align}
 						% E = \dfrac{1}{2} m v_i^2 + m\psi(r) &< E_l \notag \\
 						% E_l - m\psi(r) &> \dfrac{1}{2} m v_i^2 \notag \\
 						% v_\mathrm{max}^2 = 2\(\dfrac{E_l}{m} - \psi(r)\) &> v_i^2 \notag \\
 						v_{\mathrm{max}} = \sqrt{2\(\dfrac{E_l}{m} - \psi(0)\)}% > v_i &> - \sqrt{2\(\dfrac{E_l}{m} - \psi(0)\)} = - v_{\mathrm{max}}
 					\end{align}
-				\item $R$ le rayon de la sphère: ce rayon est obtenue en résolvant numériquement
+				% \item $R$
+					le rayon $R$ de la sphère est obtenu en résolvant numériquement
 				% \item $R$ la distance maximum : cette distance est obtenue pour
 					% $m\psi(R) = E_l$.
-					$\rho(R) = 0$
-			\end{itemize}
+					$\rho(R) = 0$.
+			% \end{itemize}
 			% où $E_l$, l'énergie de libération est déterminé, grâce au théorème de Gauss, par:
 			% \begin{align*}
 				% \dfrac{E_l}{m} = -\dfrac{GM}{R}
@@ -493,14 +507,14 @@
 
 			% Une sphère de Hénon est, comme son nom l'indique, une sphère de densité
 			Nous appelons sphère de Hénon une sphère de densité
-			constante possédant une distribution de vitesse suivant
+			constante $\rho_0$ possédant une distribution de vitesse suivant
 			une loi de Gauss:
 			\begin{align}
 				f_H(r, v) = \rho_0 e^{-v^2/\sigma^2}
 			\end{align}
 			Nous générons donc indépendamment les positions selon une loi uniforme, et les vitesses selon
 			une loi gaussienne. Le choix de la dispersion de vitesse $\sigma$ nous permet de choisir le rapport
-			du Viriel $\gamma = -\dfrac{2E_c}{E_p}$.
+			du Viriel $\gamma = -\dfrac{2E_c}{E_p}$ de la sphère à l'instant initial.
 			% La dernière étape consiste à modifier les vitesses pour mettre le système au
 			% Viriel $\gamma = -\dfrac{2E_c}{E_p}$ voulu.
 
@@ -508,7 +522,7 @@
 
 			Lors de notre étude numérique, nous allons avoir besoin de créer un objet nous permettant de
 			simuler un bain thermique. Pour ceci, nous allons utiliser un cube homogène de côté $R_c$
-			possédant un distribution de vitesse gaussienne de dispersion de vitesse $\sigma_c$.
+			possédant un distribution de vitesse gaussienne de dispersion $\sigma_c$.
 			Nous jouerons sur ces deux paramètres pour tester l'influence du bain.
 
 	\section{Observables des simulations}  %\label{Verif_gene}}
@@ -626,10 +640,11 @@
 			% \end{figure}
 			\begin{figure}[h!]
 				% \centering \includegraphics[scale=0.5]{king_model_verification}
-				\centering \includegraphics[scale=0.3]{verif_densite.pdf}
+				% \centering \includegraphics[scale=0.3]{verif_densite.pdf}
+				\centering \includegraphics{verif_densite_new.pdf}
 				\caption{Comparaison entre la résolution numérique et la densité donnée par le
 				générateur\label{Comp_gene-theo}. La courbe rouge correspond à la densité théorique, la
-				courbe verte à la densité utilisant les intervalles espacés logarithmiquement et la courbe bleu
+				courbe verte à la densité utilisant les intervalles espacés logarithmiquement et la courbe bleue
 				à la méthode décrite ici.}
 			\end{figure}
 
@@ -712,7 +727,8 @@
 
 			\begin{figure}[h!]
 				% \centering \includegraphics{graphe/Potentiel_ci-100000.pdf}
-				\centering \includegraphics[scale=0.4]{verif_potentiel.pdf}
+				% \centering \includegraphics[scale=0.4]{verif_potentiel.pdf}
+				\centering \includegraphics{verif_potentiel_new.pdf}
 				\caption{Comparaison entre le potentiel théorique (courbe rouge) et le potentiel donné par le
 					générateur (courbe bleu)\label{potentiel_5000}.}
 			\end{figure}
@@ -721,7 +737,7 @@
 
 			Nos conditions initiales seront généralement des systèmes sphériques et isotrope en vitesse, mais
 			qu'en est-il de l'état final?
-			Afin de suivre l'évolution de la forme et de l'anisotropie des vitesses de nos système au cours
+			Afin de suivre l'évolution de la forme et de l'anisotropie des vitesses de nos systèmes au cours
 			du temps, nous avons dévellopé deux observables:
 			% Pour savoir si les systèmes sont resté dans ces conditions ou ont
 			% vu leurs forme ou distribution de vitesse changer, nous calculons en plus deux autres quantités:
@@ -772,7 +788,7 @@
 						\end{array}\)
 				% \intertext{L'équation aux valeurs propres va alors s'écrire :}
 				% \left|\mathfrak{I} - \lambda \mathbb{I}\right|  &= \(A - \lambda\)\left[\(B-\lambda\)\( C-\lambda\) - F^2\right] + D \(-D\(C-\lambda\) - F E\) - E \left[ D F + E\(B - \lambda\)\right] \notag
-				\intertext{avec:}
+				\intertext{Toutes les particules ayant la même masse, il suffira de prendre:}
 				\begin{array}{cc}
 					\displaystyle A = \sum_{i= 1}^N y_i^2 + z_i^2  &
 					\displaystyle D = \sum_{i= 1}^N x_iy_i  \\
@@ -797,16 +813,20 @@
 		\subsection{Température}
 
 			La dernière observable que nous souhaitons obtenir est la température. La température que nous
-			calculons est la version discréte de celle donnée dans le chapitre~\ref{King::Chapitre}:
+			calculons est la version discrète de celle donnée dans le chapitre~\ref{King::Chapitre}:
 			\begin{align}
-				T(r) &= \dfrac{\displaystyle\int_{-\infty}^{\infty}v^2 f(\vec{x}, \vec{p})\vdp}{\displaystyle\int_{-\infty}^\infty\vdr\int_{-\infty}^{\infty}f(\vec{x}, \vec{p})\vdp} \\
-				     &= \dfrac{\displaystyle\int_{-\infty}^{\infty}4\pi v^4 f(\vec{x}, \vec{p})\dx{v}}{\displaystyle\int_{-\infty}^\infty\vdr\rho(r)} \\
-				T(r) &\simeq \dfrac{\displaystyle\sum_i 4\pi v_i^4 f(r, v_i)}{\displaystyle\int_{-\infty}^\infty\vdr\sum_i 4\pi v_i^2 f(r, v_i)} \\
-				     &= \dfrac{\displaystyle\sum_i v_i^2 \rho(r)}{\displaystyle\sum_i 4\pi r_i^2 \rho(r_i)dr}
+				T(r) &= \dfrac{\displaystyle\int_{-\infty}^{\infty}v^2 f(\vec{x}, \vec{p})\vdp}{\displaystyle\int_{-\infty}^{\infty}f(\vec{x}, \vec{p})\vdp} \\
+				     &= \dfrac{1}{N-1}\sum_{i=0}^N (v_i - <v>)^2
+				     % &= \dfrac{\displaystyle\int_{-\infty}^{\infty}4\pi v^4 f(\vec{x}, \vec{p})\dx{v}}{\rho(r)} \\
+				% T(r) &\simeq \dfrac{\displaystyle\sum_i 4\pi v_i^4 f(r, v_i)}{\displaystyle\sum_i 4\pi v_i^2 f(r, v_i)} \\
+				     % &= \dfrac{\displaystyle\sum_i v_i^2 \rho(r)}{\rho(r_i)}
 			\end{align}
+			où $<v>$ est la vitesse moyenne.
 			Cette observable va nous permettre de savoir si les sphères sont chauffées ou refroidies par leurs
 			interactions avec un bain thermique, et à quelle rythme.
 
-	%\section{Résultat des simulations}
-		%\input{simulation/res_simu.tex}
+			\begin{figure}[h]
+				\centering \includegraphics{verif_dispersion.pdf}
+				\caption{toto}
+			\end{figure}
 
