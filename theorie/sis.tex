@@ -1,23 +1,23 @@
 \section{La sphère isotherme et son problème intrinsèque}
 	La sphère isotherme est la solution classique fournie par une approche thermodynamique du problème de l'équilibre d'un système autogravitant.
 	Elle apparait lorsque nous cherchons un maximum de l'entropie statistique de Boltzmann $S(f) = -k_B \int f\ln(f) d\vec{r}d\vec{p}$, où $k_B$ est la constante de Boltzmann.
-	En imposant les contraintes d'une masse fixée 
+	En imposant les contraintes d'une masse fixée:
 	\begin{align}
 		M = \int \rho(\vec{r},t) d\vec{r}
 	\end{align}
-	et une énergie totale fixée
+	et une énergie totale fixée:
 	\begin{align}
 		H = \int \frac{\vec{p}\,^2}{2m} f d\vec{r}d\vec{p}-\frac{Gm^2}{2}\int \int 
 		\frac{f(\vec{r},\vec{p})f(\vec{r}\,^{\prime},\vec{p}\,^{\prime})}
 		      {\left|\vec{r}-\vec{r}\,^{\prime}\right|}
 		d^3\vec{r}\,^{\prime}d^3\vec{p}\,^{\prime}
 	\end{align}
-	pour le système sa fonction de distribution s'écrit :
+	Pour le système sa fonction de distribution s'écrit :
 	\begin{align}
 		f(\vec{r},\vec{p})=f(E) = \(\frac{2\pi \alpha^2 m}{\beta}\)^{-3/2} e^{-\beta E}
 		\label{sph-iso}
 	\end{align}
-	La fonction $E=\frac{\vec{p}\,^2}{2m}+m\psi(\vec{r})$ caractérise l'énergie de la particule test.
+	La fonction $E=\frac{\vec{p}\,^2}{2m}+m\psi(\vec{r})$ caractérise l'énergie d'une particule test.
 	Les constantes $\beta = \frac{1}{k_B T}$ et $\alpha$ sont des multiplicateurs de \textsc{Lagrange} associés aux contraintes imposées lors de la recherche de l'extremum de l'entropie :
 	$\beta \Leftrightarrow H = \mathrm{cte}$ et $\alpha \Leftrightarrow M = \mathrm{cte}$.
 
@@ -41,7 +41,7 @@
 		\frac{1}{r^2}\frac{d}{dr}\(r^2\frac{d\psi(r)}{dr}\) &= 4\pi G \rho(r) = 4\pi G \frac{m}{\alpha^3} e^{-m\beta\psi(r)} \notag \\
 		\intertext{En introduisant les variables $y = m\beta\psi$ et $x = r/r_0$, nous obtenons :}
 		\frac{1}{x^2}\frac{d}{dx}\(x^2\frac{d y}{dx}\) &=  \frac{4\pi G m r_0^2}{\alpha^3} e^{-y} \notag \\
-		\intertext{on peut alors choisir $r_0^2 = \frac{\alpha^3}{4\pi G m r_0^2}$ afin d'adimensionner l'équation de Poisson sous la forme}
+		\intertext{Nous pouvons alors choisir $r_0^2 = \frac{\alpha^3}{4\pi G m r_0^2}$ afin d'adimensionner l'équation de Poisson sous la forme}
 		\frac{1}{x^2}\frac{d}{dx}\(x^2\frac{d y}{dx}\) &= e^{-y} \label{Pois:sis}
 	\end{align}
 	
@@ -50,12 +50,13 @@
 		\Tilde{\rho}(r) &= \frac{A}{r^2} = e^{-\Tilde{y}} \quad
 		\Rightarrow \quad \Tilde{y} = - \ln\(\frac{A}{x^2}\)
 	\end{align}
-	Il est facile de vérifier que de telles solutions n'existent que si $A = 2$, nous avons donc 
-	\begin{align}
-		\Tilde{\rho}(r) &= \frac{m}{\alpha^3} e^{\ln\(\frac{2}{x^2}\)} = \frac{2 m r_0^2}{\alpha^3 r^2}
-		\intertext{La masse $M(r)$ contenue dans la sphère de rayon $r$ incluse dans ce système s'écrit}
-		\Tilde{M}(r)    &= \int_0^{\infty} \Tilde{\rho}(r) d^3 r = \frac{4\pi m r_0^2}{\alpha^3} \int_0^{r} r^2\frac{1}{r^2} dr = \frac{4\pi m r_0^2}{\alpha^3} r
-	\end{align}
+	Il est facile de vérifier que de telles solutions n'existent que si $A = 2$.
+	% , nous avons donc 
+	% \begin{align}
+		% \Tilde{\rho}(r) &= \frac{m}{\alpha^3} e^{\ln\(\frac{2}{x^2}\)} = \frac{2 m r_0^2}{\alpha^3 r^2}
+		% \intertext{La masse $M(r)$ contenue dans la sphère de rayon $r$ incluse dans ce système s'écrit}
+		% \Tilde{M}(r)    &= \int_0^{\infty} \Tilde{\rho}(r) d^3 r = \frac{4\pi m r_0^2}{\alpha^3} \int_0^{r} r^2\frac{1}{r^2} dr = \frac{4\pi m r_0^2}{\alpha^3} r
+	% \end{align}
 
 	Les propriétés physiques de cette solution autosimilaire sont singulières :
 	\begin{itemize}
@@ -139,7 +140,7 @@ et donc le point $\mathbf{z}_0$ est un minimum global de $\mathcal{E}$;
 \end{align*}
 
 \end{itemize}
-Les trois propriétés énumérées ci-dessus font de la fonction $\mathcal{E}$ une fonction de Ljapounov\index{Fonction! de Ljapounov}\index{Ljapounov, fonction de} stricte du système, l'équilibre $\mathbf{z}_0$ est donc globalement asymptotiquement stable. 
+Les trois propriétés énumérées ci-dessus font de la fonction $\mathcal{E}$ une fonction de Lyapounov\index{Fonction! de Ljapounov}\index{Ljapounov, fonction de} stricte du système, l'équilibre $\mathbf{z}_0$ est donc globalement asymptotiquement stable. 
 
 Le comportement asymptotique $\left(t\rightarrow+\infty\right)$ de la
 solution $\zeta(t)$ s'obtient en consid\'{e}rant une combinaison lin\'{e}aire
