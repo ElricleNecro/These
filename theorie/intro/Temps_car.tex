@@ -1,0 +1,231 @@
+% \chapter{Temps caract\'{e}ristiques}
+
+Les syst\`{e}mes autogravitants poss\`{e}dent plusieurs temps
+caract\'{e}ristiques dont la connaissance est fondamentale pour comprendre la dynamique.
+
+\section{Le temps de croisement et le temps dynamique}
+
+Le
+temps de croisement $T_{cr\ }$d'un syst\`{e}me physique est d\'{e}fini comme
+le rapport d'une vitesse caract\'{e}ristique par une taille
+caract\'{e}ristique. La vitesse $V\ $est par exemple celle d'un constituant
+repr\'{e}sentatif du syst\`{e}me, ou mieux une dispersion de vitesse
+$\sigma=\sqrt{\left\langle V^{2}\right\rangle }$%
+\[
+T_{cr}\propto\frac{R}{\sigma}%
+\]
+Pour un syst\`{e}me autogravitant isol\'{e} \`{a} l'\'{e}quilibre, le
+th\'{e}or\`{e}me du viriel indique que
+\[
+2E_{c}+E_{p}=0
+\]
+Pour un syst\`{e}me de taille caract\'{e}ristique $R$ compos\'{e} de $N$
+particules de masse $m$ et dont la dispersion de vitesse est $\sigma$ on peut
+raisonnablement \'{e}crire%
+\[
+E_{c}=\frac{1}{2}Nm\sigma^{2}\ \ \ \text{et\ \ \ }E_{p}=-\frac{G\left(
+Nm\right)  ^{2}}{R}%
+\]
+le viriel donne donc%
+\[
+\sigma=\left(  \frac{GNm}{R}\right)  ^{1/2}=\left(  \frac{GM}{R}\right)
+^{1/2}%
+\]
+En transportant ce r\'{e}sultat d'\'{e}quilibre dans le temps de croisement,
+on obtient le temps dynamique%
+\[
+T_{dyn}\propto\sqrt{\frac{R^{3}}{GM}}%
+\]
+le rapport $R^{3}/M$ est proportionnel \`{a} l'inverse de la densit\'{e}
+moyenne de masse $\overline{\rho}\ $du syst\`{e}me, on a donc%
+\[
+T_{dyn}\propto\left(  G\overline{\rho}\right)  ^{-1/2}\propto T_{cr}%
+\label{def:T-dyn_tcr}%
+\]
+On peut faire les choses plus pr\'{e}cis\'{e}ment mais il faut se donner un
+potentiel ou une r\'{e}partition de masse (c'est la m\^{e}me chose \`{a} un
+Poisson pr\`{e}s...).\ On peut alors \'{e}crire l'\'{e}quation du mouvement
+d'une particule test \`{a} l'int\'{e}rieur du syst\`{e}me. Plusieurs temps
+caract\'{e}ristiques apparaissent alors :
+
+\begin{itemize}
+\item le temps de chute libre est celui pris par une particule pour rejoindre
+le centre depuis le bord du syst\`{e}me;
+
+\item le temps orbital est celui mis par une particule pour effectuer une
+p\'{e}riode de son mouvement radial.
+\end{itemize}
+
+Tous ces temps sont de l'ordre de grandeur de $T_{dyn}$.
+
+\section{Le temps de relaxation \`{a} deux corps }
+
+Consid\'{e}rons un syst\`{e}me constitu\'{e} de $N$ particules ponctuelles de
+masse $m$ avec $N\gg1$. \`{A} l'\'{e}quilibre, et sur de petites \'{e}chelles
+de temps (de l'ordre de $T_{dyn})$, il semble louable de consid\'{e}rer que
+l'une de ces particules soit en orbite dans le champ moyen cr\'{e}\'{e} par
+toutes les autres. Sur de plus longues \'{e}chelles de temps, le passage
+proche d'une voisine va in\'{e}luctablement affecter la trajectoire et
+modifier la vitesse de cette particule test.\ On d\'{e}finit donc le temps de
+relaxation \`{a} 2 corps comme
+\begin{equation}
+T_{rel}\propto\left[  \overline{\frac{1}{v^{2}}\left(  \frac{dv^{2}}%
+{dt}\right)  }\right]  ^{-1}\;\;. \label{TREL}%
+\end{equation}
+Il s'interpr\`{e}te classiquement comme le temps mis par les interactions
+\`{a} 2 corps\footnote{Ce sont les seules interactions qui peuvent modifier
+quelque chose dans ce genre de syst\`{e}me purement gravitationnel.\ Les
+interactions \`{a} plus de 2 corps sont n\'{e}gligeables.} pour modifier
+significativement $v^{2}$. Le calcul de ce temps ainsi que des d\'{e}finitions
+plus pr\'{e}cises abondent dans la litt\'{e}rature (voir par exemple le
+chapitre 14 de\ \cite{HH}), nous privil\'{e}gions ici l'extraction d'un ordre
+de grandeur bas\'{e} sur un raisonnement du ma\^{\i}tre Chandrasekhar.
+
+Tous les corps ont la m\^{e}me masse $m$.\ Lors d'un passage \`{a} une
+distance $p$ d'un voisin, une particule test de vitesse $v$ ressent une force
+de module
+\[
+F=\frac{Gm^{2}}{p^{2}}%
+\]
+pendant un temps caract\'{e}ristique
+\[
+\delta\tau=\frac{p}{v}\;.
+\]
+La variation de vitesse $\delta v$ de la particule test induite par cette
+rencontre peut s'obtenir en tentant un principe fondamental de la dynamique%
+\begin{equation}
+m\frac{\delta v}{\delta\tau}=F\ \ \ \ \Rightarrow\ \delta v=\frac{F\delta\tau
+}{m}=\frac{Gm}{pv} \label{deltavrel}%
+\end{equation}
+Le param\`{e}tre $p$ est souvent appel\'{e} param\`{e}tre d'impact de la
+rencontre qui prend alors le statut de collision.\ Supposons que la particule
+test soit en orbite circulaire de rayon $r$ dans le syst\`{e}me de densit\'{e}
+$\rho$.\ Il est facile de se convaincre que sur une p\'{e}riode, le nombre de
+collisions avec un param\`{e}tre d'impact compris entre $p$ et $p+dp$
+s'\'{e}crit%
+\begin{align}
+dn  &  =\left(  2\pi pdp\right)  \times\left(  2\pi r\right)  \times\left(
+\frac{\rho\left(  r\right)  }{m}\right) \label{dnrel}\\
+&  =\frac{4\pi^{2}}{m}pr\rho\left(  r\right)  dp
+\end{align}
+Les collisions sont suffisamment al\'{e}atoires pour que la moyenne des
+variations de vitesse $\overline{\delta v}$ soit nulle.\ Pour obtenir l'action
+des collisions sur la vitesse, il faut donc consid\'{e}rer une dispersion de
+vitesse. \ Sur une p\'{e}riode, la variation $\left(  \Delta v^{2}\right)
+_{orb}$ de $\delta v^{2}$ s'obtient en combinant $\left(  \ref{deltavrel}%
+\right)  $ et $\left(  \ref{dnrel}\right)  $ et en sommant sur toutes les
+valeurs possibles de $p$, soit%
+\[
+\left(  \Delta v^{2}\right)  _{orb}=\int_{p_{\min}}^{p_{\max}}\delta
+v^{2}dn=\frac{4\pi^{2}G^{2}mr\rho\left(  r\right)  }{v^{2}}\int_{p_{\min}%
+}^{p_{\max}}\frac{dp}{p}%
+\]
+Si l'on veut \'{e}viter les infinis, il est n\'{e}cessaire \`{a} ce stade
+d'introduire une coupure haute et basse pour les valeurs de $p$, un long
+d\'{e}bat num\'{e}rico-physico-psychologique se produit g\'{e}n\'{e}ralement
+autour de ces valeurs. Avec nos ordres de grandeurs, nous introduisons%
+\[
+\ln\Lambda=\ln\left(  \frac{p_{\max}}{p_{\min}}\right)
+\]
+et pr\^{o}nerons le fait que $p_{\max}=r$ alors que $p_{\min}$ peut
+correspondre au rayon d'une particule test que nous estimons par la relation
+crue%
+\[
+p_{\min}=\left(  \frac{\frac{4}{3}\pi r^{3}}{N}\right)  ^{1/3}=\left(
+\frac{4\pi}{3N}\right)  ^{1/3}r
+\]
+ainsi%
+\begin{align*}
+\ln\Lambda &  =-\frac{1}{3}\ln\left(  \frac{4\pi}{3N}\right)  =-\frac{1}%
+{3}\left[  \ln\left(  \frac{4\pi}{3}\right)  -\ln\left(  N\right)  \right] \\
+&  \approx\frac{1}{3}\ln N
+\end{align*}
+Finalement et sur une p\'{e}riode, nous sommes convaincus d'obtenir%
+\[
+\left(  \Delta v^{2}\right)  _{orb}=\frac{4\pi^{2}}{3}\frac{G^{2}mr\rho\left(
+r\right)  }{v^{2}}\ln N
+\]
+Toujours sur une p\'{e}riode nous avons vu au paragraphe pr\'{e}c\'{e}dent
+que
+\[
+\left(  \Delta t\right)  _{orb}\approx T_{dyn}%
+\]
+il n'en faut pas plus pour \'{e}crire%
+\[
+\frac{1}{v^{2}}\left(  \frac{dv^{2}}{dt}\right)  _{orb}\approx\frac{4\pi^{2}%
+}{3}\frac{G^{2}mr\rho\left(  r\right)  }{v^{4}}\frac{\ln N}{T_{dyn}}%
+\]
+La moyenne permettant de calculer le temps de relaxation \`{a} 2 corps peut
+s'envisager sur une p\'{e}riode, l'expression $\left(  \ref{TREL}\right)  $
+s'\'{e}crit donc%
+\[
+\frac{T_{rel}}{T_{dyn}}\approx\frac{3}{4\pi^{2}}\frac{v^{4}}{G^{2}%
+mr\rho\left(  r\right)  }\frac{1}{\ln N}%
+\]
+le th\'{e}or\`{e}me du viriel, car nous sommes \`{a} l'\'{e}quilibre, nous
+offre%
+\[
+v^{4}=\left(  \frac{GNm}{r}\right)  ^{2}%
+\]
+ainsi%
+\[
+\frac{T_{rel}}{T_{dyn}}\approx\frac{3}{4\pi^{2}}\frac{m}{r^{3}\rho\left(
+r\right)  }\frac{N^{2}}{\ln N}\;\;.
+\]
+Au point o\`{u} nous en sommes on peut toujours tenter
+\[
+\rho\left(  r\right)  =\frac{Nm}{\frac{4}{3}\pi r^{3}}%
+\]
+et l'on obtient finalement%
+\[
+\frac{T_{rel}}{T_{dyn}}\approx\frac{9}{16\pi^{3}}\frac{N}{\ln N}%
+\]
+Dans un amas d'\'{e}toile ou une galaxie, le
+temps de relaxation \`{a} deux corps est donc g\'{e}n\'{e}ralement beaucoup
+plus grand que le temps dynamique. Un tableau r\'{e}sume bien l'affaire
+
+\begin{center}
+\bigskip%
+\begin{tabular}
+[c]{l|c|c|c|c|c|}\cline{2-6}
+& $N$ & $R\left[  \text{kpc}\right]  $ & $\sigma\left[  \text{km.s}%
+^{-1}\right]  $ & $T_{dyn}\left[  \text{Gan}\right]  $ & $T_{rel}\left[
+\text{Gan}\right]  $\\\hline
+{\small {Amas ouverts}} & $250$ & $1\times10^{-3}$ & $1$ & $1\times10^{-3}$ &
+$8\times10^{-4}$\\\hline
+{\small {Amas globulaires}} & $5\times10^{5}$ & $1\times10^{-2}$ & $7$ &
+$1\times10^{-3}$ & $1$\\\hline
+{\small {Galaxies elliptiques}} & $10^{11}$ & $5$ & $200$ & $2\times10^{-2}$ &
+$2\times10^{6}$\\\hline
+{\small {Groupes diffus de galaxies}} & $5$ & $400$ & $100$ & $4$ &
+$2\times10^{-1}$\\\hline
+{\small {Groupes compacts de galaxies}} & $4$ & $40$ & $200$ & $2\times
+10^{-1}$ & $1\times10^{-2}$\\\hline
+{\small {Amas riches de galaxies}} & $400$ & $1200$ & $700$ & $2$ &
+$2$\\\hline
+\end{tabular}
+
+\end{center}
+
+Avec un univers \^{a}g\'{e} de $1,3\times10^{1}$\ Gan, les galaxies sont loin
+d'avoir acquis le statut d'objet relax\'{e} par les collisions,
+l'hypoth\`{e}se Vlasov est donc enti\`{e}rement justifi\'{e}e. En ce qui
+concerne les autres objets autogravitants, il est clair que les amas ouverts
+relaxent tr\`{e}s vite alors que le statut des amas globulaires est plus
+discutable : l'importance des collisions dans leur dynamique est
+diff\'{e}rente entre les r\'{e}gions centrales denses et le halo externe plus diffus.
+
+Le calcul grossier du temps de relaxation \`{a} deux corps que nous avons
+pr\'{e}sent\'{e} ici est sous-estim\'{e} en ce qui concerne les groupes et
+amas de galaxies, pour lesquels l'effet de la mati\`{e}re noire doit \^{e}tre
+pris en compte.
+
+Un ph\'{e}nom\`{e}ne de s\'{e}gr\'{e}gation de masse est associ\'{e} au
+processus de collision. Une fois encore notre calcul ne le prend pas en
+compte. Une rencontre entre deux \'{e}toiles de masses diff\'{e}rentes ne
+produit pas la m\^{e}me variation de vitesse.\ L'effet net de cette
+s\'{e}gr\'{e}gation est de ralentir les \'{e}toiles les plus lourdes et donc
+de les faire tomber dans le puits de potentiel form\'{e} par le syst\`{e}me.
+Sur l'\'{e}chelle de temps de la relaxation, on devrait observer une
+organisation des objets dans le syst\`{e}me : les plus lourds au centre, les
+plus l\'{e}gers \`{a} l'ext\'{e}rieur.
