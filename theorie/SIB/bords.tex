@@ -10,7 +10,7 @@
 	\begin{align}
 		v &= x\x{h} = 2ax^2 + 3bx^3 + o(x^3)\label{vDL} \\
 		u &= \frac{x^2e^{-ax^2 - bx^3 + o(x^3)}}{2ax^2 + 3bx^3 + o(x^3)} \\
-		  &= \frac{1 - ax^2 - bx^3 + o(x^3)}{2a + 3bx +o(x)} \\
+		  % &= \frac{1 - ax^2 - bx^3 + o(x^3)}{2a + 3bx +o(x)} \\
 		  &= \frac{1}{2a} - \frac{3b}{4a^2}x + o(x)\label{uDL}
 	\end{align}
 	Nous utilisons ensuite l'équation de Poisson pour déterminer, par identification, les valeurs de $a$ et de $b$ :
@@ -23,9 +23,11 @@
 \subsubsection{Sur le bord de la sphère : $r = R$}
 	Commençons par introduire quelques constantes sans dimensions dimensionnées fort utiles 
 	\begin{align}
+		\begin{array}{rll}
 		X &= \frac{R}{r_0}\;   &\textrm{, la valeur de }x\textrm{ en }r=R \\
 		\lambda &= - \frac{H R}{G M^2}\;   &\textrm{, l'opposé de l'énergie totale adimensionnée contenue dans la sphère}\\
 		\mu &= \frac{m\beta GM}{R}\;    &\textrm{, l'inverse de la température adimensionnée de la sphère}
+		\end{array} \notag
 	\end{align}
 	
 	Une intégration de l'équation de Poisson sur la boule supportant le système donne $\left.\frac{d \psi}{dr}
@@ -56,8 +58,8 @@
 	Il est remarquable de noter par ailleurs qu'une sphère isotherme est un système barotropique : son équation d'état s'écrit $P=\frac{1}{m\beta}\rho$. Par continuité de la pression nous avons donc $P_e = \frac{\rho(R)}{m\beta}$. Cette relation combinée avec les diverses définitions introduites plus haut permettent d'obtenir successivement  :
 	\begin{align}
 		\lambda &= \frac{3}{2}\frac{1}{X\x{h}(X)} - 4\pi R^3 \frac{\rho(R)}{m\beta} \frac{R}{GM^2} \notag \\
-			&= \frac{3}{2}\frac{1}{X\x{h}(X)} - 4\pi \frac{e^{-h(R) - m\beta\psi(0)}}{\alpha^3\beta} \frac{R^4}{GM^2} \notag \\
-			&= \frac{3}{2}\frac{1}{X\x{h}(X)} - 4\pi  \frac{4\pi G \beta m^2 e^{-\beta m \psi(0)}}{\alpha^3} r_0^2\frac{e^{-h(X)}}{(\x{h}(X))^2} \notag \\
+			% &= \frac{3}{2}\frac{1}{X\x{h}(X)} - 4\pi \frac{e^{-h(R) - m\beta\psi(0)}}{\alpha^3\beta} \frac{R^4}{GM^2} \notag \\
+			% &= \frac{3}{2}\frac{1}{X\x{h}(X)} - 4\pi  \frac{4\pi G \beta m^2 e^{-\beta m \psi(0)}}{\alpha^3} r_0^2\frac{e^{-h(X)}}{(\x{h}(X))^2} \notag \\
 			&= \frac{3}{2}\frac{1}{X\x{h}(X)} - \frac{e^{-h(X)}}{(\x{h}(X))^2}\label{lamum}
 	\end{align}
 
