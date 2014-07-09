@@ -73,7 +73,7 @@
 	Cette solution forme ce que l'on appelle une sphère isotherme singulière (\textsc{sis}), elle ne peut en aucun cas
 	correspondre à la solution thermodynamique recherchée qui doit posséder une masse finie.
 
-	\'{E}tudions à présent l'existence de solutions plus générales pouvant avoir une densité et une masse qui ne
+	étudions à présent l'existence de solutions plus générales pouvant avoir une densité et une masse qui ne
 	diverge pas. Nous pratiquons pour cela un changement de fonction, en introduisant  $\zeta = y - \Tilde{y}$, la
 	différence entre la solution générale $y$ du problème et la \textsc{sis}. Il vient successivement
 	\begin{align}
@@ -82,14 +82,14 @@
 								  &= \(e^{-\zeta} - 1\)\frac{2}{x^2}
 			\end{align}
 et en utilisant l'inconnue%
-\[
+\begin{align*}
 t=\ln\left(  x\right)
-\]
+\end{align*}
 il vient%
-\begin{equation}
+\begin{align}
 \frac{d^{2}\zeta}{dt^{2}}+\frac{d\zeta}{dt}=2\left(  e^{-\zeta}-1\right)
 \label{eq_diff_iso}%
-\end{equation}
+\end{align}
 Le problème consiste donc à étudier les propriétés générales de cette équation.
 
 \section{Propriétés de la solution générale et conséquences}
@@ -100,11 +100,11 @@ Dans la littérature, le seul cas traité explicitement est celui de la linéari
 % concernent son linéarisé au voisinage de l'origine (voir \cite{chandra39} qui demeure la référence absolue).
 Nous proposons ici une étude plus générale dans la totalité du plan de phase. Posons $\mathbf{z}=\left[
 \zeta,\dot{\zeta}=\frac{d\zeta}{dt}\right]^{\top}$, nous avons:
-\begin{equation}
+\begin{align}
 \frac{d\mathbf{z}}{dt} =F\left(  \mathbf{z}\right)  =
 \left[\dot{\zeta},2\left(  e^{-\zeta}-1\right)-\dot{\zeta}\right]^{\top} \label{sysdif}%
-\end{equation}
-Le seul point d'\'{e}quilibre est l'origine $\mathbf{z}_0=\left[  0,0\right]
+\end{align}
+Le seul point d'équilibre est l'origine $\mathbf{z}_0=\left[  0,0\right]
 ^{\top}$. Considérons à présent  
 \begin{align*}
 \mathcal{E}(\zeta,\dot{\zeta}) = \frac{1}{2}\dot{\zeta}^2+2(e^{-\zeta}-\zeta-1)
@@ -143,7 +143,7 @@ et donc le point $\mathbf{z}_0$ est un minimum global de $\mathcal{E}$;
 Les trois propriétés énumérées ci-dessus font de la fonction $\mathcal{E}$ une fonction de Lyapounov\index{Fonction! de Ljapounov}\index{Ljapounov, fonction de} stricte du système, l'équilibre $\mathbf{z}_0$ est donc globalement asymptotiquement stable. 
 
 Le comportement asymptotique $\left(t\rightarrow+\infty\right)$ de la
-solution $\zeta(t)$ s'obtient en consid\'{e}rant une combinaison lin\'{e}aire
+solution $\zeta(t)$ s'obtient en considérant une combinaison linéaire
 des exponentielles des valeurs propres de la matrice
 \begin{align*}
 	A:=D\left[F(\mathbf{z})\right](\mathbf{z}_0)=\left[
@@ -156,53 +156,58 @@ des exponentielles des valeurs propres de la matrice
 \end{align*}
 soit $\left(  -1\pm i\sqrt
 {7}\right)  /2$, ainsi lorsque $x\rightarrow+\infty$ on a
-\[
+\begin{align*}
 \zeta\left(  x\right)
 \sim\frac{k_{1}\cos\left[  \ln\left(  x^{\sqrt{7}/2}\right)  \right]
 +k_{2}\sin\left[  \ln\left(  x^{\sqrt{7}/2}\right)  \right]  }{\sqrt{x}%
 }\ \ \ \text{avec }k_{1},k_{2}\in\mathbb{R}%
-\]
-En majorant les fonctions trigonom\'{e}triques, on a donc $\zeta\left(
+\end{align*}
+En majorant les fonctions trigonométriques, on a donc $\zeta\left(
 x\right)  \sim k/x^{1/2}$ en $x\rightarrow+\infty$, soit $y\left(  x\right)
-\sim k/x^{-1/2}-\ln\left(  2/x^{2}\right)  $ soit pour la densit\'{e} en
+\sim k/x^{-1/2}-\ln\left(  2/x^{2}\right)  $ soit pour la densité en
 variable $r$%
-\begin{equation}
+\begin{align}
 \rho\left(  r\right)  \sim\frac{2mr_{o}^{2}}{\alpha^{3}r^{2}}\left(
 1\pm\left(  \frac{r_{k}}{r}\right)  ^{1/2}\right)  \ \ \ \text{quand
 }r\rightarrow+\infty\text{.}\label{asymp_sph_iso}%
-\end{equation}
-% La longueur $r_{k}$ se calcule en \'{e}crivant proprement la majoration, en
+\end{align}
+% La longueur $r_{k}$ se calcule en écrivant proprement la majoration, en
 % revenant aux variables physiques et en calculant le laplacien, elle n'a que
-% peu d'int\'{e}r\^{e}t. Le signe $\pm$ provient de l'encadrement des fonctions
-% trigonom\'{e}triques. Ce qu'il faut remarquer dans cette
-% relation, c'est que la masse d'une sph\`{e}re isotherme est \emph{toujours} infinie si
+% peu d'intér\^{e}t. Le signe $\pm$ provient de l'encadrement des fonctions
+% trigonométriques. Ce qu'il faut remarquer dans cette
+% relation, c'est que la masse d'une sphère isotherme est \emph{toujours} infinie si
 % celle-ci est d'extension infinie $\left(  r\rightarrow+\infty\right)$.
-La longueur $r_{k}$ se calcule en \'{e}crivant proprement la majoration, en
+La longueur $r_{k}$ se calcule en écrivant proprement la majoration, en
 revenant aux variables physiques et en calculant le laplacien. Le signe $\pm$ provient de l'encadrement des fonctions
-trigonom\'{e}triques. Ce qu'il faut remarquer dans cette
-relation, c'est que la masse d'une sph\`{e}re isotherme est \emph{toujours} infinie si
+trigonométriques. Ce qu'il faut remarquer dans cette
+relation, c'est que la masse d'une sphère isotherme est \emph{toujours} infinie si
 celle-ci est d'extension infinie $\left(  r\rightarrow+\infty\right)$.
 
-La fonction de distribution (\ref{sph-iso}) de la sph\`{e}re isotherme n'est donc pas acceptable car elle est en contradiction avec les hypothèses posées pour l'obtenir.
+La fonction de distribution (\ref{sph-iso}) de la sphère isotherme n'est donc pas acceptable car elle est en contradiction avec les hypothèses posées pour l'obtenir.
 
- Le probl\`{e}me de l'\'{e}quilibre thermodynamique d'un syst\`{e}me autogravitant est donc pos\'{e} !
+Le problème de l'équilibre thermodynamique d'un système autogravitant est donc posé !
 
-	Pour palier à ce problème, plusieurs approches ont été développées au fil des ans :
-	
-	\begin{enumerate}
-		\item Une approche \og rigoureuse \fg~ consiste à chercher le maximum de l'entropie dans un ensemble de fonctions de distribution à support compact :
-			% l'extension spatiale du système est alors finie. Ce problème est communément appelé sphère isotherme en boîte (~SIB~). Il sera étudié en détail dans le chapitre \label{SIB::Chapitre}.
-			l'extension spatiale du système est alors finie. Ce problème est communément appelé sphère
-			isotherme en boîte (\textsc{sib}). Il sera étudié en détail dans le chapitre \ref{SIB::Chapitre}.
-			
-		\item Une solution \og pragmatique \fg~: développée par \cite{King-1966AJ} consiste à tronquer à la main
-			et après coup la sphère isotherme. Au-dessus d'une certaine énergie, la fonction de
-			distribution est nulle. Bien que empirique cette solution est devenue un modèle de choix pour
-			l'ajustement du profil de densité de nombreux amas globulaires et de galaxies naines. Ses trois
-			paramètres libres rendent en effet son utilisation adaptée à la modélisation de tels objets.
-			Nous y consacrerons le chapitre~\ref{King::Chapitre}.
+Pour palier à ce problème, plusieurs approches ont été développées au fil des ans :
+
+\begin{enumerate}
+	\item Une approche \og rigoureuse \fg consiste à chercher le maximum de l'entropie dans un ensemble de fonctions de distribution à support compact :
+		% l'extension spatiale du système est alors finie. Ce problème est communément appelé sphère isotherme en boîte (~SIB~). Il sera étudié en détail dans le chapitre \label{SIB::Chapitre}.
+		l'extension spatiale du système est alors finie. Ce problème est communément appelé sphère
+		isotherme en boîte (\textsc{sib}). Il sera étudié en détail dans le chapitre \ref{SIB::Chapitre}.
 		
-		\item Plus récemment une prise en compte fine des spécificités des modèles gravitationnels semble avoir
-			fait progresser les choses : il s'agit du paradigme Darkexp (voir~\citet{2010ApJ...722..851H}).
+	\item Une solution \og pragmatique \fg: développée par \cite{King-1966AJ} consiste à tronquer à la main
+		et après coup la sphère isotherme. Au-dessus d'une certaine énergie, la fonction de
+		distribution est nulle. Bien que empirique cette solution est devenue un modèle de choix pour
+		l'ajustement du profil de densité de nombreux amas globulaires et de galaxies naines. Ses trois
+		paramètres libres rendent en effet son utilisation adaptée à la modélisation de tels objets.
+		Nous y consacrerons le chapitre~\ref{King::Chapitre}.
 	
-	\end{enumerate}
+	\item Plus récemment une prise en compte fine des spécificités des modèles gravitationnels semble avoir fait progresser les choses :
+		il s'agit du paradigme Darkexp (voir~\citet{2010ApJ...722..851H}). En physique statistique, l'approximation $\ln x! = x\ln x
+		-x$, valide pour $x\gg1$, est souvent utilisé. Dans ce type de calcul, $x$ est une fonction du nombre de particule $N$
+		présentes dans le système. Les auteurs de ce paradigme remarque que dans notre cas (étude des galaxies ou des amas
+		globulaire), ce nombre $N$ n'est pas suffisamment grand pour que nous puissions utiliser l'approximation de Stirling. Cette
+		correction semble, selon les auteurs de ce paradigme, pouvoir effectuer une coupure rendant la sphère isotherme plus
+		compatible avec un modèle physique acceptable.
+
+\end{enumerate}
