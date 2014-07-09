@@ -13,7 +13,7 @@ zeta = (1. / test2.rho(test2.X[:, 0])) * test2.X[:, 0] ** 2.5
 T = 3. * (2.9 * 1000)**2 * ( 1 - 8./(15.*np.sqrt(np.pi)) * zeta )
 data = h.Data("datav3.hdf5")
 all2 = data.get("data", "densite")
-plt.figure(figsize=(3., 1.8))
+plt.figure(figsize=(4., 2.8))
 plt.xscale("log")
 plt.yscale("log")
 plt.plot(all2[:,0], all2[:,5] / all2[0,5], "g+")
