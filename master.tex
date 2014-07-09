@@ -23,6 +23,7 @@
 \usetikzlibrary{calc}
 \usetikzlibrary{fit,backgrounds}
 \usetikzlibrary{shadows}
+\usetikzlibrary{patterns}
 
 \usepackage{placeins}							%Pour forcer la position des images dans une section/sous-section
 % \usepackage{lscape}							%Pour changer l'orientation de ce que l'on écrit
@@ -33,6 +34,8 @@
 
 %\usepackage{picins}							%Placer les images dans le texte
 \usepackage{wrapfig}							%Placer les images dans le texte
+\usepackage{caption}
+\usepackage{subcaption}
 
 \usepackage{textcomp}							% ??????
 \usepackage{color}							%Pour mettre de la couleur
@@ -185,10 +188,10 @@
 \newcommand{\rb}{\ensuremath{r_{50\%}}}
 \newcommand{\rc}{\ensuremath{r_{90\%}}}
 \newcommand{\cercle}[2][0.2]{\tikz[scale=#1] \fill[#2] (0, 0) circle (1);}
-\newcommand{\accretionpeu}[1][0.18]{\cercle[#1]{blue}}
-\newcommand{\accretionmoyen}[1][0.18]{\cercle[#1]{color=red!50!blue}}
-\newcommand{\accretionlot}[1][0.18]{\cercle[#1]{red}}
-\newcommand{\contraction}[1][0.18]{\cercle[#1]{color=blue!50!white}}
+\newcommand{\accretionpeu}[1][0.10]{\cercle[#1]{blue}}
+\newcommand{\accretionmoyen}[1][0.10]{\cercle[#1]{color=green!40!black}}
+\newcommand{\accretionlot}[1][0.10]{\cercle[#1]{red}}
+\newcommand{\contraction}[1][0.10]{\cercle[#1]{color=blue!50!white}}
 \newcommand{\cerclewave}{%
 	\begin{tikzpicture}[scale=0.2]%
 		\draw (0, 0) circle (1);%
