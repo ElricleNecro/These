@@ -11,11 +11,11 @@
 % \end{itemize}
 
 Après avoir étudié les propriétés observationnelles des amas globulaires et des galaxies, nous avons mis en évidence un certain nombre
-de résultats analytiques sur diverses sphères isothermes. Nous allons maintenant entreprise des simulations numériques visant
+de résultats analytiques sur diverses sphères isothermes. Nous allons maintenant entreprendre des simulations numériques visant
 à illustrer ces divers résultats et constats.
 
 Les expériences que nous allons mener consistent à étudier la dynamique d'un système auto-gravitant (\textsc{sag}) placé
-dans un bain thermique. Les conditions respectent celles du problèmes détaillé dans la section~\ref{Sec::ToyModel}.
+dans un bain thermique. Ces conditions respectent celles du problème détaillé dans la section~\ref{Sec::ToyModel}.
 % respectant ainsi les conditions du problème détaillé dans la section~\ref{Sec::ToyModel}.
 %Nous avons testé plusieurs idées pour mettre en place les conditions décrite dans la section~\ref{Sec::ToyModel}.
 
@@ -30,10 +30,10 @@ même masse.
 	Nous avons utilisé principalement deux types de bain:
 	\begin{description}
 
-		\item[Le thermostat:] ce type de bain est construit de sorte à se comporter comme un
+		\item[Un thermostat:] ce type de bain est construit de sorte à se comporter comme un
 			thermostat. Il s'agit d'un cube périodique, dans lequel les particules massives sont
 			réparties spatialement selon une distribution uniforme. La température est fixée par la
-			la distribution gaussienne attribuée aux vitesses. Un thermostat maintient une
+			distribution gaussienne attribuée aux vitesses. Un thermostat maintient une
 			température sans être affecté par le système avec lequel il est en contact.
 			% pas supposé échangé autre chose que de l'énergie avec les systèmes en contact,
 			Nous faisons donc en sorte que les particules de ce bain puissent influer sur les
@@ -59,7 +59,7 @@ même masse.
 	\begin{itemize}
 		\item le nombre de particules $N_b$;
 		\item la température $T$;
-		\item côté du cube $R_c$.
+		\item le côté du cube $R_c$.
 	\end{itemize}
 	Ces paramètres sont indépendants et constituent une partie de l'espace des paramètres de nos
 	simulations. La stabilité du réservoir thermique va dépendre des valeurs de ces paramètres, notamment à
@@ -68,12 +68,14 @@ même masse.
 	\begin{figure}[hbt]
 		\begin{center}
 			\begin{tikzpicture}
-				\draw (0, 0) circle (0.5);
-				\node at (0, 0) {\textsc{sag}};
+				\draw[pattern=north east lines] (-2, 2) rectangle (2, -2);
+				% \draw (-2, 2) grid[step=0.2] (2, -2);
 
-				\draw (-2, 2) rectangle (2, -2);
-				\node at (-2, 2) [below right] {Bain};
-				\node at (-2, -2) [above right] {T, N};
+				\draw[fill=red!70,opacity=0.5] (0, 0) circle (0.5);
+				\node[fill=white,opacity=0.8] at (0, 0) {\textsc{sag}};
+
+				\node at (-2, 2) [below right, fill=white,opacity=0.8] {Bain};
+				\node at (-2, -2) [above right, fill=white,opacity=0.8] {$T$, $N$};
 				\draw[<->] (-2, -2.2) -- (2, -2.2);
 				\node at (0, -2.2) [below] {$R_c$};
 			\end{tikzpicture}
@@ -81,17 +83,17 @@ même masse.
 		\end{center}
 	\end{figure}
 
-	L'effet d'un thermostat sur le \textsc{sag} ne peut a priori se faire qu'aux travers des collisions, les
-	particules du thermostat ne pouvant être capturé par le \textsc{sag}. L'effet correspondant ne peut
-	alors apparaître que sur des temps grand devant le temps dynamique du \textsc{sag} (voir-- mettre le
-	lien vers la discussion correspondante, une fois écrite). Un réservoir thermique sera à priori plus
-	efficace, les interactions gravitationnelles pouvant amener une partie des particules du réservoir à
-	être capturé par le \textsc{sag}, ou réciproquement. Des effets peuvent donc apparaître plus rapidement.
+	L'effet d'un thermostat sur le \textsc{sag} ne peut a priori se faire qu'aux travers des collisions~\footnote{par collisions, nous parlons des
+	interactions à deux corps.}, les particules du thermostat ne pouvant être capturées par le \textsc{sag}. L'effet correspondant ne peut alors
+	apparaître que sur des temps grands devant le temps dynamique du \textsc{sag} (voir-- mettre le lien vers la discussion correspondante, une
+	fois écrite). Un réservoir thermique sera a priori plus efficace, les interactions gravitationnelles pouvant amener une partie des particules
+	du réservoir à être capturées par le \textsc{sag}, ou réciproquement. Des effets peuvent donc apparaître plus rapidement.
 
 	Nous avons utilisé deux types de \textsc{sag}:
 	\begin{itemize}
-		\item un modèle de King, de paramètre $W_0$, $\sigma$, $r_c$ et $N_K$;
-		\item une sphère de Hénon, de paramètre $R$, $M$, $\gamma$ et $N_H$.
+		\item un modèle de King, dont les paramètres (définis dans le chapitre~\ref{King::Chapitre}) sont $W_0$, $\sigma$, $r_c$ et le nombre
+			de particules $N_K$;
+		\item une sphère de Hénon, de rayon initial $R$, de masse $M$, de viriel initial $\gamma$ et contenant $N_H$ particules.
 	\end{itemize}
 
 	La figure~\ref{Fig::CI::Repr} représente la répartition initiale du bain et du \textsc{sag}. À ce moment, des particules du bain se trouvent déjà dans le \textsc{sag}.
@@ -102,7 +104,7 @@ même masse.
 
 % \subsection{King dans bain sans interaction}
 
-	Une première série de simulation du système à consisté à placer un modèle de King, de paramètre $W_0 = 5.2$, $\sigma_c = 2.9\
+	Une première série de simulations a consisté à placer un modèle de King, de paramètre $W_0 = 5.2$, $\sigma_c = 2.9\
 	\mathrm{km}.\mathrm{s}^{-1}$ et $r_c = 3.5\ \mathrm{pc}$, dans un thermostat. Les paramètres de chaque simulations étaient la
 	température du bain, la taille de la boîte et le nombre de particule utilisées dans chacun des deux systèmes. La taille de la boîte
 	nous permet de jouer sur la densité du bain. La température était calculée pour être un multiple $k$ de la température moyenne de la
@@ -209,35 +211,72 @@ même masse.
 	% gagner un paramètre en plus sur lequel jouer plus facilement. Nous avons ensuite lancé un grand nombre
 	% de simulations pour parcours une partie de l'espace des paramètres et voir ce qu'il se passe.
 
-	Une seconde série de simulation est construite en utilisant une sphère Hénon de rayon $R=2$, de masse $M=1$ et de viriel $\gamma=-0,5$ placée
-	dans un réservoir thermique. Nous utiliserons ici le même système d'unité que dans le chapitre~\ref{Chap::VlasovGadget}, ainsi le temps
-	dynamique du \textsc{sag} est $T_d^H = 2\pi$ dans ces unités. Comme pour l'étude précédente, nous allons utiliser comme paramètres des
-	simulations les paramètres du réservoir: le nombre de particules $N_b$, la taille du cube $R_c$ et sa température $\sigma_c$. Globalement
-	l'évolution dynamique de ce système montre toujours deux phases successives. Dans un premier temps, la sphère de Hénon s'effondre et forme,
-	comme attendu pour $\gamma=-0,5$, une structure cœur-halo de $\alpha\simeq-4$ (\textsc{ch4}) à l'équilibre ($\gamma=-1$). La durée de cette
-	phase initiale est de l'ordre de quelques temps dynamiques de la sphère de Hénon initiale. Cette phase d'effondrement n'est globalement pas
-	affecté par les paramètres du réservoir. L'intersection des deux systèmes (bain et \textsc{sag}) n'étant pas vide, le nombre de particules du
-	bain contenu dans le \textsc{sag} va quelque peu varier, changeant sensiblement quelques paramètres après l'effondrement. La
+	Une seconde série de simulations est construite en utilisant une sphère Hénon de rayon $R=2$, de masse $M=1$, de viriel $\gamma=-0,5$ et
+	contenant $N_H = 30000$ placée dans un réservoir thermique. Nous utiliserons ici le même système d'unité que dans le
+	chapitre~\ref{Chap::VlasovGadget}, dans lesquelles le temps dynamique du \textsc{sag} est $T_d^H = 2\pi$. De la même façon que lors de l'étude
+	précédente, nous allons utiliser les caractéristiques du réservoir comme paramètres des simulations: le nombre de particules $N_b$, la taille
+	du cube $R_c$ et sa température $\sigma_c$. Globalement l'évolution dynamique de ce système montre toujours deux phases successives.
+
+	Dans un premier temps, la sphère de Hénon s'effondre et forme, comme attendu pour $\gamma=-0,5$ (\citet{roy}, \citet{Joyceetal}), une
+	structure cœur-halo de pente $\alpha\simeq-4$ (\textsc{ch4}) à l'équilibre ($\gamma=-1$). La durée de cette phase initiale est de l'ordre de
+	quelques temps dynamiques de la sphère de Hénon initiale. Cette phase d'effondrement n'est pratiquement pas affectée par les paramètres du
+	réservoir. L'intersection des deux systèmes (bain et \textsc{sag}) n'étant pas vide, le nombre de particules du bain contenu dans le
+	\textsc{sag} est variable, ce qui explique la légère variation observée des paramètres post-effondrement. La
 	figure~\ref{Fig::Simu::EvoParamPostCollapse} illustre l'évolution, après effondrement, des différents rayons, axes d'inertie, viriel,
-	température et anisotropie en fonction des paramètres du réservoir thermique. Cette phase d'effondrement est la traduction de l'instabilité de
-	Jeans.
+	température et anisotropie en fonction des paramètres du réservoir thermique. Ces valeurs sont calculées en faisant la moyenne de chaque
+	paramètres dans l'intervalle $[1T_d, 1,5T_d]$. Cette phase d'effondrement est la traduction de l'instabilité de Jeans.
+
 	% par le nombre de particules du bain (l'intersection des deux système n'étant pas vide). Globalement, le premier effondrement du Hénon, sous
 	% l'influence de l'instabilité de Jeans, se déroule sans aucun effet dû à la présence du Bain.
 
-	L'évolution dynamique post-effondrement de cette structure de type \textsc{ch4} est alors influencé par le bain. Cette influence est modulée
-	par les paramètres du réservoir thermique. La table~\ref{Tab::SimuZoomRes} résume l'évolution d'une partie des simulations qui ont été faîtes.
-	Les notations utilisées sont les suivantes:
-	\begin{description}
-		\item[les notations] sont les mêmes que dans le chapitre~\ref{Chap::Simu::Analysis};
-		\item[$diamondsuit$] indique une triaxialisation du système;
-		\item[\accretionpeu{}] indique un "effondrement" de l'objet et correspond à la variation suivante des différents rayons;
-			$\Delta \ra<0\%$, $\Delta \rb<0\%$, $\Delta \rc<100\%$;
-		\item[\accretionmoyen{}]  indique une accrétion "moyenne" du bain par le \textsc{sag} et correspond à la variation suivante des
-			différents rayons: $\Delta \ra<0\%$, $0\%<\Delta \rb<100\%$, $\Delta \rc<100\%$;
-		\item[\accretionlot{}] indique une forte accrétion du bain par le \textsc{sag} et correspond à la variation suivante des différents
-			rayons: $\Delta \ra>200\%$, $\Delta \rb>200\%$, $\Delta \rc>200\%$;
-		\item[$\emptyset$] indique que le ou les paramètres n'ont pas évoluer de manière significative.
-	\end{description}
+	L'évolution dynamique post-effondrement de cette structure de type \textsc{ch4} est alors influencée par le bain. Cette influence est modulée
+	par les paramètres du réservoir thermique. Nous avons effectué plus de 300 simulations dans l'espaces des paramètres, la
+	table~\ref{Tab::SimuZoomRes} résume l'évolution d'une partie représentative de ces simulations.
+	% Les notations utilisées sont les suivantes:
+	Les observables étudiées sont celles définies dans le chapitre~\ref{Chap::Simu::Analysis}, nous avons regroupé leur évolution dynamique en
+	différents classes associées aux symboles suivants:
+
+	\begin{itemize}
+
+		\item les variations des observables $R_{10}$, $R_{50}$ et $R_{90}$ peuvent être regroupées en 3 classes:
+			\begin{itemize}
+
+				\item[\accretionpeu{}] $R_{10}$ et $R_{50}$ se diminue (de $5\%$ à $40\%$): le cœur du \textsc{sag} se
+					contracte. $R_{90}$ varie de $-15\%$ à $60\%$.
+
+				\item[\accretionmoyen{}] indique une accrétion modérée du bain par le \textsc{sag}. Le rayon $R_{10}$ continue
+					à décroitre (de l'ordre de $20\%$) alors que $R_{50}$ et $R_{90}$ croissent. La variation de $R_{50}$ peut
+					attendre les $30\%$ tandis que $R_{90}$ peut aller jusqu'à doubler.
+
+				\item[\accretionlot{}] indique une forte accrétion du bain par le \textsc{sag}. Tous les rayons caractéristique sont
+					au minimum doublé sur l'évolution dynamique du système.
+			\end{itemize}
+
+		\item Les variations des rapports d'axes mettent en évidence 3 évolutions:
+			\begin{itemize}
+
+				\item[$\diamondsuit$] est un cas particulier qui sera détaillé un peu plus loin.
+
+				\item[$\spadesuit$] apparition d'une déformation du système au cours de laquelle $a_1 \simeq 1$ et $a_2 \to 0,4$.
+
+				\item[$\emptyset$] le système conserve sa forme sphérique.
+
+			\end{itemize}
+	\end{itemize}
+
+	% \begin{itemize}
+		% \item[\textbf{les notations}] sont les mêmes que dans le chapitre~\ref{Chap::Simu::Analysis}.
+		% \item[$\diamondsuit$] indique une triaxialisation du système.
+		% \item[\accretionpeu{}] correspond à la variation suivante des différents rayons: $\Delta \ra<0\%$, $\Delta \rb<0\%$, $\Delta
+			% \rc<100\%$. Dans ces conditions, les rayons à $10\%$ et $50\%$ diminue: le \textsc{sag} se contracte;
+		% \item[\accretionmoyen{}]  indique une accrétion "moyenne" du bain par le \textsc{sag} et correspond à la variation suivante des
+			% différents rayons: $\Delta \ra<0\%$, $0\%<\Delta \rb<100\%$, $\Delta \rc<100\%$. À ce niveau, le \textsc{sag} accréte le bain
+			% de façon suffisamment significative pour le destabiliser, et se dilate.
+		% \item[\accretionlot{}] indique une forte accrétion du bain par le \textsc{sag} et correspond à la variation suivante des différents
+			% rayons: $\Delta \ra>200\%$, $\Delta \rb>200\%$, $\Delta \rc>200\%$. L'accrétion est encore plus forte que dans le cas
+			% précédent. Dans ce cas, le bain a été en grande partie cannibalisé par le \textsc{sag}.
+		% \item[$\emptyset$] indique que le ou les paramètres n'ont pas évolué de manière significative.
+	% \end{itemize}
 	% $a_1 = \lambda_1 / \lambda_2$, $a_2 = \lambda_3 / \lambda_2$; $\lambda_1>\lambda_2>\lambda_3$. Accrétion:
 	% \begin{description}
 		% % \item[\contraction{}] -> $\Delta r_{10\%}<0$, $\Delta r_{50\%}<0$, $\Delta r_{90\%}<0$,
@@ -259,28 +298,74 @@ même masse.
 
 	\input{simulation/result_array.tex}
 
-	Certaines simulations montrent des effets dus aux cubes périodiques trop petit. Nous observerons par exemple la simulation $N_b = 10^5$, $R_c
-	= 33,3$ et $\sigma_c = 10^{-3}$ qui montre une triaxialisation du \textsc{sag}. La figure~\ref{Fig::Projection::TriAxial} montre l'état de ce
-	système à la fin de la simulation qui a duré $15T_d^H$. L'objet montre une forme quasiment cubique et des \og bras\fg partent vers les bords du
-	cube, marque des conditions périodiques. Bien qu'il n'y ait que peu de particules dans ces \og bras\fg, nous souhaitons tout de mêmes éviter
-	les conditions qui éviteraient de voir apparaître de tel propriété.
 
-	\begin{figure}[hbtp]
-		\begin{minipage}{0.48\linewidth}
-			\centering \includegraphics{{graphe/N-100000.0_Rc-33.3333333333_sc-0.001_Soft-0.001_100_xy}.png}
-		\end{minipage}\hfill
-		\begin{minipage}{0.48\linewidth}
-			\centering \includegraphics{{graphe/N-100000.0_Rc-33.3333333333_sc-0.001_Soft-0.001_100_yz}.png}
-		\end{minipage}
-		\centering \includegraphics{{graphe/N-100000.0_Rc-33.3333333333_sc-0.001_Soft-0.001_100_xz}.png}
-		\caption{Projection de la simulation $N = 10^5$, $R_c = 33,3$ et $\sigma_c = 10^{-3}$\label{Fig::Projection::TriAxial}}
-		Ajouter les colorbar de chaque graphes.
-	\end{figure}
+	Une première analyse nous apprend:
+	\begin{enumerate}
 
-	D'autres ont montré des effets beaucoup plus intéressants. Prenons la simulation $N_b = 1856250$, $R_c = 50$, $\sigma_c = 10^{-3}$, dont
-	l'évolution de certains paramètres est représenté sur la figure~\ref{Fig::Simu::p4s125}. L'évolution des rayons à $10\%$, $50\%$ et $90\%$ de
-	masse nous indique une forte accrétion du bain par le \textsc{sag}. Les axes d'inertie semblent indiquer qu'une instabilité d'orbite radiale
-	se produise vers $t=30$ (soit $4T_d^H$).
+		\item les simulations auxquelles sont associées les symboles \accretionlot{} et $\spadesuit$ présentent également une évolution
+			particulière de l'anisotropie. Ce paramètre passe par un minimum au moment où le \textsc{sag} se déforme. Ce type d'évolution
+			peut-être interprété dans le contexte de l'instabilité d'orbite radiale.
+
+		\item les simulations \accretionmoyen{} entrent dans une catégorie intermédiaire suggérant que les caractéristiques du bain, comme sa
+			densité ou sa température, sont des paramètres important dans son déclenchement.
+
+		\item les simulations \accretionpeu{} forment la dernière catégorie. Ces simulations seront étudiées plus en détails dans la prochaine
+			section.
+
+		\item les simulations caractérisées par le symbole $\diamondsuit$ sont des simulations très touchées par les conditions périodiques.
+			Ces simulations vont avoir tendance à former des barres aligné avec les coins de la boîte. La
+			figure~\ref{Fig::Density::Comp::Periodic} compare deux simulations, l'une subissant les effets de la boîte périodique, l'autre
+			ne les subissant pas.
+			\begin{figure}[hbtp]
+				\begin{minipage}{0.49\linewidth}
+					\centering \includegraphics{{graphe/Periodique_Plot/N-100000.0_Rc-33.3333333333_sc-0.001_Soft-0.001}.png}
+				\end{minipage}\hfill
+				\begin{minipage}{0.50\linewidth}
+					\centering \includegraphics{{graphe/Periodique_Plot/N-100000.0_Rc-66.6666666666_sc-0.001_Soft-0.001}.png}
+				\end{minipage}
+				% \centering \includegraphics{{graphe/Periodique_Plot/N-100000.0_Rc-66.6666666666_sc-0.001_Soft-0.001}.png},c 
+				\caption{À gauche une simulation ($A_{3,1}$) sous l'influence des conditions périodiques, à droite une simulation ($A_{6,1}$) correcte.\label{Fig::Density::Comp::Periodic}}
+				% \begin{minipage}{0.48\linewidth}
+					% \centering \includegraphics{{graphe/N-100000.0_Rc-33.3333333333_sc-0.001_Soft-0.001_100_xy}.png}
+				% \end{minipage}\hfill
+				% \begin{minipage}{0.48\linewidth}
+					% \centering \includegraphics{{graphe/N-100000.0_Rc-33.3333333333_sc-0.001_Soft-0.001_100_yz}.png}
+				% \end{minipage}
+				% \centering \includegraphics{{graphe/N-100000.0_Rc-33.3333333333_sc-0.001_Soft-0.001_100_xz}.png}
+				% \caption{Projection de la simulation $N = 10^5$, $R_c = 33,3$ et $\sigma_c = 10^{-3}$\label{Fig::Projection::TriAxial}}
+				% Ajouter les colorbar de chaque graphes.
+			\end{figure}
+
+	\end{enumerate}
+
+
+	% Certaines simulations montrent des effets dus aux cubes périodiques trop petits. Nous observerons par exemple la simulation $N_b = 10^5$, $R_c
+	% = 33,3$ et $\sigma_c = 10^{-3}$ qui montre une triaxialisation du \textsc{sag}. La figure~\ref{Fig::Projection::TriAxial} montre l'état de ce
+	% système à la fin de la simulation qui a duré $15.9T_d^H$. L'objet montre une forme quasiment cubique et des \og bras\fg partent vers les bords du
+	% cube, marque des conditions périodiques. Bien qu'il n'y ait que peu de particules dans ces \og bras\fg, nous nous sommes placé dans des
+	% conditions pour lesquelles de tels effet ne se produisent pas.
+
+	% souhaitons tout de mêmes éviter
+	% les conditions qui éviteraient de voir apparaître de tel propriété.
+
+
+	% Les autres simulations peuvent se classer en 3 catégories distinctes représentées dans le tableau~\ref{Tab::SimuZoomRes}. La première
+	% catégorie, représentée par le symbole \accretionmoyen{}, concerne les simulations ne montrant pas d'évolution, si ce n'est une faible
+	% accrétion.
+
+	% La seconde catégorie, qui fera l'objet d'une étude plus poussée dans la section suivante, concerne les objets dont le cœur semble se
+	% contracter. Ils sont représenté par le symbole \accretionpeu{} et montrent tous une décroissance stricte de $r_{10\%}$ et $r_{50\%}$.
+	% Ces deux catégories conserve un rapport du viriel autour de $1$, ainsi que leur sphéricité. Idem pour l'isotropie du système. En gros, ils
+	% n'évoluent pas.
+
+	% La dernière catégorie, le symbole \accretionlot{}, englobe tous les autres objets présentant une très forte accrétion, la taille de leurs
+	% cœurs peut aller jusqu'à sextupler. Toutes ne vont pas développer une \textsc{roi} sur le temps de la simulation, mais elles restent une
+	% minorité. Nous étudierons plus tard comment est influencé le déclenchement de cette instabilité par les paramètres du bain.
+
+	% D'autres ont montré des effets beaucoup plus intéressants. Prenons la simulation $N_b = 1856250$, $R_c = 50$, $\sigma_c = 10^{-3}$, dont
+	% l'évolution de certains paramètres est représentée sur la figure~\ref{Fig::Simu::p4s125}. L'évolution des rayons à $10\%$, $50\%$ et $90\%$ de
+	% masse nous indique une forte accrétion du bain par le \textsc{sag}. Les axes d'inertie semblent indiquer qu'une instabilité d'orbite radiale
+	% se produise vers $t=30$ (soit $4T_d^H$).
 
 	% \subsection{Qu'avons-nous vu}
 
@@ -300,67 +385,186 @@ même masse.
 		% \end{itemize}
 	% }
 
-\section{Focalisation sur les simulations intéressantes}
+	Dans la section suivante, nous commencerons par étudier le déclenchement de l'instabilité d'orbite radiale, puis nous chercherons à comprendre
+	pourquoi certaines simulations semblent montrent un effondrement du \textsc{sag}.
 
+\section{Focalisation sur les simulations intéressantes}
 	\subsection{Instabilité d'orbite radiale}
 
-		\begin{figure}[htbp]
-			\begin{minipage}{0.45\linewidth}
-				\centering \includegraphics{{N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.000125_axial}.pdf}
-				\caption{Évolution des rapports d'axes}
-			\end{minipage}\hfill
-			\begin{minipage}{0.45\linewidth}
-				\centering \includegraphics{{N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.000125_rayon}.pdf}
-				\caption{Évolution des rayons à $10\%$, $50\%$ et $90\%$ de masse.}
-			\end{minipage}
-			\caption{Simulation de paramètre $N = 1856250$, $R_c = 49.999999999$, $\sigma_c = 0.000125$.\label{Fig::Simu::p4s125}}
+		Les simulations de la première catégorie présente donc une forte accrétion, les rayons $R_{10}$, $R_{50}$ et $R_{90}$ augmentent de
+		façon importante, comme le montre la figure~\ref{Fig::Simu::ROI::Radius::Cm34}.
+		\begin{figure}[htpb]
+			\centering \includegraphics{{ROI_radius_N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.001_Soft-0.001_new3}.pdf}
+			\caption{Évolution des rayons à $10\%$ (en bleu), $50\%$ (en vert) et $90\%$ (en rouge) de masse au cours de la simulation
+			$C^m_{3.4}$.\label{Fig::Simu::ROI::Radius::Cm34}}
 		\end{figure}
-		\begin{figure}[htbp]
-			\begin{minipage}{0.45\linewidth}
-				\centering \includegraphics{{N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.000125_axial}.pdf}
-				\caption{Évolution des rapports d'axes pour la simulation de paramètre $N = 1856250$, $R_c = 49.999999999$, $\sigma_c = 0.000125$.}
-			\end{minipage}\hfill
-			\begin{minipage}{0.45\linewidth}
-				\centering \includegraphics{{N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.0005_axial}.pdf}
-				\caption{Évolution des rapports d'axes pour la simulation de paramètre $N = 1856250$, $R_c = 49.999999999$, $\sigma_c = 0.0005$.}
-			\end{minipage}
-				\centering \includegraphics{{N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.001_axial}.pdf}
-				\caption{Évolution des rapports d'axes pour la simulation de paramètre $N = 1856250$, $R_c = 49.999999999$, $\sigma_c = 0.001$.}
+		Au fur et à mesure que l'accrétion se poursuit, l'anisotropie du \textsc{sag} diminue jusqu'à un semblant se trouver dans l'intervalle
+		$[-0,6; -0,5]$ minimum puis remonte vers sa position d'équilibre. Dans le même temps, les rapports d'axes nous apprennent que la forme
+		de l'objet change: $a_1$ reste constant mais $a_2$ va diminuer jusqu'à une position d'équilibre $a_2 \approx 0,5$.
+		\begin{figure}[htpb]
+			\centering \includegraphics{{ROI_N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.001_Soft-0.001_new3}.pdf}
+			\caption{Évolution des rapports d'axes $a_1$ et $a_2$ et de l'anisotropie au cours de la simulation
+			$C^m_{3.4}$.\label{Fig::Simu::ROI::RAA::Cm34}}
 		\end{figure}
+		Cette évolution est présenté sur la figure~\ref{Fig::Simu::ROI::RAA::Cm34} pour la simulation $C^m_{3.4}$. Cette évolution se retrouve
+		sur toute les simulations marquées par le symbole $\spadesuit$. Nous avons vu dans le chapitre~\ref{Chap::Instabilite} que
+		l'instabilité d'orbite radiale... L'instabilité semble se produire lorsque l'anisotropie atteint son minimum lorsque $a_2$ commence à
+		décroitre de façon significative (variation de l'ordre de $20\%$). En cherchant à savoir à quel moment elle se produit, nous
+		remarquons que pour les simulations de la catégorie $C^m_{i,j}$, le changement de température du bain n'influe pas sur son
+		déclenchement: toutes les simulations de cette catégorie commencent à subir son influence vers $t=35$. À l'exception de la simulation
+		$B_{3.1}$ dont l'instabilité apparait vers $t \approx 50$.
+
 		\begin{figure}[htbp]
-			\begin{minipage}{0.45\linewidth}
-				\centering \includegraphics{{N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.000125_rayon}.pdf}
-				\caption{Évolution des rayons à $10\%$, $50\%$ et $90\%$ de masse pour la simulation de paramètre $N = 1856250$, $R_c = 49.999999999$, $\sigma_c = 0.000125$.}
-			\end{minipage}\hfill
-			\begin{minipage}{0.45\linewidth}
-				\centering \includegraphics{{N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.0005_rayon}.pdf}
-				\caption{Évolution des rayons à $10\%$, $50\%$ et $90\%$ de masse pour la simulation de paramètre $N = 1856250$, $R_c = 49.999999999$, $\sigma_c = 0.0005$.}
-			\end{minipage}
-				\centering \includegraphics{{N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.001_rayon}.pdf}
-				\caption{Évolution des rayons à $10\%$, $50\%$ et $90\%$ de masse pour la simulation de paramètre $N = 1856250$, $R_c = 49.999999999$, $\sigma_c = 0.001$.}
+			\begin{subfigure}{0.50\linewidth}
+				\centering \includegraphics{{ROI_zoom_N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.000125_Soft-0.001_new3}.pdf}
+				\caption{Simulation $C^m_{3.1}$.\label{Fig::Simu::ROI::RAA::Cm31}}
+			\end{subfigure}\hfill
+			\begin{subfigure}{0.50\linewidth}
+				\centering \includegraphics{{ROI_zoom_N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.00025_Soft-0.001_new3}.pdf}
+				\caption{Simulation $C^m_{3.2}$.\label{Fig::Simu::ROI::RAA::Cm32}}
+			\end{subfigure}
+			\begin{subfigure}{0.50\linewidth}
+				\centering \includegraphics{{ROI_zoom_N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.0005_Soft-0.001_new3}.pdf}
+				\caption{Simulation $C^m_{3.3}$.\label{Fig::Simu::ROI::RAA::Cm33}}
+			\end{subfigure}\hfill
+			\begin{subfigure}{0.50\linewidth}
+				\centering \includegraphics{{ROI_zoom_N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.001_Soft-0.001_new3}.pdf}
+				\caption{Simulation $C^m_{3.4}$.\label{Fig::Simu::ROI::RAA::Cm34Zoom}}
+			\end{subfigure}
+			\begin{subfigure}{1.00\linewidth}
+				\centering \includegraphics{{ROI_zoom_N-550000.0_Rc-33.3333333333_sc-0.001_Soft-0.001_new-seed}.pdf}
+				\caption{Simulation $C_{3.4}$.\label{Fig::Simu::ROI::RAA::C34}}
+			\end{subfigure}
+			\caption{Évolution des rapports d'axes $a_1$ et $a_2$ et de l'anisotropie au cours de différentes simulations.\label{Fig::Simu::ROI::RAA::All}}
 		\end{figure}
+
+		% \begin{figure}[htbp]
+			% \begin{minipage}{0.45\linewidth}
+				% \centering \includegraphics{{N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.000125_axial}.pdf}
+				% \caption{Évolution des rapports d'axes}
+			% \end{minipage}\hfill
+			% \begin{minipage}{0.45\linewidth}
+				% \centering \includegraphics{{N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.000125_rayon}.pdf}
+				% \caption{Évolution des rayons à $10\%$, $50\%$ et $90\%$ de masse.}
+			% \end{minipage}
+			% \caption{Simulation de paramètre $N = 1856250$, $R_c = 49.999999999$, $\sigma_c = 0.000125$.\label{Fig::Simu::p4s125}}
+		% \end{figure}
+		% \begin{figure}[htbp]
+			% \begin{minipage}{0.45\linewidth}
+				% \centering \includegraphics{{N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.000125_axial}.pdf}
+				% \caption{Évolution des rapports d'axes pour la simulation de paramètre $N = 1856250$, $R_c = 49.999999999$, $\sigma_c = 0.000125$.}
+			% \end{minipage}\hfill
+			% \begin{minipage}{0.45\linewidth}
+				% \centering \includegraphics{{N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.0005_axial}.pdf}
+				% \caption{Évolution des rapports d'axes pour la simulation de paramètre $N = 1856250$, $R_c = 49.999999999$, $\sigma_c = 0.0005$.}
+			% \end{minipage}
+				% \centering \includegraphics{{N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.001_axial}.pdf}
+				% \caption{Évolution des rapports d'axes pour la simulation de paramètre $N = 1856250$, $R_c = 49.999999999$, $\sigma_c = 0.001$.}
+		% \end{figure}
+		% \begin{figure}[htbp]
+			% \begin{minipage}{0.45\linewidth}
+				% \centering \includegraphics{{N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.000125_rayon}.pdf}
+				% \caption{Évolution des rayons à $10\%$, $50\%$ et $90\%$ de masse pour la simulation de paramètre $N = 1856250$, $R_c = 49.999999999$, $\sigma_c = 0.000125$.}
+			% \end{minipage}\hfill
+			% \begin{minipage}{0.45\linewidth}
+				% \centering \includegraphics{{N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.0005_rayon}.pdf}
+				% \caption{Évolution des rayons à $10\%$, $50\%$ et $90\%$ de masse pour la simulation de paramètre $N = 1856250$, $R_c = 49.999999999$, $\sigma_c = 0.0005$.}
+			% \end{minipage}
+				% \centering \includegraphics{{N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.001_rayon}.pdf}
+				% \caption{Évolution des rayons à $10\%$, $50\%$ et $90\%$ de masse pour la simulation de paramètre $N = 1856250$, $R_c = 49.999999999$, $\sigma_c = 0.001$.}
+		% \end{figure}
 
 	\subsection{Évolution de la pente avec l'âge (effet de relaxation)}
-		
-		\begin{figure}[htbp]
-			\begin{minipage}{0.45\linewidth}
-				\centering \includegraphics{{N-100000.0_Rc-66.6666666666_sc-0.001_Soft-0.001_axial}.pdf}
-				\caption{Évolution des rapports d'axes.}
-			\end{minipage}\hfill
-			\begin{minipage}{0.45\linewidth}
-				\centering \includegraphics{{N-100000.0_Rc-66.6666666666_sc-0.001_Soft-0.001_aniso}.pdf}
-				\caption{Évolution de l'anisotropie moyenne du système.}
-			\end{minipage}
 
-			\begin{minipage}{0.45\linewidth}
-				\centering \includegraphics{{N-100000.0_Rc-66.6666666666_sc-0.001_Soft-0.001_rayon}.pdf}
-				\caption{Évolution des rayons à $10\%$, $50\%$ et $90\%$ de masse.}
-			\end{minipage}\hfill
-			\begin{minipage}{0.45\linewidth}
-				\centering \includegraphics{{N-100000.0_Rc-66.6666666666_sc-0.001_Soft-0.001_densite}.pdf}
-				\caption{Évolution de la densité à différent temps.}
-			\end{minipage}
-			\caption{Simulation de paramètre $N=100000$, $R_c=66.6$, $\sigma_c=0.001$.}
+		Nous allons maintenant nous concentrer sur la seconde catégorie de simulations, montrant un effondrement progressif du cœur. Plus
+		précisément, nous allons étudier la simulations de paramètres $N_b=10^5$, $R_c = 66.7$ et $\sigma_c = 10^{-3}$. La première chose que
+		nous faisons est de regarder si la tendance se conserve lorsque nous étendons la simulation. Nous avons donc étendu la durée de la
+		simulation de $15.9T_d^H$ à $47.7T_d^H$. La figure~\ref{Fig::Relax::Data} rassemble les graphiques montrant l'évolution des
+		observables les plus intéressantes. Les 2 premières figures (\ref{Fig::Relax::Data::SubAxes} et~\ref{Fig::Relax::Data::SubAniso})
+		montrent l'évolution des rapports d'axes de la matrice d'inertie et l'anisotropie. Ces observables sont constante, le \textsc{sag}
+		n'est donc pas sous l'influence de \textsc{roi}. De plus, la figure~\ref{Fig::Relax::Data::SubRayon} montre une accrétion faible.
+		Par contre, la densité (figure~\ref{Fig::Relax::DensiteEvo}) montre une évolution nette de la densité centrale. La première chose que nous cherchons à vérifier est: est-ce
+		un effet du bain?
+
+		\begin{figure}[htbp]
+			\centering \includegraphics{{N-100000.0_Rc-66.6666666666_sc-0.001_evo}.pdf}
+			\centering \caption{Évolution au cours du temps de la densité. En bleu, $t=0$. En vert, $t=15.9T_d^H$. En rouge,
+				$t=31.8T_d^H$. En noir, $t=47.4T_d^H$.\label{Fig::Relax::DensiteEvo}}
 		\end{figure}
-		\input{simulation/array_all.tex}
+
+		\begin{figure}[htbp]
+			\begin{subfigure}{0.45\linewidth}
+				\centering \includegraphics{{N-100000.0_Rc-66.6666666666_sc-0.001_Soft-0.001_axial}.pdf}
+				\centering \caption{Évolution des rapports d'axes.\label{Fig::Relax::Data::SubAxes}}
+			\end{subfigure}\hfill
+			\begin{subfigure}{0.45\linewidth}
+				\centering \includegraphics{{N-100000.0_Rc-66.6666666666_sc-0.001_Soft-0.001_aniso}.pdf}
+				\centering \caption{Évolution de l'anisotropie moyenne du système.\label{Fig::Relax::Data::SubAniso}}
+			\end{subfigure}
+
+			\begin{subfigure}{1.00\linewidth}
+				\centering \includegraphics{{N-100000.0_Rc-66.6666666666_sc-0.001_Soft-0.001_rayon}.pdf}
+				\centering \caption{Évolution des rayons à $10\%$, $50\%$ et $90\%$ de masse.\label{Fig::Relax::Data::SubRayon}}
+			\end{subfigure}\hfill
+			% \begin{subfigure}{0.45\linewidth}
+				% \centering \includegraphics{{N-100000.0_Rc-66.6666666666_sc-0.001_Soft-0.001_densite}.pdf}
+				% \centering \caption{Évolution de la densité à différent temps.\label{Fig::Relax::Data::SubDensite}}
+			% \end{subfigure}
+			\caption{Simulation de paramètre $N=100000$, $R_c=66.6$, $\sigma_c=0.001$.\label{Fig::Relax::Data}}
+		\end{figure}
+
+		Pour répondre à cette question, nous allons augmenter le nombre de particules dans chaque objet (bain et \textsc{sag}) de la
+		simulation, tout en gardant constant tous les paramètres de sorte que les nouvelles simulations soit strictement équivalente. Les
+		différentes figures~\ref{Fig::Relax::Comp2} à~\ref{Fig::Relax::Comp10} montrent l'évolution de ces nouvelles simulations (les croix)
+		superposées à celle que nous étudions (en trait plein), aux même temps que la figure~\ref{Fig::Relax::DensiteEvo}.
+		\begin{figure}[htbp]
+			\begin{subfigure}{0.45\linewidth}
+				\centering \includegraphics{{N-100000.0_Rc-66.6666666666_sc-0.001_evo_compare2}.pdf}
+				\centering \caption{$2$ fois plus de particules pour chaque objet.\label{Fig::Relax::Comp2}}
+			\end{subfigure}\hfill
+			\begin{subfigure}{0.45\linewidth}
+				\centering \includegraphics{{N-100000.0_Rc-66.6666666666_sc-0.001_evo_compare4}.pdf}
+				\centering \caption{$4$ fois plus de particules pour chaque objet.\label{Fig::Relax::Comp4}}
+			\end{subfigure}
+
+			\begin{subfigure}{1.00\linewidth}
+				\centering \includegraphics{{N-100000.0_Rc-66.6666666666_sc-0.001_evo_compare10}.pdf}
+				\centering \caption{$10$ fois plus de particules pour chaque objet.\label{Fig::Relax::Comp10}}
+			\end{subfigure}
+
+			\caption{Comparaison avec plusieurs simulations possédant plus de particules.\label{Fig::Relax::Comp}}
+		\end{figure}
+		Nous pouvons voir que plus le nombre de particules augmentent, l'effondrement devient de moins en moins prononcé. Il ne serait donc
+		pas un effet dû au bain. Pour en être complètement sûr, nous allons regarder l'évolution du \textsc{sag} isolé. La
+		figure~\ref{Fig::Relax::CompH} montre l'évolution d'une sphère de Hénon comprenant $3\ 10^4$ particules
+		(graphique~\ref{Fig::Relax::Comp3e4}) et d'une sphère de Hénon de $3\ 10^5$ particules. La conclusion apparaît immédiatement: le
+		\textsc{sag} plongé dans un bain et le \textsc{sag} isolé ont la même évolution. Encore pire, si l'on multiplie par $10$ le nombre de
+		particules du Hénon (en conservant sa masse totale identique), l'évolution change radicalement et ne montre plus d'effondrement.
+		L'effet observé n'est donc pas un effet du bain, mais un effet semblant être dû aux collisions.
+
+
+		\begin{figure}[htbp]
+			\begin{subfigure}{0.45\linewidth}
+				\centering \includegraphics{{N-100000.0_Rc-66.6666666666_sc-0.001_evo_isolated}.pdf}
+				\centering \caption{Comparaison de l'évolution de la densité avec un Hénon de $N_H=3\ 10^4$ particules.\label{Fig::Relax::Comp3e4}}
+			\end{subfigure}\hfill
+			\begin{subfigure}{0.45\linewidth}
+				\centering \includegraphics{{N-100000.0_Rc-66.6666666666_sc-0.001_evo_isolated10}.pdf}
+				\centering \caption{Comparaison de l'évolution de la densité avec un Hénon de $N_H=3\ 10^5$ particules.\label{Fig::Relax::Comp3e5}}
+			\end{subfigure}
+
+			\caption{Comparaison avec plusieurs Hénon isolés.\label{Fig::Relax::CompH}}
+		\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+		% \input{simulation/array_all.tex}
 
