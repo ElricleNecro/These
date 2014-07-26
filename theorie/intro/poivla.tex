@@ -161,7 +161,7 @@ Nous introduisons alors les équations de Hamilton pour chaque particule (qui re
 où $H$ est le hamiltonien du système:
 \begin{align*}
 	\begin{array}[c]{cccc}
-		H= & \displaystyle\sum\limits_{\alpha=1}^{N}\dfrac{\vec{p}_{\alpha}^{2}}{2m_{\alpha}} & + & \displaystyle\sum\limits_{\alpha\neq\beta=1}^{N,N}%
+		H= & \displaystyle\sum\limits_{\alpha=1}^{N}\dfrac{\vec{p}_{\alpha}^{\,2}}{2m_{\alpha}} & + & \displaystyle\sum\limits_{\alpha\neq\beta=1}^{N,N}%
 		-\dfrac{G}{2}\dfrac{m_{\alpha}m_{\beta}}{\left\vert \vec{r}_{\alpha}-\vec{r}_{\beta}\right\vert }%
 	\end{array}
 \end{align*}
@@ -269,7 +269,7 @@ En introduisant la densité marginale à 2 particules:
 \begin{align*}
 	f^{(2)}=f^{(2)}(\vec{w}_{1},\vec{w}_{2},t)=\int\cdots\int f^{(N)}d\vec{w}_{3}\cdots d\vec{w}_{N}
 \end{align*}
-et comme $U_{12}$ ne dépend que de $\vec{w}_{1}$ et $\vec{w}_{2}$, on peut finir l'intégration du terme contenant l'énergie potentielle pour
+et comme $U_{12}$ ne dépend que de $\vec{w}_{1}$ et $\vec{w}_{2}$, nous pouvons finir l'intégration du terme contenant l'énergie potentielle pour
 obtenir la version intégrée de Liouville suivante:
 \begin{align}
 	\frac{\partial f^{(1)}}{\partial t}+\dfrac{\vec{p}_{1}}{m_{1}}.\dfrac{\partial f^{(1)}}{\partial\vec{r}_{1}}=\left(  N-1\right)
@@ -289,7 +289,8 @@ La technique habituelle consiste à stopper la hiérarchie, c'est-à-dire trouve
 \end{align*}
 
 
-Dans ce contexte, l'hypothèse de chaos moléculaire de Boltzmann est utile, elle revient à poser:
+% Dans ce contexte, l'hypothèse de chaos moléculaire de Boltzmann est utile, elle revient à poser:
+Dans ce contexte, nous allons utiliser l'hypothèse de chaos moléculaire de Boltzmann. Elle revient à poser:
 \begin{align*}
 	f^{(2)}(\vec{w}_{1},\vec{w}_{2},t)=f^{(1)}(\vec{w}_{1},t)f^{(1)}(\vec{w}_{2},t)+g(\vec{w}_{1},\vec{w}_{2},t)
 \end{align*}
@@ -332,7 +333,7 @@ Nous avons donc:
 	\displaystyle\int U_{12}f\left(  \vec{w}_{2},t\right)  d\vec{w}_{2}=-Gm_{1}\displaystyle\int\dfrac{\rho\left(  \vec{r}_{2},t\right)
 	}{\left\vert \vec{r}_{1}-\vec{r}_{2}\right\vert }d\vec{r}_{2}%
 \end{align*}
-où l'on voit sourdre le potentiel gravitationnel impliqué dans l'équation de Poisson:
+où l'on voit apparaître le potentiel gravitationnel impliqué dans l'équation de Poisson:
 \begin{align*}
 	\displaystyle{\ \int U_{12}f\left(  \vec{w}_{2},t\right)  d\vec{w}_{2}=m_{1}\psi\left(  \vec{r}_{1},t\right)  }%
 \end{align*}
@@ -352,9 +353,10 @@ Dans le cas des systèmes gravitationnels, et contrairement au gaz de Van Der Wa
 périodes, Chandrasekhar montre que pour un système autogravitant composé de $N$ particules, le temps dynamique $T_{d}$ et le temps de
 relaxation par collisions $T_{rel}$ vérifient (voir~\ref{chap_trelax}):
 \begin{align*}
-	T_{rc}\approx N\ln\left(  N\right)  T_{d}%
+	T_{rel}\approx N\ln\left(  N\right)  T_{d}%
 \end{align*}
-Sur une centaine de temps dynamiques, les amas globulaires et galaxies en tous genres sont dits non collisionnels, i.e. $C\left(  \vec{w}
+% Sur une centaine de temps dynamiques, les amas globulaires et galaxies en tous genres sont dits non collisionnels, i.e. $C\left(  \vec{w}
+Sur une centaine de temps dynamiques, les amas globulaires et galaxies sont dits non collisionnels, i.e. $C\left(  \vec{w}
 ,t\right)  \equiv0$, et l'équation de la dynamique des galaxies est l'équation de Vlasov (Boltzmann sans collisions):
 \begin{align*}
 	\dfrac{\partial f}{\partial t}+\dfrac{\vec{p}}{m}\ \dfrac{\partial f}{\partial\vec{r}}-m\dfrac{\partial f}{\partial\vec{p}}\dfrac
@@ -375,7 +377,7 @@ intégro-différentiel suivant:
 \end{align*}
 dit système de Vlasov-Poisson, en introduisant l'énergie moyenne par particule:
 \begin{align*}
-	E=\frac{\vec{p}^{2}}{2m}+m\psi
+	E=\frac{\vec{p}^{\,2}}{2m}+m\psi
 \end{align*}
 ce système s'écrit sous forme canonique:
 \begin{align*}
@@ -386,17 +388,20 @@ ce système s'écrit sous forme canonique:
 		\end{array}
 	\right.
 \end{align*}
+Ce système est à la base de l'étude de la dynamique des galaxies.
 
+Dans les chapitres suivants, nous étudierons différentes fonctions de distribution issue de ce système, puis nous nous intéresserons à la stabilité
+des système autogravitants.
 
-Ce système est à la base de l'étude de la dynamique des galaxies. Nous proposons deux axes principaux d'études pour ce problème:
-\begin{itemize}
+% Nous proposons deux axes principaux d'études pour ce problème:
+% \begin{itemize}
 
-	\item L'étude des solutions stationnaires du système de Vlasov-Poisson qui devrait nous permettre de rendre compte des diverses propriétés des
-		galaxies lorsqu'elles peuvent être considérées en équilibre.
+	% \item L'étude des solutions stationnaires du système de Vlasov-Poisson qui devrait nous permettre de rendre compte des diverses propriétés des
+		% galaxies lorsqu'elles peuvent être considérées en équilibre.
 
-	\item L'étude de la stabilité des solutions stationnaires du système de Vlasov-Poisson afin de connaître les configurations d'équilibre
-		privilégiées pour un système auto-gravitant.
+	% \item L'étude de la stabilité des solutions stationnaires du système de Vlasov-Poisson afin de connaître les configurations d'équilibre
+		% privilégiées pour un système auto-gravitant.
 
-\end{itemize}
+% \end{itemize}
 
 
