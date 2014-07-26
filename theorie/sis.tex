@@ -41,7 +41,7 @@
 		\frac{1}{r^2}\frac{d}{dr}\(r^2\frac{d\psi(r)}{dr}\) &= 4\pi G \rho(r) = 4\pi G \frac{m}{\alpha^3} e^{-m\beta\psi(r)} \notag \\
 		\intertext{En introduisant les variables $y = m\beta\psi$ et $x = r/r_0$, nous obtenons :}
 		\frac{1}{x^2}\frac{d}{dx}\(x^2\frac{d y}{dx}\) &=  \frac{4\pi G m r_0^2}{\alpha^3} e^{-y} \notag \\
-		\intertext{Nous pouvons alors choisir $r_0^2 = \frac{\alpha^3}{4\pi G m r_0^2}$ afin d'adimensionner l'équation de Poisson sous la forme}
+		\intertext{Nous pouvons alors choisir $r_0^2 = \frac{\alpha^3}{4\pi G m r_0^2}$ afin d'adimensionner l'équation de Poisson sous la forme:}
 		\frac{1}{x^2}\frac{d}{dx}\(x^2\frac{d y}{dx}\) &= e^{-y} \label{Pois:sis}
 	\end{align}
 	
@@ -73,7 +73,7 @@
 	Cette solution forme ce que l'on appelle une sphère isotherme singulière (\textsc{sis}), elle ne peut en aucun cas
 	correspondre à la solution thermodynamique recherchée qui doit posséder une masse finie.
 
-	étudions à présent l'existence de solutions plus générales pouvant avoir une densité et une masse qui ne
+	Étudions à présent l'existence de solutions plus générales pouvant avoir une densité et une masse qui ne
 	diverge pas. Nous pratiquons pour cela un changement de fonction, en introduisant  $\zeta = y - \Tilde{y}$, la
 	différence entre la solution générale $y$ du problème et la \textsc{sis}. Il vient successivement
 	\begin{align}
@@ -98,21 +98,21 @@ Dans la littérature, le seul cas traité explicitement est celui de la linéari
 (voir~\citet{chandra39}).
 % Notons que les seuls résultats trouvés dans la littérature concernant le comportement asymtotique de ce système
 % concernent son linéarisé au voisinage de l'origine (voir \cite{chandra39} qui demeure la référence absolue).
-Nous proposons ici une étude plus générale dans la totalité du plan de phase. Posons $\mathbf{z}=\left[
+Nous proposons ici une étude plus générale dans la totalité du plan de phase. Posons $\vec{z}=\left[
 \zeta,\dot{\zeta}=\frac{d\zeta}{dt}\right]^{\top}$, nous avons:
 \begin{align}
-\frac{d\mathbf{z}}{dt} =F\left(  \mathbf{z}\right)  =
+\frac{d\vec{z}}{dt} =F\left(  \vec{z}\right)  =
 \left[\dot{\zeta},2\left(  e^{-\zeta}-1\right)-\dot{\zeta}\right]^{\top} \label{sysdif}%
 \end{align}
-Le seul point d'équilibre est l'origine $\mathbf{z}_0=\left[  0,0\right]
-^{\top}$. Considérons à présent  
+Le seul point d'équilibre est l'origine $\vec{z}_0=\left[  0,0\right]
+^{\top}$. Considérons à présent:
 \begin{align*}
 \mathcal{E}(\zeta,\dot{\zeta}) = \frac{1}{2}\dot{\zeta}^2+2(e^{-\zeta}-\zeta-1)
 \end{align*}
 % Il est clair que :
 Il est apparaît que :
 \begin{itemize}
-\item La fonction $\mathcal{E}$ est nulle en $\mathbf{z}=\mathbf{z}_0$ ;
+\item La fonction $\mathcal{E}$ est nulle en $\vec{z}=\vec{z}_0$ ;
 \item La hessienne de $\mathcal{E}$ est définie positive sur $\mathbb{R}^2_*$: 
 \begin{align*}
 H_{\mathcal{E}}:=
@@ -131,8 +131,8 @@ H_{\mathcal{E}}:=
 \end{array}
 \right]
 \end{align*}
-et donc le point $\mathbf{z}_0$ est un minimum global de $\mathcal{E}$;
-\item La fonction $\mathcal{E}$ est strictement décroissante de la variable $t$, en effet
+et donc le point $\vec{z}_0$ est un minimum global de $\mathcal{E}$;
+\item La fonction $\mathcal{E}$ est strictement décroissante de la variable $t$, en effet:
 \begin{align*}
 \frac{d\mathcal{E}}{dt}&=\frac{d\zeta}{dt}\frac{\partial \mathcal{E}}{\partial \zeta}+\frac{d\dot{\zeta}}{dt}\frac{\partial \mathcal{E}}{\partial \dot{\zeta}} \\
 \\
@@ -140,13 +140,13 @@ et donc le point $\mathbf{z}_0$ est un minimum global de $\mathcal{E}$;
 \end{align*}
 
 \end{itemize}
-Les trois propriétés énumérées ci-dessus font de la fonction $\mathcal{E}$ une fonction de Lyapounov\index{Fonction! de Ljapounov}\index{Ljapounov, fonction de} stricte du système, l'équilibre $\mathbf{z}_0$ est donc globalement asymptotiquement stable. 
+Les trois propriétés énumérées ci-dessus font de la fonction $\mathcal{E}$ une fonction de Lyapounov\index{Fonction! de Ljapounov}\index{Ljapounov, fonction de} stricte du système, l'équilibre $\vec{z}_0$ est donc globalement asymptotiquement stable. 
 
 Le comportement asymptotique $\left(t\rightarrow+\infty\right)$ de la
 solution $\zeta(t)$ s'obtient en considérant une combinaison linéaire
 des exponentielles des valeurs propres de la matrice
 \begin{align*}
-	A:=D\left[F(\mathbf{z})\right](\mathbf{z}_0)=\left[
+	A:=D\left[F(\vec{z})\right](\vec{z}_0)=\left[
 \begin{array}
 [c]{cc}%
 0     & 1\\
@@ -155,17 +155,17 @@ des exponentielles des valeurs propres de la matrice
 \right]
 \end{align*}
 soit $\left(  -1\pm i\sqrt
-{7}\right)  /2$, ainsi lorsque $x\rightarrow+\infty$ on a
+{7}\right)  /2$, ainsi lorsque $x\rightarrow+\infty$ nous avons
 \begin{align*}
 \zeta\left(  x\right)
 \sim\frac{k_{1}\cos\left[  \ln\left(  x^{\sqrt{7}/2}\right)  \right]
 +k_{2}\sin\left[  \ln\left(  x^{\sqrt{7}/2}\right)  \right]  }{\sqrt{x}%
 }\ \ \ \text{avec }k_{1},k_{2}\in\mathbb{R}%
 \end{align*}
-En majorant les fonctions trigonométriques, on a donc $\zeta\left(
+En majorant les fonctions trigonométriques, nous avons donc $\zeta\left(
 x\right)  \sim k/x^{1/2}$ en $x\rightarrow+\infty$, soit $y\left(  x\right)
 \sim k/x^{-1/2}-\ln\left(  2/x^{2}\right)  $ soit pour la densité en
-variable $r$%
+variable $r$:
 \begin{align}
 \rho\left(  r\right)  \sim\frac{2mr_{o}^{2}}{\alpha^{3}r^{2}}\left(
 1\pm\left(  \frac{r_{k}}{r}\right)  ^{1/2}\right)  \ \ \ \text{quand
@@ -190,12 +190,12 @@ Le problème de l'équilibre thermodynamique d'un système autogravitant est don
 Pour palier à ce problème, plusieurs approches ont été développées au fil des ans :
 
 \begin{enumerate}
-	\item Une approche \og rigoureuse \fg consiste à chercher le maximum de l'entropie dans un ensemble de fonctions de distribution à support compact :
+	\item Une approche \og{}rigoureuse\fg consiste à chercher le maximum de l'entropie dans un ensemble de fonctions de distribution à support compact :
 		% l'extension spatiale du système est alors finie. Ce problème est communément appelé sphère isotherme en boîte (~SIB~). Il sera étudié en détail dans le chapitre \label{SIB::Chapitre}.
 		l'extension spatiale du système est alors finie. Ce problème est communément appelé sphère
 		isotherme en boîte (\textsc{sib}). Il sera étudié en détail dans le chapitre \ref{SIB::Chapitre}.
 		
-	\item Une solution \og pragmatique \fg: développée par \cite{King-1966AJ} consiste à tronquer à la main
+	\item Une solution \og{}pragmatique\fg: développée par \cite{King-1966AJ} consiste à tronquer à la main
 		et après coup la sphère isotherme. Au-dessus d'une certaine énergie, la fonction de
 		distribution est nulle. Bien que empirique cette solution est devenue un modèle de choix pour
 		l'ajustement du profil de densité de nombreux amas globulaires et de galaxies naines. Ses trois
