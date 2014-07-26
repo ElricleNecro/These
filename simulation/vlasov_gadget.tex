@@ -1,267 +1,241 @@
 \chapter{Comparaison entre Gadget et un code Vlasov\label{Chap::VlasovGadget}}
-	% \label{Chap::VlasovGadget}
 	\minitoc%
 
-	Une des questions qui se posent avec notre approche concerne sa validité. En effet, à quel point gadget peut il
-	être proche d'un programme résolvant directement les équations de Vlasov-Poisson. Dans ce chapitre, nous tentons
-	d'apporter des éléments de réponse.
+	% Une des questions qui se posent avec notre approche concerne sa validité. En effet, à quel point gadget peut il
+	% être proche d'un programme résolvant directement les équations de Vlasov-Poisson. Dans ce chapitre, nous tentons
+	% d'apporter des éléments de réponse.
 
-	Pour comparer ces deux codes, nous nous baserons sur~\cite{1983PASJ...35..547F}.
+	Avant de présenter les résultats obtenus au cours de la thèse, nous allons présenter un travail que nous avons effectué en parallèle. Il a été
+	effectué conjointement avec Stéphane Colombi, Thierry Sousbie et Sébastien Peirani. Il consiste à comparer les résultats donnés par un code
+	résolvant numériquement l'équation de Vlasov (écrit par Thierry Sousbie en se basant sur~\cite{1983PASJ...35..547F}) et le code $N$-corps
+	\textsc{gadget-2}.
 
 	\section{Description du code Vlasov}
 
-		Le code auquel nous allons comparer Gadget a été écrit par Thierry Sousbie et s'inspire grandement de
-		\citet{1983PASJ...35..547F}. Pour résoudre l'équation de Valsov, nous effectuons un changement de
-		coordonnées pour passer des positions-vitesses au jeu de variable utilisant la vitesse radiale
-		algébrique $u$, le rayon $r$ et le moment cinétique $j$. Ensuite, la fonction de distribution $f(r, u, j)$ est échantillonnée sur
-		un maillage cubique.
-
-		L'évolution de ce maillage se fait en considérant chaque point comme une particule libre. Le déplacement
-		de chaque particule se fait en décomposant l'équation de Vlasov en résolvant le système suivant pour:
+		Nous considérons un système à symétrie sphérique . L'équation de Vlasov s'écrit:
 		\begin{align}
-			\begin{cases}
-				\dfrac{\partial f}{\partial t} + u\dfrac{\partial f}{\partial r} + \dfrac{j^2}{r^3}\dfrac{\partial f}{\partial u} = 0 \\
-				\\
-				\dfrac{\partial f}{\partial t} - \dfrac{GM_r}{r^2}\dfrac{\partial f}{\partial u} = 0
-			\end{cases} \label{Eq::VlasovGadget::EvoMaillage}
-			\intertext{avec:}
-			M_r = \int_0^r 4\pi r^2\rho(r)\mathrm{dr} \notag
-			\intertext{et}
-			\rho(r, t) = r^{-2}\int_0^\infty\mathrm{dj}2\pi j\int_{-\infty}^\infty\mathrm{du}f(r, u, j, t) \notag
+			\pderivn{f}{t} + v_r\pderivn{f}{r} + \(\dfrac{j^2}{r^3} - \dfrac{GM(r)}{r^2}\)\pderivn{f}{v_r} = 0\label{Eq::ValGad::Pois}
 		\end{align}
-		Chaque équation du système est résolue pour un demi pas de temps l'une après l'autre.
-		La première équation du système~\ref{Eq::VlasovGadget::EvoMaillage} donne le mouvement libre d'une
-		particule tandis que la seconde donne l'accélération s'appliquant à cette dernière.
-		Ensuite, pour porter les modifications des positions des particules à la grille, une interpolation,
-		faîte à l'aide de spline, est utilisée.
+		avec $f = f(r, u, j, t)$ la fonction de distribution dans l'espace des phases du système au temps $t$, $r$ le rayon de l'objet, $v_r$
+		la vitesse radiale et $j$ le moment angulaire. La fonction $M(r)$ donne la masse contenu à l'intérieur de la sphère de rayon $r$.
 
-		Au niveau de l'échantillonnage, s'il est simple au niveau des vitesses et du moment cinétique, le rayon
-		pose plusieurs soucis. En effet, du fait des grandes valeurs autorisé et de la volonté des gens d'avoir
-		une bonne résolution au centre, il est impératif d'utiliser une échelle logarithmique: il n'est donc pas
-		possible d'aller jusqu'à $r=0$, il faut descendre jusqu'à $r=R_\mathrm{min}$. Pour modéliser ce qui se
-		passe dans l'intervalle $\left[0; R_\mathrm{min}\right]$, le code utilise un \og kernel\fg. Dans ce
-		kernel, le mouvement des particules est simulé en considérant qu'elles se déplacent sans qu'aucune
-		force ne s'applique. Il faut donc choisir $R_\mathrm{min}$ de sorte à ce que cette hypothèse soit vrai.
+		Pour résoudre l'équation, l'espace des phases $\(r, v_r, j\)$ est discrétisé sur un maillage tridimensionnel de dimension $(r, v_r,
+		j)\in\(\left[r_\mathrm{min}; r_\mathrm{max}\right], \left[-v_r^\mathrm{max}; v_r^\mathrm{max}\right], \left[0;
+		j_\mathrm{max}\right]\)$ avec $r$ évoluant logarithmiquement.
+		Chaque point du maillage
+		est considéré comme une particule. L'équation~\ref{Eq::ValGad::Pois} est séparée en deux opérateurs:
+		\begin{itemize}
+			\item un premier opérateur qui nous permet d'obtenir la trajectoire d'une particule libre:
+				\begin{align*}
+					\pderivn{f}{t} + v_r\pderivn{f}{r} + \dfrac{j^2}{r^3}\pderivn{f}{u} = 0
+				\end{align*}
+			\item un second permettant de calculer l'accélération:
+				\begin{align*}
+					\pderivn{f}{t} - \dfrac{GM(r)}{r^2}\pderivn{f}{v_r} = 0
+				\end{align*}
+		\end{itemize}
+		Ces deux opérateurs, allié à un schéma de type \og{}Leap-frog\fg, vont nous permettre de faire évoluer chaque point du maillage du
+		temps $t$ au temps $t+dt$. Puis, en utilisant le fait que chaque couche de moment angulaire sont indépendantes les unes des autres,
+		une interpolation de la fonction de distribution dans le plan $\(r, v_r\)$ pour chaque $j$ permet de reconstruire le maillage.
 
-		Une limite du code, venant des interpolations, c'est que les discontinuités du profil doivent être
-		lissées.
-		Nous allons donc utiliser une sphère de Hénon légèrement modifié: nous multiplions la fonction de
-		distribution par la fonction:
+		L'axe selon $r$ évoluant logarithmiquement, un problème va se poser lorsque $r\to0$. Pour l'éviter, il fait l'approximation que les
+		particules à l'intérieur du rayon $r_\mathrm{min}$ sont libres. Il doit donc être suffisamment petit pour que cette approximation soit
+		vérifié, mais suffisamment grand pour éviter la divergence du logarithme.
+		% toutes les particules passant sous ce rayon $r_\mathrm{min}$ puissent évoluer comme des particules libres.
+
+		Plus de détail sur le fonctionnement du code pourront être trouvé dans l'article associé à cette étude (référence?).
+		Pour effectuer la comparaison de ce code à \textsc{gadget-2}, nous allons utiliser une sphère de Hénon de viriel $\gamma$. Dû à certaine
+		limitation inhérente à l'interpolation, nous avons dû lissé cette sphére en multipliant la fonction de distribution par la fonction:
 		\begin{align*}
-			g(r) = \mathrm{erf}\( \dfrac{r_\mathrm{max} - r }{ r_\epsilon }\) + 1
+			g(r) = \mathrm{erf}\( \dfrac{R - r }{ r_\epsilon }\) + 1
 		\end{align*}
-		où $r_\mathrm{max}$ est le rayon de l'objet, $r_\epsilon$ le rayon sur lequel la sphère sera lissée.
+		où $R$ est le rayon de l'objet et $r_\epsilon$ le rayon sur lequel la sphère sera lissée.
 
+		% Le code auquel nous allons comparer Gadget a été écrit par Thierry Sousbie et s'inspire grandement de
+		% \citet{1983PASJ...35..547F}. Pour résoudre l'équation de Valsov, nous effectuons un changement de
+		% coordonnées pour passer des positions-vitesses au jeu de variable utilisant la vitesse radiale
+		% algébrique $u$, le rayon $r$ et le moment cinétique $j$. Ensuite, la fonction de distribution $f(r, u, j)$ est échantillonnée sur
+		% un maillage cubique.
 
-	\section{Comportement de Gadget}
+		% L'évolution de ce maillage se fait en considérant chaque point comme une particule libre. Le déplacement
+		% de chaque particule se fait en décomposant l'équation de Vlasov en résolvant le système suivant pour:
+		% \begin{align}
+			% \begin{cases}
+				% \dfrac{\partial f}{\partial t} + u\dfrac{\partial f}{\partial r} + \dfrac{j^2}{r^3}\dfrac{\partial f}{\partial u} = 0 \\
+				% \\
+				% \dfrac{\partial f}{\partial t} - \dfrac{GM_r}{r^2}\dfrac{\partial f}{\partial u} = 0
+			% \end{cases} \label{Eq::VlasovGadget::EvoMaillage}
+			% \intertext{avec:}
+			% M_r = \int_0^r 4\pi r^2\rho(r)\mathrm{dr} \notag
+			% \intertext{et}
+			% \rho(r, t) = r^{-2}\int_0^\infty\mathrm{dj}2\pi j\int_{-\infty}^\infty\mathrm{du}f(r, u, j, t) \notag
+		% \end{align}
+		% Chaque équation du système est résolue pour un demi pas de temps l'une après l'autre.
+		% La première équation du système~\ref{Eq::VlasovGadget::EvoMaillage} donne le mouvement libre d'une
+		% particule tandis que la seconde donne l'accélération s'appliquant à cette dernière.
+		% Ensuite, pour porter les modifications des positions des particules à la grille, une interpolation,
+		% faîte à l'aide de spline, est utilisée.
 
-		La première chose à faire est de regarder comment gadget se comporte en fonction de deux paramètres
-		importants: le pas de temps et le paramètre de lissage de la force.
+		% Au niveau de l'échantillonnage, s'il est simple au niveau des vitesses et du moment cinétique, le rayon
+		% pose plusieurs soucis. En effet, du fait des grandes valeurs autorisé et de la volonté des gens d'avoir
+		% une bonne résolution au centre, il est impératif d'utiliser une échelle logarithmique: il n'est donc pas
+		% possible d'aller jusqu'à $r=0$, il faut descendre jusqu'à $r=R_\mathrm{min}$. Pour modéliser ce qui se
+		% passe dans l'intervalle $\left[0; R_\mathrm{min}\right]$, le code utilise un \og kernel\fg. Dans ce
+		% kernel, le mouvement des particules est simulé en considérant qu'elles se déplacent sans qu'aucune
+		% force ne s'applique. Il faut donc choisir $R_\mathrm{min}$ de sorte à ce que cette hypothèse soit vrai.
 
-		Pour regarder comment évolue ce pas de temps, nous demandons à gadget de sortir les pas de temps
-		individuel de chaque particules. Le graphique~\ref{Fig::VlasovGadget::PasDeTemps} nous montre
-		l'évolution de ce pas de temps.
+		% Une limite du code, venant des interpolations, c'est que les discontinuités du profil doivent être
+		% lissées.
+		% Nous allons donc utiliser une sphère de Hénon légèrement modifié: nous multiplions la fonction de
+		% distribution par la fonction:
+		% \begin{align*}
+			% g(r) = \mathrm{erf}\( \dfrac{r_\mathrm{max} - r }{ r_\epsilon }\) + 1
+		% \end{align*}
+		% où $r_\mathrm{max}$ est le rayon de l'objet, $r_\epsilon$ le rayon sur lequel la sphère sera lissée.
 
-		\begin{figure}[h]
-			\begin{center}
-				%
-				\caption{Évolution du pas de temps d'une particule.\label{Fig::VlasovGadget::PasDeTemps}}
-			\end{center}
+		Dans la section suivante, nous allons comparer l'évolution de la sphère de Hénon avec un viriel de $\gamma=-0,5$ puis nous
+		enchaînerons sur une comparaison utilisant un viriel de $\gamma=-0.1$.
+
+	\section{Comparaison pour $\gamma = -0.5$}
+
+		Nous allons commencer par comparer nos deux codes numériques pour des conditions initiales dont l'évolution est bien connu et décrite
+		dans la littérature: nous allons regarder l'effondrement d'une sphère de Hénon de viriel $\gamma=-0,5$. Nous prenons comme référence
+		l'article de~\cite{1983PASJ...35..547F}. Nous nous placerons dans le même système d'unités.
+
+		Pour comparer nos simulations, nous nous baserons sur la correspondance entre l'espace des phases $(r, v_r)$ pour $j=0,425$ et
+		l'évolution du profil de densité de l'objet. Nous effectuerons ces comparaison à différent temps afin de montrer que nous obtenons
+		bien le même comportement au cours du temps. La simulation \textsc{gadget-2} utilisée ici comporte $10^6$ particules. L'article
+		associé étudiera aussi l'évolution de simulations composées de $10^5$ et $10^7$ particules.
+
+		\todo[inline]{L'impact du lissage de la force. À rédiger selon ce qui est dit dans l'article. Pas possible de présenter l'étude sur le pas de temps,
+		je n'ai rien d'utilisable.}
+		% \begin{figure}[htbp]
+			% \begin{subfigure}{0.5\linewidth}
+				% \centering \includegraphics[width=\linewidth]{{vlasov_gadget/Vlasov_0.5_Soft/smoothed_0.5_045_0.00001_phasespace}.png}
+				% \caption{Représentation de l'espace des phase à $j=0.425$ et $t=45$ pour $\gamma=-0,5$ et
+					% $\epsilon=0.00001$.\label{Fig::ValGad::0.5::Soft1}}
+			% \end{subfigure}\hfill
+			% \begin{subfigure}{0.5\linewidth}
+				% \centering \includegraphics[width=\linewidth]{{vlasov_gadget/Vlasov_0.5_Soft/smoothed_0.5_045_0.0001_phasespace}.png}
+				% \caption{Représentation de l'espace des phase à $j=0.425$ et $t=45$ pour $\gamma=-0,5$ et
+					% $\epsilon=0.00001$.\label{Fig::ValGad::0.5::Soft2}}
+			% \end{subfigure}
+			% \begin{subfigure}{0.5\linewidth}
+				% \centering \includegraphics[width=\linewidth]{{vlasov_gadget/Vlasov_0.5_Soft/smoothed_0.5_045_0.01_phasespace}.png}
+				% \caption{Représentation de l'espace des phase à $j=0.425$ et $t=45$ pour $\gamma=-0,5$ et
+					% $\epsilon=0.00001$.\label{Fig::ValGad::0.5::Soft3}}
+			% \end{subfigure}\hfill
+			% \begin{subfigure}{0.5\linewidth}
+				% \centering \includegraphics[width=\linewidth]{{vlasov_gadget/Vlasov_0.5_Soft/smoothed_0.5_045_0.1_phasespace}.png}
+				% \caption{Représentation de l'espace des phase à $j=0.425$ et $t=45$ pour $\gamma=-0,5$ et
+					% $\epsilon=0.00001$.\label{Fig::ValGad::0.5::Soft4}}
+			% \end{subfigure}
+		% \end{figure}
+
+		Le premier temps que nous regardons est $t=0$. La figure~\ref{Fig::ValGad::0.5::t0} montre l'espace des phases pour les conditions
+		initiales. La première chose à noter concerne la différence apparente concernant le maximum de la fonction de distributions. Cette
+		différence est dû au faible nombre de particules présentes dans la couche de $j$ choisi. Excepté ce point, nous retrouvons bien la
+		croissance progressive du nombre de particule ainsi qu'un étalement progressif des vitesses radiales quand $r$ augmente.
+		\begin{figure}[htbp]
+			\centering \includegraphics[width=\linewidth]{{CompVlasGad_t_0_512_0.5}.png}
+			\caption{Comparaison de l'espace des phases entre le code vlasov (à gauche) et le code Gadget (à droite), à $t=0$ et pour $j=0.425$.\label{Fig::ValGad::0.5::t0}}
+		\end{figure}
+		Du côté du profil de densité (figure~\ref{Fig::ValGad::0.5::Density::t0}), l'accord est très bon, excepté au centre du système où le manque de particules empêche le calcul précis
+		de la densité.
+		\begin{figure}[htpb]
+			\centering \includegraphics{{CompVlasGad_Density_0.5_t_0_error}.pdf}
+			\caption{Comparaison du profil de densité entre le code vlasov (en bleu) et le code gadget (en vert), pour $t=0$.\label{Fig::ValGad::0.5::Density::t0}}
+		\end{figure}
+
+		Le deuxième temps que nous avons choisi de montrer se situe peu après la fin de l'effondrement de la sphère de Hénon. Le nombre
+		d'enroulement présent sur les graphiques de la figure~\ref{Fig::ValGad::0.5::t13} sont les mêmes. Par contre, l'enroulement central
+		donne de la simulation gadget semble un peu en avance sur la simulation vlasov. Ce qui semble confirmé par le \og{}bras\fg s'étendant
+		jusqu'à $r=3$ pour la simulation vlasov et jusqu'à $r=4$ pour la simulation gadget.
+		\begin{figure}[htbp]
+			\centering \includegraphics[width=\linewidth]{{CompVlasGad_t_13_512_0.5}.png}
+			\caption{Comparaison de l'espace des phases entre le code vlasov (à gauche) et le code Gadget (à droite), à $t=13$ et pour $j=0.425$.\label{Fig::ValGad::0.5::t13}}
+		\end{figure}
+		Les profils de densité présenté sur la figure~\ref{Fig::ValGad::0.5::Density::t13} montre par contre un très bon accord, excepté au
+		bord du système, où le nombre de particules recommence alors à faiblir. L'extension du système en $r$ est aussi visible.
+		\begin{figure}[htpb]
+			\centering \includegraphics{{CompVlasGad_Density_0.5_t_13_error}.pdf}
+			\caption{Comparaison du profil de densité entre le code vlasov (en bleu) et le code gadget (en vert), pour $t=13$.\label{Fig::ValGad::0.5::Density::t13}}
+		\end{figure}
+		Cette extension du profil peut-être expliqué par l'éjection d'une fraction des particules hors du système suite aux collisions se
+		produisant dans le système.
+
+		Pour terminer la comparaison à ce viriel, nous regardons ce qu'il se passe à $t=45$. À ce moment, le système a eu le temps de se
+		stabiliser. Nous remarquons, en regardant la figure~\ref{Fig::ValGad::0.5::t45}, que la simulation gadget présente des
+		\og{}vaguelettes\fg sur les enroulements extérieurs qui semble en avance sur la simulation vlasov.
+		\begin{figure}[htbp]
+			\centering \includegraphics[width=\linewidth]{{CompVlasGad_t_45_512_0.5}.png}
+			\caption{Comparaison de l'espace des phases entre le code vlasov (à gauche) et le code Gadget (à droite), à $t=45$ et pour $j=0.425$.\label{Fig::ValGad::0.5::t45}}
+		\end{figure}
+		\begin{figure}[htpb]
+			\centering \includegraphics{{CompVlasGad_Density_0.5_t_45_error}.pdf}
+			\caption{Comparaison du profil de densité entre le code vlasov (en bleu) et le code gadget (en vert), pour $t=45$.\label{Fig::ValGad::0.5::Density::t45}}
 		\end{figure}
 
 
-	\section{Comparaison}
-		\subsection{À $\gamma=-0.5$}
-			Here, the most important graphics are the phase space comparison and the
-			density profile showing we get the $r^{-4}$ halo.
+	\section{Comparaison pour $\gamma = -0.1$}
 
-			First of all, we should compare the two method and see
-			if they give the same results on a school case: a
-			smoothed hénon 	sphere with a viriel of $\gamma=-0.5$. For checking
-			this, we are looking at the phase space and the mass
-			density. For the setup and the units system, we use the
-			same as \cite{1983PASJ...35..547F}.
+		Nous allons commencer par comparer nos deux codes numériques pour des conditions initiales dont l'évolution est bien connu et décrite
+		dans la littérature: nous allons regarder l'effondrement d'une sphère de Hénon de viriel $\gamma=-0,5$. Nous prenons comme référence
+		l'article de~\cite{1983PASJ...35..547F}. Nous nous placerons dans le même système d'unités.
 
-			\begin{figure}
-				\begin{minipage}{0.45\linewidth}
-					\begin{center}
-						\includegraphics[width=\linewidth]{{gadget_t0_J0.426_a0.5}.png}
-						\caption{Phase space: radial velocity
-						against radius, at $t=0$ and
-						$\gamma=-0.5$ for the gadget code.}
-						\label{Fig::0.5::gadget::phase_space::t0}
-					\end{center}
-				\end{minipage}\hfill
-				\begin{minipage}{0.45\linewidth}
-					\begin{center}
-						\includegraphics[width=\linewidth]{{Vlasov_ps_0.5_0.426_t0}.png}
-						\caption{Phase space at $t=0$ and for
-						$\gamma=-0.5$ for the vlasov code.}
-						\label{Fig::0.5::vlasov::phase_space::t0}
-					\end{center}
-				\end{minipage}
-				\begin{minipage}{0.45\linewidth}
-					\begin{center}
-						%\includegraphics[width=\linewidth]{{gadget_t50_density_a0.5}.png}
-						Still re-calculating...
-						\caption{Phase space: radial velocity
-						against radius, at $t=0$ and
-						$\gamma=-0.5$ for the gadget code.}
-						\label{Fig::0.5::gadget::density::t0}
-					\end{center}
-				\end{minipage}\hfill
-				\begin{minipage}{0.45\linewidth}
-					\begin{center}
-						\includegraphics[width=\linewidth]{{Vlasov_density_0.5_t0}.png}
-						\caption{Phase space at $t=0$ and for
-						$\gamma=-0.5$ for the vlasov code.}
-						\label{Fig::0.5::vlasov::density::t0}
-					\end{center}
-				\end{minipage}
-			\end{figure}
+		Pour comparer nos simulations, nous nous baserons sur la correspondance entre l'espace des phases $(r, v_r)$ pour $j=0,425$ et
+		l'évolution du profil de densité de l'objet. Nous effectuerons ces comparaison à différent temps afin de montrer que nous obtenons
+		bien le même comportement au cours du temps. La simulation \textsc{gadget-2} utilisée ici comporte $10^6$ particules. L'article
+		associé étudiera aussi l'évolution de simulations composées de $10^5$ et $10^7$ particules.
 
-			\begin{figure}
-				\begin{minipage}{0.45\linewidth}
-					\begin{center}
-						\includegraphics[width=\linewidth]{{gadget_t100_J0.426_a0.5}.png}
-						\caption{Phase space: radial velocity
-						against radius, at $t=100$ and
-						$\gamma=-0.5$ for the gadget code.}
-						\label{Fig::0.5::gadget::phase_space::t100}
-					\end{center}
-				\end{minipage}\hfill
-				\begin{minipage}{0.45\linewidth}
-					\begin{center}
-						\includegraphics[width=\linewidth]{{Vlasov_ps_0.5_0.426_t100}.png}
-						\caption{Phase space at $t=100$ and for
-						$\gamma=-0.5$ for the vlasov code.}
-						\label{Fig::0.5::vlasov::phase_space::t100}
-					\end{center}
-				\end{minipage}
-				\begin{minipage}{0.45\linewidth}
-					\begin{center}
-						%\includegraphics[width=\linewidth]{{gadget_t100_density_a0.5}.png}
-						Still re-calculating...
-						\caption{Phase space: radial velocity
-						against radius, at $t=0$ and
-						$\gamma=-0.5$ for the gadget code.}
-						\label{Fig::0.5::gadget::density::t100}
-					\end{center}
-				\end{minipage}\hfill
-				\begin{minipage}{0.45\linewidth}
-					\begin{center}
-						\includegraphics[width=\linewidth]{{Vlasov_density_0.5_t100}.png}
-						\caption{Phase space at $t=0$ and for
-						$\gamma=-0.5$ for the vlasov code.}
-						\label{Fig::0.5::vlasov::density::t100}
-					\end{center}
-				\end{minipage}
-			\end{figure}
+		Le premier temps que nous regardons est $t=0$. La figure~\ref{Fig::ValGad::0.1::t0} montre l'espace des phases pour les conditions
+		initiales. La première chose à noter concerne la différence apparente concernant le maximum de la fonction de distributions. Cette
+		différence est dû au faible nombre de particules présentes dans la couche de $j$ choisi. Excepté ce point, nous retrouvons bien la
+		croissance progressive du nombre de particule ainsi qu'un étalement progressif des vitesses radiales quand $r$ augmente.
+		\begin{figure}[htbp]
+			\centering \includegraphics[width=\linewidth]{{CompVlasGad_t_0_512_0.1}.png}
+			\caption{Comparaison de l'espace des phases entre le code vlasov (à gauche) et le code Gadget (à droite), à $t=0$ et pour $j=0.425$.\label{Fig::ValGad::0.1::t0}}
+		\end{figure}
+		Du côté du profil de densité (figure~\ref{Fig::ValGad::0.1::Density::t0}), l'accord est très bon, excepté au centre du système où le manque de particules empêche le calcul précis
+		de la densité.
+		\begin{figure}[htpb]
+			\centering \includegraphics{{CompVlasGad_Density_0.1_t_0}.pdf}
+			\caption{Comparaison du profil de densité entre le code vlasov (en bleu) et le code gadget (en vert), pour $t=0$.\label{Fig::ValGad::0.1::Density::t0}}
+		\end{figure}
 
-			Figure~\ref{Fig::0.5::gadget::phase_space::t0}
-			and~\ref{Fig::0.5::vlasov::phase_space::t0} show the phase
-			space at $t=0$ and for the angular momentum $J=0.426$ for our simulation, while
-			figure~\ref{Fig::0.5::gadget::density::t0}
-			and~\ref{Fig::0.5::vlasov::density::t0} show the mass
-			density. All of these quantities are similar, and we get
-			the expected slope.
-		\subsection{À $\gamma=-0.1$}
-			We are now going to test the limit of those code, for
-			this purpose we try some colder homogeneous sphere. So
-			we use a viriel of $\gamma=-0.1$ and we compare both
-			code after a hundred unit of time. Those are shown on
-			figure~\ref{Fig::0.1::gadget::phase_space::t100}
-			and~\ref{Fig::0.1::gadget::density::t100}
-			against~\ref{Fig::0.1::vlasov::phase_space::t100}
-			and~\ref{Fig::0.1::vlasov::density::t100}; the two first
-			show the Gadget-2 results and the two last the vlasov
-			ones.
+		Le deuxième temps que nous avons choisi de montrer se situe peu après la fin de l'effondrement de la sphère de Hénon. Le nombre
+		d'enroulement présent sur les graphiques de la figure~\ref{Fig::ValGad::0.1::t5} sont les mêmes. Par contre, l'enroulement central
+		donne de la simulation gadget semble un peu en avance sur la simulation vlasov. Ce qui semble confirmé par le \og{}bras\fg s'étendant
+		jusqu'à $r=3$ pour la simulation vlasov et jusqu'à $r=4$ pour la simulation gadget.
+		\begin{figure}[htbp]
+			\centering \includegraphics[width=\linewidth]{{CompVlasGad_t_5_512_0.1}.png}
+			\caption{Comparaison de l'espace des phases entre le code vlasov (à gauche) et le code Gadget (à droite), à $t=5$ et pour $j=0.425$.\label{Fig::ValGad::0.1::t5}}
+		\end{figure}
+		Les profils de densité présenté sur la figure~\ref{Fig::ValGad::0.1::Density::t5} montre par contre un très bon accord, excepté au
+		bord du système, où le nombre de particules recommence alors à faiblir. L'extension du système en $r$ est aussi visible.
+		\begin{figure}[htpb]
+			\centering \includegraphics{{CompVlasGad_Density_0.1_t_5}.pdf}
+			\caption{Comparaison du profil de densité entre le code vlasov (en bleu) et le code gadget (en vert), pour $t=5$.\label{Fig::ValGad::0.1::Density::t5}}
+		\end{figure}
+		Cette extension du profil peut-être expliqué par l'éjection d'une fraction des particules hors du système suite aux collisions se
+		produisant dans le système.
 
-			\begin{figure}
-				\begin{minipage}{0.45\linewidth}
-					\begin{center}
-						\includegraphics[width=\linewidth]{{gadget_t100_J0.426_a0.1}.png}
-						\caption{Phase space at $t=100$
-							and $\gamma=-0.1$ for the gadget code.}
-						\label{Fig::0.1::gadget::phase_space::t100}
-					\end{center}
-				\end{minipage}\hfill
-				\begin{minipage}{0.45\linewidth}
-					\begin{center}
-						\includegraphics[width=\linewidth]{{Vlasov_ps_0.1_0.426_t100}.png}
-						\caption{Phase space at $t=100$ and for
-						$\gamma=-0.1$ for the vlasov code.}
-						\label{Fig::0.1::vlasov::phase_space::t100}
-					\end{center}
-				\end{minipage}
-				\begin{minipage}{0.45\linewidth}
-					\begin{center}
-						\includegraphics[width=\linewidth]{{gadget_t60_density_a0.1}.png}
-						\caption{Mass density, at $t=60$ and
-						$\gamma=-0.1$ for the gadget code.}
-						\label{Fig::0.1::gadget::density::t100}
-					\end{center}
-				\end{minipage}\hfill
-				\begin{minipage}{0.45\linewidth}
-					\begin{center}
-						\includegraphics[width=\linewidth]{{Vlasov_density_0.1_t100}.png}
-						\caption{Phase space at $t=60$ and for
-						$\gamma=-0.1$ for the vlasov code.}
-						\label{Fig::0.1::vlasov::density::t100}
-					\end{center}
-				\end{minipage}
-			\end{figure}
-			At this point, the gadget code still gives some good
-			result, as the phase space doesn't show any kind of
-			instability. The density profile itself is the same as
-			the vlasov simulation. To be sure that nothing important
-			has happened, we plot the axial ratio on
-			figure~\ref{Fig::0.1::gadget::axial_ratio}. What we call
-			axial ratio is the ratio between each eigenvalue of the
-			inertial matrix. Actually, the axial ratio  have change
-			of $10\%$, so nothing particular happens during the
-			simulation.
-			\begin{figure}
-				\begin{center}
-					\includegraphics[width=\linewidth]{{gadget_ar_a0.1}.png}
-					\caption{Axial ration evolution for the
-					Gadget-2 simulation.}
-					\label{Fig::0.1::gadget::axial_ratio}
-				\end{center}
-			\end{figure}
-		\subsection{À $\gamma=-0.01$}
-			We were hoping to see gadget failed when the viriel goes
-			to $0$. For the last virial, gadget was successful, let
-			see what happened when we divide it by ten.
+		Pour terminer la comparaison à ce viriel, nous regardons ce qu'il se passe à $t=45$. À ce temps, le système a eu le temps de se
+		stabiliser après l'effondrement.
+		\begin{figure}[htbp]
+			\centering \includegraphics[width=\linewidth]{{CompVlasGad_t_25_512_0.1}.png}
+			\caption{Comparaison de l'espace des phases entre le code vlasov (à gauche) et le code Gadget (à droite), à $t=25$ et pour $j=0.425$.\label{Fig::ValGad::0.1::t25}}
+		\end{figure}
+		\begin{figure}[htpb]
+			\centering \includegraphics{{CompVlasGad_Density_0.1_t_25}.pdf}
+			\caption{Comparaison du profil de densité entre le code vlasov (en bleu) et le code gadget (en vert), pour $t=25$.\label{Fig::ValGad::0.1::Density::t25}}
+		\end{figure}
 
-			The figure~\ref{Fig::0.01::gadget::phase_space::t100}
-			show us the phase space, which is also clean, the
-			density profile is also close of the $\gamma=-0.1$
-			profile, but this time the object lose his spherical
-			symmetry.
-			\begin{figure}
-				\begin{center}
-					\includegraphics[width=\linewidth]{{gadget_t100_J0.0828_a0.01}.png}
-					\caption{Phase space at $t=100$ for
-					$\gamma=-0.01$.}
-					\label{Fig::0.01::gadget::phase_space::t100}
-				\end{center}
-			\end{figure}
-			\begin{figure}
-				\begin{center}
-					\includegraphics[width=\linewidth]{{Smoothed_0.01-axial_ratio}.png}
-					\caption{Axial ratio evolution along the
-					time for $\gamma=-0.01$.}
-					\label{Fig::0.01::gadget::axial_ratio}
-				\end{center}
-			\end{figure}
-
-			\begin{figure}
-				\begin{center}
-					\includegraphics[width=\linewidth]{{Smoothed_0.01-density}.png}
-					\caption{Density profile at different
-					time for $\gamma=-0.01$.}
-					\label{Fig::0.01::gadget::density}
-				\end{center}
-			\end{figure}
-
+		\begin{figure}[htbp]
+			\centering \includegraphics[width=\linewidth]{{CompVlasGad_t_35_512_0.1}.png}
+			\caption{Comparaison de l'espace des phases entre le code vlasov (à gauche) et le code Gadget (à droite), à $t=35$ et pour $j=0.425$.\label{Fig::ValGad::0.1::t35}}
+		\end{figure}
+		\begin{figure}[htpb]
+			\centering \includegraphics{{CompVlasGad_Density_0.1_t_35}.pdf}
+			\caption{Comparaison du profil de densité entre le code vlasov (en bleu) et le code gadget (en vert), pour $t=35$.\label{Fig::ValGad::0.1::Density::t35}}
+		\end{figure}
