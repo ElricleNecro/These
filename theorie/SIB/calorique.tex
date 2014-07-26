@@ -5,7 +5,7 @@
 	thermodynamique et appellé courbe calorique. Cette courbe est en fait directement reliée à celle de Milne et
 	consiste à représenter $\mu$ en fonction de $\lambda$ ou de son opposé $-\lambda$ car l'énergie d'un système
 	autogravitant est souvent négative. En pratique nous résolvons le système différentiel $u(v)$ en fixant $X$,
-	nous déterminons les coordonnées du point extrême $(u_m,v_m)$, puis en utilisant (\ref{uv_max}) nous en déduisons la valeur
+	nous déterminons les coordonnées du point extrême $(u_m,v_m)$, puis en utilisant~\ref{uv_max} nous en déduisons la valeur
 	du couple $(\lambda,\mu)$ correspondant au choix de $X$.
 	
 	Contrairement aux variables de Milne qui sont des fonctions de $x$ (et donc de $r$), $\lambda$ et $\mu$ sont des
@@ -13,7 +13,7 @@
 	donnée est donc associée à une courbe de Milne dont l'extrémité est fixée par la droite de Padmanabhan ou bien
 	par un point de la courbe calorique. Par contre, chaque point de la courbe calorique correspond à une sphère isotherme
 	particulière et l'ensemble de tous les points de la courbe, qui forme lui aussi une spirale comme nous pouvons le
-	voir sur la figure \ref{Ener}, représente donc une classe de systèmes physiques.
+	voir sur la figure~\ref{Ener}, représente donc une classe de systèmes physiques.
 	
 	\begin{figure}[h!]
 		% \centering \includegraphics[scale=1.00]{graphe/Energie_tg.pdf}
@@ -60,20 +60,21 @@
 	densité de la sphère et son influence.
 	
 \subsection{De l'importance du contraste de densité\label{contraste-dens-SIB}}
-	La densité de la sphère isotherme s'écrit :
+	La densité de la sphère isotherme s'écrit:
 	\begin{align*}
 		\rho(r) = \frac{m}{\alpha^3}e^{-\beta m\psi(r)}
 	\end{align*}
-	En dehors du cas de la \textsc{sis} cette densité est toujours finie au centre du système, nous pouvons donc former la quantité sans dimension $\rho^s(r) = \frac{\rho(r)}{\rho_0}$. Un rapide calcul montre alors que 
-		\begin{align}
+	En dehors du cas de la \textsc{sis} cette densité est toujours finie au centre du système, nous pouvons donc former la quantité sans dimension
+	$\rho^s(r) = \frac{\rho(r)}{\rho_0}$. Un rapide calcul montre alors que:
+	\begin{align}
 		\rho^s(x) = e^{-h(x)}=\frac{u(x) v(x)}{x^2}
 	\end{align}
 	Par définition, ou en utilisant les expressions asymptotiques de $u$ et $v$ en $x=0$, nous avons $\rho^s(0)=1$.
-	Au bord du système, nous avons par contre $\rho^s(X) =u_m v_m x^{-2}$, la relation~(\ref{uv_max}) permet donc d'écrire
+	Au bord du système, nous avons par contre $\rho^s(X) =u_m v_m x^{-2}$, la relation~\ref{uv_max} permet donc d'écrire:
 	\begin{align*}
 		\rho^s(X) = \mu X^{-2}\left(\frac{3}{2} - \lambda\mu\right) \notag
 	\end{align*}
-	Nous pouvons donc former le contraste de densité entre le centre et le bord du système, il s'écrit :
+	Nous pouvons donc former le contraste de densité entre le centre et le bord du système, il s'écrit:
 	\begin{align}
 		\R = \frac{\rho(0)}{\rho(R)} = \frac{\rho^s(0)}{\rho^s(X)} = \frac{X^2}{\mu\left(\frac{3}{2} - \lambda\mu\right)}
 	\end{align}
@@ -84,7 +85,7 @@
 		\item La tangente verticale est obtenue pour une sphère telle que $X = 34,3$ avec $\(\lambda, \mu\) = \left(-0,335; 2,032\right)$. Son  contraste de densité est de $\R^H_c \thickapprox 709$.
 	\end{itemize}
 	
-	Il est même possible d'obtenir numériquement les courbes $\lambda(\R)$ et $\mu(\R)$, c'est l'objet de la figure \ref{Cal_stab}. L'analyse de stabilité est alors possible. 
+	Il est même possible d'obtenir numériquement les courbes $\lambda(\R)$ et $\mu(\R)$, c'est l'objet de la figure~\ref{Cal_stab}. L'analyse de stabilité est alors possible. 
 	\begin{figure}[h!]
 		\centering \includegraphics[scale=1.00]{graphe/calorique_stabilite.pdf}
 		\caption{Courbes $\lambda(\R)$ et $\mu(\R)$ tirées de l'article \cite{2011MNRAS.414.2728Y}}
@@ -113,11 +114,11 @@
 
 		\item Pour une boite isolée aux parois réfléchissantes (situation microcanonique), le point critique de
 			stabilité est associé à la tangente verticale la plus à gauche sur la courbe calorique
-			$\mu(-\lambda)$ de la figure \ref{Ener}.
+			$\mu(-\lambda)$ de la figure~\ref{Ener}.
 
 		\item Pour une boite dont les parois (conductrices de chaleur...) sont en contact avec un thermostat, le
 			point critique de stabilité est associé à la tangente horizontale la plus en haut sur la courbe
-			calorique $\mu(-\lambda)$ de la figure \ref{Ener}.
+			calorique $\mu(-\lambda)$ de la figure~\ref{Ener}.
 
 	\end{itemize}
 	
