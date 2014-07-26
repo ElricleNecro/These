@@ -60,7 +60,7 @@
 		% qui nous ferait perdre de la précision sur
 		% les calculs.
 
-		\subsection{Calcul du potentiel: $\mathrm{k}^\mathrm{d}$-Tree}
+		\subsection{Calcul du potentiel: $k^d$-Tree}
 			\label{Sec::KdTree}
 			% Numériquement, les problèmes à $N$-corps sont très couteux en terme de calculs. En effet, un
 			% calcul simple de la force s'appliquant sur une particule peut se faire en sommant la force exercée par
@@ -75,9 +75,9 @@
 
 			Un calcul direct des forces d'interaction entre chaque particules nécessite $N^2$ opérations. Bien que très couteuse, cette
 			méthode est encore très utilisée pour suivre finement la dynamique d'un amas. À ce jour, la plus grosse simulation $N$-corps
-			est le travail de D. Heggie avec presque 300 000 particules (voir sa présentation au trimestre Gravasco) en utilisant la
-			version GPU de NBODY6. Dans la limite fluide, nous aurons parfois besoin d'un grand nombre de particules pour représenter la
-			fonction de distribution dans l'espace des phases. Nous avons donc besoin d'une approche nous permettant d'accélérer les
+			directe est le travail de D. Heggie avec presque 300 000 particules (voir sa présentation au trimestre Gravasco) en utilisant
+			la version GPU de NBODY6. Dans la limite fluide, nous aurons parfois besoin d'un grand nombre de particules pour représenter
+			la fonction de distribution dans l'espace des phases. Nous avons donc besoin d'une approche nous permettant d'accélérer les
 			calculs. Il existe de nombreuses méthodes le permettant. Celle que nous utilisons est basée sur un algorithme en arbre.
 
 			% Un tel algorithme a été développé par J. Barnes et P. Hut dans~\citet{1986Natur.324..446B}. Il se
@@ -96,14 +96,14 @@
 			% 8 nouveaux sous cubes... Chaque cube est à nouveau divisé s'il contient encore trop de
 			% particules.
 
-			Cet algorithme, nommée \og treecode\og, a été crée par~\cite{1986Natur.324..446B}.
+			Cet algorithme, nommée \og treecode\fg, a été crée par~\cite{1986Natur.324..446B}.
 			% Un tel algorithme a été appliqué en astrophysique pour la première fois par \cite{1986Natur.324..446B}.
 			Les particules sont
-			organisées dans un arbre modulable appelé $\mathrm{k}^\mathrm{d}$-Tree. En dimension $d=3$, et avec une division dichotomique
+			organisées dans un arbre modulable appelé $k^d$-Tree. En dimension $d=3$, et avec une division dichotomique
 			($k=2$), cet arbre est un octree. Le principe est de subdiviser un espace cubique en 8 sous cubes, eux-mêmes subdivisés en 8
 			nouveaux sous cubes... Chaque cube est à nouveau divisé s'il contient encore trop de particules.
 			% Les auteurs arrêtent de diviser un cube quand il ne contient plus qu'une particule;
-			En pratique nous nous arrêterons lorsqu'un cube contiendra au plus $N_\mathrm{max}=15$ particules. Les carrées et les points
+			En pratique nous nous arrêterons lorsqu'un cube contiendra au plus $N_\mathrm{max}=15$ particules. Les carrés et les points
 			de la figure~\ref{Fig::KDTree::Parcours} montrent la structure d'un quadtree ($k=2$, $d=2$) se construisant de la même façon.
 			% La figure~\ref{Fig::KDTree::Parcours} montre la structure d'un quadtree (un kd-tree à 2 dimension) se construisant de la
 			% même façon.
@@ -131,7 +131,10 @@
 			% particule est-il supérieur à une valeur $\theta$ choisie.
 			L'angle d'ouverture correspond à la taille angulaire du nœud vue par la particule sélectionnée.
 			Si cette taille est suffisamment petite, nous n'entrons pas à l'intérieur et résumons son
-			contenu à une macro-particule, sinon la descente continue (voir figure~\ref{Fig::KDTree::Parcours})% nous testons chacune des
+			contenu à une macro-particule, sinon la descente continue. Le critère d'ouverture est illustré par la
+			figure~\ref{Fig::KDTree::Parcours}.
+			% (voir figure~\ref{Fig::KDTree::Parcours})
+			% nous testons chacune des
 			% subdivisions. Par exemple, sur la figure~\ref{Fig::KDTree::Parcours}, le cône vert indique un
 			% cube que nous ne voulons pas parcourir, tandis que le rouge nous indique qu'il faut continuer
 			% à descendre.
@@ -139,9 +142,12 @@
 			\begin{figure}
 				\begin{center}
 					\includegraphics[scale=1.0]{accept_treev2}
-					\caption{\label{Fig::KDTree::Parcours}Représentation du critère sur l'angle
-					d'ouverture pour ouvrir ou non un cube. Le cône vert indique un cube qu'il
-					n'est pas nécessaire d'ouvrir, le cône rouge indique un cube à ouvrir.}
+					\caption{\label{Fig::KDTree::Parcours}
+						Critère d'ouverture: le cône vert indique un carré qu'il n'est pas nécessaire d'ouvrir, le cône rouge
+					indique un carré à ouvrir.}
+						% Représentation du critère sur l'angle
+						% d'ouverture pour ouvrir ou non un carré. Le cône vert indique un cube qu'il
+						% n'est pas nécessaire d'ouvrir, le cône rouge indique un cube à ouvrir.}
 				\end{center}
 			\end{figure}
 
@@ -210,8 +216,8 @@
 			$N$ étant le nombre total de particules de l'amas. Les paramètres $N$, $R$ et $\alpha$ étant fixés, nous sommes
 			ainsi libres de choisir $N_\epsilon$ ou $\epsilon$ pour répondre à nos besoins.
 
-			Le code \textsc{Gadget-2} utilise une approximation plus sophistiqué consistant à approximer les particules par des nuages de
-			taille epsilon et dont le profile suit une fonction \verb|spline|.
+			Le code \textsc{Gadget-2} utilise une approximation plus sophistiquée consistant à approximer les particules par des nuages de
+			taille $\epsilon$ et dont le profil suit une fonction \verb|spline|.
 
 			% \begin{align}
 				% \alpha = \dfrac{\rho_\epsilon}{\rho_\mathrm{moy}} = \dfrac{\rho_\epsilon}{M} \frac{4}{3} \pi R^3
