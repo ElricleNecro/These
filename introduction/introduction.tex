@@ -34,7 +34,7 @@
 			Les amas de notre galaxie présentent des caractéristiques très variées. Par
 			exemple, l'amas le plus massif de notre galaxie --~$\omega$ Centauri~--
 			possède une masse d'environ $5.10^6 M_\odot$ tandis que celle du moins
-			massif --~AM-4~--est d'environ $10^3 M_\odot$. La magnitude
+			massif --~AM-4~-- est d'environ $10^3 M_\odot$. La magnitude
 			absolue~\footnote{De $M_V = -10.1$ pour $\omega$ Centauri à $M_V = -1.7$
 			pour AM-4} de ces objets et leur distance au centre de la
 			galaxie~\footnote{environ 0.5 kpc pour les plus proche du centre à 120 kpc
@@ -120,7 +120,7 @@
 					M15 est un amas au cœur dit effondré}
 			\end{figure}
 
-		\subsection{Simulation}
+		\subsection{Simulation numérique des amas globulaire}
 
 			Dès les années 1960, des simulations numériques sont utilisées en plus de la théorie afin de modéliser l'évolution de ces
 			objets. Plusieurs méthodes numériques ont été utilisées, les principales sont:
@@ -144,10 +144,10 @@
 
 					\item les simulations $N$-corps utilisant une méthode de sommation directe, elles modifient à chaque pas de
 						temps les positions et vitesses des étoiles du modèle. Ces simulations sont beaucoup plus lentes mais
-						laissent plus de liberté au système quant à son évolution;
+						laissent plus de liberté au système quant à son évolution.
 
-					\item les simulations $N$-corps utilisant un tree-code, méthode intermédiaire que nous utiliserons et qui sera
-						détaillée plus loin (voir le chapitre~\ref{Chap::Simu::Analysis}).
+					% \item les simulations $N$-corps utilisant un tree-code, méthode intermédiaire que nous utiliserons et qui sera
+						% détaillée plus loin (voir le chapitre~\ref{Chap::Simu::Analysis}).
 
 			\end{itemize}
 			La figure~\ref{Fig::Intro::HeggieFigure}, issue de la présentation de D.~Heggie au trimestre Gravasco, montre les amas du
@@ -171,7 +171,9 @@
 			densité. Ces pics se succèdent à un rythme dépendant des caractéristiques de
 			l'amas.
 
-			Contrairement aux galaxies les amas globulaires ne semblent pas contenir
+			% Contrairement aux galaxies
+			De façon générique,
+			les amas globulaires ne semblent pas contenir
 			en leur centre de trou noir massif. Par cet aspect, mais
 			aussi par le fait qu'ils ne semblent pas contenir de grandes quantités de
 			matière noire, ils se distinguent des galaxies.
@@ -248,8 +250,8 @@
 				$m_i$ étant la magnitude en un point de l'objet et $r_i$ le rayon en seconde d'arc pour ce point.
 
 				La conversion de cette brillance surfacique en densité surfacique de masse est possible
-				en connaissant le rapport masse-luminosité de ces amas. L'article~\cite{McL} donne cette
-				quantité pour 40 des 150 amas de notre galaxie.
+				en connaissant le rapport masse-luminosité de ces amas. L'article~\cite{McL} ne donne cette
+				quantité que pour 40 des 150 amas de notre galaxie.
 				% Les rapports masse-luminosité dont nous avons besoin pour terminer
 				% la conversion peuvent être trouvés dans~\cite{McL},
 				% mais cette article ne contient que 40 des 140 amas de notre galaxie.
@@ -325,8 +327,10 @@
 				\cite{Harris} et d'autre part en intégrant le profil de densité obtenu
 				pour chaque amas.
 				Nous obtenons alors les graphiques~\ref{Pente-lin_dim} et~\ref{Pente-Td-lin}. L'ajustement a été effectué à l'aide
-				d'un moindre carrée, donnant une valeur de la pente de chaque droite de $-1.31\pm0.44$ pour la
-				figure~\ref{Pente-Td-lin} et $-1.23\pm0.46$ pour la figure~\ref{Pente-lin_dim}.
+				d'une méthode de moindre carré, donnant une valeur de la pente de chaque droite de $-1.31\pm0.44$ pour la
+				figure~\ref{Pente-Td-lin} et $-1.23\pm0.46$ pour la figure~\ref{Pente-lin_dim}. La valeur numérique de cette pente
+				n'est pas fondamentale, une tendance est cependant bien présente: la pente diminue lorsque le temps dynamique ou le
+				temps de collision augmente.
 
 				%Le calcul de pente a été refait en utilisant : les données de
 				%l'article~\cite{TragerTable}, le traitement décrit ci-dessus, et en
@@ -629,7 +633,7 @@
 			\end{figure}
 
 			% Et enfin les galaxies elliptiques qui sont généralement les
-			La dernière classe principale est celles des galaxies elliptiques. Ces galaxies sont essentiellement
+			La dernière classe principale est celle des galaxies elliptiques. Ces galaxies sont essentiellement
 			constituées d'étoiles vieilles et ne contiennent que très
 			peu de gaz.
 
@@ -641,38 +645,33 @@
 			noire dont la distribution a pu être mise en évidence
 			autour des galaxies et dans les simulations numériques.
 
-			Il ressort de cette étude qu'il n'existe pas de profil
-			universel, comme les travaux de la fin du \romannumeral 20 \textsuperscript{e}~siècle tentaient de
-			le trouver. Chaque halo de matière noire pour chaque type
-			de galaxie doit être ajusté par un profil différent.
-			Comme nous l'avons vu plus haut, les galaxies naines
-			ont un profil de cœur-halo, ce sont les seules à
-			posséder un cœur. Les galaxies spirales et elliptiques
-			possèdent généralement un profil montrant un cusp à la
-			place du cœur (un profil de type cupside) ajusté
-			correctement par un profil de Vaucouleurs.
-			% correctement par un profil dit de Dehnen-McLaughin. Ce profil
-			% est directement issu d'une généralisation du profil de
+			Il ressort de cette étude qu'il n'existe pas de profil universel, comme les travaux de la fin du \romannumeral 20
+			\textsuperscript{e}~siècle tentaient de le trouver (voir par exemple~\cite{NFW+97}). Chaque halo de matière noire pour chaque
+			type de galaxie doit être ajusté par un profil différent. Comme nous l'avons vu plus haut, les galaxies naines ont un profil
+			de cœur-halo, ce sont les seules à posséder un cœur. Les galaxies spirales et elliptiques possèdent généralement un profil
+			montrant un cups à la place du cœur (un profil de type cupside) ajusté correctement par un profil de Vaucouleurs.
+			% correctement par un profil dit de Dehnen-McLaughin. Ce profil est directement issu d'une généralisation du profil de
 			% Vaucouleurs: le profil de Einasto $R^{1/N}$.
 
 			%ont une préférence pour les profil cupsy de Prugniel \&
 			%Simien ou encore Dehnen-McLaughlin.
 
-			Dés 1948, Gérard de Vaucouleurs remarque que de nombreuses galaxies elliptique possédaient un
+			Dés 1948, Gérard de Vaucouleurs remarque que de nombreuses galaxies elliptiques possédaient une
 			brillance de surface projetée variant comme:
 			\begin{align}
-				I(r) = I_\mathrm{eff} 10^{-3.3307\left[\(\dfrac{R}{R_\mathrm{eff}}\)^{1/4} - 1\right]}
+				I(R) = I_\mathrm{eff} 10^{-3.3307\left[\(\dfrac{R}{R_\mathrm{eff}}\)^{1/4} - 1\right]}
 			\end{align}
 			avec $R$ le rayon projeté.
 			C'est la fameuse loi de de Vaucouleurs. Depuis de nombreux modèles ont étendus celle-ci:
 			\begin{itemize}
-				\item le modèle empirique d'Einasto qui propose une densité volumique de masse de la
+				\item le modèle empirique d'Einasto~\footnote{Ce modèle est bel et bien empirique car il est obtenu directement en
+					remplaçant la brillance par la densité sans aucun calcul.} qui propose une densité volumique de masse de la
 					forme:
 					\begin{align}
 						\rho(r) = \rho_e \exp\left[-d_n\left\{\(\dfrac{r}{r_e}\)^{1/n} - 1\right\}\right] \label{Intro::Eq::Einasto}
 					\end{align}
 					avec $\rho_e = \rho(r_e)$ et $r_e$ le rayon à 50\% de masse;
-				\item le modèle de Prugniel-Simien qui est une déprojection partielle de la loi de de
+				\item le modèle de Prugniel-Simien, moins empirique que le précédent, est obtenu en déprojetant partiellement la loi de de
 					Vaucouleurs, la densité est de la forme:
 					\begin{align}
 						\rho(r) = \rho_0\(\dfrac{r}{R_e}\)^{-p_n}\exp\left[-b_n\left\{\(\dfrac{r}{R_e}\)^{1/n} -1\right\}\right]\label{Intro::Eq::P-S}
@@ -684,7 +683,7 @@
 			peu différents. En première approximation, le modèle
 			NFW, couramment utilisé, convient. Mais les études plus
 			fines menées par \cite{2006AJ....132.2685M,2006AJ....132.2701G,2006AJ....132.2711G} montrent que
-			les profil de de Vaucouleurs généralisé~\ref{Intro::Eq::Einasto} et~\ref{Intro::Eq::P-S} conviennent mieux.
+			les profils de de Vaucouleurs généralisé~\ref{Intro::Eq::Einasto} et~\ref{Intro::Eq::P-S} conviennent mieux.
 			% Einasto (issu d'une déprojection d'une brillance de
 			% surface projetée en $R^{1/N}$) convient mieux. Ce
 			% profil est issu de la même famille que les modèle de
@@ -711,8 +710,8 @@
 
 			Cependant, ce modèle apporte son lot de problème:
 			\begin{itemize}
-				\item il prévoit que les halos de matière noire soit des cupsides là où les observations
-					trouvent des cœur-halo;
+				\item il prévoit une structure de type cupside pour les halos de matière noire alors que les observations
+					montrent que les galaxies naines possèdent un cœur et un halo et qu'elles sont très nombreuse;
 				\item dans les modèles numériques de formation hiérarchique, le nombre de petites
 					structures (amas globulaire et LSB) est beaucoup plus important que dans les
 					observations (voir \citet{2006CombesBook}).
