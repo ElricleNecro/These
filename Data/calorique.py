@@ -14,7 +14,7 @@ fig = plt.figure(figsize=(5., 2.8))
 ax = fig.add_subplot(111)
 
 ax.set_ylabel(r"$\mu(-\lambda)$")
-ax.set_xlabel(r"$\lambda$")
+ax.set_xlabel(r"$-\lambda$")
 ax.set_xlim(-0.4, 1)
 ax.set_ylim(0.8, 2.6)
 
