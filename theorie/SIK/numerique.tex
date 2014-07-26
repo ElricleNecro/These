@@ -1,25 +1,25 @@
 \subsection{Adimensionnement de l'équation de Poisson}
 %	Pour adimensionner l'énergie, nous allons nous servir de la quantité $\sigma^2$. % qui à la dimension d'une énergie.
 %	Nous introduisons la quantité $r_c$, pour adimensionner les distances, puis
-%	nous faisons donc le changement de variable suivant :
-	L'adimensionnement des énergies se fait au moyen de $\sigma^2$ et celui des longueurs via $r_c$, en posant :
+%	nous faisons donc le changement de variable suivant:
+	L'adimensionnement des énergies se fait au moyen de $\sigma^2$ et celui des longueurs via $r_c$, en posant:
 	\[
 			\gamma = \dfrac{\phi}{\sigma^2}
 			\quad \mathrm{et}\quad 
 			x = \dfrac{r}{r_c}
 	\]
 
-	Il vient alors :
+	Il vient alors:
 	\begin{equation}
 		\frac{d}{dx}\(x^2\frac{d\gamma}{dx}\) = -\frac{4m\pi G r_c^2 \rho_0}{\sigma^2}x^2 \left\{-\sqrt{\frac{4\gamma}{\pi}}\(1 + \frac{ 2\gamma }{3}\) + e^{\gamma}\mathrm{erf}\(\sqrt{\gamma}\)\right\}
 	\end{equation}
 
-	L'adimensionnement est complet en prenant comme chaque fois dans ce contexte 
+	L'adimensionnement est complet en prenant comme chaque fois dans ce contexte:
 	\begin{equation}
 		r_c^2 = \frac{\sigma^2}{4m\pi G\rho_0}
 		\label{r_c}
 	\end{equation}
-	L'équation de Poisson a résoudre numériquement s'écrit finalement :
+	L'équation de Poisson a résoudre numériquement s'écrit finalement:
 	\begin{equation}
 		\frac{d}{dx}\(x^2\frac{d\gamma}{dx}\) = x^2\frac{d^2\gamma}{dx^2} +
 		2x\frac{d\gamma}{dx} = -x^2 \left\{-\sqrt{\frac{4\gamma}{\pi}}\(1 + \frac{ 2\gamma }{3}\) + e^{\gamma}\mathrm{erf}\(\sqrt{\gamma}\)\right\}
@@ -30,8 +30,7 @@
 	
 			Le système étant isolé et à l'équilibre, son centre d'inertie est au repos. Sa symétrie
 			sphérique implique que la résultante des force qui s'applique à une particule test située en
-			$r=0$ s'annule. Cette force est proportionnelle au gradient du potentiel, nous avons donc
-			
+			$r=0$ s'annule. Cette force est proportionnelle au gradient du potentiel, nous avons donc:
 			\begin{equation}
 				\left.\frac{d\gamma}{dr}\right|_{r=0} = \left.\frac{d}{dr}\(\frac{E_l - m\psi}{\sigma^2}\)\right|_{r=0} = -\frac{m}{\sigma^2}\left.\frac{d\psi}{dr}\right|_{r=0} = 0
 			\end{equation}
@@ -40,10 +39,12 @@
 			La quantité $\phi(r)=E_l-m\psi(r)$ représente la quantité d'énergie qu'il faut fournir à une particule située à la distance $r$
 			du centre du système afin qu'elle sorte du système. 
 			Il est clair que le potentiel $\psi(r)$ est une fonction partout négative ou nulle, ainsi
-			$\phi(r)$ est à l'inverse positive ou nulle. Au centre, cette quantité vaudra :
-			$$\phi(0)=E_l-m\psi(0)$$
+			$\phi(r)$ est à l'inverse positive ou nulle. Au centre, cette quantité vaudra:
+			\begin{align*}
+				\phi(0)=E_l-m\psi(0)
+			\end{align*}
 
-			Il est donc commode d'introduire la quantité adimensionnée :
+			Il est donc commode d'introduire la quantité adimensionnée:
 			\begin{equation}
 				W_0 = \gamma(0)=\frac{E_l - m\psi(0)}{\sigma^2} > 0
 				\label{W_0}
@@ -52,16 +53,21 @@
 			Nous éviterons de la prendre nulle, car, dans ce cas, le système ne contient au
 			plus aucune étoile!
 
-	Le choix de $\gamma(0)=W_0$ et le fait que la dérivée de $\gamma$ en $r=0$ soit nulle permettent la résolution numérique de l'équation (\ref{Pois-no_dim}). Cette résolution permet d'obtenir le rayon $R$ de la sphère de King, premier zéro de la fonction $\phi(r)$. La vitesse d'une particule test située en $r=R$ est la vitesse de libération du système, en introduisant $X=\frac{R}{r_c}$ on a bien
+	Le choix de $\gamma(0)=W_0$ et le fait que la dérivée de $\gamma$ en $r=0$ soit nulle permettent la résolution numérique de l'équation
+	(\ref{Pois-no_dim}). Cette résolution permet d'obtenir le rayon $R$ de la sphère de King, premier zéro de la fonction $\phi(r)$. La vitesse
+	d'une particule test située en $r=R$ est la vitesse de libération du système, en introduisant $X=\frac{R}{r_c}$ nous avons bien:
 		\begin{equation}
 			 E_l = m\psi(X) \;\Leftrightarrow\; \gamma(X) = 0
 		\end{equation}
 
-	Le paramètre $W_0$ fixe donc toutes les caractéristiques nécessaires à la résolution numérique du modèle de King. Le rayon de la sphère de King est une fonction croissante de $W_0$. Comme on peut le voir sur la définition (\ref{W_0}), une même valeur de $W_0$ peut correspondre à des systèmes possédant des caractéristiques physiques différentes caractérisées par une profondeur du puits de potentiel $\psi(0)$, une dispersion de vitesse $\sigma^2$ ou une énergie de libération différente. Ces différences ne concernent que le système une fois redimensionné. 
+	Le paramètre $W_0$ fixe donc toutes les caractéristiques nécessaires à la résolution numérique du modèle de King. Le rayon de la sphère de
+	King est une fonction croissante de $W_0$. Comme nous pouvons le voir sur la définition~\ref{W_0}, une même valeur de $W_0$ peut correspondre à
+	des systèmes possédant des caractéristiques physiques différentes caractérisées par une profondeur du puits de potentiel $\psi(0)$, une
+	dispersion de vitesse $\sigma^2$ ou une énergie de libération différente. Ces différences ne concernent que le système une fois redimensionné. 
 
 \subsection{Résolution numérique}
-L'algorithme que nous utiliserons pour résoudre l'équation~\ref{King-Pois} est un Runge-Kutta
-	d'ordre $4$ (RK4). Nous devons écrire l'équation différentielle comme un système d'ordre 1, ce que nous faisons en posant $u = \frac{d\gamma}{dx}$ :
+	L'algorithme que nous utiliserons pour résoudre l'équation~\ref{King-Pois} est un Runge-Kutta
+	d'ordre $4$ (RK4). Nous devons écrire l'équation différentielle comme un système d'ordre 1, ce que nous faisons en posant $u = \frac{d\gamma}{dx}$:
 	\begin{equation}
 		\left\{\begin{array}{l}
 			u = \x{\gamma}\\
@@ -77,21 +83,21 @@ L'algorithme que nous utiliserons pour résoudre l'équation~\ref{King-Pois} est
 %	positif !!!}
 	Un terme en $1/x$ est apparu, l'équation semble donc singulière en $0$. Un 
 	développement limité de la fonction $\gamma$ autour de $0$ nous apprend qu'il n'en est rien, il n'y a
-	pas de divergence. Un rapide calcul montre que toutes les dérivées d'ordre impair de $\gamma(x)$ s'annulent en $x=0$, et que 
+	pas de divergence. Un rapide calcul montre que toutes les dérivées d'ordre impair de $\gamma(x)$ s'annulent en $x=0$, et que:
 	$$
 	\gamma(0) = W_0\, ,\;\; \gamma''(0) = -\frac{\rho(W_0)}{3\rho_0}\; \mathrm{et}\; \gamma^{(4)}(0) = \frac{2\rho(W_0)}{5\rho_0}\left\{\sqrt{\frac{W_0}{\pi}} -
 			\frac{e^{W_0}\mathrm{erf}(\sqrt{W_0})}{2}\right\} 
 	$$
 	Nous pouvons donc écrire directement un développement de Taylor de $\gamma(x)$ à l'ordre 5 en $x=0$. 
 	La résolution des équations nous permet alors d'avoir les graphiques de la
-	figure~\ref{King_Modele-test} (les graphes sont adimensionnés).% mais pas normalisé~).
-%	\paragraph{Problème : Résolu :}
+	figure~\ref{King_Modele-test} (les graphiques sont adimensionnés).% mais pas normalisé~).
+%	\paragraph{Problème: Résolu:}
 %	Tant que la variable $x$ est proche de $0$, j'utilise les développements limités, puis passé
 %	un certain seuil, je réutilise l'équation différentielle. Le résultat obtenu est la figure~\ref{King_Modele-err}
 %	au lieu de la figure~\ref{King_Modele} (~figure pour laquelle je démarre à $x=1.10^{-6}$ au
 %	lieu de $x=0$~). Il semblerait que mon algorithme de RK4 à pas variable ait du mal à suivre,
 %	en plus d'avoir, apparemment, une erreur d'adimensionnement/normalisation.
-%	\subparagraph{Solution pour le RK4 ne suivant pas :} J'utilisais le développement de $\gamma(x)$ pour calculer la pente
+%	\subparagraph{Solution pour le RK4 ne suivant pas:} J'utilisais le développement de $\gamma(x)$ pour calculer la pente
 %	et celui de $\x{\gamma(x)}$ pour calculer la dérivée seconde.
 
 %	\textcolor{red}{RAAAAAAHHHHHHHHH !!!!!!!!!! Plein d'erreur de signe dans les calculs et le
@@ -105,7 +111,7 @@ L'algorithme que nous utiliserons pour résoudre l'équation~\ref{King-Pois} est
 %				\centering \includegraphics[scale=0.40]{graphe/erreur-pot_king.png}
 %			\end{minipage}
 %			\caption{Densité et potentiel d'un modèle de \textsc{King} pour les
-%			conditions initiales (~au centre~) : $\gamma(0) = \frac{E_l -
+%			conditions initiales (~au centre~): $\gamma(0) = \frac{E_l -
 %			m\psi(0)}{\sigma^2} = 9$}
 %			\label{King_Modele-err}
 %	\end{figure}
@@ -117,7 +123,7 @@ L'algorithme que nous utiliserons pour résoudre l'équation~\ref{King-Pois} est
 %				\centering \includegraphics[scale=0.60]{graphe/potentiel_king.pdf}
 %			\end{minipage}
 %			\caption{Densité et potentiel d'un modèle de \textsc{King} pour les
-%			conditions initiales (~au centre~) : $\gamma(0) = \frac{E_l - m\psi(0)}{\sigma^2} = 3$, $\x{\gamma}(0) = 0$}
+%			conditions initiales (~au centre~): $\gamma(0) = \frac{E_l - m\psi(0)}{\sigma^2} = 3$, $\x{\gamma}(0) = 0$}
 %			\label{King_Modele}
 %	\end{figure}
 
@@ -136,12 +142,12 @@ L'algorithme que nous utiliserons pour résoudre l'équation~\ref{King-Pois} est
 
 	%La figure~\ref{King_Modele-test} montre l'aspect de la densité d'un modèle de \textsc{King} en fonction de $W_0$ et nous indique aussi que ce modèle posséde une structure cœur-halo
 	%(~une partie quasiment constante suivi d'une décroissance auto-similaire de pente $\alpha$~).
-	%Plus $\phi$ est grand, plus le cœur est dense (~le graphe de droite trace $\rho(x)/\rho(0)$~). Nous pouvons aussi observer que la pente n'est pas la même :
-	%elle diminue (~la courbe tend plus vite vers $0$~). Ce constat nous amène à nous poser une question : existe-t-il un
+	%Plus $\phi$ est grand, plus le cœur est dense (~le graphe de droite trace $\rho(x)/\rho(0)$~). Nous pouvons aussi observer que la pente n'est pas la même:
+	%elle diminue (~la courbe tend plus vite vers $0$~). Ce constat nous amène à nous poser une question: existe-t-il un
 	%lien entre la pente et le rayon du cœur ?
 	
-	La résolution numérique du système (\ref{sys2dking}) permet d'obtenir la fonction $\gamma(x)$ pour chaque donnée
-	initiale $W_0$. De cette fonction on déduit la densité volumique de masse du système adimensionnée $\rho^s(x)$ par la relation
+	La résolution numérique du système~\ref{sys2dking} permet d'obtenir la fonction $\gamma(x)$ pour chaque donnée
+	initiale $W_0$. De cette fonction nous en déduisons la densité volumique de masse du système adimensionnée $\rho^s(x)$ par la relation:
 	\begin{align*}
 		\rho^s(x) = \dfrac{\rho(x)}{\rho_0} = e^{\gamma(x)} \mathrm{erf}\(\sqrt{\gamma(x)}\) - \sqrt{\dfrac{4\gamma(x)}{\pi}}\(1+\dfrac{2\gamma(x)}{3}\)
 	\end{align*}
