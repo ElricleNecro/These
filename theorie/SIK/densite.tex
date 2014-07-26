@@ -16,17 +16,17 @@ La fonction de distribution associée à ce modèle de King s'écrit (voir~\cite
 où la dimension de $\sigma^2$ est celle d'une énergie. Ce paramètre représente la dispersion d'énergie du système.
 Le paramètre $\rho_0$ est la densité de masse au centre du système. L'énergie $E_l$  de libération d'une particule s'écrit : $E_l = \frac{p_l^2}{2m} + m\psi(r)$, où $\psi(r)$ est le potentiel gravitationnel de la sphère de King et  $p_l$ l'impulsion de libération fonction de $r$.
 
-La densité de masse s'écrit toujours à partir de la fonction de distribution :
+La densité de masse s'écrit toujours à partir de la fonction de distribution:
 \begin{eqnarray*}
 	\rho(r) &=& \int^{p_l}_0\,f_K(E)4\pi p^2dp \\
 		&=& \frac{\rho_0}{\(2\pi m\sigma^2\)^{3/2}}\int_0^{p_l}\,\left\{e^{\frac{E_l-E}{\sigma^2}} -1\right\} 4\pi p^2 dp\\
 \end{eqnarray*}
-L'énergie d'une particule test s'écrit  $E = \frac{p^2}{2m} + m\psi$, on a donc :
+L'énergie d'une particule test s'écrit  $E = \frac{p^2}{2m} + m\psi$, nous avons donc:
 \begin{eqnarray*}
 	\rho(r) &=& \frac{\rho_0}{\(2\pi m\sigma^2\)^{3/2}} \int_0^{p_l}\,\left\{e^{\frac{E_l - \frac{p^2}{2m} - m\psi}{\sigma^2}} -1\right\} 4\pi p^2 dp\\
 		&=& \frac{4\pi \rho_0}{\(2\pi m\sigma^2\)^{3/2}} \(e^{\frac{E_l - m\psi}{\sigma^2}} \int_0^{p_l}\,e^{-\frac{p^2}{2m\sigma^2}} p^2 dp - \int_0^{p_l}\,p^2 dp\)\\
 \end{eqnarray*}
-Une intégration par partie de la première intégrale permet alors d'écrire
+Une intégration par partie de la première intégrale permet alors d'écrire:
 \begin{equation*}
 	\rho(r) = \frac{4\pi\rho_0}{\(2\pi m\sigma^2\)^{3/2}} 
 	\(e^{\frac{E_l - m\psi}{\sigma^2}} 
@@ -34,25 +34,25 @@ Une intégration par partie de la première intégrale permet alors d'écrire
 	-m\sigma^2p_l e^{-\frac{p_l^2}{2m\sigma^2}} + m\sigma^2\int_0^{p_l}\,e^{-\frac{p^2}{2m\sigma^2}} dp
 	\right] - \frac{p_l^3}{3}\)
 \end{equation*}
-En introduisant un nouveau potentiel $\phi(r)$ tel que :
+En introduisant un nouveau potentiel $\phi(r)$ tel que:
 \begin{equation}
 	p_l^2 = 2m\(E_l - m\psi(r)\) = 2m\phi(r)
 \end{equation}
-il vient  maintenant :
+il vient  maintenant:
 \begin{equation*}
 	\rho(r) = 
 	\rho_0 \(-\sqrt{\frac{4\phi}{\pi\sigma^2}}\(1 + \frac{ 2\phi }{3\sigma^2}\) 
 	+ 
 	\frac{2e^{\frac{\phi}{\sigma^2}}}{\sqrt{2m\pi\sigma^2}} \int_0^{p_l}\,e^{-\frac{p^2}{2m\sigma^2}} dp\)\\
 \end{equation*}
-la dernière intégrale s'exprime directement en utilisant la fonction d'erreur
+la dernière intégrale s'exprime directement en utilisant la fonction d'erreur:
 $$\mathrm{erf}(t) = \displaystyle{\frac{2}{\sqrt{\pi}}\int_0^t e^{-u^2}du}$$
-la densité du modèle de King s'écrit donc
+la densité du modèle de King s'écrit donc:
 \begin{eqnarray}
 	\rho(r) = \rho_0 \(-\sqrt{\frac{4\phi}{\pi\sigma^2}}\(1 + \frac{ 2\phi }{3\sigma^2}\) + e^{\frac{\phi}{\sigma^2}}\mathrm{erf}\(\sqrt{\phi}/\sigma\)\)
 	\label{rho_r}
 \end{eqnarray}
-L'équation de Poisson pour le potentiel $\phi(r) = E_l - m\psi(r)$ s'écrit donc :
+L'équation de Poisson pour le potentiel $\phi(r) = E_l - m\psi(r)$ s'écrit donc:
 \begin{eqnarray}
 	\frac{d}{dr}\(r^2\frac{d\phi}{dr}\) = -4m\pi G r^2\rho_0 \left\{-\sqrt{\frac{4\phi}{\pi\sigma^2}}\(1 + \frac{ 2\phi }{3\sigma^2}\) + e^{\frac{\phi}{\sigma^2}}\mathrm{erf}\(\sqrt{\phi}/\sigma\)\right\} \label{King-Pois}
 \end{eqnarray}
