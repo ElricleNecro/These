@@ -59,7 +59,7 @@ La dérivée de $u$ s'obtient directement à partir de sa définition, nous trou
 	\end{align}
 	La courbe résultant de cette équation, tracée dans le plan $\left(u, v\right)$, forme le diagramme
 	de Milne. L'étude de ce diagramme permet d'accéder à de nombreuses caractéristiques de la sphère isotherme en
-	boîte. L'équation~(\ref{eqdudv}) ne peut être résolue explicitement mais sa solution peut être obtenue
+	boîte. L'équation~\ref{eqdudv} ne peut être résolue explicitement mais sa solution peut être obtenue
 	numériquement: il faut pour cela préciser les conditions au bord et au centre du système; ce qui est l'objet de la
 	section suivante.
 	
@@ -68,8 +68,8 @@ La dérivée de $u$ s'obtient directement à partir de sa définition, nous trou
 	\input{theorie/SIB/bords.tex}
 
 \subsection{Droites de Padmanabhan et diagramme de Milne}
-	% On peut facilement éliminer $\mu$ dans le système~(\ref{uv_max}) et obtenir
-	Les $\mu$ dans le système~(\ref{uv_max}) peuvent facilement s'éliminer et nous obtenons:
+	% On peut facilement éliminer $\mu$ dans le système~\ref{uv_max} et obtenir
+	Les $\mu$ dans le système~\ref{uv_max} peuvent facilement s'éliminer et nous obtenons:
 	\begin{align}
 		v_m = \frac{3}{2\lambda} - \frac{u_m}{\lambda}\label{droitePb}
 	\end{align}
@@ -81,13 +81,12 @@ La dérivée de $u$ s'obtient directement à partir de sa définition, nous trou
 	Le choix de $\lambda$ est indépendant de la valeur de la température, le point $(u_m,v_m)$ associé à la sphère
 	isotherme en boite de rayon $R$, de masse $M$, d'énergie $H$ et de température $\beta$ se trouve donc à
 	l'intersection de la droite de Padmanabhan fixée par $\lambda$ et de la courbe $v(u)$ solution de
-	l'équation~(\ref{eqdudv}). 
+	l'équation~\ref{eqdudv}. 
 	
 	
 	Cette courbe est obtenue numériquement à l'aide d'un solveur runge-kutta d'ordre 4, en utilisant les variables adimensionnées, le
 	seul paramètre physique pour la résolution étant la valeur de $X$ caractérisant le rayon et la température de la
-	sphère.  L'ensemble de ces courbes et des droites de Padmanabhan correspondantes sont représentées sur la figure
-	\ref{Milne}.
+	sphère.  L'ensemble de ces courbes et des droites de Padmanabhan correspondantes sont représentées sur la figure~\ref{Milne}.
 	Nous constatons que plus la valeur de $R$ augmente, plus la courbe
 	solution est longue et finit par s'enrouler dans une spirale convergeant vers un point. Ce point correspond au
 	cas $R\to\infty$ et donc celui de la \textsc{sis}.

@@ -1,26 +1,26 @@
 
-\subsubsection{Au centre de la sphère : $x = 0$}
-	Dans le voisinage de $x=0$, la fonction $h(x)$, représentant le potentiel gravitationnel du système, s'écrit :
+\subsubsection{Au centre de la sphère: $x = 0$}
+	Dans le voisinage de $x=0$, la fonction $h(x)$, représentant le potentiel gravitationnel du système, s'écrit:
 	\begin{align*}
 		h(x) = h(0) + \x{h}(0)x + h^{\prime\prime}(0)\frac{x^2}{2!} + h^{\prime\prime\prime}(0)\frac{x^3}{3!} + o(x^3) = ax^2 + bx^3 + o(x^3)
 	\end{align*}
 	Il est clair en effet que d'une part \mbox{$h(0) = m\beta\left(\psi(0) - \psi(0)\right) = 0$} et d'autre part \mbox{$\x{h}(0) = m\beta\x{\psi}(0) = 0$} car la force s'appliquant sur une particule test située au centre d'un système sphérique est nulle.
 
-	En utilisant (\ref{syst_uv}) nous trouvons alors :
+	En utilisant~\ref{syst_uv} nous trouvons alors:
 	\begin{align}
 		v &= x\x{h} = 2ax^2 + 3bx^3 + o(x^3)\label{vDL} \\
 		u &= \frac{x^2e^{-ax^2 - bx^3 + o(x^3)}}{2ax^2 + 3bx^3 + o(x^3)} \\
 		  % &= \frac{1 - ax^2 - bx^3 + o(x^3)}{2a + 3bx +o(x)} \\
 		  &= \frac{1}{2a} - \frac{3b}{4a^2}x + o(x)\label{uDL}
 	\end{align}
-	Nous utilisons ensuite l'équation de Poisson pour déterminer, par identification, les valeurs de $a$ et de $b$ :
+	Nous utilisons ensuite l'équation de Poisson pour déterminer, par identification, les valeurs de $a$ et de $b$:
 	\begin{align}
 		\x{\left(xv\right)} = 6ax^2 + 12bx^3 + o(x^3) = uv = x^2 + o(x^3)\label{PoisDL}
 	\end{align}
-	Soit $a = \frac{1}{6}$ et $b=0$, puis en utilisant (\ref{vDL}) et (\ref{uDL}) nous trouvons finalement :
+	Soit $a = \frac{1}{6}$ et $b=0$, puis en utilisant~\ref{vDL} et~\ref{uDL} nous trouvons finalement:
 	$$\lim_{r\to 0}(u,v) = (3,0)$$
 
-\subsubsection{Sur le bord de la sphère : $r = R$}
+\subsubsection{Sur le bord de la sphère: $r = R$}
 	Commençons par introduire quelques constantes sans dimensions dimensionnées fort utiles 
 	\begin{align}
 		\begin{array}{rll}
@@ -66,7 +66,7 @@
 			&= \frac{3}{2}\frac{1}{X\x{h}(X)} - \frac{e^{-h(X)}}{(\x{h}(X))^2}\label{lamum}
 	\end{align}
 
-	Par substitution, nous obtenons finalement les valeurs au bord $u_m=u(X)$ et $v_m=v(X)$ en fonction de $\lambda$ et $\mu$ :
+	Par substitution, nous obtenons finalement les valeurs au bord $u_m=u(X)$ et $v_m=v(X)$ en fonction de $\lambda$ et $\mu$:
 	\begin{align}
 		\label{uv_max}
 		\left\{\begin{array}{l}
