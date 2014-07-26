@@ -1,550 +1,403 @@
-% \chapter{Le syst\`{e}me de Vlasov-Poisson}
+% \chapter{Le système de Vlasov-Poisson}
 
-\section{{L'\'{e}quation de {Poisson}}}
+\section{Le système de Vlasov-Poisson}
+
+\subsection{L'équation de Poisson}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-{Les syst\`{e}mes que nous \'{e}tudions en dynamique stellaire poss\`{e}dent
-des tailles carac\-t\'{e}\-ris\-tiques de l'ordre du {parsec} ($3,08\times
-10^{16}$ m) pour les amas {globulaire}s et du millier de parsecs pour les
-{galaxie}s. En n\'{e}gligeant le r\^{o}le du gaz interstellaire et sur de
-telles \'{e}chelles, la seule des quatre interactions pouvant intervenir dans
-la dynamique de ces syst\`{e}mes est \'{e}videmment la gravitation. }
+Les systèmes que nous étudions en dynamique stellaire possèdent des tailles caractéristiques de l'ordre du parsec pour les amas globulaires et du
+millier de parsecs pour les galaxies. En négligeant le rôle du gaz interstellaire et sur de telles échelles, la seule des quatre interactions pouvant
+intervenir dans la dynamique de ces systèmes est la gravitation.
 
-{Nous consid\'{e}rons donc un syst\`{e}me $\Omega\subset\mathbb{R}^{3}$ dont
-la masse est distribu\'{e}e selon une certaine densit\'{e}
-\[
-\rho=\left\{
-\begin{array}
-[c]{l}%
-\rho(\mathbf{r}^{\prime})\\
-0
-\end{array}%
-\begin{array}
-[c]{l}%
-\text{si}\qquad\mathbf{r}^{\prime}\in\Omega\\
-\text{si}\qquad\mathbf{r}^{\prime}\notin\Omega
-\end{array}
-\right\}
-\]
-La loi de la gravitation de Newton nous indique alors que la force
-$\mathbf{f}(\mathbf{r})$ que cr\'{e}e le syst\`{e}me en tout point
-$\mathbf{r}\in\mathbb{R}^{3}$ }de masse unit\'{e}{, est obtenue en sommant
-toutes les contributions infinit\'{e}simales
-\begin{equation}
-\delta\mathbf{f}(\mathbf{r})=G\frac{\mathbf{r}^{\prime}-\mathbf{r}}{\left\vert
-\mathbf{r}^{\prime}-\mathbf{r}\right\vert ^{3}}\rho(\mathbf{r}^{\prime}%
-)\delta^{3}\mathbf{r}^{\prime}\label{poisss}%
-\end{equation}
-issues de chaque \'{e}l\'{e}ment de volume $\delta^{3}\mathbf{x}^{\prime}$.
-Dans l'hypoth\`{e}se d'une distribution continue de mati\`{e}re nous avons
-donc
-\begin{equation}
-\mathbf{f}(\mathbf{r})=G\displaystyle\int\frac{\mathbf{r}^{\prime}-\mathbf{r}%
-}{\left\vert \mathbf{r}^{\prime}-\mathbf{r}\right\vert ^{3}}\rho
-(\mathbf{r}^{\prime})d^{3}\mathbf{r}^{\prime}\label{eq1}%
-\end{equation}
-}
+Nous considérons donc un système $\Omega\subset\mathbb{R}^{3}$ dont la masse est distribuée selon une certaine densité:
+\begin{align*}
+	\rho = \begin{cases}
+		\rho(\mathbf{r}^{\prime}) & \text{si } \mathbf{r}^{\prime}\in\Omega\\
+		0 & \text{si } \mathbf{r}^{\prime}\notin\Omega
+	\end{cases}
+	% \rho=\left\{
+		% \begin{array}[c]{l}%
+			% \rho(\mathbf{r}^{\prime})\\
+			% 0
+		% \end{array}%
+		% \begin{array}[c]{l}%
+			% \text{si}\qquad\mathbf{r}^{\prime}\in\Omega\\
+			% \text{si}\qquad\mathbf{r}^{\prime}\notin\Omega
+		% \end{array}
+	% \right\}
+\end{align*}
+La loi de la gravitation de Newton nous indique alors que la force $\mathbf{f}(\mathbf{r})$ que crée le système en tout point
+$\mathbf{r}\in\mathbb{R}^{3}$ de masse unité, est obtenue en sommant toutes les contributions infinitésimales:
+\begin{align}
+	\delta\mathbf{f}(\mathbf{r})=G\frac{\mathbf{r}^{\prime}-\mathbf{r}}{\left\vert\mathbf{r}^{\prime}-\mathbf{r}\right\vert ^{3}}\rho(\mathbf{r}^{\prime}%
+	)\delta^{3}\mathbf{r}^{\prime}\label{poisss}%
+\end{align}
+issues de chaque élément de volume $\delta^{3}\mathbf{x}^{\prime}$. Dans l'hypothèse d'une distribution continue de matière nous avons donc:
+\begin{align}
+	\mathbf{f}(\mathbf{r})=G\displaystyle\int\frac{\mathbf{r}^{\prime}-\mathbf{r}}{\left\vert \mathbf{r}^{\prime}-\mathbf{r}\right\vert ^{3}}\rho
+	(\mathbf{r}^{\prime})d^{3}\mathbf{r}^{\prime}\label{eq1}%
+\end{align}
 
-{En introduisant le {potentiel} gravitationnel
-\begin{equation}
-\psi(\mathbf{r})=-G\displaystyle\int\frac{\rho(\mathbf{r}^{\prime}%
-)}{\left\vert \mathbf{r}^{\prime}-\mathbf{r}\right\vert }d^{3}\mathbf{r}%
-^{\prime}\label{eq2}%
-\end{equation}
-et en remarquant que
-\[
-\mathrm{grad}_{\mathbf{r}}\left(  \frac{1}{\left\vert \mathbf{r}^{\prime
-}-\mathbf{r}\right\vert }\right)  =\frac{\mathbf{r}^{\prime}-\mathbf{r}%
-}{\left\vert \mathbf{r}^{\prime}-\mathbf{r}\right\vert ^{3}}
-\]
-Nous avons donc
-\[
-\mathbf{f}(\mathbf{r})=G\displaystyle\int\mathrm{grad}_{\mathbf{r}}\left(
-\frac{1}{\left\vert \mathbf{r}^{\prime}-\mathbf{r}\right\vert }\right)
-\rho(\mathbf{r}^{\prime})d^{3}\mathbf{r}^{\prime}
-\]
-pour une large classe de densit\'{e}s suffisamment r\'{e}guli\`{e}res (celles
-permettant \`{a} $\left(  \ref{eq1}\right)  $ de converger), la force
-d\'{e}rive donc du {potentiel} $\left(  \ref{eq2}\right)  $ et l'on a
-\begin{equation}
-\mathbf{f}(\mathbf{r})=-\mathrm{grad}_{\mathbf{r}}\psi(\mathbf{r})\label{eq3}%
-\end{equation}
-le syst\`{e}me est alors dit conservatif. Plut\^{o}t que d'utiliser le champ
-vectoriel $\mathbf{f}(\mathbf{r})$, il est pr\'{e}f\'{e}rable de trouver une
-relation entre champs scalaires. Ceci est possible en remarquant que
-l'\'{e}quation $\left(  \ref{eq2}\right)  $ est une {convolution} :}
-\begin{equation}
-\psi(\mathbf{r},t)=-G\,\,\,\rho(\mathbf{r},t)\ast\frac{1}{\left\vert
-\mathbf{r}\right\vert }\ .\label{poiconvlap}%
-\end{equation}
-{La deuxi\`{e}me fonction de cette {convolution} est, \`{a} une constante
-pr\`{e}s, la fonction de {Green} du laplacien. Un calcul trivial montre en
-effet que si }$u${\ est une fonction test au sens des distributions, alors le
-produit scalaire}
-\[
-\left\langle \Delta\left(  \frac{1}{\left\vert \mathbf{r}\right\vert }\right)
-,u\right\rangle =-4\pi\,u\left(  0\right)  =\left\langle -4\pi\delta\left(
-\mathbf{r}\right)  \text{ },u\right\rangle \text{.}
-\]
-{Il devient donc \'{e}vident d'appliquer le laplacien \`{a} l'\'{e}quation
-}$\left(  \ref{poiconvlap}\right)  ${\ qui s'\'{e}crit alors}
-\[
-\left\langle \Delta\psi(\mathbf{r},t),u\right\rangle =\left\langle
--G\,\,\Delta\left(  \rho(\mathbf{r},t)\ast\frac{1}{\left\vert \mathbf{r}%
-\right\vert }\right)  ,u\right\rangle
-\]
-{soit }
-\[
-\left\langle \Delta\psi(\mathbf{r},t),u\right\rangle =\left\langle
--G\,\,\rho(\mathbf{r},t)\ast\Delta\left(  \frac{1}{\left\vert \mathbf{r}%
-\right\vert }\right)  ,u\right\rangle =\left\langle 4\pi G\,\,\rho
-(\mathbf{r},t)\ast\delta\left(  \mathbf{r}\right)  ,u\right\rangle
-\]
+En introduisant le potentiel gravitationnel:
+\begin{align}
+	\psi(\mathbf{r})=-G\displaystyle\int\frac{\rho(\mathbf{r}^{\prime})}{\left\vert \mathbf{r}^{\prime}-\mathbf{r}\right\vert }d^{3}\mathbf{r}%
+	^{\prime}\label{eq2}%
+\end{align}
+et en remarquant que:
+\begin{align*}
+	\mathrm{grad}_{\mathbf{r}}\left(  \frac{1}{\left\vert \mathbf{r}^{\prime}-\mathbf{r}\right\vert }\right)  =\frac{\mathbf{r}^{\prime}-\mathbf{r}%
+	}{\left\vert \mathbf{r}^{\prime}-\mathbf{r}\right\vert ^{3}}
+\end{align*}
+Nous avons donc:
+\begin{align*}
+	\mathbf{f}(\mathbf{r})=G\displaystyle\int\mathrm{grad}_{\mathbf{r}}\left(\frac{1}{\left\vert \mathbf{r}^{\prime}-\mathbf{r}\right\vert }\right)
+	\rho(\mathbf{r}^{\prime})d^{3}\mathbf{r}^{\prime}
+\end{align*}
+pour une large classe de densités suffisamment régulières (celles permettant à~\ref{eq1} de converger), la force dérive donc du potentiel~\ref{eq2} et
+nous avons:
+\begin{align}
+	\mathbf{f}(\mathbf{r})=-\mathrm{grad}_{\mathbf{r}}\psi(\mathbf{r})\label{eq3}%
+\end{align}
+le système est alors dit conservatif. Plutôt que d'utiliser le champ vectoriel $\mathbf{f}(\mathbf{r})$, il est préférable de trouver une relation
+entre champs scalaires. Ceci est possible en remarquant que l'équation~\ref{eq2} est une convolution:
+\begin{align}
+	\psi(\mathbf{r},t)=-G\,\,\,\rho(\mathbf{r},t)\ast\frac{1}{\left\vert\mathbf{r}\right\vert }\ .\label{poiconvlap}%
+\end{align}
+La deuxième fonction de cette convolution est, à une constante près, la fonction de Green du laplacien. Un calcul montre en effet que si
+$u$ est une fonction test au sens des distributions, alors le produit scalaire:
+\begin{align*}
+	\left\langle \Delta\left(  \frac{1}{\left\vert \mathbf{r}\right\vert }\right),u\right\rangle =-4\pi\,u\left(  0\right)  =\left\langle -4\pi\delta\left(
+	\mathbf{r}\right)  \text{ },u\right\rangle\text{.}
+\end{align*}
+Nous allons donc appliquer le laplacien à l'équation~\ref{poiconvlap} qui s'écrit alors:
+\begin{align*}
+	\left\langle \Delta\psi(\mathbf{r},t),u\right\rangle =\left\langle-G\,\,\Delta\left(  \rho(\mathbf{r},t)\ast\frac{1}{\left\vert \mathbf{r}%
+	\right\vert }\right),u\right\rangle
+\end{align*}
+soit:
+\begin{align*}
+	\left\langle \Delta\psi(\mathbf{r},t),u\right\rangle =\left\langle-G\,\,\rho(\mathbf{r},t)\ast\Delta\left(  \frac{1}{\left\vert \mathbf{r}%
+	\right\vert }\right)  ,u\right\rangle =\left\langle 4\pi G\,\,\rho(\mathbf{r},t)\ast\delta\left(  \mathbf{r}\right)  ,u\right\rangle
+\end{align*}
 
+Le Dirac étant l'élément neutre de l'algèbre de convolution, nous obtenons finalement l'équation de Poisson:
+\begin{align*}
+	\Delta\psi(\mathbf{r},t)=4\pi G\,\,\rho(\mathbf{r},t)
+\end{align*}
 
-{le {Dirac} \'{e}tant l'\'{e}l\'{e}ment neutre de l'alg\`{e}bre de
-{convolution}, nous obtenons finalement l'\'{e}quation de {Poisson} }
-\[
-\Delta\psi(\mathbf{r},t)=4\pi G\,\,\rho(\mathbf{r},t)
-\]
-
-
-{Cette \'{e}quation, seule ou coupl\'{e}e avec d'autres, est \`{a} la base de
-nombreux pro\-bl\`{e}\-mes d'astrophysique th\'{e}orique. }
+Cette équation, seule ou couplée avec d'autres, est à la base de nombreux problèmes d'astrophysique théorique.
 
 \begin{itemize}
-\item {Utilis\'{e}e seule elle n\'{e}cessite la donn\'{e}e (th\'{e}orique ou
-exp\'{e}rimentale) de la fonction $\rho(\mathbf{r})$. La r\'{e}solution de
-l'\'{e}quation de {Poisson} fournit alors la force g\'{e}n\'{e}r\'{e}e par le
-syst\`{e}me en tout point de l'espace, il devient donc formellement possible
-de conna\^{\i}tre les propri\'{e}t\'{e}s dynamiques de la trajectoire d'une
-particule test \'{e}voluant dans le champ de gravitation cr\'{e}\'{e} par la
-distribution $\Omega$. }
 
-\item {Dans le cadre d'une th\'{e}orie fournissant la densit\'{e} du
-syst\`{e}me, l'\'{e}quation de {Poisson} sera alors utilis\'{e}e comme
-\'{e}quation de fermeture du probl\`{e}me. }
+	\item Utilisée seule elle nécessite la donnée (théorique ou expérimentale) de la fonction $\rho(\mathbf{r})$. La résolution de l'équation de
+		Poisson fournit alors la force générée par le système en tout point de l'espace, il devient donc formellement possible de
+		connaître les propriétés dynamiques de la trajectoire d'une particule test évoluant dans le champ de gravitation créé par la
+		distribution $\Omega$.
+
+	\item Dans le cadre d'une théorie fournissant la densité du système, l'équation de Poisson sera alors utilisée comme équation de fermeture
+		du problème.
+
 \end{itemize}
 
-\section{Le syst\`{e}me de Vlasov-Poisson}
+\subsection{L'équation de Vlasov}
 
-Pour \'{e}tudier la dynamique des syst\`{e}mes autogravitants comme les
-galaxies ou les amas globulaires, la mise en \oe uvre des m\'{e}\-tho\-des de
-la m\'{e}canique classique conduit \`{a} \'{e}crire, donc \`{a} r\'{e}soudre,
-un nombre d'\'{e}quations diff\'{e}rentielles \'{e}gal au nombre d'\'{e}toiles
-composant le syst\`{e}me, ce qui est en pratique irr\'{e}alisable.\ Il
-convient d'utiliser des m\'{e}thodes statistiques de champ moyen, dans le cas
-gravitationnel la th\'{e}orie de Vlasov-Poisson.\ 
+Pour étudier la dynamique des systèmes autogravitants comme les galaxies ou les amas globulaires, la mise en œuvre des méthodes de la mécanique
+classique conduit à écrire, donc à résoudre, un nombre d'équations différentielles égal au nombre d'étoiles composant le système, ce qui est en
+pratique irréalisable.\ Il convient d'utiliser des méthodes statistiques de champ moyen, dans le cas gravitationnel la théorie de Vlasov-Poisson.
 
-Supposons que le syst\`{e}me que nous consid\'{e}rons poss\`{e}de $3N$
-degr\'{e}s de libert\'{e}. Cela signifie que les positions des diff\'{e}rents
-points du syst\`{e}me sont d\'{e}finies par $N$ vecteurs $\mathbf{r}_{\alpha}$
-comportant chacun 3 composantes, l'indice $\alpha$ prenant toutes les valeurs
-$1,2,\cdots,N$. A un instant donn\'{e}, l'\'{e}tat du syst\`{e}me sera
-compl\`{e}tement d\'{e}termin\'{e} par les $N$ vecteurs position et les $N$
-vecteurs impulsion $\mathbf{p}_{\alpha}=m_{\alpha}\mathbf{\dot{r}}_{\alpha}$
-correspondants. On peut repr\'{e}senter math\'{e}matiquement les
-diff\'{e}rents \'{e}tats d'un syst\`{e}me par des points dans un espace \`{a}
-$6N$ {dimension}s appel\'{e} espace des phases. La trajectoire, ou le lieu de
-ces points, permet de repr\'{e}senter de mani\`{e}re univoque l'\'{e}volution
-du syst\`{e}me.
+Supposons que le système que nous considérons possède $3N$ degrés de liberté. Cela signifie que les positions des différents points du système sont
+définies par $N$ vecteurs $\mathbf{r}_{\alpha}$ comportant chacun 3 composantes, l'indice $\alpha$ prenant toutes les valeurs $1,2,\cdots,N$. À un
+instant donné, l'état du système sera complètement déterminé par les $N$ vecteurs position et les $N$ vecteurs impulsion
+$\mathbf{p}_{\alpha}=m_{\alpha}\mathbf{\dot{r}}_{\alpha}$ correspondants. On peut représenter mathématiquement les différents états d'un système par
+des points dans un espace à $6N$ {dimension}s appelé espace des phases. La trajectoire, ou le lieu de ces points, permet de représenter de manière
+univoque l'évolution du système.
 
-En s'int\'{e}ressant \`{a} un volume infinit\'{e}simal $d\Gamma$ de cet espace
-des phases
-\[
-d\Gamma:=d\mathbf{r}_{1}d\mathbf{r}_{2}\cdots d\mathbf{r}_{N}d\mathbf{p}%
-_{1}d\mathbf{p}_{2}\cdots d\mathbf{p}_{N}
-\]
-on peut introduire la probabilit\'{e} $d\Omega$ des \'{e}tats
-repr\'{e}sent\'{e}s par des points contenus dans ce volume \`{a} l'instant
-$t$. C'est-\`{a}-dire, la probabilit\'{e} pour qu'\`{a} cet instant les
-positions $\mathbf{r}_{\alpha}$ et les {impulsion}s $\mathbf{p}_{\alpha}$
-soient comprises dans les intervalles infinit\'{e}simaux $[\mathbf{r}_{\alpha
-}+d\mathbf{r}_{\alpha}]$ et $[\mathbf{p}_{\alpha}+d\mathbf{p}_{\alpha}]$.
-Cette probabilit\'{e} se laisse exprimer par
-\[
-d\Omega\;=\;f^{(N)}(\mathbf{r}_{1},\cdots,\mathbf{r}_{N},\mathbf{p}_{1}%
-,\cdots,\mathbf{p}_{N},t)\,d\Gamma
-\]
-o\`{u} la quantit\'{e} $f^{(N)}(\mathbf{r}_{1},\cdots,\mathbf{r}%
-_{N},\mathbf{p}_{1},\cdots,\mathbf{p}_{N},t)$ est appel\'{e}e fonction de
-distribution \`{a} $N$ particules du syst\`{e}me. Cette fonction est
-clairement positive et de norme unit\'{e}
-\[
-1=\int f^{\left(  N\right)  }\left(  \mathbf{w}_{1},...,\mathbf{w}%
-_{N},t\right)  \,\,\,d\mathbf{w}_{1}\,...d\mathbf{w}_{N}
-\]
-{\ }
-
-elle repr\'{e}sente la densit\'{e}, au sens probabiliste, de la variable
-al\'{e}atoire $\mathbf{w}=(\mathbf{w}_{1},...,\mathbf{w}_{N})$ avec
-$\mathbf{w}_{\alpha}=\left(  \mathbf{r}_{\alpha},\mathbf{p}_{\alpha}\right)
-$. Si le nombre de particules est conserv\'{e} au cours de l'\'{e}volution,
-cette densit\'{e} ob\'{e}it \`{a} une \'{e}quation de continuit\'{e}
-(exprimant le fait que $df$ est une diff\'{e}rentielle totale exacte, ou
-physiquement que le nombre de particules est conserv\'{e})
-\begin{equation}
-\frac{\partial f^{(N)}}{\partial t}\;+\;\mathrm{div}_{\mathbf{w}}%
-(f^{(N)}\mathbf{\dot{w}})\;=\;0\label{continu}%
-\end{equation}
-o\`{u} $\mathbf{\dot{w}}=(\mathbf{\dot{r}}_{1},\mathbf{\dot{p}}_{1}%
-,...,\mathbf{\dot{r}}_{N},\mathbf{\dot{p}}_{N})$ repr\'{e}sente la vitesse du
-flot des points dans l'espace des phases. En explicitant la divergence de
-l'\'{e}quation (\ref{continu}), il vient
-\[
-\frac{\partial f^{(N)}}{\partial t}\;+\;\sum_{\alpha=1}^{N}\left[
-\mathrm{div}_{\mathbf{r}_{\alpha}}\left(  f^{(N)}\mathbf{\dot{r}}_{\alpha
-}\right)  +\mathrm{div}_{\mathbf{p}_{\alpha}}\left(  f^{(N)}\mathbf{\dot{p}%
-}_{\alpha}\right)  \right]  ~\;=\;0
-\]
-Apr\`{e}s d\'{e}rivation, nous obtenons
+En s'intéressant à un volume infinitésimal $d\Gamma$ de cet espace
+des phases:
 \begin{align*}
-&  \frac{\partial f^{(N)}}{\partial t}+\displaystyle\sum\limits_{\alpha=1}%
-^{N}\left\{  \mathbf{\dot{r}}_{\alpha}.\mathrm{grad}_{\mathbf{r}_{\alpha}%
-}\left(  f^{(N)}\right)  +\mathbf{\dot{p}}_{\alpha}.\mathrm{grad}%
-_{\mathbf{p}_{\alpha}}\left(  f^{(N)}\right)  \right. \\
-&  \,\;\;\;\;\;\;\;\left.  +~f^{(N)}\left[  \mathrm{div}_{\mathbf{r}_{\alpha}%
-}\left(  \mathbf{\dot{r}}_{\alpha}\right)  +\mathrm{div}_{\mathbf{p}_{\alpha}%
-}\left(  \mathbf{\dot{p}}_{\alpha}\right)  \right]  \right\}
+	d\Gamma:=d\mathbf{r}_{1}d\mathbf{r}_{2}\cdots d\mathbf{r}_{N}d\mathbf{p}_{1}d\mathbf{p}_{2}\cdots d\mathbf{p}_{N}
 \end{align*}
-On introduit alors les \'{e}quations de {Hamilton} pour chaque particule (qui
-reviennent ici \`{a} \'{e}crire le {principe} fondamental de la dynamique),
-\[
-\forall~1\leq\alpha\leq N~~~~\mathbf{\dot{r}}_{\alpha}=\frac{\partial
-H}{\partial\mathbf{p}_{\alpha}}~~~~\text{et}~~~~\mathbf{\dot{p}}_{\alpha
-}=-\frac{\partial H}{\partial\mathbf{r}_{\alpha}}
-\]
-o\`{u} $H$ est le hamiltonien du syst\`{e}me
-\[%
-\begin{array}
-[c]{cccc}%
-H= & \displaystyle\sum\limits_{\alpha=1}^{N}\dfrac{\mathbf{p}_{\alpha}^{2}%
-}{2m_{\alpha}} & + & \displaystyle\sum\limits_{\alpha\neq\beta=1}^{N,N}%
--\dfrac{G}{2}\dfrac{m_{\alpha}m_{\beta}}{\left\vert \mathbf{r}_{\alpha
-}-\mathbf{r}_{\beta}\right\vert }%
-\end{array}
-\]
-on constate alors que
-\[
-\forall~1\leq\alpha\leq N~~~~\mathrm{div}_{\mathbf{r}_{\alpha}}\left(
-\mathbf{\dot{r}}_{\alpha}\right)  =\frac{\partial^{2}H}{\partial
-\mathbf{r}_{\alpha}\partial\mathbf{p}_{\alpha}}=-\mathrm{div}_{\mathbf{p}%
-_{\alpha}}\left(  \mathbf{\dot{p}}_{\alpha}\right)
-\]
-Ainsi donc l'\'{e}quation de continuit\'{e} se met sous la forme
-\begin{equation}
-\frac{\partial f^{(N)}}{\partial t}+\sum_{\alpha=1}^{N}\left[  \mathbf{\dot
-{r}}_{\alpha}.\mathrm{grad}_{\mathbf{r}_{\alpha}}\left(  f^{(N)}\right)
-+\mathbf{\dot{p}}_{\alpha}.\mathrm{grad}_{\mathbf{p}_{\alpha}}\left(
-f^{(N)}\right)  \right]  =0\label{liouville}%
-\end{equation}
-Il s'agit de l'\'{e}quation de {Liouville}.
+nous pouvons introduire la probabilité $d\Omega$ des états représentés par des points contenus dans ce volume à l'instant $t$. C'est-à-dire, la probabilité
+pour qu'à cet instant les positions $\mathbf{r}_{\alpha}$ et les {impulsion}s $\mathbf{p}_{\alpha}$ soient comprises dans les intervalles
+infinitésimaux $[\mathbf{r}_{\alpha }+d\mathbf{r}_{\alpha}]$ et $[\mathbf{p}_{\alpha}+d\mathbf{p}_{\alpha}]$. Cette probabilité se laisse exprimer
+par:
+\begin{align*}
+	d\Omega\;=\;f^{(N)}(\mathbf{r}_{1},\cdots,\mathbf{r}_{N},\mathbf{p}_{1},\cdots,\mathbf{p}_{N},t)\,d\Gamma
+\end{align*}
+où la quantité $f^{(N)}(\mathbf{r}_{1},\cdots,\mathbf{r} _{N},\mathbf{p}_{1},\cdots,\mathbf{p}_{N},t)$ est appelée fonction de distribution à $N$
+particules du système. Cette fonction est positive et de norme unité:
+\begin{align*}
+	1=\int f^{\left(N\right)}\left(\mathbf{w}_{1},...,\mathbf{w}_{N},t\right)d\mathbf{w}_{1}\,...d\mathbf{w}_{N}
+\end{align*}
+Elle représente la densité, au sens probabiliste, de la variable aléatoire $\mathbf{w}=(\mathbf{w}_{1},...,\mathbf{w}_{N})$ avec
+$\mathbf{w}_{\alpha}=\left(  \mathbf{r}_{\alpha},\mathbf{p}_{\alpha}\right) $. Si le nombre de particules est conservé au cours de l'évolution, cette
+densité obéit à une équation de continuité (exprimant le fait que $df$ est une différentielle totale exacte, ou physiquement que le nombre de
+particules est conservé):
+\begin{align}
+	\frac{\partial f^{(N)}}{\partial t}\;+\;\mathrm{div}_{\mathbf{w}}(f^{(N)}\mathbf{\dot{w}})\;=\;0\label{continu}%
+\end{align}
+où $\mathbf{\dot{w}}=(\mathbf{\dot{r}}_{1},\mathbf{\dot{p}}_{1} ,...,\mathbf{\dot{r}}_{N},\mathbf{\dot{p}}_{N})$ représente la vitesse du flot des
+points dans l'espace des phases. En explicitant la divergence de l'équation~\ref{continu}, il vient:
+\begin{align*}
+	\frac{\partial f^{(N)}}{\partial t}\;+\;\sum_{\alpha=1}^{N}\left[\mathrm{div}_{\mathbf{r}_{\alpha}}\left(  f^{(N)}\mathbf{\dot{r}}_{\alpha
+	}\right)  +\mathrm{div}_{\mathbf{p}_{\alpha}}\left(  f^{(N)}\mathbf{\dot{p}}_{\alpha}\right)  \right]=0
+\end{align*}
+Après dérivation, nous obtenons:
+\begin{align*}
+	&  \frac{\partial f^{(N)}}{\partial t}+\displaystyle\sum\limits_{\alpha=1}%
+	^{N}\left\{  \mathbf{\dot{r}}_{\alpha}.\mathrm{grad}_{\mathbf{r}_{\alpha}%
+	}\left(  f^{(N)}\right)  +\mathbf{\dot{p}}_{\alpha}.\mathrm{grad}%
+	_{\mathbf{p}_{\alpha}}\left(  f^{(N)}\right)  \right. \\
+	&  \,\;\;\;\;\;\;\;\left.  +~f^{(N)}\left[  \mathrm{div}_{\mathbf{r}_{\alpha}%
+	}\left(  \mathbf{\dot{r}}_{\alpha}\right)  +\mathrm{div}_{\mathbf{p}_{\alpha}%
+	}\left(  \mathbf{\dot{p}}_{\alpha}\right)  \right]  \right\}=0
+\end{align*}
+Nous introduisons alors les équations de Hamilton pour chaque particule (qui reviennent ici à écrire le principe fondamental de la dynamique):
+\begin{align*}
+	\forall~1\leq\alpha\leq N~~~~\mathbf{\dot{r}}_{\alpha}=\frac{\partial H}{\partial\mathbf{p}_{\alpha}}~~~~\text{et}~~~~\mathbf{\dot{p}}_{\alpha
+	}=-\frac{\partial H}{\partial\mathbf{r}_{\alpha}}
+\end{align*}
+où $H$ est le hamiltonien du système:
+\begin{align*}
+	\begin{array}[c]{cccc}
+		H= & \displaystyle\sum\limits_{\alpha=1}^{N}\dfrac{\mathbf{p}_{\alpha}^{2}}{2m_{\alpha}} & + & \displaystyle\sum\limits_{\alpha\neq\beta=1}^{N,N}%
+		-\dfrac{G}{2}\dfrac{m_{\alpha}m_{\beta}}{\left\vert \mathbf{r}_{\alpha}-\mathbf{r}_{\beta}\right\vert }%
+	\end{array}
+\end{align*}
+nous constatons alors que:
+\begin{align*}
+	\forall~1\leq\alpha\leq N~~~~\mathrm{div}_{\mathbf{r}_{\alpha}}\left(\mathbf{\dot{r}}_{\alpha}\right)  =\frac{\partial^{2}H}{\partial
+	\mathbf{r}_{\alpha}\partial\mathbf{p}_{\alpha}}=-\mathrm{div}_{\mathbf{p}_{\alpha}}\left(  \mathbf{\dot{p}}_{\alpha}\right)
+\end{align*}
+Ainsi l'équation de continuité se met sous la forme:
+\begin{align}
+	\frac{\partial f^{(N)}}{\partial t}+\sum_{\alpha=1}^{N}\left[  \mathbf{\dot{r}}_{\alpha}.\mathrm{grad}_{\mathbf{r}_{\alpha}}\left(  f^{(N)}\right)
+	+\mathbf{\dot{p}}_{\alpha}.\mathrm{grad}_{\mathbf{p}_{\alpha}}\left(f^{(N)}\right)  \right]  =0\label{liouville}%
+\end{align}
+Il s'agit de l'équation de Liouville.
 
 Dans notre contexte gravitationnel, la forme du hamiltonien permet de
-l'expli\-ci\-ter plus avant
-\[
-\frac{\partial f^{(N)}}{\partial t}+\sum_{\alpha=1}^{N}\left\{  \dfrac
-{\mathbf{p}_{\alpha}}{m_{\alpha}}.\dfrac{\partial f^{(N)}}{\partial
-\mathbf{r}_{\alpha}}-\dfrac{\partial U_{\alpha}}{\partial\mathbf{r}_{\alpha}%
-}.\dfrac{\partial f^{(N)}}{\partial\mathbf{p}_{\alpha}}\right\}  =0
-\]
-
-
-o\`{u} l'on a pos\'{e}
-\[
-U_{1}=\displaystyle\sum\limits_{\beta=2}^{N}-G\dfrac{m_{1}m_{\beta}%
-}{\left\vert \mathbf{r}_{1}-\mathbf{r}_{\beta}\right\vert }\ ,\ \ U_{2}%
-=-G\dfrac{m_{2}m_{1}}{\left\vert \mathbf{r}_{2}-\mathbf{r}_{1}\right\vert
-}+\displaystyle\sum\limits_{\beta=3}^{N}-G\dfrac{m_{1}m_{\beta}}{\left\vert
-\mathbf{r}_{2}-\mathbf{r}_{\beta}\right\vert }\ ,\ \ \ \text{etc...}
-\]
-{En pratique, lorsque le syst\`{e}me devient plus grand qu'une paire, cette
-\'{e}quation s'av\`{e}re inuti\-lisable, et nous devons faire des
-hypoth\`{e}ses de nature statistique. \`{A} partir de la fonction de
-distribution \`{a} $N$ particules $f^{(N)}$, nous pouvons construire une
-fonction de distribution \`{a} une particule (densit\'{e} marginale),
-\[
-f^{(1)}=f^{(1)}(\mathbf{w}_{1},t)=\int\cdots\int f^{(N)}d\mathbf{w}_{2}\cdots
-d\mathbf{w}_{N}
-\]
-En int\'{e}grant l'\'{e}quation de {Liouville} sur }$\mathbf{w}_{2}%
-\cdots\mathbf{w}_{N}$, il vient
-\[%
-\begin{array}
-[c]{ll}%
-\dfrac{\partial f^{(1)}}{\partial t} & +\displaystyle\sum\limits_{\alpha
-=1}^{N}\left\{  \displaystyle\int\dfrac{\mathbf{p}_{\alpha}}{m_{\alpha}%
-}.\dfrac{\partial f^{(N)}}{\partial\mathbf{r}_{\alpha}}d\mathbf{w}_{2}\cdots
-d\mathbf{w}_{N}\right\} \\
-& \\
-& -\displaystyle\sum\limits_{\alpha=1}^{N}\left\{  \displaystyle\int%
-\dfrac{\partial U_{\alpha}}{\partial\mathbf{r}_{\alpha}}.\dfrac{\partial
-f^{(N)}}{\partial\mathbf{p}_{\alpha}}d\mathbf{w}_{2}\cdots d\mathbf{w}%
-_{N}\right\}  =0
-\end{array}
-\]
-{les deux sommes d'int\'{e}grales se simplifient consid\'{e}rablement en
-utilisant le fait que la fonction de distribution s'annule sur le bord du
-syst\`{e}me}
-\[
-\forall\alpha=1,...,N\qquad\lim_{\mathbf{w}_{\alpha}\rightarrow\infty
-}f^{\left(  N\right)  }=0
-\]
-{ainsi toutes les int\'{e}grations sur }$\mathbf{r}_{2},...,\mathbf{r}_{N}%
-${\ s'annulent et }
-\[%
-\begin{array}
-[c]{ll}%
-\displaystyle\sum\limits_{\alpha=1}^{N}\left\{  \displaystyle\int%
-\dfrac{\mathbf{p}_{\alpha}}{m_{\alpha}}.\dfrac{\partial f^{(N)}}%
-{\partial\mathbf{r}_{\alpha}}d\mathbf{w}_{2}\cdots d\mathbf{w}_{N}\right\}  &
-=\displaystyle\int\dfrac{\mathbf{p}_{1}}{m_{1}}.\dfrac{\partial f^{(N)}%
-}{\partial\mathbf{r}_{1}}d\mathbf{w}_{2}\cdots d\mathbf{w}_{N}\\
-& \\
-& =\dfrac{\mathbf{p}_{1}}{m_{1}}.\dfrac{\partial}{\partial\mathbf{r}_{1}%
-}\displaystyle\int f^{(N)}d\mathbf{w}_{2}\cdots d\mathbf{w}_{N}\\
-& \\
-& =\dfrac{\mathbf{p}_{1}}{m_{1}}.\dfrac{\partial f^{(1)}}{\partial
-\mathbf{r}_{1}}%
-\end{array}
-\]
-
-
-{pour les m\^{e}mes raisons mais en vitesse... }
-\[%
-\begin{array}
-[c]{ll}%
-\displaystyle\sum\limits_{\alpha=1}^{N}\left\{  \displaystyle\int%
-\dfrac{\partial U_{\alpha}}{\partial\mathbf{r}_{\alpha}}.\dfrac{\partial
-f^{(N)}}{\partial\mathbf{p}_{\alpha}}d\mathbf{w}_{2}\cdots d\mathbf{w}%
-_{N}\right\}   & =\displaystyle\int\dfrac{\partial U_{1}}{\partial
-\mathbf{r}_{1}}.\dfrac{\partial f^{(N)}}{\partial\mathbf{p}_{1}}%
-d\mathbf{w}_{2}\cdots d\mathbf{w}_{N}%
-\end{array}
-\]
-{de l'\'{e}quation de {Liouville} il ne reste alors plus que }
-\[
-\frac{\partial f^{(1)}}{\partial t}+\dfrac{\mathbf{p}_{1}}{m_{1}}%
-.\dfrac{\partial f^{(1)}}{\partial\mathbf{r}_{1}}-\displaystyle\int%
-\dfrac{\partial U_{1}}{\partial\mathbf{r}_{1}}.\dfrac{\partial f^{(N)}%
-}{\partial\mathbf{p}_{1}}d\mathbf{w}_{2}\cdots d\mathbf{w}_{N}=0
-\]
-{L'hypoth\`{e}se raisonnable qu'il convient alors de faire est de supposer les
-particules (\'{e}toiles) indiscernables. Explicitons cette subtilit\'{e} sur
-le calcul de l'\'{e}nergie potentielle}
+l'expliciter plus avant:
 \begin{align*}
-U_{1} &  =U_{1}\left(  \mathbf{r}_{1},...,\mathbf{r}_{N}\right)  =\sum
-_{\beta=2}^{N}U_{1\beta}\\
-\text{o\`{u}\qquad}U_{\alpha\beta} &  =U_{\alpha\beta}\left(  \mathbf{r}%
-_{\alpha},\mathbf{r}_{\beta}\right)  :=-\frac{Gm_{\alpha}m_{\beta}}{\left\vert
-\mathbf{r}_{\alpha}-\mathbf{r}_{\beta}\right\vert }%
+	\frac{\partial f^{(N)}}{\partial t}+\sum_{\alpha=1}^{N}\left\{  \dfrac{\mathbf{p}_{\alpha}}{m_{\alpha}}.\dfrac{\partial f^{(N)}}{\partial
+	\mathbf{r}_{\alpha}}-\dfrac{\partial U_{\alpha}}{\partial\mathbf{r}_{\alpha}}.\dfrac{\partial f^{(N)}}{\partial\mathbf{p}_{\alpha}}\right\}  =0
 \end{align*}
-Dans cette somme, l'indiscernabilit\'{e} des particules fait jouer \`{a}
-toutes le m\^{e}me r\^{o}le. On peut donc en choisir une (la particule 1) pour
-repr\'{e}senter toutes les autres et subir leur action globale, et une autre
-(la particule 2) pour repr\'{e}senter toutes les particules du syst\`{e}me et
-agir sur la particule 1 {de fa\c{c}on globale. Il s'agit de l'hypoth\`{e}se de
-champ moyen. Elle est fondamentale. En pratique cela revient \`{a}
-consid\'{e}rer que }%
-\[
-U_{12}=U_{13}=\cdots=U_{1N}\ \ \ \Rightarrow\ U_{1}=\sum_{\beta=2}%
-^{N}U_{1\beta}\ =\left(  N-1\right)  U_{12}\ \
-\]
-ainsi l'int\'{e}grale r\'{e}tive devient{\ }
-\[
-\displaystyle\int\dfrac{\partial U_{1}}{\partial\mathbf{r}_{1}}.\dfrac
-{\partial f^{(N)}}{\partial\mathbf{p}_{1}}d\mathbf{w}_{2}\cdots d\mathbf{w}%
-_{N}=\left(  N-1\right)  \displaystyle\int\dfrac{\partial U_{12}}%
-{\partial\mathbf{r}_{1}}.\dfrac{\partial f^{(N)}}{\partial\mathbf{p}_{1}%
-}d\mathbf{w}_{2}\cdots d\mathbf{w}_{N}%
-\]
-La particule 1 est appell\'{e}e \og\emph{particule test}\fg, elle\ \'{e}volue
-dans le syst\`{e}me {moyen} repr\'{e}sent\'{e} par la particule 2$.$
+où nous avons posé:
+\begin{align*}
+	U_{1}=\displaystyle\sum\limits_{\beta=2}^{N}-G\dfrac{m_{1}m_{\beta}}{\left\vert \mathbf{r}_{1}-\mathbf{r}_{\beta}\right\vert }\ ,\ \ U_{2}%
+	=-G\dfrac{m_{2}m_{1}}{\left\vert \mathbf{r}_{2}-\mathbf{r}_{1}\right\vert}+\displaystyle\sum\limits_{\beta=3}^{N}-G\dfrac{m_{1}m_{\beta}}{\left\vert
+	\mathbf{r}_{2}-\mathbf{r}_{\beta}\right\vert }\ ,\ \ \ \text{etc...}
+\end{align*}
+En pratique, lorsque le système devient plus grand qu'une paire, cette équation s'avère inutilisable, et nous devons faire des hypothèses de nature
+statistique. À partir de la fonction de distribution à $N$ particules $f^{(N)}$, nous pouvons construire une fonction de distribution à une particule
+(densité marginale):
+\begin{align*}
+	f^{(1)}=f^{(1)}(\mathbf{w}_{1},t)=\int\cdots\int f^{(N)}d\mathbf{w}_{2}\cdots d\mathbf{w}_{N}
+\end{align*}
+En intégrant l'équation de Liouville sur $\mathbf{w}_{2}\cdots\mathbf{w}_{N}$, il vient:
+\begin{align*}%
+	\begin{array}[c]{ll}%
+		\dfrac{\partial f^{(1)}}{\partial t} & +\displaystyle\sum\limits_{\alpha=1}^{N}\left\{  \displaystyle\int\dfrac{\mathbf{p}_{\alpha}}{m_{\alpha}%
+		}.\dfrac{\partial f^{(N)}}{\partial\mathbf{r}_{\alpha}}d\mathbf{w}_{2}\cdots d\mathbf{w}_{N}\right\} \\
+		& \\
+		& -\displaystyle\sum\limits_{\alpha=1}^{N}\left\{  \displaystyle\int\dfrac{\partial U_{\alpha}}{\partial\mathbf{r}_{\alpha}}.\dfrac{\partial
+		f^{(N)}}{\partial\mathbf{p}_{\alpha}}d\mathbf{w}_{2}\cdots d\mathbf{w}_{N}\right\}  =0
+	\end{array}
+\end{align*}
+Les deux sommes d'intégrales se simplifient considérablement en utilisant le fait que la fonction de distribution s'annule sur le bord du système:
+\begin{align*}
+	\forall\alpha=1,...,N\qquad\lim_{\mathbf{w}_{\alpha}\rightarrow\infty}f^{\left(  N\right)  }=0
+\end{align*}
+ainsi toutes les intégrations sur $\mathbf{r}_{2},...,\mathbf{r}_{N}$ s'annulent et:
+\begin{align*}%
+	\begin{array}[c]{ll}%
+		\displaystyle\sum\limits_{\alpha=1}^{N}\left\{  \displaystyle\int%
+		\dfrac{\mathbf{p}_{\alpha}}{m_{\alpha}}.\dfrac{\partial f^{(N)}}%
+		{\partial\mathbf{r}_{\alpha}}d\mathbf{w}_{2}\cdots d\mathbf{w}_{N}\right\}  &
+		=\displaystyle\int\dfrac{\mathbf{p}_{1}}{m_{1}}.\dfrac{\partial f^{(N)}%
+		}{\partial\mathbf{r}_{1}}d\mathbf{w}_{2}\cdots d\mathbf{w}_{N}\\
+		& \\
+		& =\dfrac{\mathbf{p}_{1}}{m_{1}}.\dfrac{\partial}{\partial\mathbf{r}_{1}%
+		}\displaystyle\int f^{(N)}d\mathbf{w}_{2}\cdots d\mathbf{w}_{N}\\
+		& \\
+		& =\dfrac{\mathbf{p}_{1}}{m_{1}}.\dfrac{\partial f^{(1)}}{\partial
+		\mathbf{r}_{1}}%
+	\end{array}
+\end{align*}
 
-{En introduisant la densit\'{e} marginale \`{a} 2 particules }
-\[
-f^{(2)}=f^{(2)}(\mathbf{w}_{1},\mathbf{w}_{2},t)=\int\cdots\int f^{(N)}%
-d\mathbf{w}_{3}\cdots d\mathbf{w}_{N}
-\]
-{et comme }$U_{12}${\ ne d\'{e}pend que de }$\mathbf{w}_{1}${\ et }%
-$\mathbf{w}_{2}$, {\ on peut finir l'int\'{e}gration du terme contenant
-l'\'{e}nergie {potentiel}le pour obtenir la version int\'{e}gr\'{e}e de
-{Liouville} sui\-van\-te}
-\begin{equation}
-\frac{\partial f^{(1)}}{\partial t}+\dfrac{\mathbf{p}_{1}}{m_{1}}%
-.\dfrac{\partial f^{(1)}}{\partial\mathbf{r}_{1}}=\left(  N-1\right)
-\displaystyle \int\dfrac{\partial U_{12}}{\partial\mathbf{r}_{1}}%
-.\dfrac{\partial f^{(2)}}{\partial\mathbf{p}_{1}}d\mathbf{w}_{2}%
-\label{liouint}%
-\end{equation}
-{Cette \'{e}quation permet donc de calculer }$f^{(1)}${\ \`{a} partir de
-}$f^{(2)}${, en poursuivant on obtient }
-\[
-f^{(1)}\hookleftarrow f^{(2)}\hookleftarrow...\hookleftarrow f^{(N)}
-\]
+Pour les mêmes raisons mais en vitesse:
+\begin{align*}%
+	\begin{array}[c]{ll}%
+		\displaystyle\sum\limits_{\alpha=1}^{N}\left\{  \displaystyle\int%
+		\dfrac{\partial U_{\alpha}}{\partial\mathbf{r}_{\alpha}}.\dfrac{\partial
+		f^{(N)}}{\partial\mathbf{p}_{\alpha}}d\mathbf{w}_{2}\cdots d\mathbf{w}%
+		_{N}\right\}   & =\displaystyle\int\dfrac{\partial U_{1}}{\partial
+		\mathbf{r}_{1}}.\dfrac{\partial f^{(N)}}{\partial\mathbf{p}_{1}}%
+		d\mathbf{w}_{2}\cdots d\mathbf{w}_{N}%
+	\end{array}
+\end{align*}
+% de l'équation de Liouville il ne reste alors plus que:
+L'équation de Liouville devient alors:
+\begin{align*}
+	\frac{\partial f^{(1)}}{\partial t}+\dfrac{\mathbf{p}_{1}}{m_{1}}.\dfrac{\partial f^{(1)}}{\partial\mathbf{r}_{1}}-\displaystyle\int%
+	\dfrac{\partial U_{1}}{\partial\mathbf{r}_{1}}.\dfrac{\partial f^{(N)}}{\partial\mathbf{p}_{1}}d\mathbf{w}_{2}\cdots d\mathbf{w}_{N}=0
+\end{align*}
+% L'hypothèse qu'il convient alors de faire est de supposer les particules indiscernables.
+Nous allons maintenant supposer que les particules sont indiscernables.
+Explicitons cette subtilité sur le calcul de l'énergie potentielle:
+\begin{align*}
+	U_{1} &  =U_{1}\left(  \mathbf{r}_{1},...,\mathbf{r}_{N}\right)  =\sum_{\beta=2}^{N}U_{1\beta}\\
+	\intertext{où}
+	U_{\alpha\beta} &  =U_{\alpha\beta}\left(  \mathbf{r}_{\alpha},\mathbf{r}_{\beta}\right)  :=-\frac{Gm_{\alpha}m_{\beta}}{\left\vert\mathbf{r}_{\alpha}-\mathbf{r}_{\beta}\right\vert }%
+\end{align*}
+Dans cette somme, l'indiscernabilité des particules fait jouer à toutes le même rôle. Nous pouvons donc en choisir une (la particule 1) pour représenter
+toutes les autres et subir leur action globale, et une autre (la particule 2) pour représenter toutes les particules du système et agir sur la
+particule 1 de façon globale. Il s'agit de l'hypothèse de champ moyen. Elle est fondamentale. En pratique cela revient à considérer que:
+\begin{align*}
+	U_{12}=U_{13}=\cdots=U_{1N}\ \ \ \Rightarrow\ U_{1}=\sum_{\beta=2}^{N}U_{1\beta}\ =\left(  N-1\right)  U_{12}
+\end{align*}
+ainsi l'intégrale devient:
+\begin{align*}
+	\displaystyle\int\dfrac{\partial U_{1}}{\partial\mathbf{r}_{1}}.\dfrac{\partial f^{(N)}}{\partial\mathbf{p}_{1}}d\mathbf{w}_{2}\cdots d\mathbf{w}%
+	_{N}=\left(  N-1\right)  \displaystyle\int\dfrac{\partial U_{12}}{\partial\mathbf{r}_{1}}.\dfrac{\partial f^{(N)}}{\partial\mathbf{p}_{1}%
+	}d\mathbf{w}_{2}\cdots d\mathbf{w}_{N}%
+\end{align*}
+La particule 1 est appelée \og\emph{particule test}\fg, elle évolue dans le système moyen représenté par la particule 2.
 
+En introduisant la densité marginale à 2 particules:
+\begin{align*}
+	f^{(2)}=f^{(2)}(\mathbf{w}_{1},\mathbf{w}_{2},t)=\int\cdots\int f^{(N)}d\mathbf{w}_{3}\cdots d\mathbf{w}_{N}
+\end{align*}
+et comme $U_{12}$ ne dépend que de $\mathbf{w}_{1}$ et $\mathbf{w}_{2}$, on peut finir l'intégration du terme contenant l'énergie potentielle pour
+obtenir la version intégrée de Liouville suivante:
+\begin{align}
+	\frac{\partial f^{(1)}}{\partial t}+\dfrac{\mathbf{p}_{1}}{m_{1}}.\dfrac{\partial f^{(1)}}{\partial\mathbf{r}_{1}}=\left(  N-1\right)
+	\displaystyle \int\dfrac{\partial U_{12}}{\partial\mathbf{r}_{1}}.\dfrac{\partial f^{(2)}}{\partial\mathbf{p}_{1}}d\mathbf{w}_{2}%
+	\label{liouint}%
+\end{align}
+Cette équation permet donc de calculer $f^{(1)}$ à partir de $f^{(2)}$, en poursuivant nous obtenons:
+\begin{align*}
+	f^{(1)}\hookleftarrow f^{(2)}\hookleftarrow...\hookleftarrow f^{(N)}
+\end{align*}
+Cette cascade d'équations est généralement appelée
+hiérarchie BBGKY.
 
-{\noindent Cette cascade d'\'{e}quations est g\'{e}n\'{e}ralement appel\'{e}e
-hi\'{e}rarchie {BBGKY}.}
-
-{La technique habituelle consiste \`{a} stopper la hi\'{e}rarchie,
-c'est-\`{a}-dire trouver dans quelles conditions }
-\[
-\exists p<N,\qquad\text{tel que \qquad}\forall n>p\qquad f^{\left(  n\right)
-}=0
-\]
-
-
-{Dans ce contexte, l'hypoth\`{e}se de chaos mol\'{e}culaire de {Boltzmann} est
-assez op\'{e}rationnelle, elle revient \`{a} poser}
-\[
-f^{(2)}(\mathbf{w}_{1},\mathbf{w}_{2},t)=f^{(1)}(\mathbf{w}_{1},t)f^{(1)}%
-(\mathbf{w}_{2},t)+g(\mathbf{w}_{1},\mathbf{w}_{2},t)
-\]
-{la fonction }$g(\mathbf{w}_{1},\mathbf{w}_{2},t)${\ d\'{e}crivant les
-corr\'{e}lations ou interactions binaires.}
-
-{Les particules \'{e}tant indiscernables, il convient de poser}
-\[
-f\left(  \mathbf{w},t\right)  =N\,f^{(1)}(\mathbf{w},t)\qquad\text{ainsi\qquad
-}\int f\left(  \mathbf{w},t\right)  d\mathbf{w=}N
-\]
-{Sous toutes ces hypoth\`{e}ses, la version int\'{e}gr\'{e}e }$\left(
-\ref{liouint}\right)  ${\ de l'\'{e}quation de {Liouville} s'\'{e}crit donc }
-\[
-\frac{\left(  \frac{\partial f}{\partial t}+\frac{\mathbf{p_{1}}}{m_{1}}%
-.\frac{\partial f}{\partial\mathbf{r}}\right)  }{{\ N}}=\left(  {\ N-1}%
-\right)  \displaystyle\int\tfrac{\partial U_{12}}{\partial\mathbf{r}_{1}%
-}.\frac{{\ \partial}\left(  \frac{f\left(  \mathbf{w}_{1},t\right)  }{N}%
-\frac{f\left(  \mathbf{w}_{2},t\right)  }{N}+{\ g}\right)  }{{\ \partial
-}\mathbf{p}_{1}}d\mathbf{w}_{2}%
-\]
-{soit }
-\[%
-\begin{array}
-[c]{ll}%
-\dfrac{\partial f}{\partial t}+\dfrac{\mathbf{p_{1}}}{m_{1}}.\dfrac{\partial
-f}{\partial\mathbf{r}}= & \dfrac{\left(  N-1\right)  }{N}\dfrac{\partial
-f\left(  \mathbf{w}_{1},t\right)  }{\partial\mathbf{p}_{1}}\dfrac{\partial
-}{\partial\mathbf{r}_{1}}\displaystyle\int U_{12}f\left(  \mathbf{w}%
-_{2},t\right)  d\mathbf{w}_{2}\\
-& \\
-& +N\left(  N-1\right)  \displaystyle\int\dfrac{\partial U_{12}}%
-{\partial\mathbf{r}_{1}}.\dfrac{\partial g}{\partial\mathbf{p}_{1}}%
-d\mathbf{w}_{2}%
-\end{array}
-\]
-un petit rappel s'impose alors
-\[
-\displaystyle\int U_{12}f\left(  \mathbf{w}_{2},t\right)  d\mathbf{w}%
-_{2}=-Gm_{1}m_{2}\displaystyle\int\dfrac{f\left(  \mathbf{w}_{2},t\right)
-}{\left\vert \mathbf{r}_{1}-\mathbf{r}_{2}\right\vert }d\mathbf{r}%
-_{2}d\mathbf{p}_{2}%
-\]
-{dans le second membre de cette relation, l'int\'{e}gration sur les
-{impulsion}s nous fait reconna\^{\i}tre la densit\'{e} de masse}
-\[
-\rho\left(  \mathbf{r_{2}},t\right)  =m_{2}\displaystyle\int f\left(
-\mathbf{w_{2}},t\right)  d\mathbf{p}%
-\]
-{Nous avons donc}
-\[
-\displaystyle\int U_{12}f\left(  \mathbf{w}_{2},t\right)  d\mathbf{w}%
-_{2}=-Gm_{1}\displaystyle\int\dfrac{\rho\left(  \mathbf{r}_{2},t\right)
-}{\left\vert \mathbf{r}_{1}-\mathbf{r}_{2}\right\vert }d\mathbf{r}_{2}%
-\]
-{o\`{u} l'on voit sourdre le {potentiel} gravitationnel impliqu\'{e} dans
-l'\'{e}quation de
-{Poisson} :}
-\[
-\displaystyle{\ \int U_{12}f\left(  \mathbf{w}_{2},t\right)  d\mathbf{w}%
-_{2}=m_{1}\psi\left(  \mathbf{r}_{1},t\right)  }%
-\]
-en prenant $N-1\approx N$, et en laissant tomber l'indice 1 on obtient
-finalement
-\begin{equation}
-\frac{\partial f}{\partial t}+\frac{\mathbf{p}}{m}.\frac{\partial f}%
-{\partial\mathbf{r}}-m\frac{\partial f}{\partial\mathbf{p}}\frac{\partial\psi
-}{\partial\mathbf{r}}=N^{2}GC\left(  \mathbf{w},t\right)  \label{boltzman}%
-\end{equation}
-{o\`{u} l'on a introduit le terme de corr\'{e}lation }
-\[
-C\left(  \mathbf{w},t\right)  =\displaystyle\int\dfrac{\partial g\left(
-\mathbf{w},\mathbf{w}_{2},t\right)  }{\partial\mathbf{p}}\dfrac{\mathbf{r}%
--\mathbf{r}_{2}}{\left\vert \mathbf{r}-\mathbf{r}_{2}\right\vert ^{3}%
-}d\mathbf{w}_{2}%
-\]
-{L'\'{e}quation }$\left(  \ref{boltzman}\right)  ${\ est appel\'{e}e
-\'{e}quation de {Boltzmann}.}
-
-{Dans le cas des syst\`{e}mes gravitationnels, et contrairement au gaz de Van
-Der Waals, les {collision}s sont dynamiquement inefficaces pendant de longues
-p\'{e}riodes, {Chandrasekhar} montre que pour un syst\`{e}me autogravitant
-compos\'{e} de }$N${\ par\-ti\-cu\-les, le temps dynamique }$T_{d}${\ et le
-temps de relaxation par {collision}s }$T_{rc}${\ v\'{e}rifient (voir
-\ref{chap_trelax})}
-\[
-T_{rc}\approx N\ln\left(  N\right)  T_{d}%
-\]
-{Sur une centaine de temps dynamiques, les amas {globulaire}s et {galaxie}s en
-tous genres sont dits non {collision}nels, i.e. }$C\left(  \mathbf{w}%
-,t\right)  \equiv0${, et l'\'{e}quation de la dynamique des {galaxie}s est
-l'\'{e}quation de {Vlasov} ({Boltzmann} sans {collision}s)}
-\[
-\dfrac{\partial f}{\partial t}+\dfrac{\mathbf{p}}{m}\ \dfrac{\partial
-f}{\partial\mathbf{r}}-m\dfrac{\partial f}{\partial\mathbf{p}}\dfrac
-{\partial\psi}{\partial\mathbf{r}}=0
-\]
-{dans cette \'{e}quation le {potentiel} }$\psi${\ est lui-m\^{e}me reli\'{e}
-\`{a} la fonction de distribution }$f${\ via l'\'{e}quation de {Poisson}, nous
-avons donc le syst\`{e}me int\'{e}gro-diff\'{e}rentiel suivant }
-\[
-\left\{
-\begin{array}
-[c]{l}%
-\dfrac{\partial f}{\partial t}+\dfrac{\mathbf{p}}{m}\ \dfrac{\partial
-f}{\partial\mathbf{r}}-m\dfrac{\partial f}{\partial\mathbf{p}}\dfrac
-{\partial\psi}{\partial\mathbf{r}}=0\\
-\\
-\psi(\mathbf{r},t\mathbf{)}=~-Gm\displaystyle\int\dfrac{f(\mathbf{r}^{\prime
-},\mathbf{p}^{\prime},t)}{\mid\mathbf{r}-\mathbf{r}^{\prime}\mid}%
-d^{3}\mathbf{r}^{\prime}d^{3}\mathbf{p}^{\prime}%
-\end{array}
-\right.
-\]
-{dit syst\`{e}me de {Vlasov}-{Poisson}, en introduisant l'\'{e}nergie
-{moyen}ne par particule }
-\[
-E=\frac{\mathbf{p}^{2}}{2m}+m\psi
-\]
-{ce syst\`{e}me s'\'{e}crit sous forme {canonique} }
-\[
-\left\{
-\begin{array}
-[c]{lll}%
-\dfrac{\partial f}{\partial t}=\left\{  \,E\,,\,f\,\right\}   &  &
-\text{{\ {Vlasov} : dynamique}}\\
-\Delta\psi=~4\pi G\rho &  & \text{{\ {Poisson} : champ {moyen}}}%
-\end{array}
-\right.
-\]
+La technique habituelle consiste à stopper la hiérarchie, c'est-à-dire trouver dans quelles conditions:
+\begin{align*}
+	\exists p<N,\qquad\text{tel que \qquad}\forall n>p\qquad f^{\left(  n\right) }=0
+\end{align*}
 
 
-{Ce syst\`{e}me est \`{a} la base de l'\'{e}tude de la dynamique des
-{galaxie}s. Nous proposons deux axes principaux d'\'{e}tudes pour ce
-probl\`{e}me : }
+Dans ce contexte, l'hypothèse de chaos moléculaire de Boltzmann est utile, elle revient à poser:
+\begin{align*}
+	f^{(2)}(\mathbf{w}_{1},\mathbf{w}_{2},t)=f^{(1)}(\mathbf{w}_{1},t)f^{(1)}(\mathbf{w}_{2},t)+g(\mathbf{w}_{1},\mathbf{w}_{2},t)
+\end{align*}
+la fonction $g(\mathbf{w}_{1},\mathbf{w}_{2},t)$ décrivant les corrélations ou interactions binaires.
 
+Les particules étant indiscernables, il convient de poser:
+\begin{align*}
+	f\left(  \mathbf{w},t\right)  =N\,f^{(1)}(\mathbf{w},t) \\
+	\intertext{ainsi}
+	\int f\left(  \mathbf{w},t\right)  d\mathbf{w=}N
+\end{align*}
+Sous toutes ces hypothèses, la version intégrée~\ref{liouint} de l'équation de Liouville s'écrit donc:
+\begin{align*}
+	\frac{\left(  \frac{\partial f}{\partial t}+\frac{\mathbf{p_{1}}}{m_{1}}.\frac{\partial f}{\partial\mathbf{r}}\right)  }{{\ N}}=\left(  {\ N-1}%
+	\right)  \displaystyle\int\tfrac{\partial U_{12}}{\partial\mathbf{r}_{1}}.\frac{{\ \partial}\left(  \frac{f\left(  \mathbf{w}_{1},t\right)  }{N}%
+	\frac{f\left(  \mathbf{w}_{2},t\right)  }{N}+{\ g}\right)  }{{\ \partial}\mathbf{p}_{1}}d\mathbf{w}_{2}%
+\end{align*}
+soit:
+\begin{align*}%
+	\begin{array}[c]{ll}%
+		\dfrac{\partial f}{\partial t}+\dfrac{\mathbf{p_{1}}}{m_{1}}.\dfrac{\partial f}{\partial\mathbf{r}}= & \dfrac{\left(  N-1\right)  }{N}\dfrac{\partial
+		f\left(  \mathbf{w}_{1},t\right)  }{\partial\mathbf{p}_{1}}\dfrac{\partial}{\partial\mathbf{r}_{1}}\displaystyle\int U_{12}f\left(  \mathbf{w}%
+		_{2},t\right)  d\mathbf{w}_{2}\\
+		& \\
+		& +N\left(  N-1\right)  \displaystyle\int\dfrac{\partial U_{12}}{\partial\mathbf{r}_{1}}.\dfrac{\partial g}{\partial\mathbf{p}_{1}}%
+		d\mathbf{w}_{2}%
+	\end{array}
+\end{align*}
+un petit rappel s'impose alors:
+\begin{align*}
+	\displaystyle\int U_{12}f\left(  \mathbf{w}_{2},t\right)  d\mathbf{w}_{2}=-Gm_{1}m_{2}\displaystyle\int\dfrac{f\left(  \mathbf{w}_{2},t\right)
+	}{\left\vert \mathbf{r}_{1}-\mathbf{r}_{2}\right\vert }d\mathbf{r}_{2}d\mathbf{p}_{2}%
+\end{align*}
+dans le second membre de cette relation, l'intégration sur les impulsions nous fait reconnaître la densité de masse:
+\begin{align*}
+	\rho\left(  \mathbf{r_{2}},t\right)  =m_{2}\displaystyle\int f\left(\mathbf{w_{2}},t\right)  d\mathbf{p}%
+\end{align*}
+Nous avons donc:
+\begin{align*}
+	\displaystyle\int U_{12}f\left(  \mathbf{w}_{2},t\right)  d\mathbf{w}_{2}=-Gm_{1}\displaystyle\int\dfrac{\rho\left(  \mathbf{r}_{2},t\right)
+	}{\left\vert \mathbf{r}_{1}-\mathbf{r}_{2}\right\vert }d\mathbf{r}_{2}%
+\end{align*}
+où l'on voit sourdre le potentiel gravitationnel impliqué dans l'équation de Poisson:
+\begin{align*}
+	\displaystyle{\ \int U_{12}f\left(  \mathbf{w}_{2},t\right)  d\mathbf{w}_{2}=m_{1}\psi\left(  \mathbf{r}_{1},t\right)  }%
+\end{align*}
+en prenant $N-1\approx N$, et en laissant de côté l'indice 1 nous obtenons finalement
+\begin{align}
+	\frac{\partial f}{\partial t}+\frac{\mathbf{p}}{m}.\frac{\partial f}{\partial\mathbf{r}}-m\frac{\partial f}{\partial\mathbf{p}}\frac{\partial\psi
+	}{\partial\mathbf{r}}=N^{2}GC\left(  \mathbf{w},t\right)  \label{boltzman}%
+\end{align}
+où nous avons introduit le terme de corrélation:
+\begin{align*}
+	C\left(  \mathbf{w},t\right)  =\displaystyle\int\dfrac{\partial g\left(\mathbf{w},\mathbf{w}_{2},t\right)  }{\partial\mathbf{p}}\dfrac{\mathbf{r}%
+	-\mathbf{r}_{2}}{\left\vert \mathbf{r}-\mathbf{r}_{2}\right\vert ^{3}}d\mathbf{w}_{2}%
+\end{align*}
+L'équation~\ref{boltzman} est appelée équation de Boltzmann.
+
+Dans le cas des systèmes gravitationnels, et contrairement au gaz de Van Der Waals, les collisions sont dynamiquement inefficaces pendant de longues
+périodes, Chandrasekhar montre que pour un système autogravitant composé de $N$ particules, le temps dynamique $T_{d}$ et le temps de
+relaxation par collisions $T_{rel}$ vérifient (voir~\ref{chap_trelax}):
+\begin{align*}
+	T_{rc}\approx N\ln\left(  N\right)  T_{d}%
+\end{align*}
+Sur une centaine de temps dynamiques, les amas globulaires et galaxies en tous genres sont dits non collisionnels, i.e. $C\left(  \mathbf{w}
+,t\right)  \equiv0$, et l'équation de la dynamique des galaxies est l'équation de Vlasov (Boltzmann sans collisions):
+\begin{align*}
+	\dfrac{\partial f}{\partial t}+\dfrac{\mathbf{p}}{m}\ \dfrac{\partial f}{\partial\mathbf{r}}-m\dfrac{\partial f}{\partial\mathbf{p}}\dfrac
+	{\partial\psi}{\partial\mathbf{r}}=0
+\end{align*}
+dans cette équation le potentiel $\psi$ est lui-même relié à la fonction de distribution $f$ via l'équation de Poisson, nous avons donc le système
+intégro-différentiel suivant:
+\begin{align*}
+	\left\{
+		\begin{array}[c]{l}%
+			\dfrac{\partial f}{\partial t}+\dfrac{\mathbf{p}}{m}\ \dfrac{\partial f}{\partial\mathbf{r}}-m\dfrac{\partial f}{\partial\mathbf{p}}\dfrac
+			{\partial\psi}{\partial\mathbf{r}}=0\\
+			\\
+			\psi(\mathbf{r},t\mathbf{)}=~-Gm\displaystyle\int\dfrac{f(\mathbf{r}^{\prime},\mathbf{p}^{\prime},t)}{\mid\mathbf{r}-\mathbf{r}^{\prime}\mid}%
+			d^{3}\mathbf{r}^{\prime}d^{3}\mathbf{p}^{\prime}%
+		\end{array}
+	\right.
+\end{align*}
+dit système de Vlasov-Poisson, en introduisant l'énergie moyenne par particule:
+\begin{align*}
+	E=\frac{\mathbf{p}^{2}}{2m}+m\psi
+\end{align*}
+ce système s'écrit sous forme canonique:
+\begin{align*}
+	\left\{
+		\begin{array}[c]{lll}%
+			\dfrac{\partial f}{\partial t}=\left\{  \,E\,,\,f\,\right\}   &  & \text{{\ {Vlasov} : dynamique}}\\
+			\Delta\psi=~4\pi G\rho &  & \text{{\ {Poisson} : champ {moyen}}}%
+		\end{array}
+	\right.
+\end{align*}
+
+
+Ce système est à la base de l'étude de la dynamique des galaxies. Nous proposons deux axes principaux d'études pour ce problème:
 \begin{itemize}
-\item {L'\'{e}tude des solutions stationnaires du syst\`{e}me de
-{Vlasov}-{Poisson} qui devrait nous permettre de rendre compte des diverses
-propri\'{e}t\'{e}s des {galaxie}s lorsqu'elles peuvent \^{e}tre
-consid\'{e}r\'{e}es en \'{e}quilibre. }
 
-\item {L'\'{e}tude de la stabilit\'{e} des solutions stationnaires du
-syst\`{e}me de {Vlasov}-{Poisson} afin de conna\^{\i}tre les configurations
-d'\'{e}quilibre privil\'{e}gi\'{e}es pour un syst\`{e}me auto-gravitant. }
+	\item L'étude des solutions stationnaires du système de Vlasov-Poisson qui devrait nous permettre de rendre compte des diverses propriétés des
+		galaxies lorsqu'elles peuvent être considérées en équilibre.
+
+	\item L'étude de la stabilité des solutions stationnaires du système de Vlasov-Poisson afin de connaître les configurations d'équilibre
+		privilégiées pour un système auto-gravitant.
+
 \end{itemize}
 
 
