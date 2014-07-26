@@ -110,7 +110,7 @@ pratique irréalisable.\ Il convient d'utiliser des méthodes statistiques de ch
 Supposons que le système que nous considérons possède $3N$ degrés de liberté. Cela signifie que les positions des différents points du système sont
 définies par $N$ vecteurs $\vec{r}_{\alpha}$ comportant chacun 3 composantes, l'indice $\alpha$ prenant toutes les valeurs $1,2,\cdots,N$. À un
 instant donné, l'état du système sera complètement déterminé par les $N$ vecteurs position et les $N$ vecteurs impulsion
-$\vec{p}_{\alpha}=m_{\alpha}\vec{\dot{r}}_{\alpha}$ correspondants. On peut représenter mathématiquement les différents états d'un système par
+$\vec{p}_{\alpha}=m_{\alpha}\dot{\vec{r}}_{\alpha}$ correspondants. On peut représenter mathématiquement les différents états d'un système par
 des points dans un espace à $6N$ {dimension}s appelé espace des phases. La trajectoire, ou le lieu de ces points, permet de représenter de manière
 univoque l'évolution du système.
 
@@ -135,27 +135,27 @@ $\vec{w}_{\alpha}=\left(  \vec{r}_{\alpha},\vec{p}_{\alpha}\right) $. Si le nomb
 densité obéit à une équation de continuité (exprimant le fait que $df$ est une différentielle totale exacte, ou physiquement que le nombre de
 particules est conservé):
 \begin{align}
-	\frac{\partial f^{(N)}}{\partial t}\;+\;\mathrm{div}_{\vec{w}}(f^{(N)}\vec{\dot{w}})\;=\;0\label{continu}%
+	\frac{\partial f^{(N)}}{\partial t}\;+\;\mathrm{div}_{\vec{w}}(f^{(N)}\dot{\vec{w}})\;=\;0\label{continu}%
 \end{align}
-où $\vec{\dot{w}}=(\vec{\dot{r}}_{1},\vec{\dot{p}}_{1} ,...,\vec{\dot{r}}_{N},\vec{\dot{p}}_{N})$ représente la vitesse du flot des
+où $\dot{\vec{w}}=(\dot{\vec{r}}_{1},\dot{\vec{p}}_{1} ,...,\dot{\vec{r}}_{N},\dot{\vec{p}}_{N})$ représente la vitesse du flot des
 points dans l'espace des phases. En explicitant la divergence de l'équation~\ref{continu}, il vient:
 \begin{align*}
-	\frac{\partial f^{(N)}}{\partial t}\;+\;\sum_{\alpha=1}^{N}\left[\mathrm{div}_{\vec{r}_{\alpha}}\left(  f^{(N)}\vec{\dot{r}}_{\alpha
-	}\right)  +\mathrm{div}_{\vec{p}_{\alpha}}\left(  f^{(N)}\vec{\dot{p}}_{\alpha}\right)  \right]=0
+	\frac{\partial f^{(N)}}{\partial t}\;+\;\sum_{\alpha=1}^{N}\left[\mathrm{div}_{\vec{r}_{\alpha}}\left(  f^{(N)}\dot{\vec{r}}_{\alpha
+	}\right)  +\mathrm{div}_{\vec{p}_{\alpha}}\left(  f^{(N)}\dot{\vec{p}}_{\alpha}\right)  \right]=0
 \end{align*}
 Après dérivation, nous obtenons:
 \begin{align*}
 	&  \frac{\partial f^{(N)}}{\partial t}+\displaystyle\sum\limits_{\alpha=1}%
-	^{N}\left\{  \vec{\dot{r}}_{\alpha}.\mathrm{grad}_{\vec{r}_{\alpha}%
-	}\left(  f^{(N)}\right)  +\vec{\dot{p}}_{\alpha}.\mathrm{grad}%
+	^{N}\left\{  \dot{\vec{r}}_{\alpha}.\mathrm{grad}_{\vec{r}_{\alpha}%
+	}\left(  f^{(N)}\right)  +\dot{\vec{p}}_{\alpha}.\mathrm{grad}%
 	_{\vec{p}_{\alpha}}\left(  f^{(N)}\right)  \right. \\
 	&  \,\;\;\;\;\;\;\;\left.  +~f^{(N)}\left[  \mathrm{div}_{\vec{r}_{\alpha}%
-	}\left(  \vec{\dot{r}}_{\alpha}\right)  +\mathrm{div}_{\vec{p}_{\alpha}%
-	}\left(  \vec{\dot{p}}_{\alpha}\right)  \right]  \right\}=0
+	}\left(  \dot{\vec{r}}_{\alpha}\right)  +\mathrm{div}_{\vec{p}_{\alpha}%
+	}\left(  \dot{\vec{p}}_{\alpha}\right)  \right]  \right\}=0
 \end{align*}
 Nous introduisons alors les équations de Hamilton pour chaque particule (qui reviennent ici à écrire le principe fondamental de la dynamique):
 \begin{align*}
-	\forall~1\leq\alpha\leq N~~~~\vec{\dot{r}}_{\alpha}=\frac{\partial H}{\partial\vec{p}_{\alpha}}~~~~\text{et}~~~~\vec{\dot{p}}_{\alpha
+	\forall~1\leq\alpha\leq N~~~~\dot{\vec{r}}_{\alpha}=\frac{\partial H}{\partial\vec{p}_{\alpha}}~~~~\text{et}~~~~\dot{\vec{p}}_{\alpha
 	}=-\frac{\partial H}{\partial\vec{r}_{\alpha}}
 \end{align*}
 où $H$ est le hamiltonien du système:
@@ -167,13 +167,13 @@ où $H$ est le hamiltonien du système:
 \end{align*}
 nous constatons alors que:
 \begin{align*}
-	\forall~1\leq\alpha\leq N~~~~\mathrm{div}_{\vec{r}_{\alpha}}\left(\vec{\dot{r}}_{\alpha}\right)  =\frac{\partial^{2}H}{\partial
-	\vec{r}_{\alpha}\partial\vec{p}_{\alpha}}=-\mathrm{div}_{\vec{p}_{\alpha}}\left(  \vec{\dot{p}}_{\alpha}\right)
+	\forall~1\leq\alpha\leq N~~~~\mathrm{div}_{\vec{r}_{\alpha}}\left(\dot{\vec{r}}_{\alpha}\right)  =\frac{\partial^{2}H}{\partial
+	\vec{r}_{\alpha}\partial\vec{p}_{\alpha}}=-\mathrm{div}_{\vec{p}_{\alpha}}\left(  \dot{\vec{p}}_{\alpha}\right)
 \end{align*}
 Ainsi l'équation de continuité se met sous la forme:
 \begin{align}
-	\frac{\partial f^{(N)}}{\partial t}+\sum_{\alpha=1}^{N}\left[  \vec{\dot{r}}_{\alpha}.\mathrm{grad}_{\vec{r}_{\alpha}}\left(  f^{(N)}\right)
-	+\vec{\dot{p}}_{\alpha}.\mathrm{grad}_{\vec{p}_{\alpha}}\left(f^{(N)}\right)  \right]  =0\label{liouville}%
+	\frac{\partial f^{(N)}}{\partial t}+\sum_{\alpha=1}^{N}\left[  \dot{\vec{r}}_{\alpha}.\mathrm{grad}_{\vec{r}_{\alpha}}\left(  f^{(N)}\right)
+	+\dot{\vec{p}}_{\alpha}.\mathrm{grad}_{\vec{p}_{\alpha}}\left(f^{(N)}\right)  \right]  =0\label{liouville}%
 \end{align}
 Il s'agit de l'équation de Liouville.
 
