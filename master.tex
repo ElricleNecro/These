@@ -161,6 +161,7 @@
 \newcommand{\pint}{\displaystyle{\int}}
 \newcommand{\deriv}[2]{\ensuremath{\dfrac{\mathrm{d}#1}{\mathrm{d#2}}}}
 \newcommand{\pderiv}[2]{\ensuremath{\dfrac{\partial#1}{\partial\mathrm{#2}}}}
+\newcommand{\pderivn}[2]{\ensuremath{\dfrac{\partial#1}{\partial#2}}}
 \newcommand{\King}{\textsc{King}\xspace}
 
 \newcommand{\CH}[1]{\textsc{CH}$#1$\xspace}
@@ -237,10 +238,10 @@
 	\addstarredchapter{Liste des Tables}
 	\normalsize
 
-	\paragraph*{\underline{Notation} :}
-	Dans ce document, nous noterons :
+	\paragraph*{\underline{Notation}:}
+	Dans ce document, nous noterons:
 	\begin{itemize}
-		\item $T \equiv <v^2>$ (~quand nous parlerons de température, il sera question de la dispersion de vitesse du système~),
+		\item $T \equiv <v^2>$ (quand nous parlerons de température, il sera question de la dispersion de vitesse du système),
 		\item $\vec{a}$ les vecteurs,
 		\item $a$ le module de $\vec{a}$,
 		\item $d^3 a$ ou $d^3 \vec{a}$ l'élément de volume associé à $\vec{a}$.
@@ -248,6 +249,8 @@
 
 	\pagenumbering{arabic}
 
+
+	\part{Introduction}
 	%Pour le header et les pieds de pages :
 	\fancypagestyle{these}{
 		% \fancyhf{}
@@ -265,8 +268,6 @@
 	% \renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\chaptername}\ \thechapter.\ #1}{}}
 	%\renewcommand{\sectionmark}[1]{\markboth{\MakeUppercase{\sectionname}\ \small \textsc{\thesection}.\ #1}{}}
 
-
-	\part{Introduction}
 %		\addstarredpart{Introduction}
 		\input{introduction/introduction.tex}
 
@@ -278,7 +279,7 @@
 	\part{Simulation}
 		\input{simulation/simulation.tex}
 
-	\part*{Conclusion}
+	\part*{Conclusion et bibliographie}
 		\addstarredpart{Conclusion}
 		\chapter*{Conclusion}
 			\addstarredchapter{Conclusion}
