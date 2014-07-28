@@ -232,28 +232,79 @@
 
 	\cleardoublepage
 
+	\chapter*{Résumé}
+	\addstarredchapter{Résumé}
+		Le thème général de la thèse est la dynamique des
+		systèmes autogravitants tels que les amas globulaires et les galaxies.
+		L'objectif est de confronter dans ce contexte, les faits observationnels aux
+		modèles théoriques et aux résultats de simulations numériques.
+		
+		Nous nous sommes intéressés dans un premier temps à l'évolution des
+		amas globulaires de notre galaxie. L'étude de l'évolution des profils de
+		densité nous a appris
+		qu'en plus de l'augmentation bien connue de leur densité centrale, ces
+		amas présentent également une évolution de la pente de leur halo au
+		cours de leur évolution dynamique dans la galaxie.
+
+		Nous avons alors entrepris l'étude générale de différents modèles
+		théoriques de sphères isothermes et plus particulièrement de leur
+		stabilité. Cette étude nous a permis d'étendre à un modèle de King
+		simplifié certains résultats de stabilité habituellement présentés dans
+		le cadre exclusif de la sphère isotherme. Ces tests se sont révélés à
+		la fois concluants et instructifs.
+
+		Dans l'objectif de la confirmation de ces résultats analytiques et de ces
+		constats observationnels, nous avons entrepris des simulations numériques. Le
+		code choisi pour effectuer ces simulations est le treecode public Gadget-2.
+		Outre sa grande efficacité et sa compatibilité parfaite avec notre problème,
+		nous avons profité de ces simulations pour entreprendre des tests comparatifs
+		avec un code Vlasov montrant un accord spectaculaire entre l'approche $N$-corps et l'approche fluide.
+
+		Les simulations que nous avons entreprises consistaient à placer un système
+		autogravitant au sein d'un bain thermique, les deux systèmes étant constitués
+		de particules et possédant des caractéristiques variables. Le système
+		autogravitant d'étude était selon les cas une sphère de Hénon subissant un
+		effondrement et poursuivant son évolution sur plusieurs centaines de temps
+		dynamiques ou une sphère de King initialement à l'équilibre.
+
+		Bien que nous n'ayons pas réussi pour le moment, d'un point de vue numérique, à mettre réellement en évidence l'instabilité
+		suggérée par nos calculs théoriques, nos simulations nous ont permis d'obtenir les résultats suivants:
+		\begin{itemize}
+			\item nous avons pu reproduire numériquement l'évolution de la pente et l'effondrement du c\oe ur du système en quasi-équilibre obtenu après l'effondrement d'une sphère de Henon dans un bain thermique;
+			\item dans certains cas compatibles avec la théorie, nous avons pu faire apparaitre une instabilité d'orbite radiale contrôlée par l'accrétion d'une partie du bain thermique.
+		\end{itemize}
+
+		% Malgré certains résultats encourageants,  nous n'avons pas encore réussi, d'un
+		% point de vue numérique,  à mettre réellement en évidence l'instabilité suggérée
+		% par nos calculs théoriques.
+		
+
 	\pagenumbering{roman}
 	\small \tableofcontents
 	\addstarredchapter{Table des matières}
 	\listoffigures
 	\addstarredchapter{Liste des Figures}
-	\listoftables
-	\addstarredchapter{Liste des Tables}
+	% \listoftables
+	% \addstarredchapter{Liste des Tables}
 	\normalsize
 
-	\paragraph*{\underline{Notation}:}
-	Dans ce document, nous noterons:
-	\begin{itemize}
-		\item $T \equiv <v^2>$ (quand nous parlerons de température, il sera question de la dispersion de vitesse du système),
-		\item $\vec{a}$ les vecteurs,
-		\item $a$ le module de $\vec{a}$,
-		\item $d^3 a$ ou $d^3 \vec{a}$ l'élément de volume associé à $\vec{a}$.
-	\end{itemize}
+	\newpage
+
+	\section*{Notation}
+		Dans ce document, nous noterons:
+		\begin{itemize}
+			\item $T \equiv <v^2>$ (quand nous parlerons de température, il sera question de la dispersion de vitesse du système),
+			\item $\vec{a}$ les vecteurs,
+			\item $a$ le module de $\vec{a}$,
+			\item $d^3 a$ ou $d^3 \vec{a}$ l'élément de volume associé à $\vec{a}$.
+		\end{itemize}
 
 	\pagenumbering{arabic}
 
+	\normalsize
 
-	\part{Introduction}
+	\part*{Introduction}
+	\addstarredpart{Introduction}
 	%Pour le header et les pieds de pages :
 	\fancypagestyle{these}{
 		% \fancyhf{}
@@ -283,9 +334,91 @@
 		\input{simulation/simulation.tex}
 
 	\part*{Conclusion et bibliographie}
-		\addstarredpart{Conclusion}
-		\chapter*{Conclusion}
-			\addstarredchapter{Conclusion}
+		\addstarredpart{Conclusion et perspective}
+		\chapter{Conclusion}
+			% \addstarredchapter{Conclusion}
+
+		\section{Conclusion}
+
+			Au cours de la thèse, nous avons montré que les modèle de King, et par extension les \textsc{sag} de type cœur halo de pente
+			$\alpha>2$, étaient des sphères isothermes. Nous avons alors développé un modèle idéalisé étendant l'étude de la \textsc{sib}
+			à ces sphères isothermes, de pente quelconque, plongé dans un bain thermique. Ce modèle conserve l'instabilité associé aux systèmes
+			canoniques. Mais le contraste associé au déclenchement de l'instabilité est sous-estimé pour $\alpha=2$. Nous pouvons supposer
+			qu'il le sera aussi pour les autres systèmes.
+
+			Nous nous sommes ensuite concentré sur les simulations numériques. Notre but était de valider la présence de cette
+			instabilité. Nous avons testé plusieurs configurations pour les
+
+			Ces simulations sont constitué de deux systèmes: un bain thermique et un \textsc{sag}. Sur nos deux tentatives,
+			l'une n'a rien donnée. Nous avons trop bien supprimer les collisions à deux corps. L'autre tentative a donnée des résultats
+			plus intéressant. Ces résultats ont été rangé dans deux classes.
+
+			La première classe concerne les simulations montrant une instabilité d'orbite radiale. Ces simulations nous ont permit
+			de montrer que cette instabilité peut se produire lorsqu'un objet en accrète un autre. Nous avons alors mis en évidence que le
+			paramètre permettant de contrôler le déclenchement de l'instabilité est la densité du bain. Sur les rangs de valeurs essayé,
+			la dispersion de vitesse du bain ne semble pas avoir d'effet sur son déclenchement.
+
+			La seconde classe de simulation présente une diminution progressive des rayons $R_{10}$ et $R_{50}$, mais aucune accrétion.
+			Ces simulations ont donc montrées un effondrement progressif du cœur, accompagné d'une augmentation de la densité du cœur. Une
+			étude des différentes pentes du systèmes nous a appris qu'elles évoluait de sorte que la densité passe d'un système cœur-halo
+			à un système présentant un cusp, compatible avec les modèles de matière noire. Nous avons mit en évidence que cette évolution
+			était bien conduite par les effets de relaxations et non par le bain, mais elle se produit trop rapidement pour n'être dû
+			qu'aux effets de relaxations à deux corps: le \textsc{sag} s'effondre en moins de moins de $10\%$ du temps de relaxation à
+			deux corps.
+
+			% Ces deux systèmes évolue en interaction l'un avec
+			% l'autre. Au cours de ces simulations, nous avons mis en évidence deux types de comportement:
+			% \begin{itemize}
+
+				% \item lorsque le bain s'effondrait sur le \textsc{sag}, ce dernier développait une instabilité d'orbite radiale
+					% paramétré par la densité du bain;
+
+				% \item certaines simulations montraient un effondrement progressif du cœur compatible avec l'action des collisions à
+					% deux corps, mais trop rapide pour ces dernières.
+
+			% \end{itemize}
+			% Par ailleurs, aucune des simulations effectué n'a montré l'instabilité que nous cherchions.
+
+		\section{Perspectives}
+
+			Nous aimerions pouvoir étendre l'étude des simulations présentant l'instabilité d'orbite radiale afin de modéliser le
+			déclenchement de cette instabilité en fonction de la densité du bain. Dans le même temps, il serait très intéressant de
+			confirmer ou d'infirmer définitivement la dépendance de \textsc{roi} en fonction de la dispersion de vitesse du bain en effectuant des
+			simulations avec un $\sigma$ plusieurs ordre de grandeur supérieur à ceux déjà testé.
+
+			Une étude plus poussée de la simulation $A_{6,1}$ est nécessaire. En l'état actuel, nous n'avons aucun indice à propos du processus
+			conduisant l'effondrement de cette simulation.
+
+			Enfin, nous avons plusieurs idées de conditions initiales pouvant mettre en évidence l'instabilité recherché.
+			\begin{enumerate}
+				\item jusqu'ici, le bain avait toujours une densité inférieur à celle du Hénon. Il serait intéressant de faire des
+					simulations avec un Hénon et un bain de densité égale. Les simulations de la famille $C^m_{3,i}$ nécessiteraient au moins $60$ fois plus
+					de particules dans le bain.
+
+				% \item Hénon dans bain même densité;
+
+				% \item Hénon déjà effondrer pour avoir $r^{-4}$.
+
+				\item Pour correspondre à notre modèle, nous avons besoin que le \textsc{sag} et le bain soit à la même température.
+					Nous pourrions tenter de génerer directement un \textsc{sag} ayant la même température que le bain, puis jouer
+					sur son contraste de densité pour le placer le plus proche possible de l'instabilité.
+
+			\end{enumerate}
+
+
+
+			\newpage
+			% -> toy model == généralisation sphère iso pour tous sag
+
+			-> simulation: \\
+				% \_ résultat sur roi \\
+				% \_ rèsultat étrange relaxation \\
+				\_ échec de montrer généralisation sphère iso.
+
+			-> perspective:
+				\_ étude plus appronfondie es paramètres de la simu relaxation pour comprendre pk evolution si rapide \\
+				\_ Quelques simulation en plus pour bien mettre en avant le paramètrage de roi. \\
+				\_ Chercher de nouvelle façon de faire un bain \& co pour trouver notre effet.
 
 	\bibliographystyle{plainnat}
 	\bibliography{Bibliographie}
