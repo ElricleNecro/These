@@ -3,7 +3,7 @@
 	\minitoc
 
 	Après avoir évoqué diverses propriétés des amas globulaires de notre galaxie puis étudié certains résultats
-	analytiques concernant les propriétés dynamiques des systèmes auto-gravitant, nous allons maintenant mener des
+	analytiques concernant les propriétés dynamiques des systèmes auto-gravitant (\textsc{sag}), nous allons maintenant mener des
 	expériences numériques. Nous présenterons dans un premier temps le code d'évolution dynamique que nous avons
 	utilisé, puis les conditions initiales de nos expériences et enfin les différentes observables de nos simulations.
 
@@ -31,8 +31,9 @@
 		% \todo[inline]{Parler macro-particule et limite fluide pour le $N$-corps.}
 
 		Les expériences numériques que nous souhaitons réaliser ont pour objectif de modéliser l'évolution
-		dynamique d'un système auto-gravitant. Dans ces simulations, nous souhaitons respecter au mieux le
-		système du point de vue macroscopique (correspondant à la limite fluide de nos simulations).
+		dynamique d'un système auto-gravitant placé dans un bain thermique.
+		% Dans ces simulations, nous souhaitons respecter au mieux le
+		% système du point de vue macroscopique (correspondant à la limite fluide de nos simulations).
 		% tout en
 		% laissant la possibilité à certains effets microscopiques d'apparaître (accrétion, relaxation).
 
@@ -76,7 +77,9 @@
 			Un calcul direct des forces d'interaction entre chaque particules nécessite $N^2$ opérations. Bien que très couteuse, cette
 			méthode est encore très utilisée pour suivre finement la dynamique d'un amas. À ce jour, la plus grosse simulation $N$-corps
 			directe est le travail de D. Heggie avec presque 300 000 particules (voir sa présentation au trimestre Gravasco) en utilisant
-			la version GPU de NBODY6. Dans la limite fluide, nous aurons parfois besoin d'un grand nombre de particules pour représenter
+			la version GPU de NBODY6.
+			% Dans la limite fluide,
+			Nous aurons parfois besoin d'un grand nombre de particules pour représenter
 			la fonction de distribution dans l'espace des phases. Nous avons donc besoin d'une approche nous permettant d'accélérer les
 			calculs. Il existe de nombreuses méthodes le permettant. Celle que nous utilisons est basée sur un algorithme en arbre.
 
@@ -125,14 +128,13 @@
 				% \end{center}
 			% \end{figure}
 
-			Une fois l'arbre construit, le calcul de la force ou du potentiel se fait en descendant dans les nœuds
-			tant que l'angle d'ouverture reste supérieur à une valeur critique.
+			Une fois l'arbre construit, le calcul de la force ou du potentiel se fait en descendant dans les nœuds tant que l'angle
+			d'ouverture reste supérieur à une valeur critique.
 			% (les cubes qui ont été subdivisés) selon un critère: l'angle d'ouverture du cube par rapport à une
 			% particule est-il supérieur à une valeur $\theta$ choisie.
-			L'angle d'ouverture correspond à la taille angulaire du nœud vue par la particule sélectionnée.
-			Si cette taille est suffisamment petite, nous n'entrons pas à l'intérieur et résumons son
-			contenu à une macro-particule, sinon la descente continue. Le critère d'ouverture est illustré par la
-			figure~\ref{Fig::KDTree::Parcours}.
+			L'angle d'ouverture correspond à la taille angulaire du nœud vue par la particule sélectionnée. Si cette taille est
+			suffisamment petite, nous n'entrons pas à l'intérieur et résumons le contenu du cube à une macro-particule, sinon la descente
+			continue. Le critère d'ouverture est illustré par la figure~\ref{Fig::KDTree::Parcours}.
 			% (voir figure~\ref{Fig::KDTree::Parcours})
 			% nous testons chacune des
 			% subdivisions. Par exemple, sur la figure~\ref{Fig::KDTree::Parcours}, le cône vert indique un
@@ -180,11 +182,14 @@
 			% dans cette description de nos système. Pour cela, nous allons jouer sur
 			% le paramètre de lissage de la force qui adoucit cette dernière. Ceci ce traduit par le potentiel
 			% effectif suivant:
-			Toute la théorie ayant été faite dans le cadre de la limite fluide, % l'équation de Vlasov,
-			il est important de l'approcher du mieux possible. %nous souhaitons nous y placer aussi % dans la limite fluide
+			% Toute la théorie ayant été faite dans le cadre de la limite fluide, % l'équation de Vlasov,
+			% il est important de l'approcher du mieux possible.
+			% nous souhaitons nous y placer aussi % dans la limite fluide
 			% afin de nous approcher du mieux possible des conditions théoriques, mais
 			% Les effets de relaxations à deux corps sont également susceptibles d'intervenir sur le long
 			% terme, il nous faut pouvoir les prendre en compte. % dans cette description de nos système.
+			Comme nous souhaitons observer l'effet d'un bain thermique sur un \textsc{sag}, nous aimerions pouvoir contrôler l'effet des
+			collisions sur le système, et notamment diminuer leurs effets.
 			Pour cela, nous allons jouer sur
 			le paramètre de lissage de la force $\epsilon$ dans le potentiel
 			effectif suivant:
@@ -200,7 +205,8 @@
 				\psi(r_{i}) = - G \sum_{j \neq i}^{N}\dfrac{m_i}{r_{ij} + \epsilon}
 			\end{align}
 			où $r_{ij}$ est le module de distance entre les particules $i$ et $j$.
-			Afin que la limite fluide soit suffisamment bien approché, nous devons choisir ce
+			% Afin que la limite fluide soit suffisamment bien approché, nous devons choisir ce
+			Afin de minimiser suffisamment les collisions, nous devons choisir ce
 			paramètre tel que d'une part la sphère de rayon $\epsilon$ contienne un nombre $N_\epsilon$ suffisant de particules
 			mais que d'autre part $N_\epsilon$ soit suffisamment petit devant le nombre total de particules du système.
 			Ce nombre $N_\epsilon$ peut s'évaluer de la façon suivante; considérons le paramètre
@@ -234,16 +240,10 @@
 			% $N$ étant le nombre total de particules de l'amas. $N$, $R$ et $\alpha$ étant fixés, nous sommes
 			% ainsi libres de choisir $N_\epsilon$ ou $\epsilon$ pour répondre à nos besoins.
 
-		\subsection{\og Leap-frog\fg et pas de temps}
+		\subsection{\og\Sm\fg et pas de temps}
 
-			\textsc{Gadget-2} utilise un schéma d'intégration temporelle à pas de temps variable de type  \og prédicteur-correcteur\fg qui
-			se ramène à un leap-frog, lorsque le pas de temps est constant, dont nous allons étudier le fonctionnement.
-
-			Le prédicteur-correcteur utilisé est la combinaison suivante de deux opérateurs:
-			\begin{align*}
-				U(\Delta t) = K\(\frac{\Delta t}{2}\)D\(\Delta t\)K\(\frac{\Delta t}{2}\)
-			\end{align*}
-			où $\Delta t$ est le pas de temps d'une particule, $K$ l'opérateur permettant d'incrémenter la vitesse et $D$ la position.
+			\textsc{Gadget-2} utilise un schéma d'intégration temporelle à pas de temps variable de type  \og{}prédicteur-correcteur\fg.
+			Il se ramène à un \sm (\og{}leap-frog\fg en anglais), lorsque le pas de temps est constant. % dont nous allons étudier le fonctionnement.
 
 			% Le problème simulé peut s'écrire ainsi:
 			% Pour chaque particule de masse $m$ du système, le problème à résoudre s'écrit:
@@ -262,24 +262,92 @@
 					% m\dfrac{\vec{v}_\mathrm{new} - \vec{v}_\mathrm{old}}{\Delta t} = \vec{f}(\vec{r}_\mathrm{old}) = m\vec{a}
 				% \end{cases}
 			% \end{align*}
-			La particularité du leap-frog est le décalage entre l'évaluation des positions est des vitesses:
-			les positions vont être évaluées tous les $n\Delta t$ tandis que les vitesses vont l'être tout
-			les $(n+\frac{1}{2})\Delta t$.
-			Le schéma d'intégration s'écrit:
+			Le \sm est schéma d'intégration d'ordre 2. Il a la particularité d'introduire un décalage entre l'évaluation des positions est
+			des vitesses: les positions vont être évaluées tous les $n\Delta t$ tandis que les vitesses vont l'être tout les
+			$(n+\frac{1}{2})\Delta t$. Ce schéma d'intégration s'écrit:
 			\begin{align*}
 				\begin{cases}
-					\vec{v}_{n+1/2} = \vec{v}_{n-1/2} + \Delta t\vec{f}(\vec{r}_n) \\
+					\vec{v}_{n+1/2} = \vec{v}_{n-1/2} + \Delta t\vec{a}(\vec{r}_n) \\
 					\\
 					\vec{r}_{n+1} = \vec{r}_n +\Delta t\vec{v}_{n+1/2}
 				\end{cases}
 			\end{align*}
+			avec $\vec{a}$ l'accélération subit par la particule. La figure~\ref{Fig::Num::LeapFrog} illustre le fonctionnement de ce
+			schéma.
+			\begin{figure}[htpb]
+				\centering \begin{tikzpicture}
+					\draw[dashed] (-1, 0) -- (0, 0);
+					\draw (0, 0) -- (5, 0);
+					\draw[->, dashed] (5, 0) -- (6, 0) node [below right] {$t$};
 
-			Le code Gadget-2 opère une gestion fine du pas de temps $\Delta t$:
+					\draw (1, 0.1) -- (1, -0.1) node[above, fill=white] at (1, 0) {$\vec{r}_1$};
+					\draw (3, 0.1) -- (3, -0.1) node[above, fill=white] at (3, 0) {$\vec{r}_2$};
+					\draw (5, 0.1) -- (5, -0.1) node[above, fill=white] at (5, 0) {$\vec{r}_3$};
+
+					\draw (0, 0.1) -- (0, -0.1) node[below, fill=white] at (0, 0) {$\vec{v}_{1}$};
+					\draw (2, 0.1) -- (2, -0.1) node[below, fill=white] at (2, 0) {$\vec{v}_{2}$};
+					\draw (4, 0.1) -- (4, -0.1) node[below, fill=white] at (4, 0) {$\vec{v}_{3}$};
+
+					\draw[dotted] (0, 0) -- (0, -1) node[below] {$t-\frac{\Delta t}{2}$};
+					\draw[dotted] (1, 0) -- (1, -1.5) node[below] {$t$};
+					\draw[dotted] (2, 0) -- (2, -1) node[below] {$t+\frac{\Delta t}{2}$};
+					\draw[dotted] (3, 0) -- (3, -1.5) node[below] {$t+\Delta t$};
+					\draw[dotted] (4, 0) -- (4, -1) node[below] {$t + \frac{3\Delta t}{2}$};
+					\draw[dotted] (5, 0) -- (5, -1.5) node[below] {$t+2\Delta t$};
+
+					\path[->] (1.1, 0.5) edge [out=20, in=160] (2.9, 0.5);
+					\path[->] (3.1, 0.5) edge [out=20, in=160] (4.9, 0.5);
+
+					\path[->] (0.1, -0.5) edge [out=-20, in=-160] (1.9, -0.5);
+					\path[->] (2.1, -0.5) edge [out=-20, in=-160] (3.9, -0.5);
+				\end{tikzpicture}
+				\caption{Principe de fonctionnement du \og\sm\fg sur deux pas de temps.\label{Fig::Num::LeapFrog}}
+			\end{figure}
+
+
+			L'algorithme utilisé par Gadget est basé sur ce schéma \sm.
+			% Avec le \sm, nous faisons évoluer les positions et vitesses de chaque particules d'un pas de temps $\Delta t$ en même temps.
+			Le prédicteur-correcteur utilisé par \textsc{gadget-2} consiste à faire évoluer, dans un premier temps, les vitesses d'un demi
+			pas de temps $\frac{\Delta t}{2}$ afin de les synchroniser avec positions. Ces vitesses sont ensuite utilisé pour incrémenter
+			d'un pas de temps les positions. Finalement, il incrémente de nouveau les vitesses d'un demi pas de temps, les désynchronisant
+			de nouveau. L'algorithme d'intégration est illustré sur la figure~\ref{Fig::Num::GadSchem}.
+			\begin{figure}[htpb]
+				\centering \begin{tikzpicture}
+					\draw[dashed] (-1, 0) -- (0, 0);
+					\draw (0, 0) -- (5, 0);
+					\draw[->, dashed] (5, 0) -- (6, 0) node [below right] {$t$};
+
+					\draw (2, 0.1) -- (2, -0.1) node[above, fill=white] at (2, 0) {$\vec{r}_2$};
+					\draw[dotted] (2, 0) -- (2, -1) node[below] {$t$};
+					\draw (4, 0.1) -- (4, -0.1) node[above, fill=white] at (4, 0) {$\vec{r}_1$};
+					\draw[dotted] (4, 0) -- (4, -1) node[below] {$t+\Delta t$};
+
+					\draw (1, 0.1) -- (1, -0.1) node[below, fill=white] at (1, 0) {$\vec{v}_{1}$};
+					\draw[dotted] (1, 0) -- (1, -1.5) node[below] {$t-\frac{\Delta t}{2}$};
+					\draw (2, 0.1) -- (2, -0.1) node[below, fill=white] at (2, 0) {$\vec{v}_2$};
+					% \draw[dotted] (3, 0) -- (3, -1.5) node[below] {$t+\Delta t$};
+					\draw (3, 0.1) -- (3, -0.1) node[below, fill=white] at (3, 0) {$\vec{v}_{3}$};
+					\draw[dotted] (3, 0) -- (3, -1.5) node[below] {$t+\frac{\Delta t}{2}$};
+
+					% \path[->] (0.1, 0.5) edge [out=20, in=160] (1.9, 0.5);
+					\path[->] (2.1, 0.5) edge [out=20, in=160] (3.9, 0.5);
+
+					\path[->] (1.1, -0.5) edge [out=-20, in=-160] (1.9, -0.5);
+					\path[->] (2.1, -0.5) edge [out=-20, in=-160] (2.9, -0.5);
+				\end{tikzpicture}
+				\caption{Principe de fonctionnement du prédicteur-correcteur de \textsc{gadget-2} sur un pas de temps.\label{Fig::Num::GadSchem}}
+			\end{figure}
+			% Le prédicteur-correcteur utilisé est la combinaison suivante de deux opérateurs:
+			% \begin{align*}
+				% U(\Delta t) = K\(\frac{\Delta t}{2}\)D\(\Delta t\)K\(\frac{\Delta t}{2}\)
+			% \end{align*}
+			% où $\Delta t$ est le pas de temps d'une particule, $K$ l'opérateur permettant d'incrémenter la vitesse et $D$ la position.
+			Dans le même temps, le code \textsc{Gadget-2} opère une gestion fine du pas de temps $\Delta t$:
 			\begin{align*}
 				\Delta t = \sqrt{\dfrac{2\eta\epsilon}{|\vec{a}|}}
 			\end{align*}
 			de manière à ce qu'il reste dans un intervalle de contrôle.
-			Le paramètre $\eta$ permet de contrôler la précision de l'intégration, $\vec{a}$ est l'accélération.
+			Le paramètre $\eta$ permet de contrôler la précision de l'intégration. %, $\vec{a}$ est l'accélération.
 
 			L'intérêt de ce schéma d'intégration est qu'il assure une excellente gestion de l'énergie du système; ce type d'intégrateur est dit symplectique.
 
@@ -357,8 +425,8 @@
 		% Pour générer des nombres aléatoires dans l'intervalle voulu, nous utiliserons une
 		% implémentation de la fonction \verb|ran2| tiré de~\citet{NumericalRecipesC}.
 
-		Pour mener à bien nos expériences numériques, nous avons besoin de plusieurs configurations: une sphère de King,
-		une sphère de Hénon et un bain thermique.
+		Pour mener à bien nos expériences numériques, nous avons besoin de pouvoir générer plusieurs types d'objet: %configurations:
+		une sphère de King, une sphère de Hénon et un bain thermique.
 
 		\subsection{Le modèle de \textsc{King}}
 
@@ -368,9 +436,9 @@
 			pour le modèle de King. Nous pouvons alors calculer le potentiel central $\psi(0)$ et l'énergie
 			de libération $E_l$.
 			% Ces particules sont telles que $r<R$ et $v<v_\mathrm{max}$, avec $R$ et $v_\mathrm{max}$ défini tels que:
-			Toutes les particules de la sphère de King ont une vitesse dont le module de vitesse est
-			inférieur à une vitesse $v_\mathrm{max}$ et leurs distance au centre est inférieur à un rayon
-			$R$. Ces bornes sont définies tel que:
+			Toutes les particules de la sphère de King ont une vitesse dont le module est
+			inférieur à une valeur $v_\mathrm{max}$ et leurs distance au centre est inférieure à un rayon
+			$R$. %Ces bornes sont définies tel que:
 			% Pour obtenir nos conditions initiales, qui devront suivre un profil de \textsc{King}, nous
 			% allons utiliser la méthode de réjection. Nous allons tirer aléatoirement la position et la
 			% vitesse des particules dans une boîte, puis nous n'en garderons qu'une partie en utilisant la
@@ -380,7 +448,7 @@
 			% v_{\mathrm{max}}\right]$} pour les vitesses, avec:
 			% \begin{itemize}
 				% \item $v_{\mathrm{max}}$ la vitesse maximum: %l'énergie totale du système est bornée supérieurement par l'énergie de libération :
-			la vitesse maximale $v_{\mathrm{max}}$ est donnée par la relation:
+			La vitesse maximale $v_{\mathrm{max}}$ est donnée par la relation:
 					\begin{align}
 						% E = \dfrac{1}{2} m v_i^2 + m\psi(r) &< E_l \notag \\
 						% E_l - m\psi(r) &> \dfrac{1}{2} m v_i^2 \notag \\
@@ -544,9 +612,9 @@
 		% profil de King avec \mbox{100 000} particules, qui se doit donc d'être
 		% au Viriel, mais aussi d'avoir un profil de densité de type cœur-halo.
 
-		Lors de nos expériences numériques, nous souhaitons étudier l'évolution des paramètres des systèmes. Nous avons donc construit un code
-		effectuant le calcul de différentes observables spatiales (densité, position, rapport d'axes, etc) et cinétiques (énergies,
-		température, etc).
+		Lors de nos expériences numériques, nous souhaitons étudier l'évolution des paramètres de nos systèmes. % des systèmes.
+		Nous avons donc construit un code effectuant le calcul de différentes observables spatiales (densité, position, rapport d'axes, etc)
+		et cinétiques (énergies, température, etc).
 
 		Toutes les courbes présentées dans cette section correspondent à un modèle de King de paramètre $W_0=6$, $r_c =
 		3.5\mathrm{pc}$ et $\sigma_v = 2.9 \mathrm{km}.\mathrm{s}^{-1}$ généré avec 100 000 particules.
@@ -574,9 +642,11 @@
 			Le calcul du centre de gravité peut s'en trouver largement affecté.
 			Par conséquent, nous devons calculer un centre en donnant plus de poids aux
 			particules se trouvant dans des zones denses du système. Il s'agit du \og centre de densité\fg,
-			tel que décrit dans~\citet{1985ApJ...298...80C}. Le principe est de rechercher les $j$ plus
-			proches voisins d'une particule et de regarder dans quel volume elles se répartissent; ceci nous
-			donne la densité locale de la particule, et donc son poids selon la formule suivante:
+			tel que décrit dans~\citet{1985ApJ...298...80C}. Le principe est de chercher les $j$ plus
+			proches voisins d'une particule afin de déterminer un volume caractéristique pour cette particule et d'en déduire la densité
+			locale:
+			% et de regarder dans quel volume elles se répartissent; ceci nous
+			% donne la densité locale de la particule, et donc son poids selon la formule suivante:
 			\begin{align}
 				\rho_j^i = \dfrac{j-1}{V(r_j)}m
 			\end{align}
@@ -586,7 +656,7 @@
 			nous faisons un calcul similaire au centre de gravité mais en pondérant chaque position par sa densité locale.
 
 			Ce calcul peut s'avérer numériquement couteux, nous avons  donc adapté l'algorithme de l'octree
-			pour accélérer le calcul.
+			pour accélérer ce calcul.
 			% Pour accélérer les calculs, nous utilisons la technique de l'octree décrite précédemment afin de chercher les $j$ plus
 			% proches voisins, mais plutôt que d'utiliser l'angle d'ouverture, nous comparons
 			% la distance entre la particule $i$ et le coin le plus proche de chaque cube à la distance entre
@@ -595,6 +665,7 @@
 
 		\subsection{Masse et densité}
 
+			Le calcul de ces observables est primordial et repose sur la construction d'histogrammes.
 			\begin{wrapfigure}{l}{0.40\textwidth}
 				\begin{center}
 					\begin{tikzpicture}[scale=0.8]
@@ -612,21 +683,16 @@
 				\end{center}
 				\caption{Découpage de l'amas généré pour des coquilles espacées linéairement.\label{schema::bin}}
 			\end{wrapfigure}
-			Le premier histogramme que nous générerons sera celui
-			représentant la masse en fonction du rayon. Notre objet
-			étant sphérique, nous allons le découper en coquilles d'épaisseur
-			$\mathrm{dr}_i$ variable.
+			Le premier histogramme que nous générerons sera celui représentant la masse en fonction du rayon. Notre objet étant sphérique,
+			nous allons le découper en coquilles d'épaisseur $\mathrm{dr}_i$ variable.
 			% La fonction de masse représente la masse se trouvant
 			% dans l'intervalle \mbox{$\left[0; j
 			% \mathrm{dr}\right]$}.
-			Pour la calculer, nous comptons
-			le nombre de particules dans chaque chaque coquille
-			sphérique de largeur $\mathrm{dr}$, puis, après avoir
-			multiplié par la masse d'un particule, nous sommons,
-			pour le bin $j$, tous les bins inférieurs.
+			Pour la calculer, nous comptons le nombre de particules dans chaque chaque coquille sphérique de largeur $\mathrm{dr}$, puis,
+			après avoir multiplié par la masse d'un particule, nous sommons, pour le bin $j$, tous les bins inférieurs.
 
-			En même temps que nous calculons la fonction de masse, nous pouvons calculer la
-			densité en divisant la masse dans un bin par le volume du bin :
+			En même temps que nous calculons la fonction de masse, nous pouvons calculer la densité en divisant la masse dans un bin par
+			le volume du bin:
 			\begin{align}
 				\rho_\mathrm{bin} &= \dfrac{M_\mathrm{bin}}{V_\mathrm{bin}} \notag \\
 				\rho(r_i + \mathrm{dr}_i) &= \dfrac{M(r_i + \mathrm{dr}_i) - M(r_i)}{V(r_i + \mathrm{dr}_i) - V(r_i)}
@@ -635,51 +701,60 @@
 					% &= \dfrac{3 M_{\mathrm{bin}\ i}}{4 \pi \mathrm{dr}^3 \left[ (i+1)^3 - i^3\right]} \notag \\
 					% &= \dfrac{3 M_{\mathrm{bin}\ i}}{4 \pi \mathrm{dr}^3 \left[ 3 i^2 + 3 i + 1\right]} \notag \\
 			\end{align}
-			avec $M_{r_{i=0}} \equiv 0$. Nous utilisons en parallèle un autre calcul de la densité utilisant
-			cette fois des intervalles espacés logarithmiquement.
+			avec $M_{r_{i=0}} \equiv 0$.
+			Nous utilisons deux calcul de ce type pour obtenir la densité: l'un utilisant des bins espacées logarithmiquement, l'autre
+			utilisant des bins de pas constant.
+			% Nous utilisons en parallèle un autre calcul de la densité utilisant
+			% cette fois des intervalles espacés logarithmiquement.
 
 			La densité obtenue et celle prévue par la résolution numérique sont très proches,
 			comme le montre le graphique~\ref{Comp_gene-theo}.
-			% \begin{figure}[h!]
-				% \centering \includegraphics[scale=0.5]{graphe/Comp_dens_gene-theo_5000.pdf}
-				% \caption{Comparaison entre la résolution numérique et la densité donnée par le générateur\label{Comp_gene-theo}}
-			% \end{figure}
-			\begin{figure}[h!]
-				% \centering \includegraphics[scale=0.5]{king_model_verification}
-				% \centering \includegraphics[scale=0.3]{verif_densite.pdf}
-				\centering \includegraphics{verif_densite_new.pdf}
+			\begin{figure}[htbp]
+				\centering \includegraphics{verif_densite_new_error.pdf}
 				\caption{Comparaison entre la résolution numérique et la densité donnée par le
 				générateur\label{Comp_gene-theo}. La courbe rouge correspond à la densité théorique, la
 				courbe verte à la densité utilisant les intervalles espacés logarithmiquement et la courbe bleue
 				à la méthode décrite ici.}
 			\end{figure}
+			Le second graphique montre l'erreur relative en fonction du rayon. Nous
+			pouvons voir que l'accord entre les courbes théorique et calculées est toujours inférieur à $20\%$, sauf au centre et au bord
+			du système. Ces deux régions sont en général trop pauvre en particule pour que nous puissions y avoir une précision correcte
+			avec notre méthode de calcul.
 
 		\subsection{Énergie et potentiel}
 
-			La partie la plus complexe de l'obtention des observables est le calcul de l'énergie. Deux
-			choix s'offrent à nous:
-			\begin{itemize}
-				\item la méthode force brute dans laquelle nous calculons l'énergie totale en utilisant
-					l'expression newtonienne du potentiel:
-					$$
-						E_{tot} = \frac{1}{2}\sum_{i = 1}^{N} m_i v_i^2 - G \sum_{i = 1}^{N} \sum_{j < i}^N \dfrac{m_i m_j}{||r_i - r_j|| + \epsilon}
-					$$
-					avec $N$ le nombre de particule. Le problème de cette méthode est qu'elle nécessite $N^2$
-					opérations et n'est donc pas opérationnelle lorsque nous travaillons avec un grand
-					nombre de particules.
+			La partie la plus complexe de l'obtention des observables est le calcul de l'énergie. Nous allons calculer le potentiel avec
+			la méthode décrite dans la section~\ref{Sec::KdTree}.
+			% Deux
+			% choix s'offrent à nous:
+			% \begin{itemize}
+				% \item la méthode force brute dans laquelle nous calculons l'énergie totale en utilisant
+					% l'expression newtonienne du potentiel:
+					% $$
+						% E_{tot} = \frac{1}{2}\sum_{i = 1}^{N} m_i v_i^2 - G \sum_{i = 1}^{N} \sum_{j < i}^N \dfrac{m_i m_j}{||r_i - r_j|| + \epsilon}
+					% $$
+					% avec $N$ le nombre de particule. Le problème de cette méthode est qu'elle nécessite $N^2$
+					% opérations et n'est donc pas opérationnelle lorsque nous travaillons avec un grand
+					% nombre de particules.
 
-				\item la méthode utilisant l'octree décrit précédemment.
-		\end{itemize}
+				% \item la méthode utilisant l'octree décrit précédemment.
+		% \end{itemize}
 		% C'est cette dernière méthode que nous avons utilisée. Nous allons parcourir l'arbre comme décrit dans la
 		% section~\ref{Sec::KdTree}. Lorsque nous arrivons sur une feuille, nous calculons les interactions de chaque
 		% particules avec celle dont nous voulons le potentiel. Lorsqu'un cube possède un diamètre angulaire trop
 		% faible, les particules qu'il contient sont ramenées à une macro particules ayant pour position leur centre
 		% de masse et comme masse la masse totale des particules du cube.
-		La figure~\ref{potentiel_5000} montre le
-		potentiel théorique superposé au modèle de King décrit plus haut.
+			La figure~\ref{potentiel_5000} montre le potentiel calculé avec un angle d'ouverture de $0,5$, et sans lissage, superposé au
+			modèle de King décrit plus haut. Le second graphique représente l'erreur relative en fonction du rayon sur la calcul du
+			potentiel. L'erreur sur le calcul est extrêmement faible.
+			\begin{figure}[htbp]
+				\centering \includegraphics{verif_potentiel_new_error.pdf}
+				\caption{Comparaison entre le potentiel théorique (courbe rouge) et le potentiel donné par le
+					générateur (courbe bleue)\label{potentiel_5000}.}
+			\end{figure}
 
-		En plus du potentiel, nous en profitons pour calculer l'énergie cinétique pour obtenir finalement
-		l'énergie totale du système et le rapport du Viriel $\gamma = \frac{2E_c}{E_p}$.
+			En plus du potentiel, nous en profitons pour calculer l'énergie cinétique pour obtenir finalement
+			l'énergie totale du système et le rapport du Viriel $\gamma = \frac{2E_c}{E_p}$.
 
 		% c'est le centre de masse des particules qu'il  conti
 
@@ -730,13 +805,6 @@
 
 			% Le graphique~\ref{potentiel_5000} nous montre le potentiel théorique et le potentiel calculé par cette méthode.
 
-			\begin{figure}[h!]
-				% \centering \includegraphics{graphe/Potentiel_ci-100000.pdf}
-				% \centering \includegraphics[scale=0.4]{verif_potentiel.pdf}
-				\centering \includegraphics{verif_potentiel_new.pdf}
-				\caption{Comparaison entre le potentiel théorique (courbe rouge) et le potentiel donné par le
-					générateur (courbe bleu)\label{potentiel_5000}.}
-			\end{figure}
 
 		\subsection{Anisotropie des vitesses et forme de l'amas}
 
@@ -752,12 +820,12 @@
 			\begin{align}
 				\beta(r) = 1 - \dfrac{\sigma_t^2(r)}{2\sigma_r^2(r)}
 			\end{align}
-			avec $\sigma_t$ la dispersion de vitesse tangentielle et $\sigma_r$ la dispersion de vitesse
+			où $\sigma_t$ est la dispersion de vitesse tangentielle et $\sigma_r$ la dispersion de vitesse
 			radiale. Pour obtenir ces dispersions, nous calculons, pour chacune des coquilles de la
 			figure~\ref{schema::bin}, les vitesses tangentielles moyennes et les vitesses radiales moyennes,
 			puis les dispersions de vitesses correspondantes.
-			Lorsque $\beta(r) \equiv 0$, le système est isotrope, pour $\beta(r) \rightarrow 1$ le système
-			est radial en vitesse et enfin quand $\beta(r) < 0$ le système est tangentiel.
+			Lorsque $\beta(r) \equiv 0$, le système est isotrope, pour $\beta(r) \to 1$ le système présente une anisotropie radiale dans
+			l'espace des vitesses et enfin quand $\beta(r) < 0$ le système est tangentiel.
 			Cet indicateur va nous permettre de déceler l'apparition d'une éventuelle instabilité
 			d'orbite radiale.
 
@@ -777,7 +845,7 @@
 			% nous allons calculer les valeurs propres \mbox{$\lambda_1 > \lambda_2 > \lambda_3$} de la matrice
 			% d'inertie:
 			Pour surveiller l'évolution de la forme du système, nous calculons les valeurs propres
-			\mbox{$\lambda_1 > \lambda_2 > \lambda_3$} de la
+			\mbox{$\lambda_1 \geq \lambda_2 \geq \lambda_3$} de la
 			matrice d'inertie:
 			\begin{align*}
 				% \mathfrak{I} &= \(\begin{array}{ccc}
@@ -806,7 +874,7 @@
 			où $x_i$, $y_i$, $z_i$ sont les coordonnées de chaque particules du système.
 			% polynôme d'ordre 3 que l'on résout avec la méthode de \textsc{Cardan}.
 
-			Une fois ces valeurs propres obtenues, nous traçons l'évolution des rapports d'axe (\og axial ratio\fg)
+			Une fois ces valeurs propres obtenues, nous traçons l'évolution des rapports d'axe (\og{}axial ratio\fg)
 			$a_1 = \lambda_1 / \lambda_2$ et $a_2 = \lambda_3 / \lambda_2$. Quand $a_1 = a_2 = 1$, le
 			système est sphérique. Si $a_2 < 1$ et $a_1 = 1$, le système présente une forme allongée
 			caractéristique de l'instabilité d'orbite radiale; et enfin, pour $a_1 >
@@ -816,26 +884,31 @@
 			% valeurs propres étant numérotées dans l'ordre
 			% décroissant .
 
-			Nous récupérons aussi les rayons à $10\%$ ($R_{10}$), $50\%$ ($R_{50}$) et à $90\%$ ($R_{90}$) de masse qui vont nous
-			permettre de suivre l'évolution de la structure du système.
+			Les indicateurs de structures que sont les rayons à $10\%$ ($R_{10}$), $50\%$ ($R_{50}$) et à $90\%$ ($R_{90}$) de masse sont
+			également calculés.
+			% Nous récupérons aussi les rayons à $10\%$ ($R_{10}$), $50\%$ ($R_{50}$) et à $90\%$ ($R_{90}$) de masse qui vont nous
+			% permettre de suivre l'évolution de la structure du système.
 
 		\subsection{Température cinétique}
 
 			La dernière observable que nous souhaitons obtenir est la température. La température que nous
 			calculons est la version discrète de celle donnée dans le chapitre~\ref{King::Chapitre}:
 			\begin{align}
-				T(r) &= \dfrac{\displaystyle\int_{-\infty}^{\infty}v^2 f(\vec{x}, \vec{p})\vdp}{\displaystyle\int_{-\infty}^{\infty}f(\vec{x}, \vec{p})\vdp} \\
-				     &= \dfrac{1}{N-1}\sum_{i=0}^N (v_i - <v>)^2
+				T(r) &= \dfrac{\displaystyle\int_{-\infty}^{\infty}v^2 f(\vec{x}, \vec{p})\vdp}{\displaystyle\int_{-\infty}^{\infty}f(\vec{x}, \vec{p})\vdp} \notag \\
+				     &= \dfrac{1}{N-1}\sum_{i=0}^N (v_i - \langle v\rangle)^2 \label{Eq::Temp::Approx}
 				     % &= \dfrac{\displaystyle\int_{-\infty}^{\infty}4\pi v^4 f(\vec{x}, \vec{p})\dx{v}}{\rho(r)} \\
 				% T(r) &\simeq \dfrac{\displaystyle\sum_i 4\pi v_i^4 f(r, v_i)}{\displaystyle\sum_i 4\pi v_i^2 f(r, v_i)} \\
 				     % &= \dfrac{\displaystyle\sum_i v_i^2 \rho(r)}{\rho(r_i)}
 			\end{align}
-			où $<v>$ est la vitesse moyenne.
+			où $\langle v\rangle$ est la vitesse moyenne.
 			Cette observable va nous permettre de savoir si les sphères sont chauffées ou refroidies par leurs
-			interactions avec un bain thermique, et à quelle rythme.
-
-			\begin{figure}[h]
-				\centering \includegraphics{verif_dispersion.pdf}
-				\caption{toto}
+			interactions avec un bain thermique, et à quelle rythme. La figure~\ref{Fig::Comp::Temp} montre l'évolution, avec le rayon, de
+			la température calculée par l'équation~\ref{Eq::Temp::Approx} et la théorie. Nous pouvons voir ici que l'erreur relative est
+			beaucoup plus importante que sur les autres observables. Cette différence vient du passage de l'intégrale à la somme qui n'est
+			valide que pour un grand nombre de particule, or nous n'en avons que $10^5$ pour ce test.
+			\begin{figure}[htbp]
+				\centering \includegraphics{verif_dispersion_error.pdf}
+				\caption{Comparaison entre la température théorique (en rouge) et celle calculée (en bleue). Toutes deux sont
+				normalisées.\label{Fig::Comp::Temp}}
 			\end{figure}
 
