@@ -164,6 +164,9 @@
 \newcommand{\pderivn}[2]{\ensuremath{\dfrac{\partial#1}{\partial#2}}}
 \newcommand{\King}{\textsc{King}\xspace}
 
+\newcommand{\sm}{saute-mouton\xspace}
+\newcommand{\Sm}{Saute-mouton\xspace}
+
 \newcommand{\CH}[1]{\textsc{CH}$#1$\xspace}
 \newcommand{\CHa}{\textsc{CH}$\alpha$\xspace}
 
@@ -283,33 +286,13 @@
 		\addstarredpart{Conclusion}
 		\chapter*{Conclusion}
 			\addstarredchapter{Conclusion}
-			\section*{Travail effectué}
-				\addcontentsline{toc}{section}{Travail effectué}
-				Nous voilà arrivé au terme de ce qui a pu être fait durant les 3 mois du stage.
-
-				Dans un premier temps, nous avons compris et décris les différents modèles thermodynamiques associés aux systèmes auto-gravitant, tel les amas globulaires.
-				Nous avons alors étudié et mis en évidence une relation entre les temps de croisements et dynamique des amas et le paramètre principal d'un modèle de \textsc{King} : $W_0$. Nous savons maintenant,
-				grâce au modèle de la sphère isotherme en boîte, que la stabilité d'un amas dépend de son contraste de densité, et qu'il y a deux instabilitépouvant intervenir selon la description canonique ou
-				micro canonique choisie.
-
-				Puis nous avons commencé à construire les bases pour faire des simulations échappant au mieux aux effets de relaxation. Nous avons donc commencé par construire et stabiliser un générateur de
-				conditions initiales.
-				Nous avons alors fait évoluer ces conditions initiales sur plusieurs temps dynamique à l'aide du code \textsc{GADGET-2}, dans le but de modifier les paramètres du code influant sur la dynamique ; permettant ainsi de stabiliser notre amas.
-
-			\section*{Reste du travail}
-				\addcontentsline{toc}{section}{Reste du travail}
-				Maintenant que nous avons obtenu des paramètres corrects pour que nous nous retrouvions dans la limite fluide, il nous faut simuler ce qui a motivé la partie numérique : quelle est l'influence, sur la
-				dynamique, des interactions gravitationnelles entre l'amas et la galaxie au sein de laquelle il orbite?
-
-				Pour effectuer ces simulations, l'idée évoquée est de modifier \textsc{GADGET-2} pour lui ajouter une force dont l'intensité dépendra du temps, et ceci afin de simuler la rotation de l'amas autour de la galaxie.
-				Ce travail sera effectué sur le dernier mois de stage et le début de la thèse.
 
 	\bibliographystyle{plainnat}
 	\bibliography{Bibliographie}
 	\addstarredchapter{Bibliographie}
 
 	\appendix
-	\part{Annexe}
+	% \part{Annexe}
 	% \chapter{Algorithme : Tree Code}
 			% \label{Chap::Algo::OctTree}
 			% \minitoc
@@ -321,9 +304,9 @@
 				% \input{simulation/densitycenter.tex}
 			% \FloatBarrier
 
-		\chapter{Diverses Démonstrations}
-			\minitoc
-			\input{annexe/demo.tex}
+		% \chapter{Diverses Démonstrations}
+			% \minitoc
+			% \input{annexe/demo.tex}
 
 		% \chapter{Graphiques}
 			% \minitoc
