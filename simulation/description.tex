@@ -1,4 +1,4 @@
-\chapter{Expériences numériques}
+\chapter{Expériences numériques}\label{Chap::Resultat}
 	\minitoc
 
 Après avoir étudié les propriétés observationnelles des amas globulaires et des galaxies, nous avons mis en évidence un certain nombre
@@ -81,7 +81,7 @@ même masse.
 \section{Étude préliminaire}
 
 	Une première série de simulations a consisté à placer un modèle de King, de paramètre $W_0 = 5.2$, $\sigma_c = 2.9\
-	\mathrm{km}.\mathrm{s}^{-1}$ et $r_c = 3.5\ \mathrm{pc}$, dans un thermostat. Les paramètres de chaque simulations étaient la température du
+	\mathrm{km}.\mathrm{s}^{-1}$ et $r_c = 3.5\ \mathrm{pc}$, dans un thermostat. Les paramètres de chaque simulation étaient la température du
 	bain, la taille de la boîte et le nombre de particules utilisées dans chacun des deux systèmes. La taille de la boîte nous permet de jouer sur
 	la densité du bain. La température était calculée pour être un multiple $k$ de la température moyenne de la sphère de King initiale. Nous
 	avons fait varier $k$ dans l'intervalle $10^{-3}$ à $10^5$. Chaque configuration initiale a évolué sur des périodes de temps allant de $10T_d$
@@ -95,7 +95,7 @@ même masse.
 	Face à ce constat, nous avons augmenté la sensibilité de nos simulations en remplaçant le thermostat par un réservoir thermique et la
 	sphère de King par une sphère de Hénon.
 
-\section{Seconde étude}
+\section{Seconde étude}\label{Sec::2ndStudy}
 
 	Une seconde série de simulations est construite en utilisant une sphère Hénon de rayon $R=2$, de masse $M=1$, de viriel $\gamma=-0,5$,
 	contenant $N_H = 30000$ particules et placée dans un réservoir thermique. Nous utiliserons ici le même système d'unité que dans le
@@ -120,7 +120,7 @@ même masse.
 	\end{figure}
 
 	L'évolution dynamique post-effondrement de cette structure de type \textsc{ch4} est alors influencée par le bain. Cette influence est modulée
-	par les paramètres du réservoir thermique. Nous avons effectué plus de 300 simulations dans l'espaces des paramètres, la
+	par les paramètres du réservoir thermique. Nous avons effectué plus de 300 simulations dans l'espace des paramètres, la
 	table~\ref{Tab::SimuZoomRes} résume l'évolution dynamique d'une partie représentative de ces simulations. Cette évolution s'étend jusqu'à un
 	temps correspondant à $15.9 T_d^{t=0}$.
 	Les observables étudiées sont celles définies dans le chapitre~\ref{Chap::Simu::Analysis}, nous avons regroupé leur évolution dynamique en
@@ -197,13 +197,15 @@ même masse.
 	\end{align*}
 	et que le temps de relaxation à deux corps $T_\mathrm{rel}$ s'écrit (voir le chapitre~\ref{Chap::TempsCarac}):
 	\begin{align*}
-		T_\mathrm{rel} = \dfrac{Nm\(R\)}{4\pi^2R^3\rho\(R\)\ln\frac{R}{10^{-3}}} T_d
+		T_\mathrm{rel} = \dfrac{Nm\(R\)}{4\pi^2R^3\rho\(R\)\ln\frac{R}{p_\mathrm{min}}} T_d
 	\end{align*}
-	avec $R$ le rayon considéré pour l'objet, $m\(R\)$ la masse contenue dans le rayon $R$ et $\rho\(R\)$ la densité à ce même rayon. Quel rayon utiliser?
+	avec $R$ un rayon caractéristique de l'objet, $m\(R\)$ la masse contenue dans le rayon $R$ et $\rho\(R\)$ la densité à ce même rayon. Quel rayon utiliser?
 	Comme nous le verrons dans la section suivante, $R_{90}$ est très sensible à l'environnement, surtout pour les simulations de types
 	(\accretionlot{}, $\spadesuit$). $R_{10}$ est plus intéressant mais ne rend compte que de l'évolution du cœur du système. $R_{50}$ semble
-	ainsi le meilleur choix. Dans la suite, et sauf mention contraire, nous utiliserons les temps dynamique $T_d^{50\%}$ et temps de relaxation à
-	deux corps $T_\mathrm{rel}^{50\%}$ calculé avec $R_{50}$.
+	ainsi le meilleur choix. Dans la suite, et sauf mention contraire, nous utiliserons le temps dynamique $T_d^{50\%}$ et le temps de relaxation
+	à deux corps $T_\mathrm{rel}^{50\%}$ calculés avec $R_{50}$. Pour $p_\mathrm{min}$,
+	nous prendrons la plus petite longueur caractéristique de nos simulation: le paramètre de lissage de la force
+	$\epsilon$.
 
 	% Le soucis avec ce temps caractéristique, c'est qu'il a des variations relativement importantes. Lorsque nous traçons nos observable en
 	% fonction de $t_i' = \frac{t_i}{T_d^i}$, ces variations se traduisent par des \og{}retours en arrière\fg.
@@ -249,7 +251,7 @@ même masse.
 		% , aux alentours de $t \approx 5,6 T_d^{t=0}$  vers $t\approx5T_d^{t=0}$ et va continuer
 		Cette évolution est présentée sur la figure~\ref{Fig::Simu::ROI::RAA::Cm34} et se retrouve
 		sur toutes les simulations marquées par le symbole $\spadesuit$. Comme nous avons pu le voir dans le chapitre~\ref{Chap::Instabilite},
-		l'instabilité d'orbite radiale est censé se produire lorsqu'un système sphérique voit la partie radiale de son espace des phases se
+		l'instabilité d'orbite radiale est censée se produire lorsqu'un système sphérique voit la partie radiale de son espace des phases se
 		peupler. C'est bien ce qu'indique la diminution progressive du paramètre d'anisotropie $\beta$.
 		% lors que l'anisotropie atteint un minimum.
 		En effectuant un zoom autour du
@@ -261,9 +263,6 @@ même masse.
 		En cherchant à savoir à quel moment l'instabilité se produit, nous remarquons que pour les simulations de la catégorie $C^m_{i,j}$, le
 		changement de température du bain n'influe pas sur son déclenchement: toutes les simulations de cette catégorie déclenchent
 		l'instabilité vers $t'=12$.
-		La figure~\ref{Fig::Simu::ROI::RAA::All} montre l'évolution des simulations $C_{i, j}^m$, $C_{3.4}$ et $B_{3,1}$ sur la région où se produit
-		l'instabilité. Il est aisé de remarquer que l'instabilité se produit toujours au même moment, sauf pour les simulations $C_{3.4}$
-		(figure~\ref{Fig::Simu::ROI::RAA::C34::Zoom}) et $B_{3.1}$ (figure~\ref{Fig::Simu::ROI::RAA::B31::Zoom}).
 		\begin{figure}[htbp]
 			\begin{subfigure}{0.50\linewidth}
 				\centering \includegraphics{{ROI_zoom_N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.000125_Soft-0.001_new3}.pdf}
@@ -291,14 +290,18 @@ même masse.
 			\end{subfigure}
 			\caption{Zoom sur le moment de l'instabilité pour les rapports d'axes $a_1$ et $a_2$ et de l'anisotropie.\label{Fig::Simu::ROI::RAA::All}}
 		\end{figure}
+		La figure~\ref{Fig::Simu::ROI::RAA::All} montre l'évolution des simulations $C_{i, j}^m$, $C_{3.4}$ et $B_{3,1}$ sur la région où se produit
+		l'instabilité. Il est aisé de remarquer que l'instabilité se produit toujours au même moment, sauf pour les simulations $C_{3.4}$
+		(figure~\ref{Fig::Simu::ROI::RAA::C34::Zoom}) et $B_{3.1}$ (figure~\ref{Fig::Simu::ROI::RAA::B31::Zoom}).
+		%
 		La seule différence entre les simulations de la famille $C^m_{i,j}$ est la dispersion de vitesse du bain et donc sa température qui
 		varie dans un facteur $100$ entre les éléments de cette famille. Le \textsc{sag} central et
-		la densité du bain sont les mêmes. Nous pouvons alors déduire que la dispersion de vitesse du bain, dans l'intervalle de valeur testé,
+		la densité du bain sont les mêmes. Nous pouvons donc en déduire que la dispersion de vitesse du bain, dans l'intervalle de valeur testé,
 		n'a pas d'effet sur le déclenchement de l'instabilité d'orbite radiale.
 
 		La première simulation à avoir un comportement différent est la simulation $C_{3,4}$. Cette simulation et la simulation $C^m_{3,4}$
 		ont été construites pour être le plus similaire possible. Pour construire la simulation $C^m_{3,4}$, nous avons multiplié la taille du
-		cube par $1,5$ afin de vérifier si l'effet n'est pas dû aux conditions périodiques. Pour avoir la simulation la plus
+		cube par $1,5$ afin de vérifier si cette différence n'est pas dû aux conditions périodiques. Pour avoir la simulation la plus
 		similaire possible, nous avons aussi multiplié le nombre de particule du bain par ${1,5}^3$ pour conserver sa densité.
 		% En pratique,
 		% la simulation n'est pas exactement la même. En effet, le rapport du Viriel du bain n'est pas conservé. Pour cela, il aurait fallu multiplié la
@@ -373,7 +376,7 @@ même masse.
 
 		Au cours de cette série de simulation, nous avons mis en évidence quelques propriétés sur l'instabilité d'orbite radiale. Le premier
 		résultat nous indique que cette instabilité peut se produire lorsqu'un système en accrète un autre. De plus, nous avons observé que
-		le déclenchement de l'instabilité était paramétré par la densité du système accrèté mais pas par sa température.
+		le déclenchement de l'instabilité était paramétré par la densité du système accrété mais pas par sa température.
 		Bien que semblant assez naturel, ce résultat n'avait pas encore été mis en évidence. Il pourrait s'insérer comme l'un des mécanismes
 		structurants de l'aspect des systèmes autogravitants.
 		%dépendance à la densité du bain, mais aucune lié à la dispersion de vitesse du bain.
@@ -437,8 +440,9 @@ même masse.
 
 		Pour répondre à cette question, nous allons augmenter le nombre de particules dans chaque objet (bain et \textsc{sag}) de la
 		simulation, tout en gardant constant tous les paramètres de sorte que les nouvelles simulations soit strictement équivalentes. Les
-		différentes graphiques de la figure~\ref{Fig::Relax::Comp} montrent l'évolution de ces nouvelles simulations (les lignes
-		pointillées) superposées à celle que nous étudions (en trait plein), aux même temps que la figure~\ref{Fig::Relax::DensiteEvo}.
+		différentes graphiques de la figure~\ref{Fig::Relax::Comp} montrent l'évolution de ces nouvelles simulations.
+		% (les lignes
+		% pointillées) superposées à celle que nous étudions (en trait plein), aux même temps que la figure~\ref{Fig::Relax::DensiteEvo}.
 		\begin{figure}[htbp]
 			% \begin{subfigure}{0.45\linewidth}
 				% \centering \includegraphics{{N-100000.0_Rc-66.6666666666_sc-0.001_evo_compare2}.pdf}
@@ -463,9 +467,9 @@ même masse.
 		Nous pouvons voir que plus le nombre de particules augmentent, moins l'effondrement est prononcé.
 
 		% Il ne serait donc pas un effet dû au bain. 
-		L'évolution de la densité du \textsc{sag} ne semble donc pas lié à la présence du bain.
-		Pour en être complètement sûr, nous allons regarder l'évolution du \textsc{sag} isolé.
-		Cette impression est confirmé par l'étude de l'évolution du \textsc{sag} isolé (simulation sans bain).
+		L'évolution de la densité du \textsc{sag} ne semble donc pas liée à la présence du bain.
+		% Pour en être complètement sûr, nous allons regarder l'évolution du \textsc{sag} isolé.
+		Cette impression est confirmé epar l'étude de l'évolution du \textsc{sag} isolé (simulation sans bain).
 		La
 		figure~\ref{Fig::Relax::CompH} montre l'évolution d'une sphère de Hénon comprenant $3\ 10^4$ particules
 		 et d'une sphère de Hénon de $3\ 10^5$ particules. La conclusion apparaît immédiatement: le
@@ -517,6 +521,6 @@ même masse.
 		Nous avons remarqué que l'état final de la simulation est assez semblable aux profils de type cupsides observés pour les halos de
 		matière noire. Mais dans ce contexte, le fait que le bain n'a pas d'influence sur le résultat est problématique. Dans le contexte
 		hiérarchique de la formation des structures, nous aurions aimé voir ce bain contrôler cet effondrement du cœur comme le suggère
-		l'instabilité que nous avons développé au chapitre~\ref{Chap::Instabilite}.
+		l'instabilité que nous avons développé au chapitre~\ref{Chap::Instabilite} section~\ref{Sec::ToyModel}.
 
 		En l'état, des études complémentaires sont à mener pour affiner ces résultats. Elles s'insèrent comme des perspectives à notre travail.
