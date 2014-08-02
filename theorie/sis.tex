@@ -29,7 +29,7 @@
 	
 \section{Formulation générale du problème}
 	
-	La densité de la sphère isotherme se calcule directement à partir de la définition~\ref{sph-iso}:
+	La densité de la sphère isotherme se calcule directement à partir de la définition~\refeq{sph-iso}:
 	\begin{align}
 		\rho(r) &= m \int \(\frac{2\pi \alpha^2 m}{\beta}\)^{-3/2} e^{-\beta \(\frac{p^2}{2m} + m\psi\)} d^3 p \notag \\
 			&= 4\pi m \(\frac{2\pi \alpha^2 m}{\beta}\)^{-3/2} \int_0^\infty e^{-\beta \(\frac{p^2}{2m} + m\psi\)} p^2 dp \notag \\
@@ -71,9 +71,9 @@
 	\end{itemize}
 	
 	Cette solution forme ce que l'on appelle une sphère isotherme singulière (\textsc{sis}), elle ne peut en aucun cas
-	correspondre à la solution thermodynamique recherchée qui doit posséder une masse finie.
+	correspondre à la solution thermodynamique recherchée qui \emph{doit} posséder une masse finie.
 
-	Étudions à présent l'existence de solutions plus générales pouvant avoir une densité et une masse qui ne
+	Étudions à présent l'existence de solutions plus générales éventuellement susceptibles d'avoir une densité et une masse qui ne
 	diverge pas. Nous pratiquons pour cela un changement de fonction, en introduisant  $\zeta = y - \Tilde{y}$, la
 	différence entre la solution générale $y$ du problème et la \textsc{sis}. Il vient successivement
 	\begin{align}
@@ -112,32 +112,30 @@ Le seul point d'équilibre est l'origine $\vec{z}_0=\left[  0,0\right]
 % Il est clair que :
 Il est apparaît que :
 \begin{itemize}
-\item La fonction $\mathcal{E}$ est nulle en $\vec{z}=\vec{z}_0$ ;
-\item La hessienne de $\mathcal{E}$ est définie positive sur $\mathbb{R}^2_*$: 
-\begin{align*}
-H_{\mathcal{E}}:=
-\left[
-\begin{array}
-[c]{cc}%
-\frac{\partial^2 \mathcal{E}}{\partial \zeta^2}         & \frac{\partial^2 \mathcal{E}}{\partial \zeta \partial \dot{\zeta}}\\
- & \\
-\frac{\partial^2 \mathcal{E}}{\partial \dot{\zeta} \partial \zeta}& \frac{\partial^2 \mathcal{E}}{\partial \dot{\zeta}^2}
-\end{array}
-\right]
-=\left[\begin{array}
-[c]{cc}%
-2e^{-\zeta}         & 0\\
-0& 1
-\end{array}
-\right]
-\end{align*}
-et donc le point $\vec{z}_0$ est un minimum global de $\mathcal{E}$;
-\item La fonction $\mathcal{E}$ est strictement décroissante de la variable $t$, en effet:
-\begin{align*}
-\frac{d\mathcal{E}}{dt}&=\frac{d\zeta}{dt}\frac{\partial \mathcal{E}}{\partial \zeta}+\frac{d\dot{\zeta}}{dt}\frac{\partial \mathcal{E}}{\partial \dot{\zeta}} \\
-\\
-&=-\dot{\zeta}^2 
-\end{align*}
+	\item La fonction $\mathcal{E}$ est nulle en $\vec{z}=\vec{z}_0$;
+	\item La hessienne de $\mathcal{E}$ est définie positive sur $\mathbb{R}^2_*$: 
+		\begin{align*}
+			H_{\mathcal{E}}:=
+			\left[
+				\begin{array}[c]{cc}%
+					\frac{\partial^2 \mathcal{E}}{\partial \zeta^2}         & \frac{\partial^2 \mathcal{E}}{\partial \zeta \partial \dot{\zeta}}\\
+					 & \\
+					\frac{\partial^2 \mathcal{E}}{\partial \dot{\zeta} \partial \zeta}& \frac{\partial^2 \mathcal{E}}{\partial \dot{\zeta}^2}
+				\end{array}
+				\right]
+				=\left[\begin{array}[c]{cc}%
+					2e^{-\zeta}         & 0\\
+					0& 1
+				\end{array}
+				\right]
+		\end{align*}
+		et donc le point $\vec{z}_0$ est un minimum global de $\mathcal{E}$;
+	\item La fonction $\mathcal{E}$ est strictement décroissante de la variable $t$, en effet:
+		\begin{align*}
+			\frac{d\mathcal{E}}{dt}&=\frac{d\zeta}{dt}\frac{\partial \mathcal{E}}{\partial \zeta}+\frac{d\dot{\zeta}}{dt}\frac{\partial \mathcal{E}}{\partial \dot{\zeta}} \\
+			\\
+			&=-\dot{\zeta}^2 
+		\end{align*}
 
 \end{itemize}
 Les trois propriétés énumérées ci-dessus font de la fonction $\mathcal{E}$ une fonction de Lyapounov\index{Fonction! de Ljapounov}\index{Ljapounov, fonction de} stricte du système, l'équilibre $\vec{z}_0$ est donc globalement asymptotiquement stable. 
@@ -183,7 +181,7 @@ trigonométriques. Ce qu'il faut remarquer dans cette
 relation, c'est que la masse d'une sphère isotherme est \emph{toujours} infinie si
 celle-ci est d'extension infinie $\left(  r\rightarrow+\infty\right)$.
 
-La fonction de distribution~\ref{sph-iso} de la sphère isotherme n'est donc pas acceptable car elle est en contradiction avec les hypothèses posées pour l'obtenir.
+La fonction de distribution~\refeq{sph-iso} de la sphère isotherme n'est donc pas acceptable car elle est en contradiction avec les hypothèses posées pour l'obtenir.
 
 Le problème de l'équilibre thermodynamique d'un système autogravitant est donc posé !
 
@@ -197,17 +195,19 @@ Pour palier à ce problème, plusieurs approches ont été développées au fil 
 		
 	\item Une solution \og{}pragmatique\fg: développée par \cite{King-1966AJ} consiste à tronquer à la main
 		et après coup la sphère isotherme. Au-dessus d'une certaine énergie, la fonction de
-		distribution est nulle. Bien que empirique cette solution est devenue un modèle de choix pour
+		distribution est nulle. Bien qu'empirique cette solution est devenue un modèle de choix pour
 		l'ajustement du profil de densité de nombreux amas globulaires et de galaxies naines. Ses trois
 		paramètres libres rendent en effet son utilisation adaptée à la modélisation de tels objets.
 		Nous y consacrerons le chapitre~\ref{King::Chapitre}.
 	
 	\item Plus récemment une prise en compte fine des spécificités des modèles gravitationnels semble avoir fait progresser les choses :
-		il s'agit du paradigme Darkexp (voir~\citet{2010ApJ...722..851H}). En physique statistique, l'approximation $\ln x! = x\ln x
-		-x$, valide pour $x\gg1$, est souvent utilisé. Dans ce type de calcul, $x$ est une fonction du nombre de particule $N$
-		présentes dans le système. Les auteurs de ce paradigme remarque que dans notre cas (étude des galaxies ou des amas
-		globulaire), ce nombre $N$ n'est pas suffisamment grand pour que nous puissions utiliser l'approximation de Stirling. Cette
-		correction semble, selon les auteurs de ce paradigme, pouvoir effectuer une coupure rendant la sphère isotherme plus
+		il s'agit du paradigme Darkexp (voir~\citet{2010ApJ...722..851H}). En physique statistique, la troncature au tout premier ordre de la
+		formule de Stirling $\ln x! = x\ln x
+		-x$, valide pour $x\gg1$, est souvent utilisée. Dans ce type de calcul, $x$ est une fonction du nombre de particule $N$
+		présentes dans le système. Les auteurs de ce paradigme remarquent que dans notre cas (étude des galaxies ou des amas
+		globulaire), ce nombre $N$ n'est pas suffisamment grand pour que nous puissions stopper le développement au premier ordre dans la
+		formule de Stirling, ils proposent d'aller jusqu'à l'ordre $2$. Cette
+		correction semble, selon les auteurs de ce paradigme, semble à même d'effectuer une coupure rendant la sphère isotherme plus
 		compatible avec un modèle physique acceptable.
 
 \end{enumerate}

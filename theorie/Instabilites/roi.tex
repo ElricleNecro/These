@@ -17,8 +17,8 @@ alors produit pour un certain \og déplacement\fg des orbites. Le résultat est 
 différentiel.
 
 La même année 1973, Michel \cite{henon} publie l'un des tout premier résultats numérique dans ce domaine. Utilisant $N=1000$ coquilles concentriques
-distribuées selon un modèle polytropique $f\left(  E\right)  \propto E^{n}$, il vérifie la stabilité obtenue analytiquement par Antonov dés les années
-60 pour ce type de systèmes. Puis, en étendant son modèle au cas anisotrope (dans l'espace des vitesse) des polytropes généralisés  $f\left(  E\right)
+distribuées selon un modèle polytropique $f\left(  E\right)  \propto E^{n}$, il vérifie la stabilité obtenue analytiquement par Antonov dès les années
+60 pour ce type de systèmes. Puis, en étendant son modèle au cas anisotrope (dans l'espace des vitesses) des polytropes généralisés  $f\left(  E\right)
 \propto E^{n}L^{2m}$, il montre numériquement que le système devient instable lorsque $m\rightarrow-1$, qu'il identifie à la fonction de distribution
 $f\left(  E\right)  \propto E^{n}\delta\left(  L^{2}\right) $ et donc aux systèmes présentant de plus en plus d'orbites radiales. L'instabilité est
 identifiée dans l'espace des phases qui montre une évolution du système dès que celui-ci est trop anisotrope dans l'espace des vitesses. Le mécanisme
@@ -29,8 +29,8 @@ interactions non radiales.
 En utilisant les méthodes de Water-Bag, qui consistent à décomposer la fonction de distribution sur une base de fonctions continues par morceaux,
 l'équipe française \cite{waterbag} publie un résultat affirmant la stabilité de tous les systèmes autogravitants $f\left(  E,L^{2}\right)  $ contre
 des perturbations non-sphériques\footnote{La seule condition requise est le fait que $\partial f/\partial E<0$ et $\partial f/\partial L^{2}<0$, ce
-qui correspond au cas physique.}. Antonov ayant déjà réglé le cas des perturbations à symétrie sphérique pour ces même systèmes anisotropes, tout les
-cas était fait: tout système autogravitant sphérique (isotrope ou non dans l'espace des vitesses) est stable contre toutes les formes de
+qui correspond au cas physique.}. Le même Antonov ayant déjà réglé le cas des perturbations à symétrie sphérique pour ces même systèmes anisotropes, tout les
+cas étaient traités: tout système autogravitant sphérique (isotrope ou non dans l'espace des vitesses) est stable contre toutes les formes de
 perturbations. Le cas des systèmes constitués d'orbites de plus en plus radiales, inclus dans le champ d'action du résultat de l'équipe française est
 donc prédit stable par cette analyse, en désaccord patent avec le résultat analytique d'\cite{antonov}, et les simulations de \cite{henon}.
 
@@ -40,7 +40,9 @@ Sans faire référence au résultat de l'équipe française, \citet{polyach} pro
 la stabilité (basée sur une décomposition en série de Fourier des pertubations) qui leur permet de prouver qu'une fonction de distribution de la forme
 $f\left(  E-\lambda L^{2}/r_{a}^{2}\right)$, modèle que l'on appelera plus tard Ossipkov-Merritt, décrit un modèle instable si $r_{a}^{2}$ est
 suffisamment petit. Leurs résultat est contraire à celui proposé par \cite{waterbag}, et va dans
-le sens d'Antonov et Hénon. Cet article contient de plus un critère de stabilité qui sera repris dans le livre de Friedmann et Polyachenko, et qui
+le sens d'Antonov et Hénon. Cet article contient de plus un critère de stabilité qui sera repris dans le livre de \citet{1984pgs1.book.....F,1984pgs2.book.....F}
+% Friedmann et Polyachenko
+, et qui
 affirme qu'un système sphérique déclenche une instabilité d'orbite radiale dès que l'on a $2T_{r}/T_{\perp}>1.75\pm0.25$ o\`{u} $T_{r}$ et
 $T_{\perp}$ représentent respectivement les énergies cinétiques radiale et perpendiculaire totales contenues dans le système.
 
@@ -61,11 +63,12 @@ explication analytique qui ferait passer l'instabilité d'orbite radiale pour un
 Jeans\footnote{Instabilité qui survient lorsque la pression cinétique ne suffit plus à compenser la tendance qu'à le système à s'effondrer sous
 l'effet de son propre poids.} : la pression stellaire dans la direction tangentielle devient insuffisante pour compenser la tendance naturelle qu'ont
 les orbites radiales à se condenser. Il est à noter que l'école russe propose le même style d'interprétation pour l'instabilité dans le livre de
-Polyachenko et Friedmann (Vol2, p. 148).
+\citet{1984pgs2.book.....F} (p. 148).
+% Polyachenko et Friedmann (Vol2, p. 148).
 
 Le travail suivant sur le sujet est publié par \cite{merritt_aguilar}.
 % Il fait référence aux travaux précédents de Barnes et al., en le résumant en quelques lignes.
-Il se concentre sur les aspects numérique et
+Il se concentre sur les aspects numériques et
 sur l'opportunité que représente cette instabilité dans le contexte de la formation des galaxies, c'est la première fois que cette idée surgit dans la
 littérature. Les auteurs utilisent une première famille de systèmes dont le profil de densité est \og de type galactique\fg: $\rho\left(  r\right)
 $ $\propto (r/r_{o})^{-2}(1+r/r_{o})^{-2}$ (c'est le modèle de Jaffe qui est compatible avec le profil de luminosité en $r^{1/4}$ ). Il possède
@@ -108,9 +111,9 @@ Lynden-Bell et confirme l'intuition de \cite{merritt1987}.
 
 
 Mettant à profit certains de leurs résultats analytiques \cite{JPerez96} et \cite{perez_et_al} proposent et testent un critère de stabilité
-pour les systèmes auto-gravitants construit sur la nature des perturbations qu'il reçoit. Ce critère est validé sur des modèle Ossipkov-Merrit
+pour les systèmes auto-gravitants construit sur la nature des perturbations qu'ils reçoivent. Ce critère est validé sur des modèle Ossipkov-Merritt
 appliqués à des polytropes. Le nombre de particules mis en jeu devient pour la première fois raisonnable $N\approx10^{4}$ pour l'ensemble des
-simulations. Dans leurs résultats analytiques, ils expliquent la carence des méthodes de water-bag dans le domaine des orbites radiales, ce qui
+simulations. Dans leurs résultats analytiques, ils expliquent la carence des méthodes de Water-Bag dans le domaine des orbites radiales, ce qui
 pourrait expliquer le résultat de \cite{waterbag}.
 
 Une étude numérique systématique de l'instabilité d'orbite radiale, utilisant les machines dédiées \og{}GRAPE\fg, est produite par \cite{theis}. Les
@@ -121,14 +124,14 @@ plus ou moins sphérique, selon les auteurs cette transformation est due aux int
 
 Un étude systématique de l'effondrement gravitationnel (collapse) avec test des paramètres numériques ($N,\varepsilon$, ...) par
 \cite{roy}, permet, entre autres résultats, de mettre en évidence un aspect pressenti de l'instabilité d'orbites radiales. Son déclenchement dans un
-collapse est subordonné à la présence d'inhomogénéités robustes. Ce ne sont en effet que les effondrements d'au moins deux phase successives qui sont le
+collapse est subordonné à la présence d'inhomogénéités robustes. Ce ne sont en effet que les effondrements en au moins deux phases successives qui sont le
 siège de \textsc{roi}: l'effondrement d'une sphère homogène ne remplit pas cette condition. Ces résultats sont complétés et raffinés par
 \cite{boily} qui montrent un léger effet du nombre de particules sur l'état final de \textsc{roi}.
 
 Bien que le rôle de \textsc{roi} dans la formation des structures ait été atténué par le travail de \cite{katz}, deux analyses
-complémentaires par \cite{huss} et \cite{macmillan} observent le résultat de la formation de structure à moyenne
+complémentaires par \cite{huss} et \cite{macmillan} observent le résultat de la formation de structures à moyenne
 échelle par des expériences de collapse en se donnant la possibilité de supprimer numériquement l'instabilité d'orbite radiale (en retirant la
-composante radiale de la force de gravitation). Ils remarquent que si nous empêchons \textsc{roi} dans les phases primordiales, le profil
+composante radiale de la force de gravitation). Ils remarquent que si l'on empêche \textsc{roi} dans les phases primordiales, le profil
 de densité final de ces structures formées dans un contexte cosmologique est modifié: on obtient un profil à deux pentes au lieu de trois dans NFW par exemple.
 La forme allongée que prend le système à cause de l'instabilité d'orbite radiale serait donc progressivement gommée par le processus de formation
 hiérarchique comme l'a remarqué Katz, mais le profil de densité final garderait subtilement sa trace. Les différents résultats observationnels ou
@@ -159,7 +162,7 @@ de ce travail sont présentés dans la section suivante.
 
 \subsubsection{Présentation de la méthode}
 
-La méthode symplectique à été introduite dans le contexte de la stabilité des systèmes autogravitants par \cite{bartho}, elle est issue de
+La méthode symplectique a été introduite dans le contexte de la stabilité des systèmes autogravitants par \cite{bartho}, elle est issue de
 la physique des plasmas. Elle fut popularisée par \cite{kandrupstability}.
 
 Il s'agit de tirer parti de la structure hamiltonienne associée au système de Vlasov-Poisson. Dans ce contexte, nous remarquons tout d'abord que
@@ -168,15 +171,15 @@ l'énergie totale contenue dans le système autogravitant décrit par la fonctio
 \begin{align*}
 	H \left[ f \right]  =
 	\int \mathrm{d} {\Gamma}
-		\frac{\mathbf{p}^{2}}{2m} f \left( {\Gamma},t \right)
-	- \frac{1}{2} Gm^2 \int \mathrm{d} {\Gamma} \int\mathrm{d}{\Gamma}^{\prime}
-		\frac{f \left({\Gamma},t \right) f\left( {\Gamma}^{\prime},t\right)}%
-		{\left\vert \mathbf{q} - \mathbf{q}^{\prime} \right\vert }
+		\frac{\vec{p}^{\,2}}{2m} f \left( {\Gamma},t \right)
+	- \frac{1}{2} Gm^2 \int \mathrm{d} {\Gamma} \int\mathrm{d}{\Gamma}^{\,\prime}
+		\frac{f \left({\Gamma},t \right) f\left( {\Gamma}^{\,\prime},t\right)}%
+		{\left\vert \vec{q} - \vec{q}^{\,\prime} \right\vert }
 \end{align*}
 est telle que sa dérivée fonctionnelle est l'énergie moyenne d'une particule test:
 \begin{align*}
 	\frac{\delta H}{\delta f}=\lim_{\delta f \to 0}\dfrac{H\left[ f +\delta f\right]-H \left[ f \right]}{\delta f}
-	= \frac{\mathbf{p}^{2}}{2m} + m \psi=E
+	= \frac{\vec{p}^{\,2}}{2m} + m \psi=E
 \end{align*}
 Si $K[f]$ est une fonctionnelle dérivable de la fonction de distribution nous pouvons donc écrire:
 \begin{align}
@@ -194,7 +197,7 @@ Nous pouvons alors introduire les crochets popularisés par \cite{morrison}: pou
 		\frac{\delta A}{\delta f}, \frac{\delta B}{\delta f}
 	\right\} \mathrm{d} \Gamma
 \end{align*}
-Ainsi, la relation~\ref{derivk} s'écrit:
+Ainsi, après une intégration par partie, la relation~\refeq{derivk} s'écrit:
 \begin{align}
 	\frac{\mathrm{d} K[f]}{\mathrm{d} t}
 	= - \int f \left\{
@@ -231,16 +234,17 @@ donne alors:
 	& = - \int \left.\frac{\delta [G,H]}{\delta f}\right|_{f=f_{0}} \{g,f_{0}\} \mathrm{d} \Gamma
 	\nonumber \\
 	& = - \int \left(
-		\{g,E\} + \int \frac{Gm^2}{|\mathbf{q}-\mathbf{q'}|}
+		\{g,E\} + \int \frac{Gm^2}{|\vec{q}-\vec{q}\,'|}
 		\{g',f'_{0}\} \mathrm{d} \Gamma'
 	\right) \{g,f_{0}\} \mathrm{d} \Gamma
 	\nonumber \\
 	& = - \int \{g,E\} \{g,f_{0}\} \mathrm{d} \Gamma
-	- G m^2 \int\!\!\!\int \frac{\{g,f_{0}\}\{g',f'_{0}\}}{|\mathbf{q} - \mathbf{q'}|}
+	- G m^2 \int\!\!\!\int \frac{\{g,f_{0}\}\{g',f'_{0}\}}{|\vec{q} - \vec{q}\,'|}
 	\mathrm{d} \Gamma \mathrm{d} \Gamma'
 \end{align}
 
-L'étude du signe de cette quantité s'est révélé un outil efficace d'investigation de la stabilité des systèmes autogravitants.
+L'étude du signe de cette quantité s'est révélé un outil efficace d'investigation de la stabilité des systèmes autogravitants (voir par exemple
+\citet{JPerez96}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -284,12 +288,12 @@ hamiltonien de la dynamique de Vlasov-Poisson gravitationnelle, il suffit de cal
 	H^{(2)} =
 	\underbrace{- \int \{g,E\} \{g,f\} \mathrm{d} \Gamma}_{(A)}
 	\underbrace{- G m^2 %
-		\int\!\!\!\int \frac{\{g,f\}\{g',f'\}}{|\mathbf{q} - \mathbf{q'}|}
+		\int\!\!\!\int \frac{\{g,f\}\{g',f'\}}{|\vec{q} - \vec{q}\,'|}
 		\mathrm{d} \Gamma \mathrm{d} \Gamma'}_{(B)}
 		\label{H2AB}
 \end{align}
-pour un équilibre de la forme $f_{0,a}(E,L^2) = \varphi(E) \delta_a (L^2)$ avec une fonction $\delta_a (L^2)$ admettant $\delta(L^2)$ lorsque $a$ tend
-vers $0$. Le terme $(A)$ dans la variation~\ref{H2AB} correspond à la variation d'énergie cinétique alors que $(B)$ rend compte de la variation
+pour un équilibre de la forme $f_{0,a}(E,L^2) = \varphi(E) \delta_a (L^2)$ avec une fonction $\delta_a (L^2)$ admettant $\delta(L^2)$ comme limite lorsque $a$ tend
+vers $0$. Le terme $(A)$ dans la variation~\refeq{H2AB} correspond à la variation d'énergie cinétique alors que $(B)$ rend compte de la variation
 d'énergie potentielle. Cette dernière est toujours négative compte-tenu des propriétés du laplacien. Il est alors possible de montrer qu'il %un peu laborieux de montrer qu'il
 existe toute une classe de perturbations, non radiales, associées à des variations d'énergie négative dès que $a$ est suffisamment petit et donc que
 le système est suffisamment radial.

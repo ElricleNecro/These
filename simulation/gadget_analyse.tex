@@ -99,14 +99,14 @@
 			% 8 nouveaux sous cubes... Chaque cube est à nouveau divisé s'il contient encore trop de
 			% particules.
 
-			Cet algorithme, nommée \og treecode\fg, a été crée par~\cite{1986Natur.324..446B}.
+			Cet algorithme, nommée \og treecode\fg, a été mis au point par~\cite{1986Natur.324..446B}.
 			% Un tel algorithme a été appliqué en astrophysique pour la première fois par \cite{1986Natur.324..446B}.
 			Les particules sont
 			organisées dans un arbre modulable appelé $k^d$-Tree. En dimension $d=3$, et avec une division dichotomique
-			($k=2$), cet arbre est un octree. Le principe est de subdiviser un espace cubique en 8 sous cubes, eux-mêmes subdivisés en 8
-			nouveaux sous cubes... Chaque cube est à nouveau divisé s'il contient encore trop de particules.
+			($k=2$), cet arbre est un octree. Le principe est de subdiviser un espace cubique en 8 sous-cubes, eux-mêmes subdivisés en 8
+			nouveaux sous-cubes... Chaque cube est à nouveau divisé s'il contient encore trop de particules.
 			% Les auteurs arrêtent de diviser un cube quand il ne contient plus qu'une particule;
-			En pratique nous nous arrêterons lorsqu'un cube contiendra au plus $N_\mathrm{max}=15$ particules. Les carrés et les points
+			En pratique, nous nous arrêterons lorsqu'un cube contiendra au plus $N_\mathrm{max}=15$ particules. Les carrés et les points
 			de la figure~\ref{Fig::KDTree::Parcours} montrent la structure d'un quadtree ($k=2$, $d=2$) se construisant de la même façon.
 			% La figure~\ref{Fig::KDTree::Parcours} montre la structure d'un quadtree (un kd-tree à 2 dimension) se construisant de la
 			% même façon.
@@ -145,7 +145,7 @@
 				\begin{center}
 					\includegraphics[scale=1.0]{accept_treev2}
 					\caption{\label{Fig::KDTree::Parcours}
-						Critère d'ouverture: le cône vert indique un carré qu'il n'est pas nécessaire d'ouvrir, le cône rouge
+						Critère d'ouverture: un cône vert indique un carré qu'il n'est pas nécessaire d'ouvrir, un cône rouge
 					indique un carré à ouvrir.}
 						% Représentation du critère sur l'angle
 						% d'ouverture pour ouvrir ou non un carré. Le cône vert indique un cube qu'il
@@ -213,7 +213,7 @@
 			\begin{align*}
 				\alpha = \dfrac{\rho_\epsilon}{\rho_\mathrm{moy}}
 			\end{align*}
-			où $\rho_\epsilon$ la densité d'un volume de rayon $\epsilon$ suffisamment petit pour être
+			où $\rho_\epsilon$ est la densité d'un volume de rayon $\epsilon$ suffisamment petit pour être
 			supposé homogène et $\rho_\mathrm{moy}$ la densité
 			moyenne de l'objet. Toutes les particules ayant la même masse, nous pouvons écrire:
 			\begin{align}
@@ -262,7 +262,7 @@
 					% m\dfrac{\vec{v}_\mathrm{new} - \vec{v}_\mathrm{old}}{\Delta t} = \vec{f}(\vec{r}_\mathrm{old}) = m\vec{a}
 				% \end{cases}
 			% \end{align*}
-			Le \sm est schéma d'intégration d'ordre 2. Il a la particularité d'introduire un décalage entre l'évaluation des positions est
+			Le \sm est schéma d'intégration d'ordre 2. Il a la particularité d'introduire un décalage entre l'évaluation des positions et
 			des vitesses: les positions vont être évaluées tous les $n\Delta t$ tandis que les vitesses vont l'être tout les
 			$(n+\frac{1}{2})\Delta t$. Ce schéma d'intégration s'écrit:
 			\begin{align*}
@@ -308,7 +308,7 @@
 			L'algorithme utilisé par Gadget est basé sur ce schéma \sm.
 			% Avec le \sm, nous faisons évoluer les positions et vitesses de chaque particules d'un pas de temps $\Delta t$ en même temps.
 			Le prédicteur-correcteur utilisé par \textsc{gadget-2} consiste à faire évoluer, dans un premier temps, les vitesses d'un demi
-			pas de temps $\frac{\Delta t}{2}$ afin de les synchroniser avec positions. Ces vitesses sont ensuite utilisé pour incrémenter
+			pas de temps $\frac{\Delta t}{2}$ afin de les synchroniser avec positions. Ces vitesses sont ensuite utilisées pour incrémenter
 			d'un pas de temps les positions. Finalement, il incrémente de nouveau les vitesses d'un demi pas de temps, les désynchronisant
 			de nouveau. L'algorithme d'intégration est illustré sur la figure~\ref{Fig::Num::GadSchem}.
 			\begin{figure}[htpb]
@@ -432,7 +432,7 @@
 
 			Les particules du modèle de King, de paramètres $W_0$, $\sigma$ et $r_c$ sont générées en
 			utilisant une méthode d'acceptation-rejection que nous allons décrire. À partir de ces 3
-			paramètres, nous pouvons résoudre l'équation de poisson~(\ref{King-Pois}) donnant le potentiel
+			paramètres, nous pouvons résoudre l'équation de poisson~\refeq{King-Pois} donnant le potentiel
 			pour le modèle de King. Nous pouvons alors calculer le potentiel central $\psi(0)$ et l'énergie
 			de libération $E_l$.
 			% Ces particules sont telles que $r<R$ et $v<v_\mathrm{max}$, avec $R$ et $v_\mathrm{max}$ défini tels que:
@@ -552,7 +552,7 @@
 			% donc l'énergie à partir des positions et vitesses.
 
 			Nous utilisons alors la fonction de distribution du modèle de King (voir la
-			relation~\ref{King::Eq::DistribFunc}) normalisée à $1$ comme une densité de probabilité, en
+			relation~\refeq{King::Eq::DistribFunc}) normalisée à $1$ comme une densité de probabilité, en
 			utilisant l'énergie $E_i = \frac{1}{2}mv_i^2 + m\psi(r_i)$, pour accepter ou rejeter la
 			particule $i$ fabriquée. Le taux de rejection est de l'ordre de $99.99\%$
 			mais la vitesse des ordinateurs permet d'utiliser cette méthode très simple pour fabriquer un
@@ -589,8 +589,11 @@
 				f_H(r, v) = \rho_0 e^{-v^2/\sigma^2}
 			\end{align}
 			Nous générons donc indépendamment les positions selon une loi uniforme, et les vitesses selon
-			une loi gaussienne. Le choix de la dispersion de vitesse $\sigma$ nous permet de choisir le rapport
-			du Viriel $\gamma = \dfrac{2E_c}{E_p}$ de la sphère à l'instant initial.
+			une loi gaussienne centrée et réduite. En fixant le rapport du viriel initial $\gamma = \dfrac{2E_c}{E_p}$ à une valeur
+			donnée, nous pouvons calculer la dispersion de vitesse à attribuer au système.
+
+			% Le choix de la dispersion de vitesse $\sigma$ nous permet de choisir le rapport
+			% du viriel $\gamma = \dfrac{2E_c}{E_p}$ de la sphère à l'instant initial.
 			% La dernière étape consiste à modifier les vitesses pour mettre le système au
 			% Viriel $\gamma = -\dfrac{2E_c}{E_p}$ voulu.
 
@@ -616,8 +619,8 @@
 		Nous avons donc construit un code effectuant le calcul de différentes observables spatiales (densité, position, rapport d'axes, etc)
 		et cinétiques (énergies, température, etc).
 
-		Toutes les courbes présentées dans cette section correspondent à un modèle de King de paramètre $W_0=6$, $r_c =
-		3.5\mathrm{pc}$ et $\sigma_v = 2.9 \mathrm{km}.\mathrm{s}^{-1}$ généré avec 100 000 particules.
+		Toutes les courbes présentées dans cette section correspondent au test de ces différentes observables calculées pour un modèle de King
+		de paramètre $W_0=6$, $r_c = 3.5\mathrm{pc}$ et $\sigma_v = 2.9 \mathrm{km}.\mathrm{s}^{-1}$ généré avec 100 000 particules.
 
 		% Nous en profiterons pour présenter toutes les quantités diagnostiqué.
 		% densité, comme vu dans les précédents chapitres.
@@ -718,13 +721,13 @@
 			\end{figure}
 			Le second graphique montre l'erreur relative en fonction du rayon. Nous
 			pouvons voir que l'accord entre les courbes théorique et calculées est toujours inférieur à $20\%$, sauf au centre et au bord
-			du système. Ces deux régions sont en général trop pauvre en particule pour que nous puissions y avoir une précision correcte
+			du système. Ces deux régions sont en général trop pauvres en particules pour que nous puissions y avoir une précision correcte
 			avec notre méthode de calcul.
 
 		\subsection{Énergie et potentiel}
 
-			La partie la plus complexe de l'obtention des observables est le calcul de l'énergie. Nous allons calculer le potentiel avec
-			la méthode décrite dans la section~\ref{Sec::KdTree}.
+			% La partie la plus complexe de l'obtention des observables est le calcul de l'énergie.
+			Nous allons calculer le potentiel avec la méthode décrite dans la section~\ref{Sec::KdTree}.
 			% Deux
 			% choix s'offrent à nous:
 			% \begin{itemize}
@@ -754,7 +757,7 @@
 			\end{figure}
 
 			En plus du potentiel, nous en profitons pour calculer l'énergie cinétique pour obtenir finalement
-			l'énergie totale du système et le rapport du Viriel $\gamma = \frac{2E_c}{E_p}$.
+			l'énergie totale du système et le rapport du viriel $\gamma = \frac{2E_c}{E_p}$.
 
 		% c'est le centre de masse des particules qu'il  conti
 
@@ -814,7 +817,7 @@
 			du temps, nous avons développé deux observables:
 			% Pour savoir si les systèmes sont resté dans ces conditions ou ont
 			% vu leurs forme ou distribution de vitesse changer, nous calculons en plus deux autres quantités:
-			l'indicateur d'anisotropie et les rapport d'axe de la matrice d'inertie.
+			l'indicateur d'anisotropie et les rapports d'axe de la matrice d'inertie.
 
 			L'indicateur d'anisotropie des vitesses est défini comme suit:
 			\begin{align}
@@ -845,7 +848,7 @@
 			% nous allons calculer les valeurs propres \mbox{$\lambda_1 > \lambda_2 > \lambda_3$} de la matrice
 			% d'inertie:
 			Pour surveiller l'évolution de la forme du système, nous calculons les valeurs propres
-			\mbox{$\lambda_1 \geq \lambda_2 \geq \lambda_3$} de la
+			$\lambda_1 \geq \lambda_2 \geq \lambda_3$ de la
 			matrice d'inertie:
 			\begin{align*}
 				% \mathfrak{I} &= \(\begin{array}{ccc}
@@ -903,7 +906,7 @@
 			où $\langle v\rangle$ est la vitesse moyenne.
 			Cette observable va nous permettre de savoir si les sphères sont chauffées ou refroidies par leurs
 			interactions avec un bain thermique, et à quelle rythme. La figure~\ref{Fig::Comp::Temp} montre l'évolution, avec le rayon, de
-			la température calculée par l'équation~\ref{Eq::Temp::Approx} et la théorie. Nous pouvons voir ici que l'erreur relative est
+			la température calculée par l'équation~\refeq{Eq::Temp::Approx} et la théorie. Nous pouvons voir ici que l'erreur relative est
 			beaucoup plus importante que sur les autres observables. Cette différence vient du passage de l'intégrale à la somme qui n'est
 			valide que pour un grand nombre de particule, or nous n'en avons que $10^5$ pour ce test.
 			\begin{figure}[htbp]

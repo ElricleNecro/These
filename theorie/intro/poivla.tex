@@ -55,13 +55,13 @@ Nous avons donc:
 	\vec{f}(\vec{r})=G\displaystyle\int\mathrm{grad}_{\vec{r}}\left(\frac{1}{\left\vert \vec{r}^{\,\prime}-\vec{r}\right\vert }\right)
 	\rho(\vec{r}^{\,\prime})d^{3}\vec{r}^{\,\prime}
 \end{align*}
-pour une large classe de densités suffisamment régulières (celles permettant à~\ref{eq1} de converger), la force dérive donc du potentiel~\ref{eq2} et
+pour une large classe de densités suffisamment régulières (celles permettant à~\refeq{eq1} de converger), la force dérive donc du potentiel~\refeq{eq2} et
 nous avons:
 \begin{align}
 	\vec{f}(\vec{r})=-\mathrm{grad}_{\vec{r}}\psi(\vec{r})\label{eq3}%
 \end{align}
 le système est alors dit conservatif. Plutôt que d'utiliser le champ vectoriel $\vec{f}(\vec{r})$, il est préférable de trouver une relation
-entre champs scalaires. Ceci est possible en remarquant que l'équation~\ref{eq2} est une convolution:
+entre champs scalaires. Ceci est possible en remarquant que l'équation~\refeq{eq2} est une convolution:
 \begin{align}
 	\psi(\vec{r},t)=-G\,\,\,\rho(\vec{r},t)\ast\frac{1}{\left\vert\vec{r}\right\vert }\ .\label{poiconvlap}%
 \end{align}
@@ -71,7 +71,7 @@ $u$ est une fonction test au sens des distributions, alors le produit scalaire:
 	\left\langle \Delta\left(  \frac{1}{\left\vert \vec{r}\right\vert }\right),u\right\rangle =-4\pi\,u\left(  0\right)  =\left\langle -4\pi\delta\left(
 	\vec{r}\right)  \text{ },u\right\rangle\text{.}
 \end{align*}
-Nous allons donc appliquer le laplacien à l'équation~\ref{poiconvlap} qui s'écrit alors:
+Nous allons donc appliquer le laplacien à l'équation~\refeq{poiconvlap} qui s'écrit alors:
 \begin{align*}
 	\left\langle \Delta\psi(\vec{r},t),u\right\rangle =\left\langle-G\,\,\Delta\left(  \rho(\vec{r},t)\ast\frac{1}{\left\vert \vec{r}%
 	\right\vert }\right),u\right\rangle
@@ -138,7 +138,7 @@ particules est conservé):
 	\frac{\partial f^{(N)}}{\partial t}\;+\;\mathrm{div}_{\vec{w}}(f^{(N)}\dot{\vec{w}})\;=\;0\label{continu}%
 \end{align}
 où $\dot{\vec{w}}=(\dot{\vec{r}}_{1},\dot{\vec{p}}_{1} ,...,\dot{\vec{r}}_{N},\dot{\vec{p}}_{N})$ représente la vitesse du flot des
-points dans l'espace des phases. En explicitant la divergence de l'équation~\ref{continu}, il vient:
+points dans l'espace des phases. En explicitant la divergence de l'équation~\refeq{continu}, il vient:
 \begin{align*}
 	\frac{\partial f^{(N)}}{\partial t}\;+\;\sum_{\alpha=1}^{N}\left[\mathrm{div}_{\vec{r}_{\alpha}}\left(  f^{(N)}\dot{\vec{r}}_{\alpha
 	}\right)  +\mathrm{div}_{\vec{p}_{\alpha}}\left(  f^{(N)}\dot{\vec{p}}_{\alpha}\right)  \right]=0
@@ -302,9 +302,9 @@ Les particules étant indiscernables, il convient de poser:
 	\intertext{ainsi}
 	\int f\left(  \vec{w},t\right)  d\vec{w=}N
 \end{align*}
-Sous toutes ces hypothèses, la version intégrée~\ref{liouint} de l'équation de Liouville s'écrit donc:
+Sous toutes ces hypothèses, la version intégrée~\refeq{liouint} de l'équation de Liouville s'écrit donc:
 \begin{align*}
-	\frac{\left(  \frac{\partial f}{\partial t}+\frac{\vec{p_{1}}}{m_{1}}.\frac{\partial f}{\partial\vec{r}}\right)  }{{\ N}}=\left(  {\ N-1}%
+	\frac{\left(  \frac{\partial f}{\partial t}+\frac{\vec{p_{1}}}{m_{1}}.\frac{\partial f}{\partial\vec{r}}\right)  }{{N}}=\left(  {N-1}%
 	\right)  \displaystyle\int\tfrac{\partial U_{12}}{\partial\vec{r}_{1}}.\frac{{\ \partial}\left(  \frac{f\left(  \vec{w}_{1},t\right)  }{N}%
 	\frac{f\left(  \vec{w}_{2},t\right)  }{N}+{\ g}\right)  }{{\ \partial}\vec{p}_{1}}d\vec{w}_{2}%
 \end{align*}
@@ -347,17 +347,17 @@ où nous avons introduit le terme de corrélation:
 	C\left(  \vec{w},t\right)  =\displaystyle\int\dfrac{\partial g\left(\vec{w},\vec{w}_{2},t\right)  }{\partial\vec{p}}\dfrac{\vec{r}%
 	-\vec{r}_{2}}{\left\vert \vec{r}-\vec{r}_{2}\right\vert ^{3}}d\vec{w}_{2}%
 \end{align*}
-L'équation~\ref{boltzman} est appelée équation de Boltzmann.
+L'équation~\refeq{boltzman} est appelée équation de Boltzmann.
 
 Dans le cas des systèmes gravitationnels, et contrairement au gaz de Van Der Waals, les collisions sont dynamiquement inefficaces pendant de longues
 périodes, Chandrasekhar montre que pour un système autogravitant composé de $N$ particules, le temps dynamique $T_{d}$ et le temps de
-relaxation par collisions $T_{rel}$ vérifient (voir~\ref{chap_trelax}):
+relaxation par collisions $T_{rel}$ vérifient (voir la section~\ref{chap_trelax}):
 \begin{align*}
 	T_{rel}\approx N\ln\left(  N\right)  T_{d}%
 \end{align*}
 % Sur une centaine de temps dynamiques, les amas globulaires et galaxies en tous genres sont dits non collisionnels, i.e. $C\left(  \vec{w}
 Sur une centaine de temps dynamiques, les amas globulaires et galaxies sont dits non collisionnels, i.e. $C\left(  \vec{w}
-,t\right)  \equiv0$, et l'équation de la dynamique des galaxies est l'équation de Vlasov (Boltzmann sans collisions):
+,t\right)  \equiv0$, et l'équation de la dynamique des galaxies est l'équation de Vlasov (Boltzmann sans collisions, comme le suggérait \citet{1982A&A...114..211H}):
 \begin{align*}
 	\dfrac{\partial f}{\partial t}+\dfrac{\vec{p}}{m}\ \dfrac{\partial f}{\partial\vec{r}}-m\dfrac{\partial f}{\partial\vec{p}}\dfrac
 	{\partial\psi}{\partial\vec{r}}=0
@@ -391,7 +391,7 @@ ce système s'écrit sous forme canonique:
 Ce système est à la base de l'étude de la dynamique des galaxies.
 
 Dans les chapitres suivants, nous étudierons différentes fonctions de distribution issue de ce système, puis nous nous intéresserons à la stabilité
-des système autogravitants.
+des systèmes autogravitants.
 
 % Nous proposons deux axes principaux d'études pour ce problème:
 % \begin{itemize}

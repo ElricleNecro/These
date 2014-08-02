@@ -10,12 +10,12 @@ et l'évolution  des objets astrophysique fut compris, dans les années 1920 à 
 cadre théorique solide dans les années 1940 où elle devient le cas particulier gravitationnel de la théorie de l'amortissement de Landau. Ce modèle
 linéaire sera vite controversé: arnaque de Jeans (voir la section 5.2.2 de \cite{2008gady.book.....B}  ou l'article de
 \cite{kiessling}), comportement non linéaire complexe... L'histoire semble désormais terminée sur le plan théorique avec la démonstration de sa
-version non linéaire par Cédric Villani et Clément Mouhot en 2008. En physique trois approches sont généralement pratiquées pour se convaincre de
+version non linéaire de~\citet{mouhot2011landau}. En physique trois approches sont généralement pratiquées pour se convaincre de
 cette instabilité:
 \begin{itemize}
 
 	\item L'approche dite cinétique consiste à partir du système de Vlasov-Poisson et de le linéariser au voisinage d'une distribution
-		d'équilibre; c'est à ce moment qu'apparait l'arnaque de Jeans car dans cette approche nous évacuons \og à la main\fg un terme génant.
+		d'équilibre; c'est à ce moment qu'apparait l'arnaque de Jeans car dans cette approche linéaire nous évacuons \og{}à la main\fg un terme génant.
 		Nous faisons alors l'hypothèse d'une distribution d'équilibre isotherme dans l'espace des vitesses et uniforme dans l'espace des
 		positions. Nous obtenons une relation de dispersion faisant apparaître une longueur caractéristique pour l'instabilité.
 
@@ -33,13 +33,12 @@ cette instabilité:
 
 \end{itemize}
 
-Les trois approches fournissent le même résultat
+Les trois approches fournissent le même résultat, elles sont physiquement
 % et répondent chacune à un niveau d'exigence mathématique de plus en plus élaboré
-, elles sont
 équivalentes. L'ensemble des calculs peut être trouvé avec tous les détails dans le cours de \cite{CoursJP}. Nous proposons simplement ici
 de reprendre rapidement les grandes étapes de l'approche fluide.
 
-\subsection{L'instabilité fluide}
+\subsection{L'instabilité de Jeans fluide}
 
 Outre le champ de densité $\rho(\vec r, t)$ et le potentiel gravitationnel $\psi(\vec r, t)$ dont nous avons déjà parlé, la description fluide d'un
 système autogravitant est assurée par les grandeurs moyennes suivantes:
@@ -122,7 +121,7 @@ au voisinage de l'équilibre uniforme et stationnaire, nous avons donc:
 \begin{align*}
 	\Delta\psi_{1}=4\pi G\rho_{1}%
 \end{align*}
-l'équation~\ref{inter1jeans} devient donc:
+l'équation~\refeq{inter1jeans} devient donc:
 \begin{align*}
 	\dfrac{\partial^{2}\rho_{1}}{\partial t^{2}}=c_{s}^{2}\Delta\rho_{1}+4\pi G\rho_{o}\rho_{1}
 \end{align*}
@@ -139,7 +138,8 @@ et nous obtenons une relation de dispersion pour chaque mode $\alpha$:
 Nous remarquons que:
 \begin{itemize}
 
-	\item si $k_{\alpha}>k_{j}$ alors $\omega_{\alpha}^{2}>0$, la pulsation du mode $\alpha$ est réelle il s'agit donc d'un mode oscillant.
+	\item si $k_{\alpha}>k_{j}$ alors $\omega_{\alpha}^{2}>0$, la pulsation du mode $\alpha$ est réelle il s'agit d'un mode oscillant, et donc
+		stable;
 
 	\item si $k_{\alpha}<k_{j}$ alors $\omega_{\alpha}^{2}<0$, la pulsation du mode $\alpha$ est imaginaire pure: $\omega_{\alpha}=\pm
 		i\Omega_{\alpha}$ avec $\Omega_{\alpha}\in\mathbb{R}$. Le mode $\alpha$ est donc instable (il possède une partie exponentiellement
@@ -186,9 +186,9 @@ Comment cela est-il possible ?
 Si un système autogravitant homogène ne s'effondre pas sous l'effet de sa propre masse c'est que l'énergie cinétique qu'il contient, c'est-à-dire la
 température qui le caractérise lui permet de lutter contre. Nous décrivons ici un état d'équilibre, cette température lui permet
 donc exactement de contrebalancer la gravitation, afin que le système soit \og au viriel\fg, s'il était plus chaud le système s'évaporerait.
-C'est ce qui arrive aux amas ouvert.
+C'est sans doute ce qui arrive aux amas ouvert.
 
-Dans son état homogène il peut devenir plus gros, en absorbant sous l'effet de la gravitation un autre système autogravitant homogène. S'il est
+Dans son état homogène, il peut devenir plus gros, en absorbant sous l'effet de la gravitation un autre système autogravitant homogène. S'il est
 composé d'étoiles, l'une d'entre elle peut exploser ce qui peut avoir tendance à augmenter la densité moyenne du système tout entier, il peut alors
 devenir plus grand que sa longueur de Jeans.
 
@@ -198,7 +198,7 @@ $M$ et son rayon $R$. Nous attribuons alors une vitesse à chaque particule de m
 v_i^2$ soit telle que le rapport du viriel $\eta=\left|\frac{2T}{W}\right|$ soit plus petit que $1$. Ce jeu de conditions initiales sera ainsi associé
 à un système plus gros que sa longueur de Jeans: il s'effondrera. De nombreuses expériences numériques (voir par exemple \cite{roy} ou
 \cite{Joyceetal}) ont été menées pour étudier de telles situations. Dès que le nombre de particules est suffisant pour
-éviter les problèmes d'interaction a deux corps trop rapides, le système s'effondre pour former une structure cœur-halo à l'équilibre isotrope dans
+éviter les problèmes d'interaction à deux corps trop rapides, le système s'effondre pour former une structure cœur-halo à l'équilibre et isotrope dans
 l'espace des vitesses. Le système final est sphérique indépendamment de sa forme initiale, de la dispersion de vitesse et même du rapport du viriel
 initial $\eta\in[0.1, 0.9]$. L'état d'équilibre est atteint en quelques temps dynamiques, le cœur homogène contient approximativement la moitié de la
 masse totale, le halo possède une densité autosimilaire $\rho(r)\propto r^{-4}$. Ce type de système est assez bien ajustable par un modèle de King de
@@ -206,12 +206,12 @@ paramètre $W_0\simeq 5$.
 
 L'introduction de grumeaux ou d'inhomogénéités au sein du système avant son effondrement peut modifier le résultat. Pour ce type de configurations
 initiales, le processus d'effondrement conduit à des systèmes ne présentant pratiquement plus de cœur. Lorsque que l'on peut ajuster leur densité
-par un profil de King le paramètres $W_0$ est alors beaucoup plus grand, typiquement  $W_0>15$. Ces configuration initialement inhomogènes possèdent
+par un profil de King le paramètre $W_0$ est alors beaucoup plus grand, typiquement  $W_0>15$. Ces configuration initialement inhomogènes possèdent
 aussi une caractéristique qui les distinguent des effondrements homogènes: les configurations initialement très froides ($\eta<0.15$), c'est-à-dire
 les effondrements les plus violents, conduisent à des états d'équilibre qui ne sont plus sphériques car ils ont développé l'instabilité d'orbite
 radiale.
 
 
-Dans la prochaine section nous allons tenter de proposer, dans un contexte simplifié, une analyse de stabilité permettant de comprendre la diversité
+Dans la prochaine section nous allons tenter de proposer, dans un contexte simplifié, une analyse de stabilité permettant de comprendre cette diversité
 des états post-collapse.
 

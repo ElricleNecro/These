@@ -9,11 +9,12 @@ Une situation plus complexe se présente lors de l'effondrement d'un système pr
 d'un système inhomogène caractérisé par deux structures homogènes emboitées de tailles différentes. L'effondrement du plus petit de ces sous-système
 va se produire dans le bain thermique assuré par la présence du plus gros. Si cet effondrement produit une structure cœur-halo, sa stabilité doit
 ainsi être envisagée dans l'ensemble canonique. Nous avons vu que ce type d'analyse dans le contexte de la sphère isotherme en boite revenait à
-chercher la première tangente horizontale sur la courbe calorique. Nous avons vu par ailleurs que les structures cœur-halo de pente quelconques
-sont pratiquement isothermes. Nous proposons une analyse de la courbe calorique d'une structure cœur-halo idéalisée, supposée
-isotherme et entourée d'un bain thermique. L'intérêt de l'idéalisation est qu'il permet de mener à la main la totalité des calculs. Nous vérifierons
-que dans le cas de l'idéalisation de la sphère isotherme (halo de pente -2), l'analyse de stabilité donne les mêmes résultats que ceux obtenus au
-moment de l'étude de la sphère isotherme en boite.
+chercher la première tangente horizontale sur la courbe calorique. Nous avons vu par ailleurs que les structures cœur-halo de pente
+quelconques\footnote{Pourvu qu'ils soient ajustables par un modèle de king avec $W_0 > 5$.} sont pratiquement isothermes. Nous proposons donc dans la
+section suivante, une analyse de la courbe calorique d'une structure cœur-halo idéalisée, supposée isotherme et entourée d'un bain thermique.
+L'intérêt de l'idéalisation est qu'elle permet de mener à la main la totalité des calculs. Nous vérifierons que dans le cas de l'idéalisation de la
+sphère isotherme (halo de pente $-2$), l'analyse de stabilité donne les mêmes résultats que ceux obtenus au moment de l'étude de la sphère isotherme en
+boite.
 
 \subsection{Modèle et calculs}
 Le système que nous étudions est sphérique de rayon fini $R$, il possède un cœur de rayon $r_0$, le paramètre d'étude sera la quantité sans
@@ -48,8 +49,8 @@ L'énergie potentielle totale contenue dans le système est le résultat du calc
 
 \subsection{Énergie cinétique}
 
-	La sphère que nous étudions est supposée  isotherme de température $T=(\beta k_B )^{-1}$\footnote{C'est une hypothèse simplificatrice mais
-	raisonnable compte-tenu de l'analyse faite sur le modèle de King par exemple}. L'énergie cinétique s'écrit alors:
+	La sphère que nous étudions est supposée  isotherme de température\footnote{C'est une hypothèse simplificatrice mais
+	raisonnable compte-tenu de l'analyse faite sur le modèle de King par exemple} $T=(\beta k_B )^{-1}$. L'énergie cinétique s'écrit alors:
 	\begin{align}
 		K &= \dfrac{3M}{2m\beta}
 	\end{align}
@@ -58,7 +59,7 @@ L'énergie potentielle totale contenue dans le système est le résultat du calc
 	\begin{align}
 		P\(R\) = \frac{3 M}{4 m \pi  R^3 (-3+4 x) \beta }
 	\end{align}
-	Le théorème du Viriel  pour une sphère en boite s'écrit:
+	Le théorème du viriel  pour une sphère en boite s'écrit:
 	\begin{align}
 		4\pi R^3 P(R) &= 2 K + W
 	\end{align}
@@ -67,7 +68,7 @@ L'énergie potentielle totale contenue dans le système est le résultat du calc
 	\begin{align}
 		\beta(x) &= \frac{20R \left(3 -7  x+4  x^2\right)}{G m M \left(5-10 x+6 x^3\right)}
 	\intertext{Nous pouvons également exprimer l'énergie totale $H=K+W$ contenue dans la sphère en fonction de $x$ et des caractéristiques de
-	celle-ci. Finalement, en utilisant les mêmes paramètres sans dimensions ceux utilisés pour la \textsc{sib}, nous obtenons:}
+	celle-ci. Finalement, en utilisant les mêmes paramètres sans dimensions que ceux utilisés pour la \textsc{sib}, nous obtenons:}
 		\mu(x) &= \frac{GMm\beta}{R}=\frac{20 (-1+x) (-3+4 x)}{5-10 x+6 x^3}\\
 		\lambda(x) &= -\frac{HR}{GM^2}=\frac{3 (-5+4 x) \left(5-10 x+6 x^3\right)}{40 (3-4 x)^2 (-1+x)}
 	\end{align}
@@ -95,13 +96,13 @@ L'énergie potentielle totale contenue dans le système est le résultat du calc
 
 	Cette instabilité pourrait être à l'origine de l'absence de cœur dans le résultat de l'effondrement d'un système inhomogène.
 
-	La courbe calorique peut être calculée dans les mêmes conditions pour des systèmes cœur-halo de pentes différentes. Nous les avons rassemblé
-	sur la figure~\ref{ToyModel::AllAlpha}.
+	La courbe calorique peut être calculée dans les mêmes conditions pour des systèmes cœur-halo idéalisés de pentes différentes. Nous les avons
+	rassemblés sur la figure~\ref{ToyModel::AllAlpha}.
 	\begin{figure}
 			\centering \includegraphics{theorie/graphe/alpha_all.pdf}
 			\caption{Courbe calorique pour des systèmes cœur--halo de pente $\alpha=2, 4, 5, 6, 7, 8$\label{ToyModel::AllAlpha}}
 	\end{figure}
-	La même instabilité est toujours présente. Dans le cas $\alpha=2$, les calculs sont identiques, il conduisent au couple:
+	La même instabilité est toujours présente. Dans le cas $\alpha=2$, les calculs sont identiques, ils conduisent au couple:
 	\begin{eqnarray}
 		\mu(x) =& \frac{10 (3x-2) (x-1)}{x(15x-14-10\ln(x))} \\
 		\lambda(x) =& -\frac{3x(15x-14-10\ln(x))(x-2)}{20(x-1)(3x-2)^2}
