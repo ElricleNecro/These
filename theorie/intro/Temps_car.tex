@@ -24,24 +24,28 @@ le viriel donne donc:
 \end{align*}
 En remplaçant la dispersion de vitesse $\sigma$ dans le temps de croisement par ce résultat, nous obtenons le temps dynamique:
 \begin{align*}
-	T_{dyn}\propto\sqrt{\frac{R^{3}}{GM}}%
+	T_{d}\propto\sqrt{\frac{R^{3}}{GM}}%
 \end{align*}
 Le rapport $R^{3}/M$ est proportionnel à l'inverse de la densité moyenne de masse $\overline{\rho}$ du système, nous avons alors:
 \begin{align}
-	T_{d}\propto\left(  G\overline{\rho}\right)  ^{-1/2}\propto T_{cr} \label{def:T-dyn_tcr}
+	T_{d}\propto\left(  G\overline{\rho}\right)  ^{-1/2} \label{def:T-dyn_tcr} % \propto T_{cr}
 \end{align}
 
-Nous pouvons faire les choses plus précisément mais il faut se donner un potentiel ou une répartition de masse.
-Nous pouvons alors écrire l'équation du mouvement d'une particule test à l'intérieur du système. Plusieurs temps caractéristiques apparaissent alors:
-\begin{itemize}
+Le problème de la relation~\refeq{def:T-dyn_tcr} est la définition précise de la densité moyenne. Si l'on se contente d'un ordre de grandeur pour $T_d$,
+la question ne se pose pas mais pour l'analyse précise de simulation il faudra faire un choix. Nous aurons l'occasion d'y revenir dans la
+section~\ref{Sec::2ndStudy} du chapitre~\ref{Chap::Resultat}.
+Une option est de se donner un potentiel ou une répartition de masse et de calculer $\bar{\rho}$. % dans un sens statistique.
+Nous pouvons alors écrire l'équation du mouvement d'une particule test à l'intérieur du système.
+% Plusieurs temps caractéristiques apparaissent alors:
+% \begin{itemize}
 
-	\item le temps de chute libre est celui pris par une particule pour rejoindre le centre depuis le bord du système;
+	% \item le temps de chute libre est celui pris par une particule pour rejoindre le centre depuis le bord du système;
 
-	\item le temps orbital est celui mis par une particule pour effectuer une période de son mouvement radial.
+	% \item le temps orbital est celui mis par une particule pour effectuer une période de son mouvement radial.
 
-\end{itemize}
+% \end{itemize}
 
-Tous ces temps sont de l'ordre de grandeur de $T_{d}$.
+% Tous ces temps sont de l'ordre de grandeur de $T_{d}$.
 
 \subsection{Le temps de relaxation à deux corps}
 
@@ -55,7 +59,7 @@ particule test. Nous définissons donc le temps de relaxation à 2 corps comme:
 Il s'interprète classiquement comme le temps mis par les interactions à 2 corps\footnote{Ce sont les seules interactions qui peuvent modifier quelque
 chose dans ce genre de système purement gravitationnel. Les interactions à plus de 2 corps sont négligeables.} pour modifier significativement
 $v^{2}$. Le calcul de ce temps ainsi que des définitions plus précises abondent dans la littérature (voir par exemple le chapitre 14 de\ \cite{HH}),
-nous privilégions ici l'extraction d'un ordre de grandeur basé sur un raisonnement de Chandrasekhar.
+nous privilégions ici l'extraction d'un ordre de grandeur basé sur un raisonnement de S. Chandrasekhar.
 
 Tous les corps ont la même masse $m$. Lors d'un passage à une distance $p$ d'un voisin, une particule test de vitesse $v$ ressent une force de module:
 \begin{align*}
@@ -78,12 +82,12 @@ un paramètre d'impact compris entre $p$ et $p+dp$ s'écrit:
 \end{align}
 Les collisions sont suffisamment aléatoires pour que la moyenne des variations de vitesse $\overline{\delta v}$ soit nulle. Pour obtenir l'action des
 collisions sur la vitesse, il faut donc considérer une dispersion de vitesse. Sur une période, la variation $\left(\Delta v^{2}\right)_{orb}$ de
-$\delta v^{2}$ s'obtient en combinant~\ref{deltavrel} et~\ref{dnrel} et en sommant sur toutes les valeurs possibles de $p$, soit:
+$\delta v^{2}$ s'obtient en combinant~\refeq{deltavrel} et~\refeq{dnrel} et en sommant sur toutes les valeurs possibles de $p$, soit:
 \begin{align*}
 	\left(\Delta v^{2}\right)_{orb}=\int_{p_{\min}}^{p_{\max}}\delta v^{2}dn=\frac{4\pi^{2}G^{2}mr\rho\left(r\right)}{v^{2}}\int_{p_{\min}}^{p_{\max}}\frac{dp}{p}
 \end{align*}
 Si l'on veut éviter les infinis, il est nécessaire à ce stade d'introduire une coupure haute et basse pour les valeurs de $p$. Avec nos ordres de
-grandeurs, nous introduisons:
+grandeurs et en suivant le calcul de S. Chandrasekhar, nous introduisons le logarithme coulombien:
 \begin{align*}
 	\ln\Lambda=\ln\left(\frac{p_{\max}}{p_{\min}}\right)
 \end{align*}
@@ -110,7 +114,7 @@ Ce qui nous permet d'écrire:
 \begin{align*}
 	\frac{1}{v^{2}}\left(\frac{dv^{2}}{dt}\right)_{orb}\approx4\pi^{2}\frac{G^{2}mr\rho\left(r\right)}{v^{4}}\frac{\ln \Lambda}{T_{d}}%
 \end{align*}
-La moyenne permettant de calculer le temps de relaxation à 2 corps peut s'envisager sur une période, l'expression~\ref{TREL} s'écrit donc:
+La moyenne permettant de calculer le temps de relaxation à 2 corps peut s'envisager sur une période, l'expression~\refeq{TREL} s'écrit donc:
 \begin{align*}
 	\frac{T_{rel}}{T_{d}}\approx\frac{1}{4\pi^{2}}\frac{v^{4}}{G^{2}mr\rho\left(  r\right)  }\frac{1}{\ln \Lambda}%
 \end{align*}
@@ -157,3 +161,7 @@ Un phénomène de ségrégation de masse est associé au processus de collision.
 entre deux étoiles de masses différentes ne produit pas la même variation de vitesse. L'effet net de cette ségrégation est de ralentir les étoiles
 les plus lourdes et donc de les faire tomber dans le puits de potentiel formé par le système. Sur l'échelle de temps de la relaxation, nous devrions
 observer une organisation des objets dans le système: les plus lourds au centre, les plus légers à l'extérieur.
+
+Dans le cadre de simulations numériques, l'estimation du temps de relaxation est une véritable question. Les valeurs de $p_{\min}$ et $p_{\max}$
+utilisées pour le calcul du logarithme coulombien $\ln \Lambda$ doivent s'adapter à la simulation tout comme l'estimation de la densité. Nous
+présenterons notre stratégie en la matière dans la section~\ref{Sec::2ndStudy} du chapitre~\ref{Chap::Resultat}.
