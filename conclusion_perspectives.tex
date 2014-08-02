@@ -1,0 +1,152 @@
+\section{Conclusion}
+
+Les travaux de cette thèse ont eu pour objet la modélisation dynamique de la structure des amas globulaires et des galaxies, structures
+autogravitantes (\textsc{sag}). 
+
+
+
+Il est communément accepté que ces objets possèdent globalement un profil de densité volumique de masse caractérisé soit par une structure cœur halo
+soit par un simple halo pouvant posséder plusieurs pentes. L'objectif de cette thèse était de comprendre les différentes propriétés et les raisons de
+l'évolution dynamique de ces profils. Il a été atteint dans ses grandes lignes.
+
+
+
+Le tout début de l'étude a été consacré à réalisation d'une synthèse de l'évolution dynamique du profil de densité des amas globulaires de notre
+galaxie. Cette étude a permis de confirmer le fait bien connu que ces profils sont, avant le collapse du cœur, ajustables par un modèle de King. Elle
+a aussi et surtout mis en évidence le fait que la pente du halo était une fonction croissante de l'âge de ces objets. Cette étude préliminaire
+confirme donc le paradigme suivant lequel le profil de densité est l'un des indicateurs fondamentaux de l'évolution des amas globulaires et par
+extension des galaxies.
+
+
+Après un travail de revue théorique sur les différents types de structures isothermes en domaine borné ou non. Nous avons montré que les modèles de
+King, et par extension les \textsc{SAG} de type cœur halo de pente inférieur à $-2$, étaient d'excellentes approximations de sphères isothermes. En
+utilisant un modèle idéalisé de structure cœur halo isotherme de pente quelconque, nous avons pu étendre certains résultats d'instabilité jusque là
+obtenus uniquement dans le cadre des sphères isothermes en domaine borné. Cette instabilité appliquée aux structures cœur halo de pente $-4$
+(instabilité \textsc{ch4}), a été mise en contexte  en dehors du scénario évolutif à long terme, pour expliquer l'existence de deux type de profils
+pour les \textsc{SAG}: cœur halo (pour les amas globulaires ou les galaxies LSB) ou cupside (pour les galaxies en général). La présence ou l'absence
+(réelle ou effective) d'un bain thermique autour de l'objet en formation permettrait ou non à cette instabilité de se développer et conduirait ou pas
+à l'effondrement du cœur de ces objets sur des échelles de temps de l'ordre de quelques temps dynamiques.
+
+
+
+Afin d'ajuster les différents paramètres de ce scénario nous avons effectué un certain nombre de simulations numériques. Ces expériences démarrées
+dans un contexte ciblé se sont révélées d'une ampleur et d'une portée supérieure aux attentes initiales. 
+
+
+
+Face à la non-évolution des profils de King placés dans un thermostat, nous avons augmenté la sensibilité de nos  expériences en imposant un bain
+thermique dès la phase initiale d'effondrement d'une sphère de Hénon.
+
+
+
+% Toutes nos expériences ont été réalisées avec des bains plus froids que la structure autogravitante d'étude. 
+La plupart de nos expériences ont été réalisées avec des bains plus froids que la structure autogravitante d'étude. Mais les bains sont toujours moins
+denses.
+
+Les raisons de cette dernière limitation sont simple. La méthode particulaire utilisée pour modéliser notre bain
+thermique dans de bonnes conditions se serait révélée trop couteuse avec un contraste de densité plus faible entre le bain et la structure
+autogravitante.
+% Les raisons de cette limitation sont doubles. Tout d'abord, il est physiquement raisonnable de penser qu'une structure formée, cohérente et à
+% l'équilibre, soit dans ce contexte, plus chaude que son environnement. Par ailleurs, la méthode particulaire utilisée pour modéliser notre bain
+% thermique dans de bonnes conditions se serait révélée trop couteuse avec un contraste de température plus faible entre le bain et la structure
+% autogravitante.
+
+
+Malgré cette limitation importante nous avons obtenu deux résultats principaux:
+
+
+\begin{enumerate}
+
+	\item Dans tous les cas d'accrétion progressive du bain par la structure,
+	nous avons observé l'apparition d'une instabilité d'orbite radiale.
+	Certains éléments du mécanisme de cette instabilité,
+	qui n'avait pas été observée dans ce contexte, ont pu être
+	analysés:
+
+	\begin{itemize}
+		\item Le contexte général de nos résultats sur cette
+		instabilité confirme un résultat déjà rapporté mais non
+		généralement reproduit. L'instabilité d'orbite radiale se produit
+		par déplacement adiabatique d'un système autogravitant à
+		l'équilibre vers les zones radiales de son espace des phases. Cette
+		instabilité ne saurait donc se déclencher sans la présence du
+		germe constitué par cet équilibre.
+
+		\item La densité du bain, et non pas sa température, semble être
+		l'un des paramètres essentiels du déclenchement de cette
+		instabilité dans ce contexte. 
+	\end{itemize}
+
+	\item Dans un contexte sans accrétion, nous avons pu mettre en
+	évidence un effondrement du cœur de l'une de nos familles de SAG. Les
+	aspects morphologiques de cet effondrement sont tout à fait comparables
+	à ceux observés pour les amas globulaires: augmentation du contraste
+	de densité, augmentation de la pente du halo, passage progressif à un
+	profil de type cupside. Le résultat final de ce processus est tout à
+	fait comparable au profil de type de Vaucouleurs généralisé ou NFW
+	généralement observé pour les structures autogravitantes à
+	l'échelle galactique dans les simulations de grandes structures.
+	L'échelle de temps sur laquelle se produit cette évolution semble
+	cependant bien inférieure à celle nécessaire pour observer des
+	effets de relaxation à deux corps: elle ne représente au maximum que
+	10\% du temps généralement accepté ($T_{rel}\propto\frac{0,1N}{\ln
+	N}T_{d}$) pour ce genre de processus. Les études préliminaires que
+	nous avons pu mener semblent toutefois montrer que cet effondrement ne soit
+	pas causé par la présence du bain thermique. Dans l'état actuel de
+	la situation nous ne sommes donc pas en mesure d'affirmer que nous avons
+	reproduit numériquement l'instabilité \textsc{ch4}.
+\end{enumerate}
+
+
+
+Parallèlement à cette étude dynamique, nous avons conduit une
+comparaison entre un code résolvant l'équation de Vlasov pour un
+système sphérique et le treecode \textsc{Gadget-2}. Nous avons montré que
+l'accord entre ces deux codes était étonnamment bon, même à
+faible rapport du viriel. 
+
+
+\section{Perspectives}
+
+
+Nous aimerions pouvoir étendre le domaine temporel de l'étude des
+simulations déclenchant l'instabilité d'orbite radiale. Cette
+extension permettrait d'une part de raffiner l'étude de l'influence de la
+densité du bain sur le déclenchement de cette instabilité, en
+fournissant par exemple un critère précis et utilisable dans un
+contexte éventuellement cosmologique. Dans le même temps, il s'agirait
+d'autre part de confirmer définitivement le fait que le déclenchement
+de l'instabilité d'orbite radiale dans ce contexte ne dépend pas de la
+température du bain.
+
+
+
+À ce stade, une étude plus avancée de la simulation $A_{6,1}$
+conduisant à l'évolution accélérée du profil de
+densité vers un effondrement est nécessaire.  Cette étude pourrait
+être effectuée en modifiant d'une part les caractéristiques
+\og{}numériques\fg du code \textsc{Gadget-2} (angle d'ouverture, gestion du pas de temps,
+paramètre d'adoucissement du potentiel), mais aussi en construisant de
+nouvelles observables mieux adaptées à la surveillance fine de la
+dynamique de ce système (calculs raffinés de temps
+caractéristiques, calcul de la densité par résolution de
+l'équation de Poisson, etc.).
+
+
+Finalement, les principales pistes envisageables pour tenter de
+mettre en évidence numériquement l'instabilité \textsc{ch4}  est
+l'augmentation soit de la température du bain, soit de sa densité dans nos simulations. Cette
+augmentation pourra être effectuée dans le cadre particulaire
+proposé ici, elle sera alors très couteuse; elle pourra également
+être envisagée dans le cadre d'une méthode numérique
+adaptée, elle sera alors moins couteuse mais nécessitera le
+développement d'un code spécifique.
+% Finalement, la principale piste envisageable pour tenter réellement de
+% mettre en évidence numériquement l'instabilité \textsc{ch4}  est
+% l'augmentation de la température du bain dans nos expériences.  Cette
+% augmentation pourra être effectuée dans le cadre particulaire
+% proposé ici, elle sera alors très couteuse; elle pourra également
+% être envisagée dans le cadre d'une méthode numérique
+% adaptée, elle sera alors moins couteuse mais nécessitera le
+% développement d'un code spécifique.
+
