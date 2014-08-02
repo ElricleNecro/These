@@ -3,11 +3,11 @@
 %	Nous introduisons la quantité $r_c$, pour adimensionner les distances, puis
 %	nous faisons donc le changement de variable suivant:
 	L'adimensionnement des énergies se fait au moyen de $\sigma^2$ et celui des longueurs via $r_c$, en posant:
-	\[
+	\begin{align*}
 			\gamma = \dfrac{\phi}{\sigma^2}
 			\quad \mathrm{et}\quad 
 			x = \dfrac{r}{r_c}
-	\]
+	\end{align*}
 
 	Il vient alors:
 	\begin{equation}
@@ -29,7 +29,7 @@
 \subsection{Conditions aux limites et paramètres du modèle}
 	
 			Le système étant isolé et à l'équilibre, son centre d'inertie est au repos. Sa symétrie
-			sphérique implique que la résultante des force qui s'applique à une particule test située en
+			sphérique implique que la résultante des forces qui s'applique à une particule test située en
 			$r=0$ s'annule. Cette force est proportionnelle au gradient du potentiel, nous avons donc:
 			\begin{equation}
 				\left.\frac{d\gamma}{dr}\right|_{r=0} = \left.\frac{d}{dr}\(\frac{E_l - m\psi}{\sigma^2}\)\right|_{r=0} = -\frac{m}{\sigma^2}\left.\frac{d\psi}{dr}\right|_{r=0} = 0
@@ -53,20 +53,20 @@
 			Nous éviterons de la prendre nulle, car, dans ce cas, le système ne contient au
 			plus aucune étoile!
 
-	Le choix de $\gamma(0)=W_0$ et le fait que la dérivée de $\gamma$ en $r=0$ soit nulle permettent la résolution numérique de l'équation
-	(\ref{Pois-no_dim}). Cette résolution permet d'obtenir le rayon $R$ de la sphère de King, premier zéro de la fonction $\phi(r)$. La vitesse
-	d'une particule test située en $r=R$ est la vitesse de libération du système, en introduisant $X=\frac{R}{r_c}$ nous avons bien:
+	Le choix de $\gamma(0)=W_0$ et le fait que la dérivée de $\gamma$ en $r=0$ soit nulle permettent la résolution numérique de
+	l'équation~\refeq{Pois-no_dim}. Cette résolution permet d'obtenir le rayon $R$ de la sphère de King, premier zéro de la fonction $\phi(r)$. La
+	vitesse d'une particule test située en $r=R$ est la vitesse de libération du système, en introduisant $X=\frac{R}{r_c}$ nous avons bien:
 		\begin{equation}
 			 E_l = m\psi(X) \;\Leftrightarrow\; \gamma(X) = 0
 		\end{equation}
 
 	Le paramètre $W_0$ fixe donc toutes les caractéristiques nécessaires à la résolution numérique du modèle de King. Le rayon de la sphère de
-	King est une fonction croissante de $W_0$. Comme nous pouvons le voir sur la définition~\ref{W_0}, une même valeur de $W_0$ peut correspondre à
+	King est une fonction croissante de $W_0$. Comme nous pouvons le voir sur la définition~\refeq{W_0}, une même valeur de $W_0$ peut correspondre à
 	des systèmes possédant des caractéristiques physiques différentes caractérisées par une profondeur du puits de potentiel $\psi(0)$, une
 	dispersion de vitesse $\sigma^2$ ou une énergie de libération différente. Ces différences ne concernent que le système une fois redimensionné. 
 
 \subsection{Résolution numérique}
-	L'algorithme que nous utiliserons pour résoudre l'équation~\ref{King-Pois} est un Runge-Kutta
+	L'algorithme que nous utiliserons pour résoudre l'équation~\refeq{King-Pois} est un Runge-Kutta
 	d'ordre $4$ (RK4). Nous devons écrire l'équation différentielle comme un système d'ordre 1, ce que nous faisons en posant $u = \frac{d\gamma}{dx}$:
 	\begin{equation}
 		\left\{\begin{array}{l}
@@ -146,7 +146,7 @@
 	%elle diminue (~la courbe tend plus vite vers $0$~). Ce constat nous amène à nous poser une question: existe-t-il un
 	%lien entre la pente et le rayon du cœur ?
 	
-	La résolution numérique du système~\ref{sys2dking} permet d'obtenir la fonction $\gamma(x)$ pour chaque donnée
+	La résolution numérique du système~\refeq{sys2dking} permet d'obtenir la fonction $\gamma(x)$ pour chaque donnée
 	initiale $W_0$. De cette fonction nous en déduisons la densité volumique de masse du système adimensionnée $\rho^s(x)$ par la relation:
 	\begin{align*}
 		\rho^s(x) = \dfrac{\rho(x)}{\rho_0} = e^{\gamma(x)} \mathrm{erf}\(\sqrt{\gamma(x)}\) - \sqrt{\dfrac{4\gamma(x)}{\pi}}\(1+\dfrac{2\gamma(x)}{3}\)
@@ -154,7 +154,7 @@
 	% Une sphère de King adimensionnée est donc entièrement définie par le paramètre $W_0$.
 	En échelle
 	logarithmique, sa densité normalisée est très bien approchée sur plus de 5 décades par deux segments de droites
-	: l'un horizontal décrit le c\oe ur de la sphère de densité quasiment constante, l'autre de pente $-\alpha$
+	: l'un horizontal décrit le cœur de la sphère de densité quasiment constante, l'autre de pente $-\alpha$
 	décrit un halo autosimilaire entourant le c\oe ur. L'intersection des droites portant ces deux segments est une
 	bonne approximation de ce que l'on pourrait appeler le rayon du c\oe ur de la sphère de King considérée.
 
@@ -169,7 +169,7 @@
 	troncature introduite par l'énergie de libération. Une étude plus fine
 	montre que les halos des sphères de
 	King sont associés à des profils autosimilaires de pente étagée entre
-	$-5$  et $-2$ lorsque $W_0$ varie de $5$ à $15$.
+	$-5$  et $-2$ lorsque $W_0$ varie de $5$ à $15$. La figure~\ref{coeff_evo} illustre ce comportement.
 	
 	\begin{figure}[hbt!]
 %		\centering \includegraphics[scale=1.00]{../Resol_King/img-king/pente-w0.pdf} %{graphe/evo-coeff_ci.pdf}

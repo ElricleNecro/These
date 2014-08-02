@@ -5,7 +5,7 @@
 	thermodynamique et appellé courbe calorique. Cette courbe est en fait directement reliée à celle de Milne et
 	consiste à représenter $\mu$ en fonction de $\lambda$ ou de son opposé $-\lambda$ car l'énergie d'un système
 	autogravitant est souvent négative. En pratique nous résolvons le système différentiel $u(v)$ en fixant $X$,
-	nous déterminons les coordonnées du point extrême $(u_m,v_m)$, puis en utilisant~\ref{uv_max} nous en déduisons la valeur
+	nous déterminons les coordonnées du point extrême $(u_m,v_m)$, puis en utilisant~\refeq{uv_max} nous en déduisons la valeur
 	du couple $(\lambda,\mu)$ correspondant au choix de $X$.
 	
 	Contrairement aux variables de Milne qui sont des fonctions de $x$ (et donc de $r$), $\lambda$ et $\mu$ sont des
@@ -18,14 +18,15 @@
 	\begin{figure}[h!]
 		% \centering \includegraphics[scale=1.00]{graphe/Energie_tg.pdf}
 		\centering \includegraphics{calorique.pdf}
-		\caption{Courbe calorique de la sphère isotherme en boîte : $\mu(\lambda)$. La croix verte représente la \textsc{sis}}
+		\caption{Courbe calorique de la sphère isotherme en boîte : $\mu(\lambda)$. La croix verte représente la \textsc{sis}. La droite horizontale
+		rouge et la verticale cyan représentent respectivement la température minimale et l'énergie maximale.}
 		\label{Ener}
 	\end{figure}
 
-	Dans le diagramme de Milne, la sphère isotherme singulière correspondait au point $\left(1,2\right)$.
-	Dans cette nouvelle représentation elle est associée au point $\left(\lambda = \frac{3/2 - u_m}{v_m} = 1/4, \mu = v_m = 2\right)$.
-	De la même manière que sur le diagramme précédent, la courbe tend en spiralant vers la sphère isotherme singulière, mais avant de l'atteindre,
-	elle passe par un minimum de température, puis un maximum d'énergie délimitant ainsi des intervalles possibles d'existence d'une sphère gravitationelle isotherme en boîte.
+	Dans le diagramme de Milne, la sphère isotherme singulière correspondait au point $\left(1,2\right)$. Dans cette nouvelle représentation elle
+	est associée au point $\left(\lambda = \frac{3/2 - u_m}{v_m} = 1/4, \mu = v_m = 2\right)$. De la même manière que sur le diagramme précédent,
+	la courbe tend en spiralant vers la sphère isotherme singulière, mais avant de l'atteindre, elle passe par un minimum de température, puis un
+	maximum d'énergie délimitant ainsi des intervalles possibles d'existence d'une sphère gravitationelle isotherme en boîte.
 
 \subsection{Stabilité de la sphère isotherme en boîte}
 \subsubsection{Description statistique}
@@ -48,16 +49,14 @@
 	Lorsque l'on progresse le long de la courbe calorique vers la partie en spirale, en partant des petites valeurs
 	de $X$ i.e. les grandes valeurs de $-\lambda$, nous passons successivement par les deux points remarquables: le
 	premier est caractérisé par une tangente horizontale et correspond à la valeur minimale qu'il est possible d'imposer à
-	la température, le second est caractérisé par une tangente verticale et correspond à la valeur minimale de
+	la température, le second est caractérisé par une tangente verticale et correspond à la valeur maximale de
 	l'énergie susceptible d'être atteinte par une sphère isotherme de masse donnée et contenue dans une boîte de
 	rayon fixé.
 	
 	Les deux points correspondants et leurs tangentes ont été représentés sur la courbe calorique figure~\ref{Ener}.
 	
-	De nombreuses analyses dynamiques ont été menées concernant ces limites
-	et ont révélées un lien étroit avec la stabilité du système. Une
-	approche simple de cette problématique est d'étudier le constraste de
-	densité de la sphère et son influence.
+	De nombreuses analyses dynamiques ont été menées concernant ces limites et ont révélé un lien étroit avec la stabilité du système. Une
+	approche simple de cette problématique est d'étudier le constraste de densité de la sphère et son influence.
 	
 \subsection{De l'importance du contraste de densité\label{contraste-dens-SIB}}
 	La densité de la sphère isotherme s'écrit:
@@ -70,7 +69,7 @@
 		\rho^s(x) = e^{-h(x)}=\frac{u(x) v(x)}{x^2}
 	\end{align}
 	Par définition, ou en utilisant les expressions asymptotiques de $u$ et $v$ en $x=0$, nous avons $\rho^s(0)=1$.
-	Au bord du système, nous avons par contre $\rho^s(X) =u_m v_m x^{-2}$, la relation~\ref{uv_max} permet donc d'écrire:
+	Au bord du système, nous avons par contre $\rho^s(X) =u_m v_m X^{-2}$, la relation~\refeq{uv_max} permet donc d'écrire:
 	\begin{align*}
 		\rho^s(X) = \mu X^{-2}\left(\frac{3}{2} - \lambda\mu\right) \notag
 	\end{align*}
@@ -79,13 +78,17 @@
 		\R = \frac{\rho(0)}{\rho(R)} = \frac{\rho^s(0)}{\rho^s(X)} = \frac{X^2}{\mu\left(\frac{3}{2} - \lambda\mu\right)}
 	\end{align}
 
-	Il est possible de déterminer numériquement les coordonnées des points de tangentes remarquables et donc en déduire les valeurs correspondantes du contraste de densité :
+	Il est possible de déterminer numériquement les coordonnées des points de tangentes remarquables et donc en déduire les valeurs
+	correspondantes du contraste de densité :
 	\begin{itemize}
-		\item La tangente horizontale est obtenue pour une sphère telle que $X = 9,00$ avec $\(\lambda, \mu\) = \left(-0,199; 2,518\right)$. Son contraste de densité est de $\R^\beta_c \thickapprox 32,1$.
-		\item La tangente verticale est obtenue pour une sphère telle que $X = 34,3$ avec $\(\lambda, \mu\) = \left(-0,335; 2,032\right)$. Son  contraste de densité est de $\R^H_c \thickapprox 709$.
+		\item La tangente horizontale est obtenue pour une sphère telle que $X = 9,00$ avec $\(\lambda, \mu\) = \left(-0,199; 2,518\right)$.
+			Son contraste de densité est de $\R^\beta_c \thickapprox 32,1$.
+		\item La tangente verticale est obtenue pour une sphère telle que $X = 34,3$ avec $\(\lambda, \mu\) = \left(-0,335; 2,032\right)$. Son
+			contraste de densité est de $\R^H_c \thickapprox 709$.
 	\end{itemize}
 	
-	Il est même possible d'obtenir numériquement les courbes $\lambda(\R)$ et $\mu(\R)$, c'est l'objet de la figure~\ref{Cal_stab}. L'analyse de stabilité est alors possible. 
+	Il est même possible d'obtenir numériquement les courbes $\lambda(\R)$ et $\mu(\R)$, c'est l'objet de la figure~\ref{Cal_stab}. L'analyse de
+	stabilité est alors possible. 
 	\begin{figure}[h!]
 		\centering \includegraphics[scale=1.00]{graphe/calorique_stabilite.pdf}
 		\caption{Courbes $\lambda(\R)$ et $\mu(\R)$ tirées de l'article \cite{2011MNRAS.414.2728Y}}
@@ -95,8 +98,8 @@
 	borné correspond à la sphère isotherme en boite. Tous les points de la courbe $\lambda(\R)$ correspondent à
 	$\delta S=0$, au point critique $B$ de coordonnées $\R=709$ et $\lambda=-0.335$ nous avons $\frac{d\lambda}{d\R}=0$ et
 	$\delta^2 S=0$ (voir \cite{1968MNRAS.138..495L}, \cite{1989ApJS...71..651P} et \cite{1990PhR...188..285P}). Dans
-	ces deux derniers articles Padmanabhan (\cite{1989ApJS...71..651P} et \cite{1990PhR...188..285P}) montre que
-	tous les points de la courbe $\lambda(\R)$ situés avant $B$ , i.e. $\R < 709$, correspondent à des situations
+	les deux derniers de ces articles, Padmanabhan montre que
+	tous les points de la courbe $\lambda(\R)$ situés avant $B$, i.e. $\R < 709$, correspondent à des situations
 	telles que $\delta^2 S>0$, ils correspondent à des maxima locaux d'entropie et sont donc des configurations
 	stables. Par contre tout ceux situés après le point $B$, i.e. $\R > 709$, sont toujours instables : soit parce
 	que $\delta^2 S<0$ dans un premier temps (\cite{1989ApJS...71..651P}), soit pour des raisons dynamiques plus
@@ -109,7 +112,8 @@
 	correspondent à des sphères isothermes en boite stables. Au delà du point $A$, i.e. $\R>32,1$, le système est
 	instable dans l'ensemble canonique.
 	
-	De manière concrète nous retiendrons que l'étude de la stabilité d'une sphère isotherme en boite est de manière générale contrôlée par son contraste de densité et l'étude des tangentes horizontales ou verticales de sa courbe calorique.   
+	De manière concrète nous retiendrons que l'étude de la stabilité d'une sphère isotherme en boite est de manière générale contrôlée par son
+	contraste de densité et l'étude des tangentes horizontales ou verticales de sa courbe calorique.   
 	\begin{itemize}
 
 		\item Pour une boite isolée aux parois réfléchissantes (situation microcanonique), le point critique de
