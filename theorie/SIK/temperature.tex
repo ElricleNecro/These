@@ -1,13 +1,13 @@
 
 La température cinétique d'un système autogravitant est la valeur moyenne dans l'espace des positions du carré de la
 vitesse d'une particule test. Comme $\vec p = m\vec v $, si $f(\vec r, \vec p, t)$ est la fonction de distribution de ce
-système et $\rho(\vec r , t)=m \int f(\vec r, \vec p, t) d\vec p$ sa densité, alors sa température cinétique $T(\vec r ,
+système et $\rho(\vec r , t)= \int f(\vec r, \vec p, t) d\vec p$ sa densité, alors sa température cinétique $T(\vec r ,
 t)$ est définie par la relation
 \begin{align}
 	T(\vec r , t)=\dfrac{\int v^2 f(\vec r, \vec p, t) d\vec p}{\int f(\vec r, \vec p, t) d\vec p}=\dfrac{1}{m\rho(\vec r, t)} \int p^2 f(\vec r, \vec p, t) d\vec p
 \end{align}
 Un rapide calcul montre que dans la cas de la sphère isotherme~\refeq{sph-iso}, la température $T(\vec r ,
-t)=(k_B\beta)^{-1}$ est constante en chaque point, d'où le nom de ce système. Nous avons vu que la sphère de King est
+t)=(k_B\beta)^{-1}$ est constante en chaque point, d'où le nom de ce système. Nous avons vu que la sphère de King peut s'apparenter à
 une sphère isotherme tronquée en énergie, étudions l'influence de cette troncature sur la température.
  
 \subsection{Calcul de la température en chaque point}
@@ -18,9 +18,10 @@ Dans le cas de la fonction de distribution de King, nous avons:
 	=
 	4\pi \dfrac{\rho_0}{\(2\pi m\sigma^2\)^{3/2}} \int_0^{p_l}\( e^{\frac{E_l-E}{\sigma^2}} - 1\)  p^4 \ddp 
 \end{align}
-Puisque l'énergie moyenne par particule $E = \dfrac{p^2}{2m} + m\psi$ ne dépend que des modules $r$ de $\vec r$ et $p$
-de $\vec p$, la température ne dépend spatialement que de $r$. Nous avions vu que $p_l = \sqrt{2m\(E_l - m\psi(r)\)} =
-\sqrt{2m\phi(r)}$, une intégration par parties et quelques lignes de calcul donnent alors directement:
+% Puisque l'énergie moyenne par particule $E = \dfrac{p^2}{2m} + m\psi$ ne dépend que des modules $r$ de $\vec r$ et $p$
+% de $\vec p$, la température ne dépend spatialement que de $r$. Nous avions vu que
+avec $p_l = \sqrt{2m\(E_l - m\psi(r)\)} =
+\sqrt{2m\phi(r)}$. Une intégration par parties et quelques lignes de calcul donnent alors directement:
 \begin{align}
 	\begin{split}
 		\int_0^{p_l} p^2 f_K\(E\) d\vec{p} =
@@ -131,7 +132,7 @@ Il est clair que pour la sphère isotherme $T_{\mathrm{moy}}=T(r)=T$; pour la sp
 	    = \frac{3\sigma^2}{m} - \frac{32\pi^2\rho_0}{5 M m\(\pi \sigma^2\)^{3/2}}\displaystyle{\int}_0^R r^2 \(\phi(r)\)^{5/2}
 			dr
 \end{align}
-Cette relation montre que la température moyenne d'un modèle de King est toujours inférieure à celle des modèles de sphère isotherme vu précédemment.
+Cette relation montre que la température moyenne d'un modèle de King est toujours inférieure à celle des modèles de sphère isotherme vus précédemment.
 
 \begin{figure}[h!]
 	\centering \includegraphics{graphe/king_temperature_moy_v3.pdf}
@@ -141,5 +142,5 @@ Cette relation montre que la température moyenne d'un modèle de King est toujo
 \end{figure}
 La courbe~\ref{courbe::Moy} présente la variation de la température moyenne. Il est intéressant de noter que pour $W_0$ dans
 l'intervalle $[5; 20]$ la température moyenne ne varie plus, nous confirmant ce que l'on pouvait voir sur la
-figure~\ref{King_Modele-test}: passé une valeur de $W_0$, tous les King semblent avoir la même température.
+figure~\ref{kingisotherme}: passé une valeur de $W_0$, tous les King semblent avoir la même température.
 
