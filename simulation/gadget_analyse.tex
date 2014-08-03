@@ -1,4 +1,5 @@
-\chapter{Étude numérique}
+% \chapter{Étude numérique}
+\chapter{Outils numériques}
 \label{Chap::Simu::Analysis}
 	\minitoc
 
@@ -106,7 +107,9 @@
 			($k=2$), cet arbre est un octree. Le principe est de subdiviser un espace cubique en 8 sous-cubes, eux-mêmes subdivisés en 8
 			nouveaux sous-cubes... Chaque cube est à nouveau divisé s'il contient encore trop de particules.
 			% Les auteurs arrêtent de diviser un cube quand il ne contient plus qu'une particule;
-			En pratique, nous nous arrêterons lorsqu'un cube contiendra au plus $N_\mathrm{max}=15$ particules. Les carrés et les points
+			% En pratique,
+			Dans notre propre mise en œuvre de cette algorithme,
+			nous nous arrêterons lorsqu'un cube contiendra au plus $N_\mathrm{max}=15$ particules. Les carrés et les points
 			de la figure~\ref{Fig::KDTree::Parcours} montrent la structure d'un quadtree ($k=2$, $d=2$) se construisant de la même façon.
 			% La figure~\ref{Fig::KDTree::Parcours} montre la structure d'un quadtree (un kd-tree à 2 dimension) se construisant de la
 			% même façon.
@@ -191,8 +194,11 @@
 			Comme nous souhaitons observer l'effet d'un bain thermique sur un \textsc{sag}, nous aimerions pouvoir contrôler l'effet des
 			collisions sur le système, et notamment diminuer leurs effets.
 			Pour cela, nous allons jouer sur
-			le paramètre de lissage de la force $\epsilon$ dans le potentiel
-			effectif suivant:
+			le paramètre de lissage de la force $\epsilon$
+			dont l'effet est d'adoucir le potentiel gravitationnel à petite échelle, ce qui peut s'exprimer par exemple, dans le cas le
+			plus simple, par le potentiel effectif suivant:
+			% dans le potentiel
+			% effectif suivant:
 			% \todo[inline]{Je ne met pas la formule de Springel par ce que je ne la comprend pas vraiment. Il
 			% utilise la convolution d'un dirac représentant la particule avec un "spline-kernel". Par
 			% contre, pour la définition du $\epsilon$, c'est censé être équivalent à ceci.}
@@ -202,7 +208,7 @@
 			\begin{align}
 				% \psi(r_{ij} \sim 0) = - G \dfrac{m_i}{r_{ij} + \epsilon}
 				% \psi(r_{i}) = - G \sum_{j \neq i}^{N}\dfrac{m_i}{|r_{i}-r_j| + \epsilon}
-				\psi(r_{i}) = - G \sum_{j \neq i}^{N}\dfrac{m_i}{r_{ij} + \epsilon}
+				\psi(r_{i}) = - G \sum_{j \neq i}^{N}\dfrac{m_i}{\(r_{ij}^2 + \epsilon^2\)^{1/2}}\label{Eq::SoftPot}
 			\end{align}
 			où $r_{ij}$ est le module de distance entre les particules $i$ et $j$.
 			% Afin que la limite fluide soit suffisamment bien approché, nous devons choisir ce
@@ -213,8 +219,7 @@
 			\begin{align*}
 				\alpha = \dfrac{\rho_\epsilon}{\rho_\mathrm{moy}}
 			\end{align*}
-			où $\rho_\epsilon$ est la densité d'un volume de rayon $\epsilon$ suffisamment petit pour être
-			supposé homogène et $\rho_\mathrm{moy}$ la densité
+			où $\rho_\epsilon$ est la densité d'un petit volume de rayon $\epsilon$ et $\rho_\mathrm{moy}$ la densité
 			moyenne de l'objet. Toutes les particules ayant la même masse, nous pouvons écrire:
 			\begin{align}
 				N_\epsilon    = \alpha N \(\dfrac{\epsilon}{R} \)^{3}
@@ -222,8 +227,9 @@
 			$N$ étant le nombre total de particules de l'amas. Les paramètres $N$, $R$ et $\alpha$ étant fixés, nous sommes
 			ainsi libres de choisir $N_\epsilon$ ou $\epsilon$ pour répondre à nos besoins.
 
-			Le code \textsc{Gadget-2} utilise une approximation plus sophistiquée consistant à approximer les particules par des nuages de
-			taille $\epsilon$ et dont le profil suit une fonction \verb|spline|.
+			Notons que le code \textsc{Gadget-2} utilise une expression différente de l'équation~\refeq{Eq::SoftPot}, que nous n'avons pas
+			écrite par simplicité, consistant à approximer les particules par des nuages de
+			taille $\epsilon$ et dont le profil suit une fonction spline.
 
 			% \begin{align}
 				% \alpha = \dfrac{\rho_\epsilon}{\rho_\mathrm{moy}} = \dfrac{\rho_\epsilon}{M} \frac{4}{3} \pi R^3
@@ -262,7 +268,7 @@
 					% m\dfrac{\vec{v}_\mathrm{new} - \vec{v}_\mathrm{old}}{\Delta t} = \vec{f}(\vec{r}_\mathrm{old}) = m\vec{a}
 				% \end{cases}
 			% \end{align*}
-			Le \sm est schéma d'intégration d'ordre 2. Il a la particularité d'introduire un décalage entre l'évaluation des positions et
+			Le \sm est un schéma d'intégration symplectique d'ordre 2. Il a la particularité d'introduire un décalage entre l'évaluation des positions et
 			des vitesses: les positions vont être évaluées tous les $n\Delta t$ tandis que les vitesses vont l'être tout les
 			$(n+\frac{1}{2})\Delta t$. Ce schéma d'intégration s'écrit:
 			\begin{align*}
@@ -272,7 +278,7 @@
 					\vec{r}_{n+1} = \vec{r}_n +\Delta t\vec{v}_{n+1/2}
 				\end{cases}
 			\end{align*}
-			avec $\vec{a}$ l'accélération subit par la particule. La figure~\ref{Fig::Num::LeapFrog} illustre le fonctionnement de ce
+			où $\vec{a}$ est l'accélération. La figure~\ref{Fig::Num::LeapFrog} illustre le fonctionnement de ce
 			schéma.
 			\begin{figure}[htpb]
 				\centering \begin{tikzpicture}
@@ -305,51 +311,84 @@
 			\end{figure}
 
 
-			L'algorithme utilisé par Gadget est basé sur ce schéma \sm.
+			L'algorithme utilisé par Gadget est basé sur ce schéma \sm, excepté que les vitesses sont actualisées par demi pas de temps
+			pour permettre leur synchronisation avec les positions, comme illustré par la figure~\ref{Fig::Num::GadSchem}.
 			% Avec le \sm, nous faisons évoluer les positions et vitesses de chaque particules d'un pas de temps $\Delta t$ en même temps.
-			Le prédicteur-correcteur utilisé par \textsc{gadget-2} consiste à faire évoluer, dans un premier temps, les vitesses d'un demi
-			pas de temps $\frac{\Delta t}{2}$ afin de les synchroniser avec positions. Ces vitesses sont ensuite utilisées pour incrémenter
-			d'un pas de temps les positions. Finalement, il incrémente de nouveau les vitesses d'un demi pas de temps, les désynchronisant
-			de nouveau. L'algorithme d'intégration est illustré sur la figure~\ref{Fig::Num::GadSchem}.
+			% Le prédicteur-correcteur utilisé par \textsc{gadget-2} consiste à faire évoluer, dans un premier temps, les vitesses d'un demi
+			% pas de temps $\frac{\Delta t}{2}$ afin de les synchroniser avec positions. Ces vitesses sont ensuite utilisées pour incrémenter
+			% d'un pas de temps les positions. Finalement, il incrémente de nouveau les vitesses d'un demi pas de temps, les désynchronisant
+			% de nouveau. L'algorithme d'intégration est illustré sur la figure~\ref{Fig::Num::GadSchem}.
 			\begin{figure}[htpb]
+				% \centering \begin{tikzpicture}
+					% \draw[dashed] (-1, 0) -- (0, 0);
+					% \draw (0, 0) -- (5, 0);
+					% \draw[->, dashed] (5, 0) -- (6, 0) node [below right] {$t$};
+
+					% \draw (2, 0.1) -- (2, -0.1) node[above, fill=white] at (2, 0) {$\vec{r}_2$};
+					% \draw[dotted] (2, 0) -- (2, -1) node[below] {$t$};
+					% \draw (4, 0.1) -- (4, -0.1) node[above, fill=white] at (4, 0) {$\vec{r}_1$};
+					% \draw[dotted] (4, 0) -- (4, -1) node[below] {$t+\Delta t$};
+
+					% \draw (1, 0.1) -- (1, -0.1) node[below, fill=white] at (1, 0) {$\vec{v}_{1}$};
+					% \draw[dotted] (1, 0) -- (1, -1.5) node[below] {$t-\frac{\Delta t}{2}$};
+					% \draw (2, 0.1) -- (2, -0.1) node[below, fill=white] at (2, 0) {$\vec{v}_2$};
+					% % \draw[dotted] (3, 0) -- (3, -1.5) node[below] {$t+\Delta t$};
+					% \draw (3, 0.1) -- (3, -0.1) node[below, fill=white] at (3, 0) {$\vec{v}_{3}$};
+					% \draw[dotted] (3, 0) -- (3, -1.5) node[below] {$t+\frac{\Delta t}{2}$};
+
+					% % \path[->] (0.1, 0.5) edge [out=20, in=160] (1.9, 0.5);
+					% \path[->] (2.1, 0.5) edge [out=20, in=160] (3.9, 0.5);
+
+					% \path[->] (1.1, -0.5) edge [out=-20, in=-160] (1.9, -0.5);
+					% \path[->] (2.1, -0.5) edge [out=-20, in=-160] (2.9, -0.5);
+				% \end{tikzpicture}
 				\centering \begin{tikzpicture}
 					\draw[dashed] (-1, 0) -- (0, 0);
-					\draw (0, 0) -- (5, 0);
-					\draw[->, dashed] (5, 0) -- (6, 0) node [below right] {$t$};
+					\draw (0, 0) -- (7, 0);
+					\draw[->, dashed] (7, 0) -- (8, 0) node [below right] {$t$};
 
-					\draw (2, 0.1) -- (2, -0.1) node[above, fill=white] at (2, 0) {$\vec{r}_2$};
-					\draw[dotted] (2, 0) -- (2, -1) node[below] {$t$};
-					\draw (4, 0.1) -- (4, -0.1) node[above, fill=white] at (4, 0) {$\vec{r}_1$};
-					\draw[dotted] (4, 0) -- (4, -1) node[below] {$t+\Delta t$};
+					\draw (2, 0.1) -- (2, -0.1) node[above, fill=white] at (2, 0) {$\vec{r}_1$};
+					\draw[dotted] (2, 0) -- (2, -1.1) node[below, fill=white] {$t_1$};
+					\draw (4, 0.1) -- (4, -0.1) node[above, fill=white] at (4, 0) {$\vec{r}_2$};
+					\draw[dotted] (4, 0) -- (4, -0.9) node[below, fill=white] {$t_2=t_1+\Delta t$};
+					\draw (6, 0.1) -- (6, -0.1) node[above, fill=white] at (6, 0) {$\vec{r}_3$};
+					\draw[dotted] (6, 0) -- (6, -1.1) node[below, fill=white] {$t_2+\Delta t'$};
 
-					\draw (1, 0.1) -- (1, -0.1) node[below, fill=white] at (1, 0) {$\vec{v}_{1}$};
-					\draw[dotted] (1, 0) -- (1, -1.5) node[below] {$t-\frac{\Delta t}{2}$};
-					\draw (2, 0.1) -- (2, -0.1) node[below, fill=white] at (2, 0) {$\vec{v}_2$};
-					% \draw[dotted] (3, 0) -- (3, -1.5) node[below] {$t+\Delta t$};
-					\draw (3, 0.1) -- (3, -0.1) node[below, fill=white] at (3, 0) {$\vec{v}_{3}$};
-					\draw[dotted] (3, 0) -- (3, -1.5) node[below] {$t+\frac{\Delta t}{2}$};
+					\draw (2, 0.1) -- (2, -0.1) node[below, fill=white] at (2, 0) {$\vec{v}_{1}$};
+					\draw (3, 0.1) -- (3, -0.1) node[below, fill=white] at (3, 0) {$\vec{v}_{1/2}$};
+					\draw[dotted] (3, 0) -- (3, -1.6) node[below] {$t_1+\frac{\Delta t}{2}$};
+					\draw (4, 0.1) -- (4, -0.1) node[below, fill=white] at (4, 0) {$\vec{v}_{2}$};
+					\draw (5, 0.1) -- (5, -0.1) node[below, fill=white] at (5, 0) {$\vec{v}_{3/2}$};
+					\draw[dotted] (5, 0) -- (5, -1.6) node[below] {$t_2+\frac{\Delta t'}{2}$};
+					\draw (6, 0.1) -- (6, -0.1) node[below, fill=white] at (6, 0) {$\vec{v}_{3}$};
 
-					% \path[->] (0.1, 0.5) edge [out=20, in=160] (1.9, 0.5);
 					\path[->] (2.1, 0.5) edge [out=20, in=160] (3.9, 0.5);
+					\path[->] (4.1, 0.5) edge [out=20, in=160] (5.9, 0.5);
 
-					\path[->] (1.1, -0.5) edge [out=-20, in=-160] (1.9, -0.5);
-					\path[->] (2.1, -0.5) edge [out=-20, in=-160] (2.9, -0.5);
+					\path[->] (2.1, -0.6) edge [out=-20, in=-160] (2.9, -0.6);
+					\path[->] (3.1, -0.6) edge [out=-20, in=-160] (3.9, -0.6);
+					\path[->] (4.1, -0.6) edge [out=-20, in=-160] (4.9, -0.6);
+					\path[->] (5.1, -0.6) edge [out=-20, in=-160] (5.9, -0.6);
 				\end{tikzpicture}
-				\caption{Principe de fonctionnement du prédicteur-correcteur de \textsc{gadget-2} sur un pas de temps.\label{Fig::Num::GadSchem}}
+				\caption{Principe de fonctionnement de l'intégrateur temporel de \textsc{gadget-2} sur un pas de temps, qui permet de
+				synchroniser les positions et les vitesses et ainsi de mettre en œuvre un pas de temps variable avec $\Delta t' \neq
+				\Delta t$.\label{Fig::Num::GadSchem}}
 			\end{figure}
 			% Le prédicteur-correcteur utilisé est la combinaison suivante de deux opérateurs:
 			% \begin{align*}
 				% U(\Delta t) = K\(\frac{\Delta t}{2}\)D\(\Delta t\)K\(\frac{\Delta t}{2}\)
 			% \end{align*}
 			% où $\Delta t$ est le pas de temps d'une particule, $K$ l'opérateur permettant d'incrémenter la vitesse et $D$ la position.
-			Dans le même temps, le code \textsc{Gadget-2} opère une gestion fine du pas de temps $\Delta t$:
+			% Dans le même temps, le code \textsc{Gadget-2} opère une gestion fine du pas de temps $\Delta t$:
+			Cette modification simple du \sm permet d'utiliser un pas de temps lentement variable, dont la gestion fine est contrôlée par
+			l'accélération:
 			\begin{align*}
 				\Delta t = \sqrt{\dfrac{2\eta\epsilon}{|\vec{a}|}}
 			\end{align*}
-			de manière à ce qu'il reste dans un intervalle de contrôle.
+			% de manière à ce qu'il reste dans un intervalle de contrôle.
 			Le paramètre $\eta$ permet de contrôler la précision de l'intégration. %, $\vec{a}$ est l'accélération.
 
-			L'intérêt de ce schéma d'intégration est qu'il assure une excellente gestion de l'énergie du système; ce type d'intégrateur est dit symplectique.
+			% L'intérêt de ce schéma d'intégration est qu'il assure une excellente gestion de l'énergie du système; ce type d'intégrateur est dit symplectique.
 
 			% Il reste à déterminer comment le pas de temps $\Delta t$ est calculé dans Gadget-2. La première chose à
 			% laquelle faire attention est que chaque particules a son propre pas de temps. Ce pas de temps
@@ -456,7 +495,7 @@
 						v_{\mathrm{max}} = \sqrt{2\(\dfrac{E_l}{m} - \psi(0)\)}% > v_i &> - \sqrt{2\(\dfrac{E_l}{m} - \psi(0)\)} = - v_{\mathrm{max}}
 					\end{align}
 				% \item $R$
-					le rayon $R$ de la sphère est obtenu en résolvant numériquement
+					Le rayon $R$ de la sphère est obtenu en résolvant numériquement
 				% \item $R$ la distance maximum : cette distance est obtenue pour
 					% $m\psi(R) = E_l$.
 					$\rho(R) = 0$.
@@ -720,7 +759,7 @@
 				à la méthode décrite ici.}
 			\end{figure}
 			Le second graphique montre l'erreur relative en fonction du rayon. Nous
-			pouvons voir que l'accord entre les courbes théorique et calculées est toujours inférieur à $20\%$, sauf au centre et au bord
+			pouvons voir que l'accord entre les courbes théorique et calculées est toujours meilleur que $20\%$, sauf au centre et au bord
 			du système. Ces deux régions sont en général trop pauvres en particules pour que nous puissions y avoir une précision correcte
 			avec notre méthode de calcul.
 
@@ -728,6 +767,8 @@
 
 			% La partie la plus complexe de l'obtention des observables est le calcul de l'énergie.
 			Nous allons calculer le potentiel avec la méthode décrite dans la section~\ref{Sec::KdTree}.
+			La méthode en arbre décrite dans la section~\ref{Sec::KdTree} nous permet de calculer le potentiel gravitationnel avec
+			précision.
 			% Deux
 			% choix s'offrent à nous:
 			% \begin{itemize}
@@ -747,11 +788,11 @@
 		% particules avec celle dont nous voulons le potentiel. Lorsqu'un cube possède un diamètre angulaire trop
 		% faible, les particules qu'il contient sont ramenées à une macro particules ayant pour position leur centre
 		% de masse et comme masse la masse totale des particules du cube.
-			La figure~\ref{potentiel_5000} montre le potentiel calculé avec un angle d'ouverture de $0,5$, et sans lissage, superposé au
+			La figure~\ref{potentiel_5000} montre le potentiel obtenu avec un angle d'ouverture de $0,5$, et sans lissage, superposé au
 			modèle de King décrit plus haut. Le second graphique représente l'erreur relative en fonction du rayon sur la calcul du
 			potentiel. L'erreur sur le calcul est extrêmement faible.
 			\begin{figure}[htbp]
-				\centering \includegraphics{verif_potentiel_new_error.pdf}
+				\centering \includegraphics{verif_potentiel_new_error.png}
 				\caption{Comparaison entre le potentiel théorique (courbe rouge) et le potentiel donné par le
 					générateur (courbe bleue)\label{potentiel_5000}.}
 			\end{figure}
