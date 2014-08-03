@@ -15,8 +15,10 @@
 	\begin{align}
 		f^+(E) = \left(\frac{2\pi\alpha^2m}{\beta}\right)^{-3/2}e^{-\beta E}\times\mathbb{I}_{B_R}
 	\end{align}
-	où $\alpha$, en mètre, et $\beta=(k_B T)^{-1}$, en Joule, sont des multiplicateurs de Lagrange imposés
-	par les contraintes respectives de masse $M$ et d'énergie totale $H$ finie que nous imposons toujours au système.
+	où $\alpha$, et $\beta=(k_B T)^{-1}$, sont des multiplicateurs de Lagrange
+	% imposés par les
+	associés aux
+	contraintes respectives de masse $M$ et d'énergie totale $H$ finie que nous imposons toujours au système.
 	Ils assurent également la normalisation de la fonction de distribution.
 	% La quantité \mbox{$E = \frac{p^2}{2m} - m\psi(r)$} est l'énergie d'une particule test de masse $m$ se déplacant dans
 	% le potentiel $\psi$ créé par la sphère isotherme.
@@ -28,10 +30,10 @@
 	\end{align}
 	où nous avons utilisé l'adimensionnement  :
 	\begin{align}
-		x &= \frac{r}{r_0}\mathrm{ avec }\ r_0 = \sqrt{\frac{\alpha^3}{4\pi G m^2\beta}}e^{-\frac{m\beta\psi(0)}{2}} \label{toto11} \\
+		x &= \frac{r}{r_0} \quad \mathrm{avec} \quad r_0 = \sqrt{\frac{\alpha^3}{4\pi G m^2\beta}}e^{-\frac{m\beta\psi(0)}{2}} \label{toto11} \\
 		h &= m\beta\psi(x) - m\beta\psi(0) \label{toto12}
 		\end{align}
-		Il est important de noter que l'inconnue du problème $h(x)$ est différente de $y(x)$ utilisée pour la présentation du problème de la sphère isotherme illimitée. Nous avons ici $h(0) = 0$ alors que $y(0) = m\beta\psi(0)$.
+		Il est important de noter que l'inconnue du problème $h(x)$ est différente de la fonction $y(x)$ utilisée pour la présentation du problème de la sphère isotherme illimitée. Nous avons ici $h(0) = 0$ alors que $y(0) = m\beta\psi(0)$.
 		
 		En notant par un $^\prime$ toutes les dérivées par rapport à la variable $x$, nous introduisons les variables dites de \textsc{Milne :}
 		\begin{align}
@@ -60,7 +62,7 @@ La dérivée de $u$ s'obtient directement à partir de sa définition, nous trou
 	La courbe résultant de cette équation, tracée dans le plan $\left(u, v\right)$, forme le diagramme
 	de Milne. L'étude de ce diagramme permet d'accéder à de nombreuses caractéristiques de la sphère isotherme en
 	boîte. L'équation~\refeq{eqdudv} ne peut être résolue explicitement mais sa solution peut être obtenue
-	numériquement: il faut pour cela préciser les conditions au bord et au centre du système; ce qui est l'objet de la
+	numériquement: il faut pour cela préciser les conditions au bord et au centre du système, ce qui est l'objet de la
 	section suivante.
 	
 
@@ -94,7 +96,9 @@ La dérivée de $u$ s'obtient directement à partir de sa définition, nous trou
 	% solution est longue et finit par s'enrouler dans une spirale convergeant vers un point. Ce point correspond au
 	% cas $R\to\infty$ et donc celui de la \textsc{sis}.
 	
-	À l'inspection de ce diagramme et de ces droites, nous comprenons aisément que l'on ne peut pas mettre
+	% À l'inspection de ce diagramme et de ces droites,
+	En inspectant ce diagramme et ces droites,
+	nous comprenons aisément que l'on ne peut pas mettre
 	n'importe quelle sphère isotherme dans n'importe quelle boîte. %qu'elle boîte.
 
 	En effet, si l'on impose des valeurs de $R$,
@@ -128,6 +132,6 @@ Comme nous allons le voir dans la prochaine section, cette multiplicité de poss
 			\centering \includegraphics{graphe/milne_X300.pdf}
 		\end{minipage}
 		\caption{Diagramme de Milne pour $X=1$, $X=5$, $X=10$ et pour $X=300$. La sphère isotherme est
-		représenté par la courbe bleue, la courbe de Padmanabhan est en vert et la \textsc{sis} en rouge.}
+		représenté par la courbe bleue, la droite de Padmanabhan est en vert et la \textsc{sis} en rouge.}
 		\label{Milne}
 	\end{figure}
