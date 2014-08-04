@@ -2,17 +2,19 @@
 
 Les systèmes autogravitants possèdent plusieurs temps caractéristiques dont la connaissance est importante pour comprendre la dynamique.
 
-\subsection{Le temps de croisement et le temps dynamique}
+\subsection{Le temps dynamique}
 
 % Le temps de croisement $T_{cr}$ d'un système physique est défini comme le rapport d'une vitesse caractéristique par une taille caractéristique. La
 % vitesse $V$ est par exemple celle d'un constituant représentatif du système, ou une dispersion de vitesse $\sigma=\sqrt{\left\langle
 % V^{2}\right\rangle}$:
-Pour un système quelconque, le temps de croisement est défini comme le temps caractéristique que mettrait une particule à parcourir le système dans son ensemble. Il est défini
-comme le rapport entre une taille caractéristique et une vitesse caractéristique du système, typiquement la dispersion de vitesse du système $\sigma=\sqrt{\left\langle v^2\right\rangle}$:
-\begin{align*}
-	T_{cr}\propto\frac{R}{\sigma}%
-\end{align*}
-Le temps dynamique correspond au temps de croisement pour un système autogravitant isolé à l'équilibre. Le théorème du viriel donne:
+Le temps dynamique est le temps caractéristique que mettrait une particule à traverser le système ou à parcourir son orbite dans le système. Il est
+défini à partir du temps que mettrait une particule à parcourir le système dans son ensemble, ce dernier est le rapport entre une taille
+caractéristique et une vitesse caractéristique du système, typiquement la dispersion de vitesse du système $\sigma=\sqrt{\left\langle
+v^2\right\rangle}$:
+\begin{align}
+	T\propto\frac{R}{\sigma} \label{Eq::TempsCarac::Tcr}
+\end{align}
+Pour un système autogravitant isolé à l'équilibre. Le théorème du viriel donne:
 \begin{align*}
 	2E_{c}+E_{p}=0
 \end{align*}
@@ -24,7 +26,8 @@ le viriel donne donc:
 \begin{align*}
 	\sigma=\left(  \frac{GNm}{R}\right)  ^{1/2}=\left(  \frac{GM}{R}\right) ^{1/2}%
 \end{align*}
-En remplaçant la dispersion de vitesse $\sigma$ dans le temps de croisement par ce résultat, nous obtenons le temps dynamique:
+% En remplaçant la dispersion de vitesse $\sigma$ dans le temps de croisement par ce résultat, nous obtenons le temps dynamique:
+En remplaçant la dispersion de vitesse $\sigma$ dans le temps~\refeq{Eq::TempsCarac::Tcr} par ce résultat, nous obtenons le temps dynamique:
 \begin{align*}
 	T_{d}\propto\sqrt{\frac{R^{3}}{GM}}%
 \end{align*}
@@ -34,10 +37,10 @@ Le rapport $R^{3}/M$ est proportionnel à l'inverse de la densité moyenne de ma
 \end{align}
 
 Le problème de la relation~\refeq{def:T-dyn_tcr} est la définition précise de la densité moyenne. Si l'on se contente d'un ordre de grandeur pour $T_d$,
-la question ne se pose pas mais pour l'analyse précise de simulation il faudra faire un choix. Nous aurons l'occasion d'y revenir dans la
+la question ne se pose pas mais pour l'analyse précise de simulation, il faudra faire un choix. Nous aurons l'occasion d'y revenir dans la
 section~\ref{Sec::2ndStudy} du chapitre~\ref{Chap::Resultat}.
 Une option est de se donner un potentiel ou une répartition de masse et de calculer $\bar{\rho}$. % dans un sens statistique.
-Nous pouvons alors écrire l'équation du mouvement d'une particule test à l'intérieur du système.
+% Nous pouvons alors écrire l'équation du mouvement d'une particule test à l'intérieur du système.
 % Plusieurs temps caractéristiques apparaissent alors:
 % \begin{itemize}
 
@@ -92,7 +95,7 @@ grandeurs et en suivant le calcul de S. Chandrasekhar, nous introduisons le loga
 \begin{align*}
 	\ln\Lambda=\ln\left(\frac{p_{\max}}{p_{\min}}\right)
 \end{align*}
-où $p_\mathrm{max}$ et $p_\mathrm{min}$ vont être des grandeurs caractéristiques du système.
+où $p_\mathrm{max}$ et $p_\mathrm{min}$ sont des grandeurs caractéristiques du système.
 % et utiliseront le fait que $p_{\max}=r$ tandis que $p_{\min}$ peut correspondre au rayon d'une particule test.
 % que nous estimons par la relation crue%
 % \begin{align*}
