@@ -44,7 +44,7 @@ La plupart de nos expériences ont été réalisées avec des bains plus froids 
 denses.
 
 Les raisons de cette dernière limitation sont simple. La méthode particulaire utilisée pour modéliser notre bain
-thermique dans de bonnes conditions se serait révélée trop couteuse avec un contraste de densité plus faible entre le bain et la structure
+thermique dans de bonnes conditions se serait révélée trop coûteuse avec un contraste de densité plus faible entre le bain et la structure
 autogravitante.
 % Les raisons de cette limitation sont doubles. Tout d'abord, il est physiquement raisonnable de penser qu'une structure formée, cohérente et à
 % l'équilibre, soit dans ce contexte, plus chaude que son environnement. Par ailleurs, la méthode particulaire utilisée pour modéliser notre bain
@@ -103,7 +103,10 @@ Parallèlement à cette étude dynamique, nous avons conduit une
 comparaison entre un code résolvant l'équation de Vlasov pour un
 système sphérique et le treecode \textsc{Gadget-2}. Nous avons montré que
 l'accord entre ces deux codes était étonnamment bon, même à
-faible rapport du viriel. 
+faible rapport du viriel,
+ce qui montre que les simulations $N$-corps sont capables de suivre avec précision la
+structure fine
+de l'espace des phases, mais il est nécessaire d'utiliser un grand nombre de particules et cela d'autant plus que le système est froid.
 
 
 \section{Perspectives}
@@ -137,7 +140,7 @@ Finalement, les principales pistes envisageables pour tenter de
 mettre en évidence numériquement l'instabilité \textsc{ch4}  est
 l'augmentation soit de la température du bain, soit de sa densité dans nos simulations. Cette
 augmentation pourra être effectuée dans le cadre particulaire
-proposé ici, elle sera alors très couteuse; elle pourra également
+proposé ici, elle sera alors très coûteuse; elle pourra également
 être envisagée dans le cadre d'une méthode numérique
 adaptée, elle sera alors moins couteuse mais nécessitera le
 développement d'un code spécifique.
