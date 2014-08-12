@@ -90,7 +90,7 @@
 			g(r) = \mathrm{erf}\( \dfrac{R - r }{ r_\epsilon }\) + 1
 		\end{align*}
 		avec $R$, le rayon de l'objet choisi égal à $2$ et $r_\epsilon=0.5$. Pour corriger des effets de cette apodisation, la masse totale est renormalisée
-		à posteriori. Cette apodisation sera bien entendu appliquée également aux conditions initiales des simulations $N$-corps.
+		a posteriori. Cette apodisation sera bien entendu appliquée également aux conditions initiales des simulations $N$-corps.
 
 
 
@@ -108,7 +108,7 @@
 	% est égale à $G=1$.
 
 	Pour conduire les comparaisons, les simulations \textsc{Vlasolve} réalisées ont une grille de résolution 
-	$\(N_r, N_v, N_j\) = \(1024, 1024, 512\)$ et un pas de temps $\Delta t=5\times 10^{-4}$. Les simulations \textsc{Gadget-2}, quant à elles, comportent $10^6$ de particules,
+	$\(N_r, N_v, N_j\) = \(1024, 1024, 512\)$ et un pas de temps $\Delta t=5\times 10^{-4}$. Les simulations \textsc{Gadget-2}, quant à elles, composées de $10^6$ particules,
 	utilisent un paramètre de lissage de la force $\epsilon=10^{-3}$ et un pas de temps maximum de $\Delta t = 0.1$.\footnote{Sachant que le temps dynamique initiale est de l'ordre de $2\pi$.}
 	Les autres paramètres de \textsc{Gadget-2} sont
 	ceux par défaut, notamment l'angle d'ouverture $\theta=0.5$ et la tolérance sur l'erreur {\tt ErrTolForceAcc} $= 0.005$ pour le calcul de la force.
@@ -124,18 +124,22 @@
 		Comme mentionné dans l'introduction de ce chapitre, la sphère de Hénon est connue pour préserver la symétrie sphérique. L'hypothèse de la
 		sphéricité étant un élément fondamental de nos analyses, nous allons donc vérifier sa validité dans nos simulations $N$-corps. Cela est fait dans les
 		figures~\ref{Fig::VlaGad::SpheTest::AR} et~\ref{Fig::VlaGad::SpheTest::AR0.1} pour $\gamma=-0.5$ et $\gamma=-0.1$, respectivement. En accord avec les
-		résultats de la littérature, les rapports des valeurs propres du tenseurs d'inertie restent très proches de $1$ avec un écart maximum
+		résultats de la littérature, les rapports des valeurs propres du tenseur d'inertie restent très proches de $1$ avec un écart maximum
 		de l'ordre du pourcent pour $\gamma=-0.5$ et de $3\%$ pour $\gamma=-0.1$.
 
 		L'analyse des propriétés d'ellipticité du système peut être complétée par la
 		mesure de l'anisotropie dans l'espace des vitesses $\beta$. En effet, cette dernière, si elle est trop prononcée, peut être la source d'instabilités
 		d'orbites
-		radiales (voir~\citet{polyach}). Nos conditions initiales imposent $\beta=0$. La figure~\ref{Fig::VlaGad::SpheTest::Aniso} montre que pour
+		radiales (voir la section~\ref{Chap::Sec::ROI}). Nos conditions initiales imposent $\beta=0$. La figure~\ref{Fig::VlaGad::SpheTest::Aniso} montre que pour
 		$\gamma=-0.5$, $\beta$ reste très proche de $0$ et donc que le caractère isotropique du système dans l'espace des vitesses est presque parfaitement
 		préservé. En revanche, pour $\gamma=-0.1$ (figure~\ref{Fig::VlaGad::SpheTest::Aniso0.1}), $\beta$ devient positif, plus particulièrement au moment
-		du croisement des trajectoires ($t\sim 3$) puis son amplitude diminue et se stabilise à $\beta\simeq0.1$.
-		Cela veut dire que la composante radiale des vitesses est significativement amplifiée par rapport à la composante tangentielle, mais cette
-		amplification est insuffisante pour provoquer l'instabilité d'orbites radiales, comme attendu d'après les discussions de la
+		du croisement des trajectoires ($t\sim 3$) puis son amplitude diminue et se stabilise à $\beta\simeq0.4$.
+		Cela veut dire que la composante radiale des vitesses est significativement amplifiée par rapport à la composante tangentielle,
+		mais les valeurs propres du tenseurs d'inertie ne montrent pas d'évolution significative. Le système ne développe donc pas d'instabilité d'orbites radiales
+		essentiellement parce qu'il n'y a pas de germe sur laquelle elle pourrait se développer,
+		% mais cette
+		% amplification est insuffisante pour provoquer l'instabilité d'orbites radiales,
+		comme attendu d'après les discussions de la
 		section~\ref{Chap::Sec::ROI}.
 
 		En conclusion, nous pouvons considérer que nos sphères de Hénon conservent suffisamment leur caractère sphérique pour pouvoir sans crainte effectuer
@@ -178,13 +182,13 @@
 				\end{minipage}
 				\begin{minipage}{0.44\linewidth}
 					\begin{center}
-					\centering \includegraphics[scale=0.85]{{vlasov_gadget/Anisotropy_0.5}.pdf}
+					\centering \includegraphics[scale=0.85]{{vlasov_gadget/aniso_0.5}.pdf}
 					\centering \caption{Évolution de l'anisotropie pour $\gamma=-0.5$.\label{Fig::VlaGad::SpheTest::Aniso}}
 					\end{center}
 				\end{minipage}\hfill\hspace{-0.5cm}
 				\begin{minipage}{0.44\linewidth}
 					\begin{center}
-					\centering \includegraphics[scale=0.85]{{vlasov_gadget/Anisotropy_0.1}.pdf}
+					\centering \includegraphics[scale=0.85]{{vlasov_gadget/aniso_0.1}.pdf}
 					\centering \caption{Évolution de l'anisotropie pour $\gamma=-0.1$.\label{Fig::VlaGad::SpheTest::Aniso0.1}}
 					\end{center}
 				\end{minipage}
@@ -203,7 +207,7 @@
 		au même endroit.
 
 		Cette désynchronisation n'apparait pas dans les simulations présentées
-		dans C2PS. Les principales différences entre les simulations présentées dans ce chapitre et celles de l'article sont le paramètre de lissage de la force $\epsilon$ et le pas de temps
+		dans C2PSS. Les principales différences entre les simulations présentées dans ce chapitre et celles de l'article sont le paramètre de lissage de la force $\epsilon$ et le pas de temps
 		maximal autorisé. La figure~\ref{Fig::ValGad::0.5::SoftAll} montre que $\epsilon$ n'a pas d'influence importante sur la dynamique.
 		La seule explication du désaccord observé
 		est donc le pas de temps, dix fois supérieur ici par rapport aux simulations montrées dans C2PSS.
@@ -445,7 +449,7 @@
 
 		Dans C2PSS, des analyses quantitatives supplémentaires sont réalisées pour compléter l'inspection visuelle de la fonction de distribution dans l'espace des phases.
 		Pour réaliser ces mesures additionnelles, de nouveaux estimateurs statistiques sont introduits: des corrélateurs et des estimateurs de l'entropie, tous deux basés sur
-		une écriture de la vraisemblance que les simulations $N$-corps représentent des réalisations localement Poissoniennes des simulations Vlasov.
+		une écriture de la vraisemblance que les simulations $N$-corps représentent des réalisations localement poissoniennes des simulations Vlasov.
 		L'analyse statistique confirme les impressions visuelles et apporte quelques informations supplémentaires. Notamment, on remarque que pendant la phase de relaxation,
 		l'accord entre les simulations $N$-corps et les simulations Vlasov se dégrade temporairement. Cet évènement est de plus faible amplitude et apparaît plus
 		tardivement quand le nombre de particules augmente.
