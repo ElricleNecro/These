@@ -80,8 +80,8 @@ même masse.
 
 \section{Étude préliminaire}
 
-	Une première série de simulations a consisté à placer un modèle de King, de paramètre $W_0 = 5,2$, $\sigma_c = 2,9\
-	\mathrm{km}.\mathrm{s}^{-1}$ et $r_c = 3,5\ \mathrm{pc}$, dans un thermostat. Les paramètres de chaque simulation étaient la température du
+	Une première série de simulations a consisté à placer un modèle de King, de paramètre $W_0 = 5.2$, $\sigma_c = 2.9\
+	\mathrm{km}.\mathrm{s}^{-1}$ et $r_c = 3.5\ \mathrm{pc}$, dans un thermostat. Les paramètres de chaque simulation étaient la température du
 	bain, la taille de la boîte et le nombre de particules utilisées dans chacun des deux systèmes. La taille de la boîte nous permet de jouer sur
 	la densité du bain. La température était calculée pour être un multiple $k$ de la température moyenne de la sphère de King initiale. Nous
 	avons fait varier $k$ dans l'intervalle $10^{-3}$ à $10^5$. Chaque configuration initiale a évolué sur des périodes de temps allant de $10T_d$
@@ -97,24 +97,24 @@ même masse.
 
 \section{Seconde étude}\label{Sec::2ndStudy}
 
-	Une seconde série de simulations est construite en utilisant une sphère Hénon de rayon $R=2$, de masse $M=1$, de viriel $\gamma=-0,5$,
+	Une seconde série de simulations est construite en utilisant une sphère Hénon de rayon $R=2$, de masse $M=1$, de viriel $\gamma=-0.5$,
 	contenant $N_H = 30000$ particules et placée dans un réservoir thermique. Nous utiliserons ici le même système d'unité que dans le
 	chapitre~\ref{Chap::VlasovGadget}, dans lequel le temps dynamique du \textsc{sag} est $T_d^{t=0} = 2\pi$. De la même façon que lors de l'étude
 	précédente, nous allons utiliser les caractéristiques du réservoir comme paramètres des simulations: le nombre de particules $N_b$, la taille
 	du cube $R_c$ et sa température $\sigma_c$. Globalement l'évolution dynamique de ce système montre toujours deux phases successives.
 
-	Dans un premier temps, la sphère de Hénon s'effondre et forme, comme attendu pour $\gamma=-0,5$ (\citet{roy}, \citet{Joyceetal}), une
+	Dans un premier temps, la sphère de Hénon s'effondre et forme, comme attendu pour $\gamma=-0.5$ (\citet{roy}, \citet{Joyceetal}), une
 	structure cœur-halo de pente $\alpha\simeq-4$ (\textsc{ch4}) à l'équilibre ($\gamma=-1$). La durée de cette phase initiale est de l'ordre de
 	quelques temps dynamiques de la sphère de Hénon initiale. Cette phase d'effondrement n'est pratiquement pas affectée par les paramètres du
-	réservoir. L'intersection des deux systèmes (bain et \textsc{sag}) n'étant pas vide, le nombre de particules du bain contenu dans le
+	réservoir, excepté pour certaines simulations. L'intersection des deux systèmes (bain et \textsc{sag}) n'étant pas vide, le nombre de particules du bain contenu dans le
 	\textsc{sag} est variable, ce qui explique la légère variation observée des paramètres post-effondrement. La
 	figure~\ref{Fig::Simu::EvoParamPostCollapse} indique, après l'effondrement, les valeurs des différents rayons, axes d'inertie, viriel,
 	température et anisotropie en fonction des paramètres du réservoir thermique pour une partie représentative de nos simulation. Ces valeurs
-	sont calculées en faisant la moyenne de chaque paramètre dans l'intervalle $[1T_d^{t=0}; 1,5T_d^{t=0}]$. Cette phase d'effondrement est la
+	sont calculées en faisant la moyenne de chaque paramètre dans l'intervalle $[1T_d^{t=0}; 1.5T_d^{t=0}]$. Cette phase d'effondrement est la
 	traduction de l'instabilité de Jeans.
 	\begin{figure}[htbp]
 		\centering \rotatebox{90}{%
-			\includegraphics[scale=0.8]{graphe/post-collapse.pdf}%
+			\includegraphics[scale=0.8]{graphe/post-collapse_v2.pdf}%
 		}
 		\caption{Valeur des différentes observables après l'effondrement en fonction des paramètres du bain thermique.\label{Fig::Simu::EvoParamPostCollapse}}
 	\end{figure}
@@ -146,7 +146,7 @@ même masse.
 		\item Les variations des rapports d'axes mettent en évidence 3 évolutions distinctes:
 			\begin{itemize}
 
-				\item[$\spadesuit$] indique l'apparition d'une déformation du système au cours de laquelle $a_1 \simeq 1$ et $a_2 \to 0,4$.
+				\item[$\spadesuit$] indique l'apparition d'une déformation du système au cours de laquelle $a_1 \simeq 1$ et $a_2 \to 0.4$.
 
 				\item[$\emptyset$] indique que le système conserve sa forme sphérique.
 
@@ -235,75 +235,79 @@ même masse.
 		\begin{figure}[htpb]
 			\centering \includegraphics{{ROI_radius_N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.001_Soft-0.001_new3}.pdf}
 			\caption{Évolution des rayons à $10\%$ (en bleu), $50\%$ (en vert) et $90\%$ (en rouge) de masse au cours de la simulation
-			$C^m_{3.4}$.\label{Fig::Simu::ROI::Radius::Cm34}}
+			$C^m_{3,4}$.\label{Fig::Simu::ROI::Radius::Cm34}}
 		\end{figure}
-		Au fur et à mesure que l'accrétion se poursuit, l'anisotropie du \textsc{sag} évolue jusqu'à atteindre un minimum puis remonte. Dans le même
+		Au fur et à mesure que l'accrétion se poursuit, l'anisotropie du \textsc{sag} évolue jusqu'à atteindre un maximum puis diminue. Dans le même
 		temps, les rapports d'axes nous apprennent que la forme de l'objet change: $a_1$ reste constant mais $a_2$
-		va diminuer jusqu'à atteindre $a_2 \approx 0,5$. Le système s'étend donc selon un axe privilégié et passe d'une forme sphérique à
+		va diminuer jusqu'à atteindre $a_2 \approx 0.5$. Le système s'étend donc selon un axe privilégié et passe d'une forme sphérique à
 		ovale.
 		% Le minimum de l'anisotropie, pour la simulation $C^m_{3.4}$,
 		% est atteint pour $t \approx 5,6 T_d^{t=0}$.
 		\begin{figure}[htpb]
 			\centering \includegraphics{{ROI_N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.001_Soft-0.001_new3}.pdf}
 			\caption{Évolution des rapports d'axes $a_1$ et $a_2$ et l'anisotropie au cours de la simulation
-			$C^m_{3.4}$.\label{Fig::Simu::ROI::RAA::Cm34}}
+			$C^m_{3,4}$.\label{Fig::Simu::ROI::RAA::Cm34}}
 		\end{figure}
 		% , aux alentours de $t \approx 5,6 T_d^{t=0}$  vers $t\approx5T_d^{t=0}$ et va continuer
 		Cette évolution est présentée sur la figure~\ref{Fig::Simu::ROI::RAA::Cm34} et se retrouve
 		sur toutes les simulations marquées par le symbole $\spadesuit$. Comme nous avons pu le voir dans le chapitre~\ref{Chap::Instabilite},
 		l'instabilité d'orbite radiale est censée se produire lorsqu'un système sphérique voit la partie radiale de son espace des phases se
-		peupler. C'est bien ce qu'indique la diminution progressive du paramètre d'anisotropie $\beta$.
+		peupler. C'est bien ce qu'indique l'augmentation progressive du paramètre d'anisotropie $\beta$.
 		% lors que l'anisotropie atteint un minimum.
 		En effectuant un zoom autour du
-		minimum de l'anisotropie (voir la figure~\ref{Fig::Simu::ROI::RAA::Cm34Zoom}), nous observons une diminution significative de $a_2$,
-		signe de l'instabilité arrivant vers $t'=11,5$, alors que le minimum de l'anisotropie est atteint vers $t'=12$.
+		maximum de l'anisotropie (voir la figure~\ref{Fig::Simu::ROI::RAA::Cm34Zoom}), nous observons une diminution significative de $a_2$,
+		signe de l'arrivée de l'instabilité vers $t'=11.5$, tandis que le maximum de l'anisotropie est atteint dans l'intervalle $t'\in\left[11; 12\right]$.
+		% alors que le maximum de l'anisotropie est atteint vers $t'=12$.
 		% L'instabilité semble se produire lorsque l'anisotropie atteint son minimum lorsque $a_2$ commence à décroitre de façon significative
 		% (variation de l'ordre de $20\%$).
 
 		En cherchant à savoir à quel moment l'instabilité se produit, nous remarquons que pour les simulations de la catégorie $C^m_{i,j}$, le
-		changement de température du bain n'influe pas sur son déclenchement: toutes les simulations de cette catégorie déclenchent
-		l'instabilité vers $t'=12$.
+		changement de température du bain n'influe pas de manière significative sur son déclenchement: toutes les simulations de cette catégorie déclenchent
+		l'instabilité dans l'intervalle $t'\in\left[11; 12\right]$.
+		% vers $t'=12$.
 		\begin{figure}[htbp]
 			\begin{subfigure}{0.50\linewidth}
 				\centering \includegraphics{{ROI_zoom_N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.000125_Soft-0.001_new3}.pdf}
-				\caption{Simulation $C^m_{3.1}$.\label{Fig::Simu::ROI::RAA::Cm31}}
+				\caption{Simulation $C^m_{3,1}$.\label{Fig::Simu::ROI::RAA::Cm31}}
 			\end{subfigure}\hfill
 			\begin{subfigure}{0.50\linewidth}
 				\centering \includegraphics{{ROI_zoom_N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.00025_Soft-0.001_new3}.pdf}
-				\caption{Simulation $C^m_{3.2}$.\label{Fig::Simu::ROI::RAA::Cm32}}
+				\caption{Simulation $C^m_{3,2}$.\label{Fig::Simu::ROI::RAA::Cm32}}
 			\end{subfigure}
 			\begin{subfigure}{0.50\linewidth}
 				\centering \includegraphics{{ROI_zoom_N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.0005_Soft-0.001_new3}.pdf}
-				\caption{Simulation $C^m_{3.3}$.\label{Fig::Simu::ROI::RAA::Cm33}}
+				\caption{Simulation $C^m_{3,3}$.\label{Fig::Simu::ROI::RAA::Cm33}}
 			\end{subfigure}\hfill
 			\begin{subfigure}{0.50\linewidth}
 				\centering \includegraphics{{ROI_zoom_N-550000.0p1.5p1.5p1.5_Rc-33.3333333333p1.5_sc-0.001_Soft-0.001_new3}.pdf}
-				\caption{Simulation $C^m_{3.4}$.\label{Fig::Simu::ROI::RAA::Cm34Zoom}}
+				\caption{Simulation $C^m_{3,4}$.\label{Fig::Simu::ROI::RAA::Cm34Zoom}}
 			\end{subfigure}
 			\begin{subfigure}{0.50\linewidth}
 				\centering \includegraphics{{ROI_zoom_N-550000.0_Rc-33.3333333333_sc-0.001_Soft-0.001_new-seed}.pdf}
-				\caption{Simulation $C_{3.4}$.\label{Fig::Simu::ROI::RAA::C34::Zoom}}
+				\caption{Simulation $C_{3,4}$.\label{Fig::Simu::ROI::RAA::C34::Zoom}}
 			\end{subfigure}\hfill
 			\begin{subfigure}{0.50\linewidth}
 				\centering \includegraphics{{ROI_zoom_N-325000.0_Rc-33.3333333333_sc-0.001_Soft-0.001_new2}.pdf}
-				\caption{Simulation $B_{3.1}$.\label{Fig::Simu::ROI::RAA::B31::Zoom}}
+				\caption{Simulation $B_{3,1}$.\label{Fig::Simu::ROI::RAA::B31::Zoom}}
 			\end{subfigure}
 			\caption{Zoom sur le moment de l'instabilité pour les rapports d'axes $a_1$ et $a_2$ et l'anisotropie.\label{Fig::Simu::ROI::RAA::All}}
 		\end{figure}
-		La figure~\ref{Fig::Simu::ROI::RAA::All} montre l'évolution des simulations $C_{i, j}^m$, $C_{3.4}$ et $B_{3,1}$ sur la région où se produit
-		l'instabilité. Il est aisé de remarquer que l'instabilité se produit toujours au même moment, sauf pour les simulations $C_{3.4}$
-		(figure~\ref{Fig::Simu::ROI::RAA::C34::Zoom}) et $B_{3.1}$ (figure~\ref{Fig::Simu::ROI::RAA::B31::Zoom}).
+		La figure~\ref{Fig::Simu::ROI::RAA::All} montre l'évolution des simulations $C_{i, j}^m$, $C_{3,4}$ et $B_{3,1}$ sur la région où se produit
+		l'instabilité. Il est aisé de remarquer que l'instabilité se produit toujours au même moment, sauf pour
+		% les simulations $C_{3.4}$ (figure~\ref{Fig::Simu::ROI::RAA::C34::Zoom}) et
+		la simulation $B_{3,1}$ (figure~\ref{Fig::Simu::ROI::RAA::B31::Zoom}).
 		%
 		La seule différence entre les simulations de la famille $C^m_{i,j}$ est la dispersion de vitesse du bain et donc sa température qui
 		varie dans un facteur $100$ entre les éléments de cette famille. Le \textsc{sag} central et
 		la densité du bain sont les mêmes. Nous pouvons donc en déduire que la dispersion de vitesse du bain, dans l'intervalle de valeurs testé,
-		n'a pas d'effet sur le déclenchement de l'instabilité d'orbite radiale.
+		a très peu d'effet sur le déclenchement de l'instabilité d'orbite radiale.
 
-		La première simulation à avoir un comportement différent est la simulation $C_{3,4}$. Cette simulation et la simulation $C^m_{3,4}$
+		% La première simulation à avoir un comportement différent est la simulation $C_{3,4}$.
+		La simulation $C_{3,4}$ et la simulation $C^m_{3,4}$
 		ont été construites pour être les plus similaires possible. Pour construire la simulation $C^m_{3,4}$, nous avons multiplié la taille du
-		cube par $1,5$ afin de vérifier si cette différence n'est pas dû aux conditions périodiques, et
+		cube par $1.5$ afin de vérifier si cette différence n'est pas dû aux conditions périodiques, et
 		% . Pour avoir la simulation la plus similaire possible,
-		nous avons multiplié le nombre de particules du bain par ${1,5}^3$ pour conserver sa densité.
+		nous avons multiplié le nombre de particules du bain par ${1.5}^3$ pour conserver sa densité.
 		% En pratique,
 		% la simulation n'est pas exactement la même. En effet, le rapport du Viriel du bain n'est pas conservé. Pour cela, il aurait fallu multiplié la
 		% dispersion de vitesse par ${1,5}^5$. Le rapport du Viriel de $C^m_{3,4}$ est donc $7,6$ fois inférieur au rapport de la simulation
@@ -322,10 +326,13 @@ même masse.
 		Cette simulation affiche une forte accrétion (\accretionlot{}). Les rayons $R_{90}$ et $R_{50}$ montrent une croissance similaire à la
 		simulation $C^m_{3,4}$, l'accrétion commence au même moment et en arrive au même point au même temps. En regardant l'évolution des
 		rapports d'axes et de l'anisotropie (figure~\ref{Fig::Simu::ROI::Radius::C34} et~\ref{Fig::Simu::ROI::RAA::C34}), nous remarquons que
-		leurs évolutions n'est pas complètement similaire. La décroissance de $a_2$ semble indiquer que l'instabilité se produit au même
-		moment, mais l'anisotropie, après être remontée un peu, recommence à diminuer. La simulation n'est pas allée assez loin pour confirmer la
-		présence d'un minimum dans cette zone, en effet, compte tenu du temps de calcul, elle a duré deux fois moins de temps que la simulation $C^m_{3,4}$ ($t'_{C_{3,4}} =
+		leurs évolutions n'est pas complètement similaire.
+		La décroissance de $a_2$ et l'évolution de l'anisotropie semblent indiquer que l'instabilité se produit au même moment. Mais $a_1$ montre une croissance
+		plus importante. La simulation n'a pas été assez loin pour conclure, en effet, compte tenu du temps de calcul, elle a duré deux fois moins de temps que la simulation $C^m_{3,4}$ ($t'_{C_{3,4}} =
 		15$ au lieu de $t'_{C^m_{3,4}} = 23$).
+		% La simulation n'est pas allée assez loin pour confirmer la
+		% présence d'un minimum dans cette zone, en effet, compte tenu du temps de calcul, elle a duré deux fois moins de temps que la simulation $C^m_{3,4}$ ($t'_{C_{3,4}} =
+		% 15$ au lieu de $t'_{C^m_{3,4}} = 23$).
 		% $R_{50}$ et relativement importante pour $R_{90}$, mais sur après une évolution plus longue dynamiquement que les autres simulations
 		% (voir la figure~\ref{Fig::Simu::ROI::Radius::C34}). L'accrétion du bain est moins efficace.
 		% L'anisotropie commence à diminuer dés $t'=10$ et continue sans atteindre de minimum sur la durée de la simulation. Le rapport $a_2$
@@ -336,7 +343,7 @@ même masse.
 		La simulation $B_{3,1}$ présente les mêmes caractéristiques que celles de la famille $C^m_{3,4}$ mais l'accrétion est plus tardive:
 		$R_{50}$ commence à croître vers $t'=15$ et vers $t'=20$ pour $R_{10}$. Par ailleurs, le système évolue plus longtemps avant de déclencher
 		l'instabilité (voir la figure~\ref{Fig::Simu::ROI::Radius::B31}). Les variations du rapport $a_2$ et de l'anisotropie nous apprennent
-		que l'instabilité d'orbite radiale se déclenche vers $t'=20$ (voir la figure~\ref{Fig::Simu::ROI::B31}).
+		que l'instabilité d'orbite radiale se déclenche vers $t'=18$ (voir la figure~\ref{Fig::Simu::ROI::B31}).
 		\begin{figure}[htbp]
 			\begin{subfigure}{0.50\linewidth}
 				\centering \includegraphics{{ROI_radius_N-325000.0_Rc-33.3333333333_sc-0.001_Soft-0.001_new2_next}.pdf}
@@ -349,14 +356,14 @@ même masse.
 			\caption{Évolution de la simulation $B_{3,1}$.\label{Fig::Simu::ROI::B31}}
 		\end{figure}
 		Les principales différences entre cette simulation et les autres sont le nombre de particule et la taille du bain. Par conséquent, la
-		densité du bain est différente. Ici, la densité du bain de la famille des $C^m_{i,j}$ est $1,7$ fois plus importante que la densité de
+		densité du bain est différente. Ici, la densité du bain de la famille des $C^m_{i,j}$ est $1.7$ fois plus importante que la densité de
 		cette simulation. Il semblerait donc qu'augmenter la densité du bain accélère l'apparition de l'instabilité.
 
 		La dernière simulation à étudier est la simulation $C_{6,1}$, qui est bien plus évoluée dynamiquement que
 		les précédentes. Le rayon $R_{10}$ reste constant pendant toute l'évolution et $R_{50}$ commence à croître vers $t' = 45$. Par contre,
 		$R_{90}$ croît tout au long de la simulation, mais cette croissance s'accélère à partir de $t' = 40$ (voir la
 		figure~\ref{Fig::Simu::ROI::Radius::C61}). Le rapport d'axe $a_2$ commence à décroître à $t'=40$, signe que l'instabilité d'orbite
-		radiale se produit. Le minimum de l'anisotropie n'a pas encore été atteint.
+		radiale se produit. Le maximum de l'anisotropie n'a pas encore été atteint.
 		% Mais l'anisotropie ne montre aucun minimum.
 		Le bain de cette simulation est $8$ fois moins dense que celui de la famille des $C^m_{i,j}$.
 		% Il serait alors consistant, d'après les résultats précèdent, que ce soit bien cette instabilité
@@ -399,8 +406,8 @@ même masse.
 		contre, la figure~\ref{Fig::Relax::DensiteEvo} montre une évolution nette et globale de la densité du \textsc{sag}.
 		\begin{figure}[htbp]
 			\centering \includegraphics{{N-100000.0_Rc-66.6666666666_sc-0.001_evo}.pdf}
-			\centering \caption{Évolution au cours du temps de la densité. En bleu, $t'=0$. En vert, $t'=59,9$. En rouge,
-				$t'=144$. En noir, $t'=246,3$.\label{Fig::Relax::DensiteEvo}}
+			\centering \caption{Évolution au cours du temps de la densité. En bleu, $t'=0$. En vert, $t'=59.9$. En rouge,
+				$t'=144$. En noir, $t'=246.3$.\label{Fig::Relax::DensiteEvo}}
 		\end{figure}
 		\begin{figure}[htbp]
 			\begin{subfigure}{0.45\linewidth}
@@ -408,7 +415,7 @@ même masse.
 				\centering \caption{Évolution des rapports d'axes.\label{Fig::Relax::Data::SubAxes}}
 			\end{subfigure}\hfill
 			\begin{subfigure}{0.45\linewidth}
-				\centering \includegraphics{{N-100000.0_Rc-66.6666666666_sc-0.001_evo_aniso}.pdf}
+				\centering \includegraphics{{N-100000.0_Rc-66.6666666666_sc-0.001_evo_anisov2}.pdf}
 				\centering \caption{Évolution de l'anisotropie moyenne du système.\label{Fig::Relax::Data::SubAniso}}
 			\end{subfigure}
 
