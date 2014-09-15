@@ -60,6 +60,8 @@
 %\usepackage{subfiles}
 
 \usepackage[french,colorinlistoftodos]{todonotes}
+\usepackage{pdfpages}
+
 
 \usepackage[pdftex]{hyperref}					%Pour les liens hypertexte des glossaires, sommaires, formules, ....
 
@@ -444,6 +446,11 @@
 	\addstarredchapter{Bibliographie}
 
 	\appendix
+	\part*{Article}
+	\label{Part::Article}
+	\includepdf[pages=-]{Ref/notes_vlasolve2.pdf}
+	% \include{}
+
 	% \part{Annexe}
 	% \chapter{Algorithme : Tree Code}
 			% \label{Chap::Algo::OctTree}
